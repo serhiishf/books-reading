@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function IntroPage() {
-    return (<div>IntroPage</div>)
+  const handleBtnClick = () => {
+    console.log("click");
+  };
+
+  return <div>IntroPage</div>;
 }

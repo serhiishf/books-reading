@@ -6,17 +6,21 @@ import LoginPage from "./views/LoginPage";
 import RegisterPage from "./views/RegisterPage";
 import LibraryPage from "./views/LibraryPage";
 import TrainingPage from "./views/TrainingPage";
+import IntroPage from "./views/IntroPage";
 
 function App() {
   return (
     <>
       <Header />
-      {/* <Suspense>
+      <Suspense>
         <Routes>
+          <Route path="/" element={<IntroPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/library" element={<LibraryPage />} />
           <Route path="/training" element={<TrainingPage />} />
         </Routes>
-      </Suspense> */}
+      </Suspense>
     </>
   );
 }

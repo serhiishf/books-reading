@@ -39,11 +39,12 @@ $primary-text-color: #242a37;
 $secondary-text-color: #898f9f;
 $accent-color: #ff6b08;
 $bg-color-blue: #f6f7fb;
+$bg-color-input: #f5f7fa;
 $overlay-color: rgba(9, 30, 63, 0.8);
 $light-grey: #b1b5c2;
 $dark-grey: #6d7a8d;
 
-$hover-orange: #d15807;
+$hover-color: #d15807;
 
 // shadow
 $box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
@@ -140,7 +141,6 @@ ul {
     padding-right: 114px;
   }
 }
-
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

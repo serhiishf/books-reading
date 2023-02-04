@@ -10,13 +10,15 @@ import styles from "./NavAuth.module.scss";
 export default function NavAuth() {
   return (
     <div className={styles.navWrapper}>
-      <div>User Name</div>
-      <NavLink key={uuidv4()} to={"/library"}>
-        <SvgLibrary />
-      </NavLink>
-      <NavLink key={uuidv4()} to={"/training"}>
-        <SvgHome />
-      </NavLink>
+      <div className={styles.userName}>User Name</div>
+      <div>
+        <NavLink key={uuidv4()} to={"/library"}>
+          <SvgLibrary className={styles.icon} />
+        </NavLink>
+        <NavLink key={uuidv4()} to={"/training"}>
+          <SvgHome className={styles.icon} />
+        </NavLink>
+      </div>
     </div>
   );
 }

@@ -1,1 +1,23 @@
 @import "../../scss/base.scss";
+
+.btn {
+  border: none;
+  margin: 0;
+  padding: 12px 0;
+  cursor: pointer;
+  text-align: center;
+  transition: all 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.google {
+  width: 150px;
+  background-color: red;
+  color: aquamarine;
+}
+
+.login {
+  color: #ffffff;
+  background-color: $accent-color;
+}
