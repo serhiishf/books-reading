@@ -1,9 +1,9 @@
-import React from "react";
-import Logo from "../Logo";
-import Nav from "../Nav";
-import NavNotAuth from "../NavNotAuth";
-import NavAuth from "../NavAuth";
-import styles from "./Header.module.scss";
+import React from 'react';
+import Logo from '../Logo';
+import Nav from '../Nav';
+import NavNotAuth from '../NavNotAuth';
+import NavAuth from '../NavAuth';
+import styles from './Header.module.scss';
 
 export default function Header() {
   const isLogged = true;

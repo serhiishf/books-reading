@@ -1,8 +1,8 @@
-import React, { useMemo } from "react";
-import { NavLink } from "react-router-dom";
-import styles from "./NavNotAuth.module.scss";
-import routes, { IRoute } from "../../routes";
-import { v4 as uuidv4 } from "uuid";
+import React, { useMemo } from 'react';
+import { NavLink } from 'react-router-dom';
+import styles from './NavNotAuth.module.scss';
+import routes, { IRoute } from '../../routes';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function NavNotAuth() {
   const navLinks: Array<IRoute> = useMemo(

@@ -1,18 +1,18 @@
-import { lazy, LazyExoticComponent } from "react";
+import { lazy, LazyExoticComponent } from 'react';
 
-const IntroPage = lazy(() => import("./views/IntroPage"));
+const IntroPage = lazy(() => import('./views/IntroPage'));
 
-const LoginPage = lazy(() => import("./views/LoginPage"));
+const LoginPage = lazy(() => import('./views/LoginPage'));
 
-const RegisterPage = lazy(() => import("./views/RegisterPage"));
+const RegisterPage = lazy(() => import('./views/RegisterPage'));
 
-const AboutPage = lazy(() => import("./views/AboutPage"));
+const AboutPage = lazy(() => import('./views/AboutPage'));
 
-const LibraryPage = lazy(() => import("./views/LibraryPage"));
+const LibraryPage = lazy(() => import('./views/LibraryPage'));
 
-const TrainingPage = lazy(() => import("./views/TrainingPage"));
+const TrainingPage = lazy(() => import('./views/TrainingPage'));
 
-const Page404 = lazy(() => import("./views/Page404"));
+const Page404 = lazy(() => import('./views/Page404'));
 
 export interface IRoute {
   path: string;
@@ -25,52 +25,52 @@ export interface IRoute {
 
 const routes = [
   {
-    path: "/",
-    label: "Intro",
+    path: '/',
+    label: 'Intro',
     component: IntroPage,
     isProtected: false,
     isNav: false,
-    redirectTo: "/",
+    redirectTo: '/',
   },
   {
-    path: "/login",
-    label: "Login",
+    path: '/login',
+    label: 'Login',
     component: LoginPage,
     isProtected: false,
     isNav: true,
-    redirectTo: "/login",
+    redirectTo: '/login',
   },
   {
-    path: "/register",
-    label: "Register",
+    path: '/register',
+    label: 'Register',
     component: RegisterPage,
     isProtected: false,
     isNav: true,
-    redirectTo: "/library",
+    redirectTo: '/library',
   },
   {
-    path: "/about",
-    label: "About us",
+    path: '/about',
+    label: 'About us',
     component: AboutPage,
     isProtected: false,
     isNav: true,
-    redirectTo: "/about",
+    redirectTo: '/about',
   },
   {
-    path: "/library",
+    path: '/library',
     component: LibraryPage,
-    label: "Library",
+    label: 'Library',
     isProtected: true,
     isNav: false,
-    redirectTo: "/library",
+    redirectTo: '/library',
   },
   {
-    path: "/training",
+    path: '/training',
     component: TrainingPage,
-    label: "Training",
+    label: 'Training',
     isProtected: true,
     isNav: false,
-    redirectTo: "/training",
+    redirectTo: '/training',
   },
   // {
   //   path: null,
