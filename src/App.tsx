@@ -6,11 +6,13 @@ import LoginPage from './views/LoginPage';
 import RegisterPage from './views/RegisterPage';
 import LibraryPage from './views/LibraryPage';
 import TrainingPage from './views/TrainingPage';
+import ShfTestComponent from './shfTestFile';
 
 function App() {
   return (
     <>
       <Header />
+      {/* <ShfTestComponent /> */}
       {/* <Suspense>
         <Routes>
           <Route path="/library" element={<LibraryPage />} />
