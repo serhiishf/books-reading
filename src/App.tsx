@@ -7,18 +7,21 @@ import RegisterPage from './views/RegisterPage';
 import LibraryPage from './views/LibraryPage';
 import TrainingPage from './views/TrainingPage';
 import ShfTestComponent from './shfTestFile';
+import IntroPage from './views/IntroPage';
 
 function App() {
   return (
     <>
       <Header />
-      <ShfTestComponent />
-      {/* <Suspense>
+      <Suspense>
         <Routes>
+          <Route path="/" element={<IntroPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/library" element={<LibraryPage />} />
           <Route path="/training" element={<TrainingPage />} />
         </Routes>
-      </Suspense> */}
+      </Suspense>
     </>
   );
 }
