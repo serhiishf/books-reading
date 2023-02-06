@@ -13,7 +13,7 @@ export default function NavNotAuth() {
   return (
     <div className={styles.navWrapper}>
       {navLinks.map((link: IRoute) => (
-        <NavLink key={uuidv4()} to={link.path}>
+        <NavLink key={uuidv4()} to={link.path} className={styles.navLink}>
           {link.label}
         </NavLink>
       ))}

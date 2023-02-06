@@ -6,7 +6,7 @@ import NavAuth from '../NavAuth';
 import styles from './Header.module.scss';
 
 export default function Header() {
-  const isLogged = false;
+  const isLogged = true;
 
   return (
     <header className={styles.headerWrapper}>

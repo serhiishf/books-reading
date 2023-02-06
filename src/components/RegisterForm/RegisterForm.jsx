@@ -108,7 +108,10 @@ export default function RegisterForm() {
         btnClass={btnStyles.login}
         title={'Register'}
       />
-      <Link to="/login" className={styles.link}>Login</Link>
+      <span>Already have an account?</span>
+      <Link to="/login" className={styles.link}>
+        Log in
+      </Link>
     </form>
   );
 }
