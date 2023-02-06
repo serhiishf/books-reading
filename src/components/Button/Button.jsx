@@ -1,4 +1,6 @@
-import styles from "./Button.module.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './Button.module.scss';
 
 export default function Button({ handleClick, btnClass, title }) {
   return (
@@ -13,3 +15,9 @@ export default function Button({ handleClick, btnClass, title }) {
     </>
   );
 }
+
+Button.propTypes = {
+  handleClick: PropTypes.func,
+  btnClass: PropTypes.string,
+  title: PropTypes.string,
+};

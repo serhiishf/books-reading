@@ -1,7 +1,7 @@
-import React from "react";
-import { ReactComponent as LogoImage } from "../../assets/img/logo.svg";
-import styles from "./Logo.module.scss";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { ReactComponent as LogoImage } from '../../assets/img/logo.svg';
+import styles from './Logo.module.scss';
+import { NavLink } from 'react-router-dom';
 
 export default function Logo() {
   return (

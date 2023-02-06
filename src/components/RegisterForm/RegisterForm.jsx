@@ -2,21 +2,23 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Input from '../Input';
-import styles from './LoginForm.module.scss';
+import styles from '../LoginForm/LoginForm.module.scss';
 import btnStyles from '../Button/Button.module.scss';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const initialValues = {
     name: '',
     email: '',
     password: '',
+    confirmPassword: '',
   };
 
   const formik = useFormik({
     initialValues,
     validationSchema: yup.object({
+      name: yup.string().min(3, 'Min 3 symbols').required(),
       email: yup
         .string()
         .email('Must be a valid email')
@@ -29,10 +31,15 @@ export default function LoginForm() {
         .max(40, 'Max 40 symbols')
         .matches(/[A-z0-9]/, 'Password should be letters and numbers')
         .required('Required'),
+      confirmPassword: yup
+        .string()
+        .label('confirm password')
+        .required('Please confirm your password.')
+        .oneOf([yup.ref('password')], 'Your passwords do not match.'),
     }),
     onSubmit: (values) => {
-      const { email, password } = values;
-      console.log(email, password);
+      const { name, email, password, confirmPassword } = values;
+      console.log(name, email, password, confirmPassword);
       // loginRequest(email. password)
       formik.resetForm();
     },
@@ -48,6 +55,16 @@ export default function LoginForm() {
         btnClass={btnStyles.google}
         title={'Google'}
       />
+      <div className={styles.inputWrapper}>
+        <Input
+          labelName={'Name *'}
+          name={'name'}
+          type={'text'}
+          value={formik.values.name}
+          handleChange={formik.handleChange}
+        />
+      </div>
+
       <div className={styles.inputWrapper}>
         <Input
           labelName={'Email *'}
@@ -73,14 +90,25 @@ export default function LoginForm() {
         ) : null}
       </div>
 
+      <div className={styles.inputWrapper}>
+        <Input
+          labelName={'Confirm password *'}
+          name={'confirmPassword'}
+          type={'password'}
+          value={formik.values.confirmPassword}
+          handleChange={formik.handleChange}
+        />
+        {formik.errors.confirmPassword && formik.touched.confirmPassword ? (
+          <p className={styles.notification}>{formik.errors.confirmPassword}</p>
+        ) : null}
+      </div>
+
       <Button
         handleClick={formik.handleSubmit}
         btnClass={btnStyles.login}
-        title={'Login'}
+        title={'Register'}
       />
-      <Link className={styles.link} to="/register">
-        Register
-      </Link>
+      <Link to="/login" className={styles.link}>Login</Link>
     </form>
   );
 }

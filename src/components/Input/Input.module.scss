@@ -1,13 +1,50 @@
-@import "../../scss/base.scss";
+@import '../../scss/base.scss';
 
 input {
   all: unset;
 }
 
+label {
+  display: block;
+}
+
+.labelAuth {
+  // width: 97%;
+  position: relative;
+  color: #ffffff;
+
+  @include for-size(tablet) {
+    color: $secondary-text-color;
+  }
+}
+
 .inputAuth {
-  width: 270px;
+  display: block;
+  width: 97%;
   height: 42px;
+  margin-top: 10px;
+  margin-bottom: 25px;
   padding-left: 13px;
   background: $bg-color-input;
   box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
+
+  // @include for-size(tablet) {
+  //   width: 100%;
+  // }
+}
+
+.btnEye {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.img {
+  display: block;
+  width: 20px;
 }

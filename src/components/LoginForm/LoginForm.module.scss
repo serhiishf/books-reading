@@ -1,6 +1,40 @@
-@import "../../scss/base.scss";
+@import '../../scss/base.scss';
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 30px 25px;
+
+  @include for-size(tablet) {
+    background-color: #fff;
+    width: 400px;
+    padding: 30px 40px;
+  }
+}
+
+.inputWrapper {
+  display: block;
+  width: 97%;
+}
 
 .notification {
-  width: 150px;
+  // width: 150px;
+  position: absolute;
+  text-align: start;
   color: rgb(184, 0, 0);
+}
+
+.link {
+  color: $accent-color;
+}
+
+.btnEye {
+  bottom: 15px;
+  right: 15px;
 }
