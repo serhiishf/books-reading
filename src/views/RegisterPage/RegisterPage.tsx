@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './RegisterPage.module.scss';
 import RegisterForm from '../../components/RegisterForm';
 
+
 export default function RegisterPage() {
   return (
     <div className={styles.mainWrapper}>
