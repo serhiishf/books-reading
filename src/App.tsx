@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Header />
-      {/* <ShfTestComponent /> */}
+      <ShfTestComponent />
       {/* <Suspense>
         <Routes>
           <Route path="/library" element={<LibraryPage />} />
