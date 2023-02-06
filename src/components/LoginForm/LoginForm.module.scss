@@ -20,12 +20,14 @@
 
 .inputWrapper {
   display: block;
+  position: relative;
   width: 97%;
 }
 
 .notification {
   // width: 150px;
   position: absolute;
+  bottom: 10px;
   text-align: start;
   color: rgb(184, 0, 0);
 }
