@@ -1,48 +1,39 @@
 import React, { MouseEventHandler } from 'react';
-import { useState, useEffect } from 'react';
+import Select, { StylesConfig } from 'react-select';
 import { ReactComponent as Icon } from './assets/icon.svg';
-import style from './Dropdown.module.scss';
 import { Props } from './Dropdown.interface';
+import makeAnimated from 'react-select/animated';
+//import styles from './Dropdown.module.scss';
+
+const animatedComponents = makeAnimated();
 
 const Dropdown: React.FC<Props> = ({ placeHolder, options }) => {
-  const [showMenu, setShowMenu] = useState(false);
-
-  useEffect(() => {
-    const handler = () => setShowMenu(false);
-
-    window.addEventListener('click', handler);
-    return () => {
-      window.removeEventListener('click', handler);
-    };
-  });
-  const handleInputClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setShowMenu(!showMenu);
+  const customStyles: StylesConfig = {
+    option: (provided, state: { isSelected: boolean }) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? '#ff6b08' : 'white',
+      color: state.isSelected ? 'white' : 'black',
+      padding: 10
+    }),
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: '#f3f3f3',
+      border: '1px solid green',
+      borderRadius: 5
+    })
   };
-
-  const getDisplay = () => {
-    return placeHolder;
-  };
-
   return (
-    <div className={style['dropdown-container']}>
-      <div onClick={handleInputClick} className={style['dropdown-input']}>
-        <div className={style['dropdown-selected-value']}>{getDisplay()}</div>
-        <div className={style['dropdown-tools']}>
-          <div className={style['dropdown-tool']}>
-            <Icon />
-          </div>
-        </div>
-      </div>
-      {showMenu && (
-        <div className={style['dropdown-menu']}>
-          {options.map((option) => (<div key={option.value} className={style['dropdown-item']}>
-            {option.label}
-          </div>
-          ))}
-        </div>
-      )}
-    </div>
+    <>
+      <Select
+        styles={customStyles}
+        closeMenuOnSelect={false}
+        components={animatedComponents}
+        placeholder={placeHolder}
+        noOptionsMessage={() => 'Більше нема книжок'}
+        isMulti
+        options={options}
+      />
+    </>
   );
 };
 
