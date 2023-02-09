@@ -1,25 +1,27 @@
 import React, { MouseEventHandler } from 'react';
-import Select, { StylesConfig } from 'react-select';
+import Select, { StylesConfig, } from 'react-select';
 import { ReactComponent as Icon } from './assets/icon.svg';
 import { Props } from './Dropdown.interface';
-import makeAnimated from 'react-select/animated';
-//import styles from './Dropdown.module.scss';
-
-const animatedComponents = makeAnimated();
 
 const Dropdown: React.FC<Props> = ({ placeHolder, options }) => {
   const customStyles: StylesConfig = {
-    option: (provided, state: { isSelected: boolean }) => ({
+    menu: (styles) => ({
+      ...styles,
+      borderRadius: '0',
+    }),
+    option: (provided, { isDisabled, isFocused, isSelected }) => ({
       ...provided,
-      backgroundColor: state.isSelected ? '#ff6b08' : 'white',
-      color: state.isSelected ? 'white' : 'black',
-      padding: 10
+      backgroundColor: isSelected ? undefined : isFocused ? '#F5F7FA' : 'white',
+      color: isSelected ? 'white' : 'black',
+      padding: 13,
     }),
     control: (provided) => ({
       ...provided,
-      backgroundColor: '#f3f3f3',
-      border: '1px solid green',
-      borderRadius: 5
+      backgroundColor: 'white',
+      boxShadow: 'inset 0px 1px 2px rgba(29, 29, 27, 0.15)',
+      borderRadius: 0,
+      minHeight: '42px',
+      fontSize: '14px',
     })
   };
   return (
@@ -27,7 +29,6 @@ const Dropdown: React.FC<Props> = ({ placeHolder, options }) => {
       <Select
         styles={customStyles}
         closeMenuOnSelect={false}
-        components={animatedComponents}
         placeholder={placeHolder}
         noOptionsMessage={() => 'Більше нема книжок'}
         isMulti
