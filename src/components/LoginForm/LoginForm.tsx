@@ -6,10 +6,13 @@ import styles from './LoginForm.module.scss';
 import btnStyles from '../Button/Button.module.scss';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../redux/app/hooks';
+import authOperations from '../../redux/features/auth/authOperations';
 
 export default function LoginForm() {
+  const dispatch = useAppDispatch();
+
   const initialValues = {
-    name: '',
     email: '',
     password: '',
   };
@@ -32,8 +35,7 @@ export default function LoginForm() {
     }),
     onSubmit: (values) => {
       const { email, password } = values;
-      console.log(email, password);
-      // loginRequest(email. password)
+      dispatch(authOperations.logIn({ email, password }));
       formik.resetForm();
     },
   });

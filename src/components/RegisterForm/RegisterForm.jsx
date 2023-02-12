@@ -6,8 +6,12 @@ import styles from '../LoginForm/LoginForm.module.scss';
 import btnStyles from '../Button/Button.module.scss';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
+import authOperations from '../../redux/features/auth/authOperations';
+import { useAppDispatch } from '../../redux/app/hooks';
 
 export default function RegisterForm() {
+  const dispatch = useAppDispatch();
+
   const initialValues = {
     name: '',
     email: '',
@@ -37,10 +41,10 @@ export default function RegisterForm() {
         .required('Please confirm your password.')
         .oneOf([yup.ref('password')], 'Your passwords do not match.'),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const { name, email, password, confirmPassword } = values;
       console.log(name, email, password, confirmPassword);
-      // loginRequest(email. password)
+      dispatch(authOperations.register({ name, email, password }));
       formik.resetForm();
     },
   });

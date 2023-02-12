@@ -1,26 +1,50 @@
-import React, { Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Header from './components/Header';
 import './App.scss';
-import LoginPage from './views/LoginPage';
-import RegisterPage from './views/RegisterPage';
-import LibraryPage from './views/LibraryPage';
-import TrainingPage from './views/TrainingPage';
-import IntroPage from './views/IntroPage';
+import PagesRoutes from './views/PagesRoutes';
+import { ToastContainer, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAppSelector, useAppDispatch } from './redux/app/hooks';
+import authSelectors from './redux/features/auth/authSelectors';
+import {
+  setAccessToken,
+  setRefreshToken,
+} from './redux/features/auth/authSlice';
+import authOperations from './redux/features/auth/authOperations';
 
 function App() {
+  const dispatch = useAppDispatch();
+  const isLogged = useAppSelector(authSelectors.getLoggedOn);
+  const accessToken = useAppSelector(authSelectors.getUserAccessToken);
+  const [searchParams] = useSearchParams();
+  const accessTokenFromURL = searchParams.get('accessToken');
+  const refreshTokenFromURL = searchParams.get('refreshToken');
+
+  useEffect(() => {
+    if (accessTokenFromURL && refreshTokenFromURL) {
+      dispatch(setAccessToken(accessTokenFromURL));
+      dispatch(setRefreshToken(refreshTokenFromURL));
+    }
+  }, [accessTokenFromURL, refreshTokenFromURL, dispatch]);
+
+  useEffect(() => {
+    if (!isLogged && accessToken) {
+      dispatch(authOperations.getCurrent(accessToken));
+    }
+  }, [dispatch, isLogged, accessToken]);
+
   return (
     <>
       <Header />
-      <Suspense>
-        <Routes>
-          <Route path="/" element={<IntroPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/library" element={<LibraryPage />} />
-          <Route path="/training" element={<TrainingPage />} />
-        </Routes>
-      </Suspense>
+      <PagesRoutes />
+      <ToastContainer
+        autoClose={2000}
+        hideProgressBar
+        position="top-center"
+        theme="colored"
+        transition={Zoom}
+      />
     </>
   );
 }

@@ -72,13 +72,14 @@ const routes = [
     isNav: false,
     redirectTo: '/training',
   },
-  // {
-  //   path: null,
-  //   component: Page404,
-  //   label: null,
-  //   isProtected: null,
-  //   isNav: false,
-  // },
+  {
+    path: '',
+    component: Page404,
+    label: '',
+    isProtected: false,
+    isNav: false,
+    redirectTo: '/',
+  },
 ];
 
 export default routes;
