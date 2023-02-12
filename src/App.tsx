@@ -21,7 +21,7 @@ function App() {
           <Route path="/library" element={<LibraryPage />} />
           <Route path="/training" element={<TrainingPage />} />
         </Routes>
-        {/* <ShfTestComponent /> */}
+        <ShfTestComponent />
       </Suspense>
     </>
   );
