@@ -4,7 +4,7 @@ import authSelectors from '../../redux/features/auth/authSelectors';
 import IntroPage from '../IntroPage';
 import LibraryPage from '../LibraryPage';
 import Loader from '../../components/Loader';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from '../LoginPage';
 import RegisterPage from '../RegisterPage';
 import PublicRoute from '../../components/PublicRoute';
@@ -13,7 +13,6 @@ import TrainingPage from '../TrainingPage';
 
 const PagesRoutes = () => {
   const isLogged = useAppSelector(authSelectors.getLoggedOn);
-  const currentComponent = !isLogged ? <IntroPage /> : <LibraryPage />;
 
   return (
     <Suspense fallback={<Loader />}>
@@ -27,7 +26,7 @@ const PagesRoutes = () => {
           <Route path="/library" element={<LibraryPage />} />
           <Route path="/training" element={<TrainingPage />} />
         </Route>
-        <Route path="*" element={currentComponent} />
+        <Route path="*" element={<Navigate to='/'/>} />
       </Routes>
     </Suspense>
   );

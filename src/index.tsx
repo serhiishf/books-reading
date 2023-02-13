@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { store, persistor } from './redux/app/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import setupInterceptors from './services/setupInterceptors';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -23,6 +24,8 @@ root.render(
     </Provider>
   </React.StrictMode>,
 );
+
+setupInterceptors(store);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

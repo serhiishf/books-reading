@@ -15,17 +15,9 @@ import {
   getCurrentUserError,
   getCurrentUserRequest,
   getCurrentUserSuccess,
-  refreshedUserError,
-  refreshedUserRequest,
-  refreshedUserSuccess,
 } from './authSlice';
-import {
-  registerUser,
-  loginUser,
-  logoutUser,
-  refreshUser,
-  getCurrentUser,
-} from '../../../services/auth-service';
+import apiService from '../../../services/auth-service';
+import tokenService from '../../../services/token-service';
 
 type Credentials = {
   name: string;
@@ -41,7 +33,7 @@ const register =
   (credentials: Credentials) => async (dispatch: AppDispatch) => {
     dispatch(registerRequest());
     try {
-      const response = await registerUser(credentials);
+      const response = await apiService.registerUser(credentials);
       if (response.status === 'success') {
         dispatch(registerSuccess(response.data));
         toast.success('Registration complete. Log in to access the app.');
@@ -50,6 +42,8 @@ const register =
       if (error instanceof AxiosError) {
         if (error.response?.status === 409) {
           toast.error('This email is already exist');
+        } else {
+          toast.error('Registration failed');
         }
         dispatch(registerError(error?.message));
       }
@@ -59,24 +53,28 @@ const register =
 const logIn = (credentials: LoginCreds) => async (dispatch: AppDispatch) => {
   dispatch(loginRequest());
   try {
-    const { data } = await loginUser(credentials);
-    dispatch(loginSuccess(data));
+    const result = await apiService.loginUser(credentials);
+    dispatch(loginSuccess(result.data));
+    if (result.code === 200) {
+      toast.success(`Welcome ${result.data.user.name}`);
+    }
+    tokenService.setLocalTokens(result.data.tokens);
   } catch (error) {
     if (error instanceof AxiosError) {
       if (error.response?.status === 401) {
-        toast.error('This email is already exist');
+        toast.error('Wrong email or password');
       }
       dispatch(loginError(error?.message));
     }
-    toast.error('Wrong email or password');
   }
 };
 
 const logOut = () => async (dispatch: AppDispatch) => {
   dispatch(logoutRequest());
   try {
-    await logoutUser();
+    await apiService.logoutUser();
     dispatch(logoutSuccess());
+    tokenService.removeLocalTokens();
   } catch (error) {
     if (error instanceof AxiosError) {
       dispatch(logoutError(error?.message));
@@ -85,29 +83,14 @@ const logOut = () => async (dispatch: AppDispatch) => {
   }
 };
 
-const refresh = (token: string) => async (dispatch: AppDispatch) => {
-  const refereshToken = {
-    refreshToken: token,
-  };
-  dispatch(refreshedUserRequest());
-  try {
-    const { data } = await refreshUser(refereshToken);
-    console.log('refresh-operations', data);
-    const { newAccessToken: accessToken, newRefreshToken: refreshToken } = data;
-    dispatch(refreshedUserSuccess({ accessToken, refreshToken }));
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      dispatch(refreshedUserError(error?.message));
-      toast.error(error.message);
-    }
-  }
-};
-
 const getCurrent = () => async (dispatch: AppDispatch) => {
   dispatch(getCurrentUserRequest());
   try {
-    const result = await getCurrentUser();
-    dispatch(getCurrentUserSuccess(result));
+    const result = await apiService.getCurrentUser();
+    console.log(result);
+    if (result.code === 200) {
+      dispatch(getCurrentUserSuccess(result));
+    }
   } catch (error) {
     if (error instanceof AxiosError) {
       dispatch(getCurrentUserError(error?.message));
@@ -120,7 +103,6 @@ const authOperations = {
   register,
   logIn,
   logOut,
-  refresh,
   getCurrent,
 };
 

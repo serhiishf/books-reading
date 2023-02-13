@@ -1,18 +1,18 @@
 import { lazy, LazyExoticComponent } from 'react';
 
-const IntroPage = lazy(() => import('./views/IntroPage'));
+const IntroPage = lazy(() => import('./IntroPage'));
 
-const LoginPage = lazy(() => import('./views/LoginPage'));
+const LoginPage = lazy(() => import('./LoginPage'));
 
-const RegisterPage = lazy(() => import('./views/RegisterPage'));
+const RegisterPage = lazy(() => import('./RegisterPage'));
 
-const AboutPage = lazy(() => import('./views/AboutPage'));
+const AboutPage = lazy(() => import('./AboutPage'));
 
-const LibraryPage = lazy(() => import('./views/LibraryPage'));
+const LibraryPage = lazy(() => import('./LibraryPage'));
 
-const TrainingPage = lazy(() => import('./views/TrainingPage'));
+const TrainingPage = lazy(() => import('./TrainingPage'));
 
-const Page404 = lazy(() => import('./views/Page404'));
+const Page404 = lazy(() => import('./Page404'));
 
 export interface IRoute {
   path: string;

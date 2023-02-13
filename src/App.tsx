@@ -4,33 +4,19 @@ import './App.scss';
 import PagesRoutes from './views/PagesRoutes';
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAppSelector, useAppDispatch } from './redux/app/hooks';
-import authSelectors from './redux/features/auth/authSelectors';
-import {
-  setAccessToken,
-  setRefreshToken,
-} from './redux/features/auth/authSlice';
+import { useAppDispatch } from './redux/app/hooks';
 import authOperations from './redux/features/auth/authOperations';
+import tokenService from './services/token-service';
 
 function App() {
   const dispatch = useAppDispatch();
-  const isLogged = useAppSelector(authSelectors.getLoggedOn);
-  const accessToken = localStorage.getItem('AUTH_TOKEN');
-  const refreshToken = localStorage.getItem('REFRESH_TOKEN') as string;
+  const accessToken = tokenService.getLocalAccessToken();
 
   useEffect(() => {
-    if (accessToken && refreshToken) {
-      dispatch(setAccessToken(accessToken));
-      dispatch(setRefreshToken(refreshToken));
-    }
-  }, [accessToken, refreshToken, dispatch]);
-
-  useEffect(() => {
-    if (!isLogged && accessToken) {
-      dispatch(authOperations.refresh(refreshToken));
+    if (accessToken) {
       dispatch(authOperations.getCurrent());
     }
-  }, [dispatch, isLogged, accessToken]);
+  }, [dispatch, accessToken]);
 
   return (
     <>

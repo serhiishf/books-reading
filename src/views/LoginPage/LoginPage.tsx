@@ -35,14 +35,8 @@ export default function LoginPage() {
       </div>
       <div className={styles.rightSide}>
         <div className={styles.quoteSign}>&ldquo;</div>
-        <p className={styles.quoteText}>
-          {quote.text
-            ? quote.text
-            : 'Вчитися читати книгу, думати над прочитаним - велика і благородна мета.'}
-        </p>
-        <p className={styles.quoteAuthor}>
-          {quote.author ? quote.author : 'Гете Й.'}
-        </p>
+        <p className={styles.quoteText}>{quote.text}</p>
+        <p className={styles.quoteAuthor}>{quote.author}</p>
       </div>
     </div>
   );

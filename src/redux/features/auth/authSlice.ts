@@ -80,29 +80,9 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isLoggedOn = false;
     },
-    refreshedUserRequest: (state) => {
-      state.isRefreshed = true;
-      state.isLoading = true;
-    },
-    refreshedUserSuccess: (state, { payload }) => {
-      // state.user = payload.user;
-      state.accessToken = payload.tokens.accessToken;
-      state.refreshToken = payload.tokens.refreshToken;
-      state.isRefreshed = false;
-      state.isLoading = false;
-      state.isLoggedOn = true;
-    },
-    refreshedUserError: (state, { payload }) => {
-      state.error = payload;
-      state.isRefreshed = false;
-      state.isLoading = false;
-      state.isLoggedOn = false;
-    },
-    setAccessToken: (state, { payload }) => {
-      state.accessToken = payload;
-    },
-    setRefreshToken: (state, { payload }) => {
-      state.refreshToken = payload;
+    setTokens: (state, { payload }) => {
+      state.accessToken = payload.accessToken;
+      state.refreshToken = payload.refreshToken;
     },
   },
 });
@@ -120,11 +100,7 @@ export const {
   getCurrentUserError,
   getCurrentUserRequest,
   getCurrentUserSuccess,
-  refreshedUserError,
-  refreshedUserRequest,
-  refreshedUserSuccess,
-  setAccessToken,
-  setRefreshToken,
+  setTokens,
 } = authSlice.actions;
 
 export default authSlice.reducer;
