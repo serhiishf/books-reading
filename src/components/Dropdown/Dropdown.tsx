@@ -1,9 +1,9 @@
 import React, { MouseEventHandler } from 'react';
 import Select, { StylesConfig, } from 'react-select';
 import { ReactComponent as Icon } from './assets/icon.svg';
-import { Props } from './Dropdown.interface';
+import { PropsDropdown } from './Dropdown.interface';
 
-const Dropdown: React.FC<Props> = ({ placeHolder, options }) => {
+const Dropdown: React.FC<PropsDropdown> = ({ placeHolder, options }) => {
   const customStyles: StylesConfig = {
     menu: (styles) => ({
       ...styles,

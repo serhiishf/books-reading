@@ -7,7 +7,7 @@ const options: DropdownOption[] = [{ value: 'book1', label: 'book1' }, { value: 
 
 const ShfTestComponent = () => {
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+    <div /* style={{ maxWidth: '600px', margin: '0 auto' }} */>
       <TrainingPage />
       {/* <Dropdown placeHolder="Обрати книги з бібліотеки" options={options} /> */}
     </div>

@@ -15,7 +15,7 @@ function App() {
       <Header />
       <Suspense>
         <Routes>
-          <Route path="/" element={<IntroPage />} />
+          {/* <Route path="/" element={<IntroPage />} /> */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/library" element={<LibraryPage />} />
