@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AppDispatch, RootState } from '../../app/store';
+import { AppDispatch } from '../../app/store';
 import {
   registerRequest,
   registerSuccess,
@@ -36,15 +36,6 @@ type Credentials = {
 type LoginCreds = Omit<Credentials, 'name'>;
 
 axios.defaults.baseURL = 'https://rsclone.com/api/v1';
-
-// const token = {
-//   set(token: string) {
-//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-//   },
-//   unset() {
-//     axios.defaults.headers.common.Authorization = '';
-//   },
-// };
 
 const register =
   (credentials: Credentials) => async (dispatch: AppDispatch) => {
@@ -81,10 +72,10 @@ const logIn = (credentials: LoginCreds) => async (dispatch: AppDispatch) => {
   }
 };
 
-const logOut = (token: string) => async (dispatch: AppDispatch) => {
+const logOut = () => async (dispatch: AppDispatch) => {
   dispatch(logoutRequest());
   try {
-    await logoutUser(token);
+    await logoutUser();
     dispatch(logoutSuccess());
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -95,11 +86,15 @@ const logOut = (token: string) => async (dispatch: AppDispatch) => {
 };
 
 const refresh = (token: string) => async (dispatch: AppDispatch) => {
+  const refereshToken = {
+    refreshToken: token,
+  };
   dispatch(refreshedUserRequest());
   try {
-    const result = await refreshUser(token);
-    dispatch(refreshedUserSuccess(result));
-    console.log('refresh-operations', result);
+    const { data } = await refreshUser(refereshToken);
+    console.log('refresh-operations', data);
+    const { newAccessToken: accessToken, newRefreshToken: refreshToken } = data;
+    dispatch(refreshedUserSuccess({ accessToken, refreshToken }));
   } catch (error) {
     if (error instanceof AxiosError) {
       dispatch(refreshedUserError(error?.message));
@@ -108,10 +103,10 @@ const refresh = (token: string) => async (dispatch: AppDispatch) => {
   }
 };
 
-const getCurrent = (token: string) => async (dispatch: AppDispatch) => {
+const getCurrent = () => async (dispatch: AppDispatch) => {
   dispatch(getCurrentUserRequest());
   try {
-    const result = await getCurrentUser(token);
+    const result = await getCurrentUser();
     dispatch(getCurrentUserSuccess(result));
   } catch (error) {
     if (error instanceof AxiosError) {

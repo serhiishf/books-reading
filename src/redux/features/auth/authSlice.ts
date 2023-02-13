@@ -85,7 +85,7 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     refreshedUserSuccess: (state, { payload }) => {
-      state.user = payload.user;
+      // state.user = payload.user;
       state.accessToken = payload.tokens.accessToken;
       state.refreshToken = payload.tokens.refreshToken;
       state.isRefreshed = false;

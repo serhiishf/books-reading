@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import Header from './components/Header';
 import './App.scss';
 import PagesRoutes from './views/PagesRoutes';
@@ -13,25 +12,23 @@ import {
 } from './redux/features/auth/authSlice';
 import authOperations from './redux/features/auth/authOperations';
 
-
 function App() {
   const dispatch = useAppDispatch();
   const isLogged = useAppSelector(authSelectors.getLoggedOn);
-  const accessToken = useAppSelector(authSelectors.getUserAccessToken);
-  const [searchParams] = useSearchParams();
-  const accessTokenFromURL = searchParams.get('accessToken');
-  const refreshTokenFromURL = searchParams.get('refreshToken');
+  const accessToken = localStorage.getItem('AUTH_TOKEN');
+  const refreshToken = localStorage.getItem('REFRESH_TOKEN') as string;
 
   useEffect(() => {
-    if (accessTokenFromURL && refreshTokenFromURL) {
-      dispatch(setAccessToken(accessTokenFromURL));
-      dispatch(setRefreshToken(refreshTokenFromURL));
+    if (accessToken && refreshToken) {
+      dispatch(setAccessToken(accessToken));
+      dispatch(setRefreshToken(refreshToken));
     }
-  }, [accessTokenFromURL, refreshTokenFromURL, dispatch]);
+  }, [accessToken, refreshToken, dispatch]);
 
   useEffect(() => {
     if (!isLogged && accessToken) {
-      dispatch(authOperations.getCurrent(accessToken));
+      dispatch(authOperations.refresh(refreshToken));
+      dispatch(authOperations.getCurrent());
     }
   }, [dispatch, isLogged, accessToken]);
 
