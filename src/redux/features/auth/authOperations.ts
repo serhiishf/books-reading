@@ -33,12 +33,12 @@ const register =
   (credentials: Credentials) => async (dispatch: AppDispatch) => {
     dispatch(registerRequest());
     try {
-      const { data } = await apiService.registerUser(credentials);
-      dispatch(registerSuccess(data));
-      if (data.code === 201) {
+      const response = await apiService.registerUser(credentials);
+      dispatch(registerSuccess(response.data));
+      if (response.code === 201) {
         toast.success('Registration complete. Log in to access the app.');
       }
-      return data;
+      return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 409) {
@@ -56,7 +56,6 @@ const logIn = (credentials: LoginCreds) => async (dispatch: AppDispatch) => {
   try {
     const result = await apiService.loginUser(credentials);
     dispatch(loginSuccess(result.data));
-
     tokenService.setLocalTokens(result.data.tokens);
   } catch (error) {
     if (error instanceof AxiosError) {

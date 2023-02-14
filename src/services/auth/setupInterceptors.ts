@@ -17,7 +17,6 @@ const setupInterceptors = (store: RootStoreType) => {
       return config;
     },
     (error) => {
-      console.log('interceptors', error);
       return Promise.reject(error);
     },
   );
@@ -27,7 +26,6 @@ const setupInterceptors = (store: RootStoreType) => {
       return res;
     },
     async (err) => {
-      console.log('interceptors1', err);
       const originalConfig = err.config;
 
       if (originalConfig.url !== '/users/login' && err.response) {
@@ -48,7 +46,6 @@ const setupInterceptors = (store: RootStoreType) => {
             ] = `Bearer ${tokens.accessToken}`;
             return axiosInstance(originalConfig);
           } catch (_error) {
-            console.log('interceptors2', _error);
             if (_error instanceof AxiosError) {
               if (_error.response && _error.response.data) {
                 return Promise.reject(_error.response.data);
