@@ -20,7 +20,6 @@ function App() {
 
   return (
     <>
-      <Header />
       <PagesRoutes />
       <ToastContainer
         autoClose={2000}

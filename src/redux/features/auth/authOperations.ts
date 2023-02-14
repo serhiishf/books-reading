@@ -59,7 +59,6 @@ const logIn = (credentials: LoginCreds) => async (dispatch: AppDispatch) => {
     tokenService.setLocalTokens(result.data.tokens);
   } catch (error) {
     if (error instanceof AxiosError) {
-      console.log('api Login', error);
       if (error.response?.status === 401) {
         toast.error('Wrong email or password');
       } else {
