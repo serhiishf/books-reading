@@ -43,7 +43,6 @@ export default function RegisterForm() {
     }),
     onSubmit: async (values) => {
       const { name, email, password, confirmPassword } = values;
-      console.log(name, email, password, confirmPassword);
       dispatch(authOperations.register({ name, email, password }));
       formik.resetForm();
     },

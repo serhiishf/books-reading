@@ -1,33 +1,4 @@
-import axios from 'axios';
-
-export const axiosInstance = axios.create({
-  baseURL: 'https://rsclone.com/api/v1',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-// const accessToken = {
-//   set(accessToken: string) {
-//     localStorage.setItem('AUTH_TOKEN', accessToken);
-//     axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-//   },
-//   unset() {
-//     axios.defaults.headers.common.Authorization = '';
-//     localStorage.removeItem('AUTH_TOKEN');
-//   },
-// };
-
-// const refreshToken = {
-//   set(refreshToken: string) {
-//     localStorage.setItem('REFRESH_TOKEN', refreshToken);
-//     axios.defaults.headers.common.Authorization = `Bearer ${refreshToken}`;
-//   },
-//   unset() {
-//     axios.defaults.headers.common.Authorization = '';
-//     localStorage.removeItem('REFRESH_TOKEN');
-//   },
-// };
+import axiosInstance from '../axiosConfig';
 
 type Credentials = {
   name: string;
@@ -52,7 +23,7 @@ export const registerUser = async (credentials: Credentials) => {
 };
 
 export const logoutUser = async () => {
-  const { data } = await axiosInstance.get('/users/logout');
+  const data = await axiosInstance.get('/users/logout');
   return data;
 };
 
@@ -67,7 +38,8 @@ export const getCurrentUser = async () => {
 };
 
 export const getNewTokens = async (data: TokenType) => {
-  return await axiosInstance.post('/users/refresh-tokens', data);
+  const result = await axiosInstance.post('/users/refresh-tokens', data);
+  return result;
 };
 
 const apiService = {

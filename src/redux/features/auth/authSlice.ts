@@ -71,7 +71,9 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     getCurrentUserSuccess: (state, { payload }) => {
-      state.user = payload.user;
+      state.user.name = payload.user.name;
+      state.accessToken = payload.tokens.accessToken;
+      state.refreshToken = payload.tokens.refreshToken;
       state.isLoading = false;
       state.isLoggedOn = true;
     },
