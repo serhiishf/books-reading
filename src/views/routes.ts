@@ -1,6 +1,6 @@
 import { lazy, LazyExoticComponent } from 'react';
 
-const IntroPage = lazy(() => import('./IntroPage'));
+const IntroPage = lazy(() => import('./IntroPage/IntroPage'));
 
 const LoginPage = lazy(() => import('./LoginPage'));
 
