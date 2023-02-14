@@ -34,12 +34,15 @@ const register =
     dispatch(registerRequest());
     try {
       const response = await apiService.registerUser(credentials);
-      if (response.status === 'success') {
-        dispatch(registerSuccess(response.data));
+      if (response.data.code === 201) {
+        dispatch(registerSuccess(response.data.data));
         toast.success('Registration complete. Log in to access the app.');
       }
+      return response;
     } catch (error) {
+      console.log('ERROR', error);
       if (error instanceof AxiosError) {
+        console.log('AXIOSERROR', error);
         if (error.response?.status === 409) {
           toast.error('This email is already exist');
         } else {

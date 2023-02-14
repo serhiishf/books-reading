@@ -33,7 +33,10 @@ export default function RegisterForm() {
         .string()
         .min(8, 'Min 8 symbols')
         .max(40, 'Max 40 symbols')
-        .matches(/[A-z0-9]/, 'Password should be letters and numbers')
+        .matches(
+          /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+          'Password should be letters and numbers',
+        )
         .required('Required'),
       confirmPassword: yup
         .string()
