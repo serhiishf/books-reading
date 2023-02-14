@@ -34,8 +34,8 @@ const register =
     dispatch(registerRequest());
     try {
       const response = await apiService.registerUser(credentials);
+      dispatch(registerSuccess(response.data.data));
       if (response.data.code === 201) {
-        dispatch(registerSuccess(response.data.data));
         toast.success('Registration complete. Log in to access the app.');
       }
       return response;

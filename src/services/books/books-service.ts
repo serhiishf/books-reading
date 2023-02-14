@@ -52,3 +52,15 @@ const updateBookResume = async (body: UpdateResumeT) => {
   const result = await axiosInstance.patch('/books/update-resume', body);
   return result;
 };
+
+const booksApi = {
+  getAllBooks,
+  updateBookResume,
+  updateBookStatus,
+  deleteBook,
+  createBook,
+  getBooksByStatus,
+  getBookById,
+};
+
+export default booksApi;
