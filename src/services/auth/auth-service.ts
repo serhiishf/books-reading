@@ -18,18 +18,13 @@ export const loginUser = async (credentials: LoginCreds) => {
 };
 
 export const registerUser = async (credentials: Credentials) => {
-  const data = await axiosInstance.post('/users/signup', credentials);
+  const { data } = await axiosInstance.post('/users/signup', credentials);
   return data;
 };
 
 export const logoutUser = async () => {
   const data = await axiosInstance.get('/users/logout');
   return data;
-};
-
-export const refreshUser = async (data: TokenType) => {
-  const result = await axiosInstance.post('/users/refresh-tokens', data);
-  return result;
 };
 
 export const getCurrentUser = async () => {

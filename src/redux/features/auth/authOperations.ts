@@ -33,22 +33,20 @@ const register =
   (credentials: Credentials) => async (dispatch: AppDispatch) => {
     dispatch(registerRequest());
     try {
-      const response = await apiService.registerUser(credentials);
-      dispatch(registerSuccess(response.data.data));
-      if (response.data.code === 201) {
+      const { data } = await apiService.registerUser(credentials);
+      dispatch(registerSuccess(data));
+      if (data.code === 201) {
         toast.success('Registration complete. Log in to access the app.');
       }
-      return response;
+      return data;
     } catch (error) {
-      console.log('ERROR', error);
       if (error instanceof AxiosError) {
-        console.log('AXIOSERROR', error);
         if (error.response?.status === 409) {
           toast.error('This email is already exist');
         } else {
           toast.error('Registration failed');
         }
-        dispatch(registerError(error?.message));
+        dispatch(registerError(error.message));
       }
     }
   };
@@ -58,16 +56,17 @@ const logIn = (credentials: LoginCreds) => async (dispatch: AppDispatch) => {
   try {
     const result = await apiService.loginUser(credentials);
     dispatch(loginSuccess(result.data));
-    if (result.code === 200) {
-      toast.success(`Welcome ${result.data.user.name}`);
-    }
+
     tokenService.setLocalTokens(result.data.tokens);
   } catch (error) {
     if (error instanceof AxiosError) {
+      console.log('api Login', error);
       if (error.response?.status === 401) {
         toast.error('Wrong email or password');
+      } else {
+        toast.error('Something went wrong. Try again.');
       }
-      dispatch(loginError(error?.message));
+      dispatch(loginError(error.message));
     }
   }
 };
