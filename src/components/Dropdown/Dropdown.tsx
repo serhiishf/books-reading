@@ -1,15 +1,14 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import Select, { StylesConfig, } from 'react-select';
-import { ReactComponent as Icon } from './assets/icon.svg';
 import { PropsDropdown } from './Dropdown.interface';
 
-const Dropdown: React.FC<PropsDropdown> = ({ placeHolder, options }) => {
+const Dropdown: React.FC<PropsDropdown> = ({ placeHolder, options, noOptionsMessage }) => {
   const customStyles: StylesConfig = {
     menu: (styles) => ({
       ...styles,
       borderRadius: '0',
     }),
-    option: (provided, { isDisabled, isFocused, isSelected }) => ({
+    option: (provided, { isFocused, isSelected }) => ({
       ...provided,
       backgroundColor: isSelected ? undefined : isFocused ? '#F5F7FA' : 'white',
       color: isSelected ? 'white' : 'black',
@@ -30,7 +29,7 @@ const Dropdown: React.FC<PropsDropdown> = ({ placeHolder, options }) => {
         styles={customStyles}
         closeMenuOnSelect={false}
         placeholder={placeHolder}
-        noOptionsMessage={() => 'Більше нема книжок'}
+        noOptionsMessage={() => noOptionsMessage}
         isMulti
         options={options}
       />
