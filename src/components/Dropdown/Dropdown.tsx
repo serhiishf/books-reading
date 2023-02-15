@@ -21,7 +21,7 @@ const Dropdown: React.FC<PropsDropdown> = ({ placeHolder, options, noOptionsMess
       borderRadius: 0,
       minHeight: '42px',
       fontSize: '14px',
-    })
+    }),
   };
   return (
     <>

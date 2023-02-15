@@ -1,5 +1,7 @@
 import { RootState } from '../../app/store';
 
+const getIsRegistered = (state: RootState) => state.auth.isRegistered;
+
 const getLoggedOn = (state: RootState) => state.auth.isLoggedOn;
 
 const getUserName = (state: RootState) => state.auth.user.name;
@@ -19,6 +21,7 @@ const authSelectors = {
   getUserRefreshToken,
   getLoading,
   getIsRefresh,
+  getIsRegistered,
 };
 
 export default authSelectors;

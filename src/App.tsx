@@ -6,7 +6,7 @@ import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch } from './redux/app/hooks';
 import authOperations from './redux/features/auth/authOperations';
-import tokenService from './services/token-service';
+import tokenService from './services/auth/token-service';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -20,7 +20,6 @@ function App() {
 
   return (
     <>
-      <Header />
       <PagesRoutes />
       <ToastContainer
         autoClose={2000}

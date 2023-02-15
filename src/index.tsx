@@ -9,7 +9,7 @@ import i18n from './i18n';
 import { store, persistor } from './redux/app/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import setupInterceptors from './services/setupInterceptors';
+import setupInterceptors from './services/auth/setupInterceptors';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Input from '../Input';
 import styles from '../LoginForm/LoginForm.module.scss';
 import btnStyles from '../Button/Button.module.scss';
 import Button from '../Button';
-import { Link } from 'react-router-dom';
 import authOperations from '../../redux/features/auth/authOperations';
-import { useAppDispatch } from '../../redux/app/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
+import authSelectors from '../../redux/features/auth/authSelectors';
 
 export default function RegisterForm() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [isRegistered, setRegistered] = useState();
 
   const initialValues = {
     name: '',
@@ -33,7 +37,10 @@ export default function RegisterForm() {
         .string()
         .min(8, 'Min 8 symbols')
         .max(40, 'Max 40 symbols')
-        .matches(/[A-z0-9]/, 'Password should be letters and numbers')
+        .matches(
+          /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+          'Password should be letters and numbers',
+        )
         .required('Required'),
       confirmPassword: yup
         .string()
@@ -43,8 +50,13 @@ export default function RegisterForm() {
     }),
     onSubmit: async (values) => {
       const { name, email, password, confirmPassword } = values;
-      console.log(name, email, password, confirmPassword);
-      dispatch(authOperations.register({ name, email, password }));
+      dispatch(authOperations.register({ name, email, password })).then(
+        (res, _) => {
+          if (res) {
+            navigate('/login', { replace: true });
+          }
+        },
+      );
       formik.resetForm();
     },
   });
