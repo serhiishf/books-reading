@@ -1,0 +1,15 @@
+@import '../../scss/base.scss';
+
+.mainWrapper {
+  background-color: $bg-color-blue;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.containerWrap {
+  max-width: 1280px;
+  border: 1px solid red;
+  margin: 0 auto;
+}
