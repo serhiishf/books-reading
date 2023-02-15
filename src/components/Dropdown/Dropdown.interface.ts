@@ -1,6 +1,7 @@
-export interface Props {
+export interface PropsDropdown {
   placeHolder: string,
   options: DropdownOption[],
+  noOptionsMessage: string
 }
 
 export interface DropdownOption {
