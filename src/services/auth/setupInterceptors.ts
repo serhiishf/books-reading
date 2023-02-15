@@ -1,12 +1,13 @@
-import { setTokens } from '../redux/features/auth/authSlice';
-import { getNewTokens, axiosInstance } from './auth-service';
+import { setTokens } from '../../redux/features/auth/authSlice';
+import { getNewTokens } from './auth-service';
+import axiosInstance from '../axiosConfig';
 import tokenService from './token-service';
-import { RootStoreType } from '../redux/app/store';
+import { RootStoreType } from '../../redux/app/store';
 import { AxiosError } from 'axios';
 
 const setupInterceptors = (store: RootStoreType) => {
   const { dispatch } = store;
-  
+
   axiosInstance.interceptors.request.use(
     (config) => {
       const token = tokenService.getLocalAccessToken();
@@ -54,6 +55,7 @@ const setupInterceptors = (store: RootStoreType) => {
           }
         }
       }
+      return Promise.reject(err);
     },
   );
 };

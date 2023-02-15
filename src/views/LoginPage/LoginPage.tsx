@@ -10,7 +10,7 @@ export interface QuoteI {
 }
 
 export default function LoginPage() {
-  const [allQuotes, setQuotes] = useState(quotes);
+  const [allQuotes] = useState(quotes);
   const [quote, setQuote] = useState({
     text: '',
     author: '',

@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from 'react';
-import Select, { StylesConfig, } from 'react-select';
+import Select, { StylesConfig } from 'react-select';
 import { ReactComponent as Icon } from './assets/icon.svg';
 import { Props } from './Dropdown.interface';
 
@@ -22,7 +22,7 @@ const Dropdown: React.FC<Props> = ({ placeHolder, options }) => {
       borderRadius: 0,
       minHeight: '42px',
       fontSize: '14px',
-    })
+    }),
   };
   return (
     <>
