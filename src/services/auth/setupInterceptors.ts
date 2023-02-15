@@ -49,14 +49,14 @@ const setupInterceptors = (store: RootStoreType) => {
             const response = await getNewTokens({
               refreshToken: token,
             });
-            if (response.status === 200) {
-              const { tokens } = await response.data.data;
-              dispatch(setTokensSuccess(tokens));
-              tokenService.setLocalTokens(tokens);
-              axiosInstance.defaults.headers[
-                'Authorization'
-              ] = `Bearer ${tokens.accessToken}`;
-            }
+            // if (response.status === 200) {
+            const { tokens } = await response.data.data;
+            dispatch(setTokensSuccess(tokens));
+            tokenService.setLocalTokens(tokens);
+            axiosInstance.defaults.headers[
+              'Authorization'
+            ] = `Bearer ${tokens.accessToken}`;
+            // }
 
             return axiosInstance(originalConfig);
           } catch (_error) {

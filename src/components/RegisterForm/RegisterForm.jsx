@@ -79,6 +79,9 @@ export default function RegisterForm() {
           value={formik.values.name}
           handleChange={formik.handleChange}
         />
+        {formik.errors.name && formik.touched.name ? (
+          <p className={styles.notification}>{formik.errors.name}</p>
+        ) : null}
       </div>
 
       <div className={styles.inputWrapper}>

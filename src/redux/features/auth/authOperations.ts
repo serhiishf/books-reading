@@ -41,7 +41,7 @@ const register =
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        if (error.response?.status === 409) {
+        if (error.response?.status === 400) {
           toast.error('This email is already exist');
         } else {
           toast.error('Registration failed');
@@ -98,24 +98,6 @@ const getCurrent = () => async (dispatch: AppDispatch) => {
     }
   }
 };
-
-// const refreshTokens = async (token: any) => {
-//   try {
-//     const { data } = await getNewTokens({ refreshToken: token });
-//     const { tokens } = await data.data;
-//     tokenService.setLocalTokens(tokens);
-//     return tokens;
-//   } catch (error) {
-//     if (error instanceof AxiosError) {
-//       tokenService.removeLocalTokens();
-//       console.log(error);
-//       if (error.response?.status === 400) {
-//         console.log('in If', error);
-
-//       }
-//     }
-//   }
-// };
 
 const authOperations = {
   register,
