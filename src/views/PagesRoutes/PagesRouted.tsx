@@ -34,8 +34,8 @@ const PagesRoutes = () => {
             <Route path="/library" element={<LibraryPage />} />
             <Route path="/training" element={<TrainingPage />} />
           </Route>
-          <Route path="*" element={currentComponent} />
-          {/* <Route path="*" element={<Navigate to="/" />} /> */}
+          {/* <Route path="*" element={currentComponent} /> */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
     </>

@@ -86,9 +86,17 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isLoggedOn = false;
     },
-    setTokens: (state, { payload }) => {
+    setTokensRequest: (state) => {
+      state.isLoading = true;
+    },
+    setTokensSuccess: (state, { payload }) => {
+      state.isLoading = false;
       state.accessToken = payload.accessToken;
       state.refreshToken = payload.refreshToken;
+    },
+    setTokensError: (state) => {
+      state.accessToken = '';
+      state.refreshToken = '';
     },
   },
 });
@@ -106,7 +114,9 @@ export const {
   getCurrentUserError,
   getCurrentUserRequest,
   getCurrentUserSuccess,
-  setTokens,
+  setTokensRequest,
+  setTokensSuccess,
+  setTokensError,
 } = authSlice.actions;
 
 export default authSlice.reducer;
