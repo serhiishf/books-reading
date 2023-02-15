@@ -12,7 +12,6 @@ function CreateTraining() {
     <>
       <div className={styles.mainWrapper}>
         <div className={styles.containerWrap}>
-          {t('chooseBookFromLibrary')}
           <Dropdown placeHolder={t('chooseBookFromLibrary')} options={options} noOptionsMessage={t('noBookMore')}/>
         </div>
       </div>
