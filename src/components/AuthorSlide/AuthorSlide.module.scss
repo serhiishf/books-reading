@@ -38,14 +38,53 @@
 
 .contentBox {
   width: 100%;
-  padding: 10px;
+  padding: 10px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fff;
+  gap: 6px;
+
+  background-color: $txt-color-white;
+
+  font-family: $primary-font;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: $primary-text-color;
 
   @include for-size(desktop) {
     width: 50%;
     height: 100%;
+  }
+}
+
+.name {
+  font-size: 1.5em;
+}
+
+.role {
+  font-style: italic;
+  color: $secondary-text-color;
+  margin-bottom: 15px;
+
+  @include for-size(desktop) {
+    margin-bottom: 45px;
+  }
+}
+
+.list {
+  align-self: start;
+  list-style-type: square;
+  font-size: 0.9em;
+}
+
+.link {
+  align-self: flex-end;
+  margin-top: auto;
+  color: $secondary-text-color;
+  transition: all $cubic;
+  &:hover {
+    color: $hover-color;
   }
 }

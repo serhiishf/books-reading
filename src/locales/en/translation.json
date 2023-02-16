@@ -17,9 +17,10 @@
   "authorSchoolCases": [
     "we learn HTML and CSS",
     "JS, TS and OOP",
+    "Node.js",
     "thank RS School we found new friends"
   ],
   "leadRole": "Team Lead",
   "devRole": "Developer",
-  "schoolRole": "School"
+  "schoolRole": "Our school"
 }

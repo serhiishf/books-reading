@@ -16,10 +16,11 @@
   "authorSchoolCases": [
     "ми навчились HTML і CSS",
     "JS, TS і OOP",
+    "Node.js",
     "вирішили мільйон задачок на CodeWars",
     "дякуючи RS School ми знайшли нових друзів!"
   ],
   "leadRole": "Лідер команди",
   "devRole": "Розробник",
-  "schoolRole": "Школа"
+  "schoolRole": "Наша школа"
 }

@@ -23,14 +23,23 @@ const AuthorSlide: React.FC<Props> = ({
       </div>
 
       <div className={styles.contentBox}>
-        <h3>{name}</h3>
-        <p>{role}</p>
-        <a href={gitHubPath}>GitHub</a>
-        <ul>
+        <h3 className={styles.name}>{name}</h3>
+        <p className={styles.role}>{role}</p>
+        <ul className={styles.list}>
           {cases.map((item, i) => (
-            <li key={i}>{item}</li>
+            <li className={styles.item} key={i}>
+              {item}
+            </li>
           ))}
         </ul>
+        <a
+          className={styles.link}
+          href={gitHubPath}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          See more
+        </a>
       </div>
     </div>
   );
