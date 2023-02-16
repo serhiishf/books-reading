@@ -8,9 +8,17 @@
   "authorKateryna": "Kateryna",
   "authorMaryna": "Maryna",
   "authorSerhiiCases": ["do this", "and this", "and this this"],
-  "authorMarynaCases": ["do this", "and this", "and this this"],
+  "authorMarynaCases": [
+    "all functionality of Backend",
+    "this beautiful Intro Page",
+    "and Large Procrastination :)"
+  ],
   "authorKaterynaCases": ["do this", "and this", "and this this"],
-  "authorSchoolCases": ["do this", "and this", "and this this"],
+  "authorSchoolCases": [
+    "we learn HTML and CSS",
+    "JS, TS and OOP",
+    "thank RS School we found new friends"
+  ],
   "leadRole": "Team Lead",
   "devRole": "Developer",
   "schoolRole": "School"

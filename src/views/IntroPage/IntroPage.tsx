@@ -27,7 +27,7 @@ export default function IntroPage() {
       name: t('authorKateryna'),
       role: t('devRole'),
       srcPath: kateryna,
-      gitHubPath: 'test/link',
+      gitHubPath: 'https://github.com/Katerina-Zamiatina',
       cases: t<string, string[]>('authorKaterynaCases', {
         returnObjects: true,
       }),

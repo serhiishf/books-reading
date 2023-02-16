@@ -7,9 +7,18 @@
   "authorMaryna": "Марина",
   "authorKateryna": "Катерина",
   "authorSerhiiCases": ["робив це", "і це", "а ще й це"],
-  "authorMarynaCases": ["робив це", "і це", "а ще й це"],
+  "authorMarynaCases": [
+    "уся функціональність бекенду",
+    "цю прекрасну сторінку",
+    "решту часу я прокрастинувала :)"
+  ],
   "authorKaterynaCases": ["робив це", "і це", "а ще й це"],
-  "authorSchoolCases": ["робив це", "і це", "а ще й це"],
+  "authorSchoolCases": [
+    "ми навчились HTML і CSS",
+    "JS, TS і OOP",
+    "вирішили мільйон задачок на CodeWars",
+    "дякуючи RS School ми знайшли нових друзів!"
+  ],
   "leadRole": "Лідер команди",
   "devRole": "Розробник",
   "schoolRole": "Школа"
