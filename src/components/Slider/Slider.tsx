@@ -37,8 +37,9 @@ const Slider: React.FC<Props> = ({ children }) => {
       keyBoardControl={true}
       removeArrowOnDeviceType={['mobile', 'tablet']}
       responsive={responsive}
+      autoPlay={true}
+      autoPlaySpeed={3000}
       containerClass={styles.carouselContainer}
-      dotListClass={styles.carouselDots}
       itemClass={styles.carouselItem}
     >
       {children}

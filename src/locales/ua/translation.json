@@ -2,5 +2,15 @@
   "chooseBookFromLibrary": "Обрати книги з бібліотеки...",
   "noBookMore": "Більше книжок нема...",
   "aboutUs": "Про нас",
-  "aboutApp": "Про додаток"
+  "aboutApp": "Про додаток",
+  "authorSerhii": "Сергій",
+  "authorMaryna": "Марина",
+  "authorKateryna": "Катерина",
+  "authorSerhiiCases": ["робив це", "і це", "а ще й це"],
+  "authorMarynaCases": ["робив це", "і це", "а ще й це"],
+  "authorKaterynaCases": ["робив це", "і це", "а ще й це"],
+  "authorSchoolCases": ["робив це", "і це", "а ще й це"],
+  "leadRole": "Лідер команди",
+  "devRole": "Розробник",
+  "schoolRole": "Школа"
 }
