@@ -1,27 +1,46 @@
 import React, { useState } from 'react';
+import Slider from '../../components/Slider';
+
+import authorsData from './authorsData';
+import AuthorSlide from '../../components/AuthorSlide';
 
 export default function IntroPage() {
-  const [aboutUsTxt, setAboutUsTxt] = useState('About us');
-  const [aboutAppTxt, setAboutAppTxt] = useState('About app');
+  const [aboutTxt, setAboutTxt] = useState('About us');
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    const button: HTMLButtonElement = e.currentTarget;
-
-    if (button.textContent === aboutUsTxt) {
-      console.log('show Carousel about us');
-    } else if (button.textContent === aboutAppTxt) {
-      console.log('show Carousel about app');
+  const handleClick = () => {
+    if (aboutTxt === 'About us') {
+      setAboutTxt('About app');
+    } else if (aboutTxt === 'About app') {
+      setAboutTxt('About us');
     }
   };
 
   return (
     <div>
       <button type="button" onClick={handleClick}>
-        {aboutUsTxt}
+        {aboutTxt}
       </button>
-      <button type="button" onClick={handleClick}>
-        {aboutAppTxt}
-      </button>
+
+      {aboutTxt === 'About us' && (
+        <Slider>
+          {authorsData.map((author, i) => (
+            <AuthorSlide
+              key={i}
+              name={author.name}
+              srcPath={author.srcPath}
+              gitHubPath={author.gitHubPath}
+              cases={author.cases}
+            />
+          ))}
+        </Slider>
+      )}
+
+      {aboutTxt === 'About app' && (
+        <Slider>
+          <div>About app</div>
+        </Slider>
+      )}
     </div>
   );
 }
+//

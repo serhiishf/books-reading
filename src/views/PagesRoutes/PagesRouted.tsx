@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../redux/app/hooks';
-import authSelectors from '../../redux/features/auth/authSelectors';
+// import { useAppSelector } from '../../redux/app/hooks';
+// import authSelectors from '../../redux/features/auth/authSelectors';
 
 import IntroPage from '../IntroPage';
 import LibraryPage from '../LibraryPage';
@@ -15,7 +15,7 @@ import PublicRoute from '../../components/PublicRoute';
 import PrivateRoute from '../../components/PrivateRoute';
 
 const PagesRoutes = () => {
-  const isLogged = useAppSelector(authSelectors.getLoggedOn);
+  // const isLogged = useAppSelector(authSelectors.getLoggedOn);
 
   return (
     <Suspense fallback={<Loader />}>

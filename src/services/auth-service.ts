@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
-  baseURL: 'https://rsclone.com/api/v1',
+  // baseURL: 'https://rsclone.com/api/v1',
+  baseURL: 'http://127.0.0.1:3008/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },
