@@ -16,8 +16,8 @@ import {
   getCurrentUserRequest,
   getCurrentUserSuccess,
 } from './authSlice';
-import apiService from '../../../services/auth-service';
-import tokenService from '../../../services/token-service';
+import apiService from '../../../services/auth/auth-service';
+import tokenService from '../../../services/auth/token-service';
 
 type Credentials = {
   name: string;
@@ -34,10 +34,11 @@ const register =
     dispatch(registerRequest());
     try {
       const response = await apiService.registerUser(credentials);
-      if (response.status === 'success') {
-        dispatch(registerSuccess(response.data));
+      dispatch(registerSuccess(response.data));
+      if (response.code === 201) {
         toast.success('Registration complete. Log in to access the app.');
       }
+      return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 409) {
@@ -45,7 +46,7 @@ const register =
         } else {
           toast.error('Registration failed');
         }
-        dispatch(registerError(error?.message));
+        dispatch(registerError(error.message));
       }
     }
   };
@@ -55,16 +56,15 @@ const logIn = (credentials: LoginCreds) => async (dispatch: AppDispatch) => {
   try {
     const result = await apiService.loginUser(credentials);
     dispatch(loginSuccess(result.data));
-    if (result.code === 200) {
-      toast.success(`Welcome ${result.data.user.name}`);
-    }
     tokenService.setLocalTokens(result.data.tokens);
   } catch (error) {
     if (error instanceof AxiosError) {
       if (error.response?.status === 401) {
         toast.error('Wrong email or password');
+      } else {
+        toast.error('Something went wrong. Try again.');
       }
-      dispatch(loginError(error?.message));
+      dispatch(loginError(error.message));
     }
   }
 };
@@ -72,9 +72,11 @@ const logIn = (credentials: LoginCreds) => async (dispatch: AppDispatch) => {
 const logOut = () => async (dispatch: AppDispatch) => {
   dispatch(logoutRequest());
   try {
-    await apiService.logoutUser();
-    dispatch(logoutSuccess());
-    tokenService.removeLocalTokens();
+    const result = await apiService.logoutUser();
+    if (result.status === 204) {
+      dispatch(logoutSuccess());
+      tokenService.removeLocalTokens();
+    }
   } catch (error) {
     if (error instanceof AxiosError) {
       dispatch(logoutError(error?.message));
@@ -87,17 +89,33 @@ const getCurrent = () => async (dispatch: AppDispatch) => {
   dispatch(getCurrentUserRequest());
   try {
     const result = await apiService.getCurrentUser();
-    console.log(result);
     if (result.code === 200) {
-      dispatch(getCurrentUserSuccess(result));
+      dispatch(getCurrentUserSuccess(result.data));
     }
   } catch (error) {
     if (error instanceof AxiosError) {
       dispatch(getCurrentUserError(error?.message));
-      toast.error(error.message);
     }
   }
 };
+
+// const refreshTokens = async (token: any) => {
+//   try {
+//     const { data } = await getNewTokens({ refreshToken: token });
+//     const { tokens } = await data.data;
+//     tokenService.setLocalTokens(tokens);
+//     return tokens;
+//   } catch (error) {
+//     if (error instanceof AxiosError) {
+//       tokenService.removeLocalTokens();
+//       console.log(error);
+//       if (error.response?.status === 400) {
+//         console.log('in If', error);
+
+//       }
+//     }
+//   }
+// };
 
 const authOperations = {
   register,

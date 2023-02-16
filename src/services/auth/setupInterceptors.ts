@@ -1,17 +1,23 @@
-import { setTokens } from '../redux/features/auth/authSlice';
-import { getNewTokens, axiosInstance } from './auth-service';
+import {
+  setTokensError,
+  setTokensSuccess,
+  setTokensRequest,
+} from '../../redux/features/auth/authSlice';
+import { getNewTokens } from './auth-service';
+import axiosInstance from '../axiosConfig';
 import tokenService from './token-service';
-import { RootStoreType } from '../redux/app/store';
+import { RootStoreType } from '../../redux/app/store';
 import { AxiosError } from 'axios';
 
 const setupInterceptors = (store: RootStoreType) => {
   const { dispatch } = store;
-  
+
   axiosInstance.interceptors.request.use(
     (config) => {
       const token = tokenService.getLocalAccessToken();
       if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
+        dispatch(setTokensRequest());
       }
       return config;
     },
@@ -28,21 +34,30 @@ const setupInterceptors = (store: RootStoreType) => {
       const originalConfig = err.config;
 
       if (originalConfig.url !== '/users/login' && err.response) {
+        if (
+          err.response.status === 401 &&
+          originalConfig.url === '/users/refresh-tokens'
+        ) {
+          tokenService.removeLocalTokens();
+          dispatch(setTokensError());
+          return Promise.reject(err);
+        }
         if (err.response.status === 401 && !originalConfig._retry) {
           originalConfig._retry = true;
-
           try {
             const token = tokenService.getLocalRefreshToken();
             const response = await getNewTokens({
               refreshToken: token,
             });
+            if (response.status === 200) {
+              const { tokens } = await response.data.data;
+              dispatch(setTokensSuccess(tokens));
+              tokenService.setLocalTokens(tokens);
+              axiosInstance.defaults.headers[
+                'Authorization'
+              ] = `Bearer ${tokens.accessToken}`;
+            }
 
-            const { tokens } = await response.data.data;
-            dispatch(setTokens(tokens));
-            tokenService.setLocalTokens(tokens);
-            axiosInstance.defaults.headers[
-              'Authorization'
-            ] = `Bearer ${tokens.accessToken}`;
             return axiosInstance(originalConfig);
           } catch (_error) {
             if (_error instanceof AxiosError) {
@@ -54,6 +69,7 @@ const setupInterceptors = (store: RootStoreType) => {
           }
         }
       }
+      return Promise.reject(err);
     },
   );
 };
