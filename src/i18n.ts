@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import translationEN from './locales/en/translation.json';
 import translationUA from './locales/ua/translation.json';
 
-const resources = {
+export const resources = {
   en: {
     translation: translationEN,
   },

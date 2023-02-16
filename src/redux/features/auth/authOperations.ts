@@ -73,12 +73,13 @@ const logOut = () => async (dispatch: AppDispatch) => {
   dispatch(logoutRequest());
   try {
     const result = await apiService.logoutUser();
-    if (result.status === 204) {
+    if (result.status === 204 || result.status === 401) {
       dispatch(logoutSuccess());
       tokenService.removeLocalTokens();
     }
   } catch (error) {
     if (error instanceof AxiosError) {
+      tokenService.removeLocalTokens();
       dispatch(logoutError(error?.message));
       toast.error(error.message);
     }

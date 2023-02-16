@@ -4,8 +4,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Loader from '../../components/Loader';
 import PublicRoute from '../../components/PublicRoute';
 import PrivateRoute from '../../components/PrivateRoute';
-import { useAppSelector } from '../../redux/app/hooks';
-import authSelectors from '../../redux/features/auth/authSelectors';
+// import { useAppSelector } from '../../redux/app/hooks';
+// import authSelectors from '../../redux/features/auth/authSelectors';
 import Header from '../../components/Header';
 
 const IntroPage = lazy(() => import('../IntroPage'));
@@ -17,8 +17,8 @@ const TrainingPage = lazy(() => import('../TrainingPage'));
 // const AboutPage = lazy(() => import('../AboutPage'));
 
 const PagesRoutes = () => {
-  const isLogged = useAppSelector(authSelectors.getLoggedOn);
-  const currentComponent = !isLogged ? <IntroPage /> : <LibraryPage />;
+  // const isLogged = useAppSelector(authSelectors.getLoggedOn);
+  // const currentComponent = !isLogged ? <IntroPage /> : <LibraryPage />;
 
   return (
     <>
