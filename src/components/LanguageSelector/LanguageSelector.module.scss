@@ -1,0 +1,41 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.lang {
+  border: none;
+  background: transparent;
+  text-transform: uppercase;
+  position: relative;
+  transition: all 0.3s ease;
+  width: 100%;
+  z-index: 5;
+  cursor: pointer;
+  display: flex;
+  gap: 4px;
+
+  &:hover {
+    color: $hover-color;
+  }
+  span {
+    opacity: 0;
+  }
+  &.active {
+    order: -1;
+    pointer-events: all;
+    &::after {
+      opacity: 1;
+      transform: translateY(-70%) scaleY(1.1) rotate(45deg);
+    }
+    span {
+      opacity: 1;
+    }
+  }
+  &:not(.active) {
+    width: 0%;
+    pointer-events: none;
+    opacity: 0;
+  }
+  @media screen and (min-width: 768px) {
+    line-height: 0.9;
+  }
+}
