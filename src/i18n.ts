@@ -18,7 +18,7 @@ i18n
   .use(LanguageDetector)
   .init({
     resources,
-    lng: localStorage.getItem('locale') || 'en',
+    lng: localStorage.getItem('LOCALE') || 'en',
     fallbackLng: ['ua', 'en'],
     interpolation: {
       escapeValue: false,
