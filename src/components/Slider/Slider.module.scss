@@ -2,18 +2,17 @@
 
 .carouselContainer {
   margin: 0 auto;
-  max-width: 600px;
-}
-.carouselDots {
-}
-.carouselItem {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
 
-  img {
-    width: 250px;
-    height: auto;
-  }
+  // min-height: 500px;
+  // @include for-size(tablet) {
+  //   height: 600px;
+  // }
+  // @include for-size(desktop) {
+  //   height: 650px;
+  // }
+}
+
+.carouselItem {
+  padding-bottom: 30px;
 }

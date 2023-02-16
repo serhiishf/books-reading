@@ -1,0 +1,38 @@
+@import '../../scss/base.scss';
+
+.mainSection {
+  padding: 50px 0;
+  background-color: $bg-color-blue;
+  min-height: calc(100vh - 60px);
+}
+
+.mainContainer {
+  @extend .container;
+  position: relative;
+  z-index: 1;
+}
+
+.buttonAbout {
+  width: 220px;
+  padding: 11px;
+  margin-top: 40px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.9;
+  text-align: center;
+
+  color: $txt-color-white;
+  background: $light-grey;
+  box-shadow: $outer-shadow;
+  transition: all $cubic;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: $dark-grey;
+    box-shadow: $active-shadow;
+  }
+}

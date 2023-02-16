@@ -1,15 +1,9 @@
 import maryna from '../../assets/img/authors/maryna.jpg';
 import serhii from '../../assets/img/authors/serhii.jpg';
 import kateryna from '../../assets/img/authors/kateryna.jpg';
-import school from '../../assets/img/authors/school.jpg';
+import school from '../../assets/img/authors/school-rs.jpg';
 
 export default [
-  {
-    name: 'Maryna',
-    srcPath: maryna,
-    gitHubPath: 'https://github.com/MarinaTripetska',
-    cases: ['do this', 'do this', 'and this'],
-  },
   {
     name: 'Serhii',
     srcPath: serhii,
@@ -22,6 +16,13 @@ export default [
     gitHubPath: 'test/link',
     cases: ['do this', 'do this', 'and this'],
   },
+  {
+    name: 'Maryna',
+    srcPath: maryna,
+    gitHubPath: 'https://github.com/MarinaTripetska',
+    cases: ['do this', 'do this', 'and this'],
+  },
+
   {
     name: 'RS School',
     srcPath: school,

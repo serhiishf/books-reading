@@ -8,6 +8,7 @@ $secondary-text-color: #898f9f;
 $accent-color: #ff6b08;
 $bg-color-blue: #f6f7fb;
 $bg-color-input: #f5f7fa;
+$txt-color-white: #fff;
 $overlay-color: rgba(9, 30, 63, 0.8);
 $light-grey: #b1b5c2;
 $dark-grey: #6d7a8d;
@@ -17,6 +18,6 @@ $hover-color: #d15807;
 // shadow
 $outer-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 $inner-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
-
+$active-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 // transition
 $cubic: 250ms cubic-bezier(0.4, 0, 0.2, 1);

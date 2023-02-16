@@ -1,46 +1,53 @@
 import React, { useState } from 'react';
 import Slider from '../../components/Slider';
-
+import { useTranslation } from 'react-i18next';
 import authorsData from './authorsData';
 import AuthorSlide from '../../components/AuthorSlide';
+import Button from '../../components/Button';
+import styles from './IntroPage.module.scss';
 
 export default function IntroPage() {
-  const [aboutTxt, setAboutTxt] = useState('About us');
+  const { t } = useTranslation();
+  const [aboutTxt, setAboutTxt] = useState(t('aboutApp'));
 
   const handleClick = () => {
-    if (aboutTxt === 'About us') {
-      setAboutTxt('About app');
-    } else if (aboutTxt === 'About app') {
-      setAboutTxt('About us');
+    if (aboutTxt === t('aboutApp')) {
+      setAboutTxt(t('aboutUs'));
+    } else if (aboutTxt === t('aboutUs')) {
+      setAboutTxt(t('aboutApp'));
     }
   };
 
   return (
-    <div>
-      <button type="button" onClick={handleClick}>
-        {aboutTxt}
-      </button>
+    <div className={styles.mainSection}>
+      <div className={styles.mainContainer}>
+        {aboutTxt === t('aboutApp') && (
+          <Slider>
+            {authorsData.map((author, i) => (
+              <AuthorSlide
+                key={i}
+                name={author.name}
+                srcPath={author.srcPath}
+                gitHubPath={author.gitHubPath}
+                cases={author.cases}
+              />
+            ))}
+          </Slider>
+        )}
 
-      {aboutTxt === 'About us' && (
-        <Slider>
-          {authorsData.map((author, i) => (
-            <AuthorSlide
-              key={i}
-              name={author.name}
-              srcPath={author.srcPath}
-              gitHubPath={author.gitHubPath}
-              cases={author.cases}
-            />
-          ))}
-        </Slider>
-      )}
+        {aboutTxt === t('aboutUs') && (
+          <Slider>
+            <div>About app</div>
+          </Slider>
+        )}
 
-      {aboutTxt === 'About app' && (
-        <Slider>
-          <div>About app</div>
-        </Slider>
-      )}
+        <Button
+          type="button"
+          handleClick={handleClick}
+          btnClass={styles.buttonAbout}
+          title={aboutTxt}
+        />
+      </div>
     </div>
   );
 }
-//
