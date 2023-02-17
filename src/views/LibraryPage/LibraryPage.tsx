@@ -13,11 +13,9 @@ export default function LibraryPage() {
   const getUsersBooks = async () => {
     const { data } = await booksApi.getAllBooks();
 
-    console.log(data);
     setBooksUser(data.books);
     // setQty(data.booksQuantity);
   };
-  console.log(booksUser);
 
   // booksApi.updateBookStatus({
   //   bookId: '63ef9d25eae0776357715bf5',
