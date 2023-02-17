@@ -8,13 +8,12 @@
 .navLink {
   margin-left: 10px;
   color: $secondary-text-color;
-}
-
-.navLink:hover {
-  color: $hover-color;
-}
-
-.navLink:last-child {
-  padding-left: 10px;
-  border-left: 1px solid $accent-color;
+  transition: all $cubic;
+  &:hover {
+    color: $hover-color;
+  }
+  &:last-child {
+    padding-left: 10px;
+    border-left: 1px solid $accent-color;
+  }
 }

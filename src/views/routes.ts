@@ -1,12 +1,10 @@
 import { lazy, LazyExoticComponent } from 'react';
 
-const IntroPage = lazy(() => import('./IntroPage'));
+const IntroPage = lazy(() => import('./IntroPage/IntroPage'));
 
 const LoginPage = lazy(() => import('./LoginPage'));
 
 const RegisterPage = lazy(() => import('./RegisterPage'));
-
-const AboutPage = lazy(() => import('./AboutPage'));
 
 const LibraryPage = lazy(() => import('./LibraryPage'));
 
@@ -48,14 +46,7 @@ const routes = [
     isNav: true,
     redirectTo: '/library',
   },
-  {
-    path: '/about',
-    label: 'About us',
-    component: AboutPage,
-    isProtected: false,
-    isNav: false,
-    redirectTo: '/about',
-  },
+
   {
     path: '/library',
     component: LibraryPage,
@@ -73,7 +64,7 @@ const routes = [
     redirectTo: '/training',
   },
   {
-    path: '',
+    path: '/*',
     component: Page404,
     label: '',
     isProtected: false,

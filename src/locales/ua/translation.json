@@ -1,5 +1,27 @@
 {
   "chooseBookFromLibrary": "Обрати книги з бібліотеки...",
   "noBookMore": "Більше книжок нема...",
-  "Register": "Реєстрація"
+  "Register": "Реєстрація",
+  "aboutUs": "Про нас",
+  "aboutApp": "Про додаток",
+  "authorSerhii": "Сергій",
+  "authorMaryna": "Марина",
+  "authorKateryna": "Катерина",
+  "authorSerhiiCases": ["робив це", "і це", "а ще й це"],
+  "authorMarynaCases": [
+    "уся функціональність бекенду",
+    "цю прекрасну сторінку",
+    "решту часу я прокрастинувала :)"
+  ],
+  "authorKaterynaCases": ["робив це", "і це", "а ще й це"],
+  "authorSchoolCases": [
+    "ми навчились HTML і CSS",
+    "JS, TS і OOP",
+    "Node.js",
+    "вирішили мільйон задачок на CodeWars",
+    "дякуючи RS School ми знайшли нових друзів!"
+  ],
+  "leadRole": "Лідер команди",
+  "devRole": "Розробник",
+  "schoolRole": "Наша школа"
 }
