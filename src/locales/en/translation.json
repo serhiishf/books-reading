@@ -1,4 +1,26 @@
 {
   "chooseBookFromLibrary": "Choose books from the library...",
-  "noBookMore": "No book more..."
+  "noBookMore": "No book more...",
+
+  "aboutUs": "About us",
+  "aboutApp": "About app",
+  "authorSerhii": "Serhii",
+  "authorKateryna": "Kateryna",
+  "authorMaryna": "Maryna",
+  "authorSerhiiCases": ["do this", "and this", "and this this"],
+  "authorMarynaCases": [
+    "all functionality of Backend",
+    "this beautiful Intro Page",
+    "and Large Procrastination :)"
+  ],
+  "authorKaterynaCases": ["do this", "and this", "and this this"],
+  "authorSchoolCases": [
+    "we learn HTML and CSS",
+    "JS, TS and OOP",
+    "Node.js",
+    "thank RS School we found new friends"
+  ],
+  "leadRole": "Team Lead",
+  "devRole": "Developer",
+  "schoolRole": "Our school"
 }
