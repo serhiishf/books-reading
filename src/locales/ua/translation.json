@@ -22,5 +22,9 @@
   ],
   "leadRole": "Лідер команди",
   "devRole": "Розробник",
-  "schoolRole": "Наша школа"
+  "schoolRole": "Наша школа",
+
+  "articleNotFound": "Стаття не знайдена",
+  "pageCanNotBeFound": "Неможливо знайти сторінку, яку ви шукаєте.",
+  "returnToHomepage": "Повернутися на головну сторінку"
 }

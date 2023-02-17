@@ -22,5 +22,9 @@
   ],
   "leadRole": "Team Lead",
   "devRole": "Developer",
-  "schoolRole": "Our school"
+  "schoolRole": "Our school",
+
+  "articleNotFound": "Article not found",
+  "pageCanNotBeFound": "The page you requested cannot be found.",
+  "returnToHomepage": "Return to the Homepage"
 }
