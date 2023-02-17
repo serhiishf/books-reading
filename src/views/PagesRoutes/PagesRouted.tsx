@@ -21,7 +21,7 @@ const PagesRoutes = () => {
         <Routes>
           <Route element={<PublicRoute />}>
             <Route path="/" element={<IntroPage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage />}/>
             <Route path="/register" element={<RegisterPage />} />
           </Route>
           <Route element={<PrivateRoute />}>

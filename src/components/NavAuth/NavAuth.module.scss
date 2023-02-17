@@ -1,4 +1,5 @@
-@import '../../scss/base.scss';
+@import '../../scss/variables';
+@import '../../scss//mixins';
 
 .navWrapper {
   display: flex;
@@ -10,7 +11,12 @@
 }
 
 .userName {
-  margin-right: 40px;
+  align-self: center;
+  margin-right: 10px;
+
+  @include for-size(tablet) {
+    margin-right: 50px;
+  }
 }
 
 .icon {

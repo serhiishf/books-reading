@@ -1,4 +1,5 @@
-@import '../../scss/base.scss';
+@import '../../scss/variables';
+@import '../../scss/mixins';
 
 .btn {
   border: none;
@@ -61,8 +62,4 @@
 
 .login:hover {
   background-color: $hover-color;
-}
-
-.addBook {
-  color: red;
 }

@@ -8,9 +8,12 @@ import Button from '../Button';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/app/hooks';
 import authOperations from '../../redux/features/auth/authOperations';
+import { useTranslation } from 'react-i18next';
 
 export default function LoginForm() {
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation();
 
   const initialValues = {
     email: '',
@@ -44,7 +47,15 @@ export default function LoginForm() {
   };
 
   return (
-    <form className={styles.form}>
+    <form
+      className={styles.form}
+      onSubmit={formik.handleSubmit}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          formik.handleSubmit();
+        }
+      }}
+    >
       <Button
         handleClick={handleGoogleBtnClick}
         btnClass={btnStyles.google}
@@ -81,7 +92,7 @@ export default function LoginForm() {
         title={'Login'}
       />
       <Link className={styles.link} to="/register">
-        Register
+        {t('Register')}
       </Link>
     </form>
   );
