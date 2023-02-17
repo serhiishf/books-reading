@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactComponent as Book } from '../../../assets/img/book.svg';
 import DoneEl from './DoneEl';
+import styles from './LibraryBook.module.scss';
 
 export type BookLib = {
   name: string;
@@ -15,7 +16,7 @@ export type BookLib = {
 
 export default function LibraryBook(book: BookLib) {
   return (
-    <li>
+    <li className={styles.bookItem}>
       <Book />
       <div>{book.name}</div>
       <div>{book.author}</div>

@@ -3,6 +3,8 @@ import LibraryForm from '../../components/Library/LibraryForm';
 import styles from './LibraryPage.module.scss';
 import LibraryHint from '../../components/Library/LibraryHint';
 import booksApi from '../../services/books/books-service';
+import LibraryBooksList from '../../components/Library/LibraryBooksList';
+import BookLib from '../../components/Library/LibraryBook';
 
 export default function LibraryPage() {
   const [booksUser, setBooksUser] = useState([]);
@@ -15,6 +17,12 @@ export default function LibraryPage() {
     setBooksUser(data.books);
     // setQty(data.booksQuantity);
   };
+  console.log(booksUser);
+
+  // booksApi.updateBookStatus({
+  //   bookId: '63ef9d25eae0776357715bf5',
+  //   status: 'active',
+  // });
 
   useEffect(() => {
     getUsersBooks();
@@ -23,7 +31,7 @@ export default function LibraryPage() {
   return (
     <div className={styles.wrapper}>
       <LibraryForm />
-      {booksUser ? <div>BOOKS</div> : <LibraryHint />}
+      {booksUser ? <LibraryBooksList books={booksUser} /> : <LibraryHint />}
     </div>
   );
 }
