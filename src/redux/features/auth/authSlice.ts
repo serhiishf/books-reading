@@ -95,6 +95,7 @@ const authSlice = createSlice({
       state.refreshToken = payload.refreshToken;
     },
     setTokensError: (state) => {
+      state.isLoading = false;
       state.accessToken = '';
       state.refreshToken = '';
     },

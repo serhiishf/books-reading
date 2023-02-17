@@ -1,10 +1,10 @@
 import axiosInstance from '../axiosConfig';
 
-type BookT = {
+export type BookT = {
   name: string;
   author: string;
-  year?: number;
-  pages: number;
+  year?: string;
+  pages: string;
 };
 
 type UpdateStatusT = {
@@ -19,8 +19,8 @@ type UpdateResumeT = {
 };
 
 const getAllBooks = async () => {
-  const result = await axiosInstance.get('/books');
-  return result;
+  const { data } = await axiosInstance.get('/books');
+  return data;
 };
 
 const getBookById = async (bookId: string) => {
@@ -33,8 +33,13 @@ const getBooksByStatus = async (status: string) => {
   return result;
 };
 
-const createBook = async (body: BookT) => {
-  const result = await axiosInstance.post('/books/create', body);
+const createBook = async ({ name, author, year, pages }: BookT) => {
+  const result = await axiosInstance.post('/books/create', {
+    name,
+    author,
+    year,
+    pages,
+  });
   return result;
 };
 

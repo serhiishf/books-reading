@@ -7,7 +7,7 @@ interface InputI {
   labelName: string;
   name: string;
   type: string;
-  value: string | number;
+  value: string;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
