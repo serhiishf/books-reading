@@ -14,8 +14,10 @@ export default function Header() {
   return (
     <header className={styles.headerWrapper}>
       <Logo />
-      <LanguageSelector />
-      <Nav>{isLogged ? <NavAuth /> : <NavNotAuth />} </Nav>
+      <Nav>
+        <LanguageSelector />
+        {isLogged ? <NavAuth /> : <NavNotAuth />}
+      </Nav>
     </header>
   );
 }

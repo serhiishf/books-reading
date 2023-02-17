@@ -8,15 +8,6 @@
   min-width: 42px;
   position: relative;
   z-index: 3;
-  align-self: center;
-  // @media screen and (min-width: 1280px) {
-  //   align-self: flex-end;
-  //   transform: translate(0, -20%);
-  //   margin-right: auto;
-  // }
-  // @media screen and (max-width: 767px) {
-  //   transform: translate(0, -5%);
-  // }
 }
 
 .list {
@@ -29,6 +20,7 @@
   padding: 8px;
   position: absolute;
   top: 0;
+  right: 0;
   transition: all 0.3s ease;
   &::before {
     content: '';
@@ -48,7 +40,7 @@
   }
   &.open {
     box-shadow: 0 4px 12px 0 rgb(0 0 0 / 10%);
-    background-color:  #fff;
+    background-color: #fff;
     box-shadow: $outer-shadow;
     max-height: unset;
     &::before {

@@ -53,7 +53,7 @@ const routes = [
     label: 'About us',
     component: AboutPage,
     isProtected: false,
-    isNav: true,
+    isNav: false,
     redirectTo: '/about',
   },
   {

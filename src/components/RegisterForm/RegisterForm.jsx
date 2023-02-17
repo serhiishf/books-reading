@@ -65,7 +65,15 @@ export default function RegisterForm() {
   };
 
   return (
-    <form className={styles.form}>
+    <form
+      className={styles.form}
+      onSubmit={formik.handleSubmit}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          formik.handleSubmit();
+        }
+      }}
+    >
       <Button
         handleClick={handleGoogleBtnClick}
         btnClass={btnStyles.google}
