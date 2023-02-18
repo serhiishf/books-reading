@@ -18,13 +18,13 @@ type UpdateResumeT = {
   raiting?: number;
 };
 
-export type Book = {
+export interface Book {
   _id: string;
   name: string;
   author: string;
   year: number;
   pages: number;
-  status: 'pending || active || done';
+  status: 'pending' | 'active' | 'done';
   owner: {
     _id: string;
     name: string;
