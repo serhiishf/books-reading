@@ -1,10 +1,10 @@
 import axiosInstance from '../axiosConfig';
 
-type BookT = {
+export type BookT = {
   name: string;
   author: string;
-  year?: number;
-  pages: number;
+  year?: string;
+  pages: string;
 };
 
 type UpdateStatusT = {
@@ -39,7 +39,6 @@ const getAllBooks = async (): Promise<Book[]> => {
   try {
     const data = await axiosInstance.get('/books');
     const result: Book[] = data.data.data.books;
-    console.log(result);
     return result;
   } catch (error) {
     console.error(`Error fetching books: ${error}`);
@@ -57,8 +56,13 @@ const getBooksByStatus = async (status: string) => {
   return result;
 };
 
-const createBook = async (body: BookT) => {
-  const result = await axiosInstance.post('/books/create', body);
+const createBook = async ({ name, author, year, pages }: BookT) => {
+  const result = await axiosInstance.post('/books/create', {
+    name,
+    author,
+    year,
+    pages,
+  });
   return result;
 };
 

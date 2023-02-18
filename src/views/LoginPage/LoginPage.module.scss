@@ -11,7 +11,9 @@
 .leftSide {
   display: flex;
   align-items: center;
-  height: 50%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  // height: 50%;
   background-image: linear-gradient(
       to top,
       rgba(9, 30, 63, 0.8),
@@ -20,16 +22,20 @@
     url('../../assets/img/picMob.png');
 
   @include for-size(tablet) {
-    height: 61%;
+    padding-top: 70px;
+    padding-bottom: 70px;
   }
+
   @include for-size(desktop) {
     width: 45%;
     height: 100vh;
+    padding: 0;
   }
 }
 
 .rightSide {
-  height: 40%;
+  // height: 40%;
+  padding-top: 30px;
   margin: 0 auto;
   text-align: center;
   display: flex;
@@ -38,7 +44,7 @@
   justify-content: center;
 
   @include for-size(tablet) {
-    height: 31%;
+    padding-top: 140px;
   }
 
   @include for-size(desktop) {

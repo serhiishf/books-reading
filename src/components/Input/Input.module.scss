@@ -1,4 +1,5 @@
-@import '../../scss/base.scss';
+@import '../../scss/variables';
+@import '../../scss/mixins';
 
 input {
   all: unset;
@@ -9,7 +10,6 @@ label {
 }
 
 .labelAuth {
-  // width: 97%;
   position: relative;
   color: #ffffff;
 
@@ -27,10 +27,7 @@ label {
   padding-left: 13px;
   background: $bg-color-input;
   box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
-
-  // @include for-size(tablet) {
-  //   width: 100%;
-  // }
+  color: $secondary-text-color;
 }
 
 .btnEye {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Nav({ children }) {
-  return <div>{children}</div>;
+  return <nav>{children}</nav>;
 }
 
 Nav.propTypes = {
