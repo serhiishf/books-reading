@@ -18,13 +18,13 @@ type UpdateResumeT = {
   raiting?: number;
 };
 
-export type Book = {
+export interface Book {
   _id: string;
   name: string;
   author: string;
   year: number;
   pages: number;
-  status: 'pending || active || done';
+  status: 'pending' | 'active' | 'done';
   owner: {
     _id: string;
     name: string;
@@ -37,8 +37,9 @@ export type Book = {
 
 const getAllBooks = async (): Promise<Book[]> => {
   try {
-    const data = await axiosInstance.get('/books');
-    const result: Book[] = data.data.data.books;
+    const { data } = await axiosInstance.get('/books');
+    console.log(data);
+    const result: Book[] = data.data.books;
     return result;
   } catch (error) {
     console.error(`Error fetching books: ${error}`);
