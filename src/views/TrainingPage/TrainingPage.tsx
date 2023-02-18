@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateTraining from '../../components/CreateTrainingPage';
+import CreateTraining from '../../components/TrainingPages/CreateTrainingPage';
 
 export default function TrainingPage() {
   return (
