@@ -4,23 +4,16 @@ import styles from './LibraryPage.module.scss';
 import LibraryHint from '../../components/Library/LibraryHint';
 import booksApi from '../../services/books/books-service';
 import LibraryBooksList from '../../components/Library/LibraryBooksList';
-import BookLib from '../../components/Library/LibraryBook';
+import { BookLibI } from '../../components/Library/library.interfaces';
 
-export default function LibraryPage() {
-  const [booksUser, setBooksUser] = useState([]);
-  // const [qty, setQty] = useState();
+const LibraryPage = () => {
+  const [booksUser, setBooksUser] = useState<BookLibI[]>();
 
   const getUsersBooks = async () => {
     const { data } = await booksApi.getAllBooks();
-
-    setBooksUser(data.books);
-    // setQty(data.booksQuantity);
+    const usersBook = data.books;
+    setBooksUser(usersBook);
   };
-
-  // booksApi.updateBookStatus({
-  //   bookId: '63ef9d25eae0776357715bf5',
-  //   status: 'active',
-  // });
 
   useEffect(() => {
     getUsersBooks();
@@ -32,4 +25,6 @@ export default function LibraryPage() {
       {booksUser ? <LibraryBooksList books={booksUser} /> : <LibraryHint />}
     </div>
   );
-}
+};
+
+export default LibraryPage;

@@ -1,0 +1,17 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.bookItem {
+  display: flex;
+
+  background-color: $txt-color-white;
+  padding: 20px;
+  @include for-size(tablet) {
+    padding: 14px 20px;
+    justify-content: space-between;
+  }
+ @include for-size(desktop) {
+    padding:20px 85px 20px;
+  }
+
+}

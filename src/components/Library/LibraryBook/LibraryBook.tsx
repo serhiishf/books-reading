@@ -1,23 +1,13 @@
 import React from 'react';
-import { ReactComponent as Book } from '../../../assets/img/book.svg';
+import { ReactComponent as BookImg } from '../../../assets/img/book.svg';
 import DoneEl from './DoneEl';
 import styles from './LibraryBook.module.scss';
+import { BookProps } from '../library.interfaces';
 
-export type BookLib = {
-  name: string;
-  author: string;
-  year?: string;
-  pages: string;
-  status: string;
-  resume: string;
-  raiting: string;
-  id: string;
-};
-
-export default function LibraryBook(book: BookLib) {
+const LibraryBook: React.FC<BookProps> = ({ book }) => {
   return (
     <li className={styles.bookItem}>
-      <Book />
+      <BookImg />
       <div>{book.name}</div>
       <div>{book.author}</div>
       <div>{book.year}</div>
@@ -27,4 +17,6 @@ export default function LibraryBook(book: BookLib) {
       ) : null}
     </li>
   );
-}
+};
+
+export default LibraryBook;

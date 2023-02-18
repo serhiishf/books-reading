@@ -15,6 +15,7 @@ import {
   getCurrentUserError,
   getCurrentUserRequest,
   getCurrentUserSuccess,
+  setTokensSuccess,
 } from './authSlice';
 import apiService from '../../../services/auth/auth-service';
 import tokenService from '../../../services/auth/token-service';
@@ -56,6 +57,7 @@ const logIn = (credentials: LoginCreds) => async (dispatch: AppDispatch) => {
   try {
     const result = await apiService.loginUser(credentials);
     dispatch(loginSuccess(result.data));
+    dispatch(setTokensSuccess(result.data.tokens));
     tokenService.setLocalTokens(result.data.tokens);
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -80,7 +82,7 @@ const logOut = () => async (dispatch: AppDispatch) => {
   } catch (error) {
     if (error instanceof AxiosError) {
       tokenService.removeLocalTokens();
-      dispatch(logoutError(error?.message));
+      dispatch(logoutError());
       toast.error(error.message);
     }
   }
@@ -92,10 +94,11 @@ const getCurrent = () => async (dispatch: AppDispatch) => {
     const result = await apiService.getCurrentUser();
     if (result.code === 200) {
       dispatch(getCurrentUserSuccess(result.data));
+      dispatch(setTokensSuccess(result.data.tokens));
     }
   } catch (error) {
     if (error instanceof AxiosError) {
-      dispatch(getCurrentUserError(error?.message));
+      dispatch(getCurrentUserError());
     }
   }
 };
