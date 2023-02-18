@@ -18,9 +18,33 @@ type UpdateResumeT = {
   raiting?: number;
 };
 
-const getAllBooks = async () => {
-  const result = await axiosInstance.get('/books');
-  return result;
+export type Book = {
+  _id: string;
+  name: string;
+  author: string;
+  year: number;
+  pages: number;
+  status: 'pending || active || done';
+  owner: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+  resume: string | null;
+  rating: number | null;
+  __v: number;
+}
+
+const getAllBooks = async (): Promise<Book[]> => {
+  try {
+    const data = await axiosInstance.get('/books');
+    const result: Book[] = data.data.data.books;
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(`Error fetching books: ${error}`);
+    return [];
+  }
 };
 
 const getBookById = async (bookId: string) => {
