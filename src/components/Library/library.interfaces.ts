@@ -1,20 +1,12 @@
-export interface BookLibI {
-  name: string;
-  author: string;
-  year?: string;
-  pages: string;
-  status: string;
-  resume: string;
-  raiting: string;
-  id: string;
-}
+import { Book } from '../../services/books/books-service';
 
-export type DoneT = Pick<BookLibI, 'raiting' | 'resume'>;
+
+export type DoneT = Pick<Book, 'rating' | 'resume'>;
 
 export interface BooksI {
-  books: Array<BookLibI>;
+  books: Array<Book>;
 }
 
 export interface BookProps {
-  book: BookLibI;
+  book: Book;
 }

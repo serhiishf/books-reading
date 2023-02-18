@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { ReactComponent as Star } from '../../../assets/img/star.svg';
 import { DoneT } from '../library.interfaces';
 import styles from './DoneEl.module.scss';
+// import ModalResume from './ModalResume';
 
-const DoneEl = ({ raiting, resume }: DoneT) => {
+const DoneEl = ({ rating, resume }: DoneT) => {
   const [openModal, setOpenModal] = useState(false);
 
   const handleClick = () => {
@@ -13,6 +14,7 @@ const DoneEl = ({ raiting, resume }: DoneT) => {
   return (
     <>
       <div className={styles.starWrapper}>
+        <span className={styles.subtitleMob}>Resume:</span>
         <Star />
         <Star />
         <Star />
@@ -21,6 +23,7 @@ const DoneEl = ({ raiting, resume }: DoneT) => {
       </div>
       <div>
         <button onClick={handleClick}>{'Resume'}</button>
+        {/* {openModal ? <ModalResume raiting={rating} resume={resume} /> : null} */}
       </div>
     </>
   );

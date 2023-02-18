@@ -13,6 +13,13 @@ const LibraryBooksList = ({ books }: BooksI) => {
       {doneBooks ? (
         <div>
           <h3>Already read</h3>
+          <div className={styles.titlesWrapper}>
+            <span>Book title</span>
+            <span>Author</span>
+            <span>Year</span>
+            <span>Pages</span>
+            <span>Rating</span>
+          </div>
           <ul>
             {doneBooks.map((book, i) => (
               <LibraryBook book={book} key={i} />
@@ -23,6 +30,12 @@ const LibraryBooksList = ({ books }: BooksI) => {
       {activeBooks ? (
         <div>
           <h3>Reading now</h3>
+          <div className={styles.titlesWrapper}>
+            <span>Book title</span>
+            <span>Author</span>
+            <span>Year</span>
+            <span>Pages</span>
+          </div>
           <ul>
             {activeBooks.map((book, i) => (
               <LibraryBook book={book} key={i} />
@@ -33,6 +46,12 @@ const LibraryBooksList = ({ books }: BooksI) => {
       {pendingBooks ? (
         <div>
           <h3>Going to read</h3>
+          <div className={styles.titlesWrapper}>
+            <span>Book title</span>
+            <span>Author</span>
+            <span>Year</span>
+            <span>Pages</span>
+          </div>
           <ul>
             {pendingBooks.map((book, i) => (
               <LibraryBook book={book} key={i} />

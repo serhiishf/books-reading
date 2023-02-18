@@ -1,0 +1,17 @@
+@import '../../../scss/mixins';
+
+.wrapper {
+  padding-top: 20px;
+
+  @include for-size(tablet) {
+    padding-top: 40px;
+  }
+}
+
+.titlesWrapper {
+  display: none;
+
+  @include for-size(tablet) {
+    display: flex;
+  }
+}

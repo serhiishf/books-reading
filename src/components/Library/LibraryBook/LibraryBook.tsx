@@ -7,13 +7,28 @@ import { BookProps } from '../library.interfaces';
 const LibraryBook: React.FC<BookProps> = ({ book }) => {
   return (
     <li className={styles.bookItem}>
-      <BookImg />
-      <div>{book.name}</div>
-      <div>{book.author}</div>
-      <div>{book.year}</div>
-      <div>{book.pages}</div>
+      <div className={styles.bookName}>
+        <BookImg
+          className={`${styles.icon} ${
+            book.status === 'active' ? styles.iconActive : ''
+          }`}
+        />
+        <span>{book.name}</span>
+      </div>
+      <div>
+        <span className={styles.subtitleMob}>Author:</span>
+        <span>{book.author}</span>
+      </div>
+      <div>
+        <span className={styles.subtitleMob}>Year:</span>
+        <span>{book.year}</span>
+      </div>
+      <div>
+        <span className={styles.subtitleMob}>Pages:</span>
+        <span>{book.pages}</span>
+      </div>
       {book.status === 'done' ? (
-        <DoneEl raiting={book.raiting} resume={book.resume} />
+        <DoneEl rating={book.rating} resume={book.resume} />
       ) : null}
     </li>
   );
