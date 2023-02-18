@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Dropdown from '../Dropdown';
+import Dropdown from '../../Dropdown';
 import styles from './CreateTraining.module.scss';
 import { useTranslation } from 'react-i18next';
-import booksApi, { Book } from '../../services/books/books-service';
+import booksApi, { Book } from '../../../services/books/books-service';
 
 function CreateTraining() {
   const { t } = useTranslation();
