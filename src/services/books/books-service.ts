@@ -37,9 +37,8 @@ export interface Book {
 
 const getAllBooks = async (): Promise<Book[]> => {
   try {
-    const { data } = await axiosInstance.get('/books');
-    console.log(data);
-    const result: Book[] = data.data.books;
+    const data = await axiosInstance.get('/books');
+    const result: Book[] = data.data.data.books;
     return result;
   } catch (error) {
     console.error(`Error fetching books: ${error}`);

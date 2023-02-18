@@ -2,8 +2,11 @@
 @import '../../scss/container';
 
 .wrapper {
-  @extend .container;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  padding: 25px;
   background-color: $bg-color-blue;
+  @include for-size(tablet) {
+    padding: 40px;
+  }
 }

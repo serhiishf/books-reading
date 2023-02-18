@@ -1,0 +1,8 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.subtitleMob {
+  @include for-size(tablet) {
+    display: none;
+  }
+}

@@ -1,30 +1,37 @@
 import React from 'react';
-import { ReactComponent as Book } from '../../../assets/img/book.svg';
+import { ReactComponent as BookImg } from '../../../assets/img/book.svg';
 import DoneEl from './DoneEl';
 import styles from './LibraryBook.module.scss';
+import { BookProps } from '../library.interfaces';
 
-export type BookLib = {
-  name: string;
-  author: string;
-  year?: string;
-  pages: string;
-  status: string;
-  resume: string;
-  raiting: string;
-  id: string;
-};
-
-export default function LibraryBook(book: BookLib) {
+const LibraryBook: React.FC<BookProps> = ({ book }) => {
   return (
     <li className={styles.bookItem}>
-      <Book />
-      <div>{book.name}</div>
-      <div>{book.author}</div>
-      <div>{book.year}</div>
-      <div>{book.pages}</div>
+      <div className={styles.bookName}>
+        <BookImg
+          className={`${styles.icon} ${
+            book.status === 'active' ? styles.iconActive : ''
+          }`}
+        />
+        <span>{book.name}</span>
+      </div>
+      <div>
+        <span className={styles.subtitleMob}>Author:</span>
+        <span>{book.author}</span>
+      </div>
+      <div>
+        <span className={styles.subtitleMob}>Year:</span>
+        <span>{book.year}</span>
+      </div>
+      <div>
+        <span className={styles.subtitleMob}>Pages:</span>
+        <span>{book.pages}</span>
+      </div>
       {book.status === 'done' ? (
-        <DoneEl raiting={book.raiting} resume={book.resume} />
+        <DoneEl rating={book.rating} resume={book.resume} />
       ) : null}
     </li>
   );
-}
+};
+
+export default LibraryBook;

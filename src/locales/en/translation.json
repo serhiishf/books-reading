@@ -22,5 +22,7 @@
   ],
   "leadRole": "Team Lead",
   "devRole": "Developer",
-  "schoolRole": "Our school"
+  "schoolRole": "Our school",
+  "myTraining": "My training",
+  "myGoals": "My goals"
 }

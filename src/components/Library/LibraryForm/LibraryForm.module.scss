@@ -6,6 +6,27 @@
   color: $secondary-text-color;
 }
 
+.inputWrapper > label > input {
+  background-color: $txt-color-white;
+}
+
+.addBtn {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid $primary-text-color;
+  padding: 12px 70px;
+  cursor: pointer;
+  background-color: $bg-color-blue;
+  text-align: center;
+  transition: all 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.addBtn:hover {
+  box-shadow: $active-shadow;
+}
+
 // .wrapper {
 //   margin-left: auto;
 //   margin-right: auto;

@@ -1,5 +1,16 @@
 import React from 'react';
+import styles from './Subheader.module.scss';
 
-export default function Subheader() {
-  return (<></>);
+interface Props {
+  title: string;
+}
+
+export default function Subheader({ title }: Props) {
+  return (
+    <div className={styles.subheader}>
+      <div className={styles.subheaderText}>
+        {title}
+      </div>
+    </div>
+  );
 }
