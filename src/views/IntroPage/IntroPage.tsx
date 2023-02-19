@@ -11,63 +11,40 @@ import maryna from '../../assets/img/authors/maryna.jpg';
 import serhii from '../../assets/img/authors/serhii.jpg';
 import kateryna from '../../assets/img/authors/kateryna.jpg';
 import school from '../../assets/img/authors/school-rs.jpg';
+const photos = [serhii, kateryna, maryna, school];
+
+interface AuthorI {
+  name: string;
+  role: string;
+  gitHubPath: string;
+  cases: string[];
+}
+type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
 
 export default function IntroPage() {
   const { t } = useTranslation();
-  const [aboutTxt, setAboutTxt] = useState(t('aboutApp'));
-  const [authors, setAuthors] = useState([
-    {
-      name: t('authorSerhii'),
-      role: t('leadRole'),
-      srcPath: serhii,
-      gitHubPath: 'https://github.com/serhiishf',
-      cases: t<string, string[]>('authorSerhiiCases', { returnObjects: true }),
-    },
-    {
-      name: t('authorKateryna'),
-      role: t('devRole'),
-      srcPath: kateryna,
-      gitHubPath: 'https://github.com/Katerina-Zamiatina',
-      cases: t<string, string[]>('authorKaterynaCases', {
-        returnObjects: true,
-      }),
-    },
-    {
-      name: t('authorMaryna'),
-      srcPath: maryna,
-      role: t('devRole'),
-      gitHubPath: 'https://github.com/MarinaTripetska',
-      cases: t<string, string[]>('authorMarynaCases', { returnObjects: true }),
-    },
+  const [isAboutUs, setIsAboutUs] = useState(true);
+  const [btnTitle, setBtnTitle] = useState(t('introPage.aboutApp'));
+  const authors = t('authors', { returnObjects: true }) as AuthorI[];
 
-    {
-      name: 'RS School',
-      srcPath: school,
-      role: t('schoolRole'),
-      gitHubPath: 'https://rs.school/',
-      cases: t<string, string[]>('authorSchoolCases', { returnObjects: true }),
-    },
-  ]);
-
-  const handleClick = () => {
-    if (aboutTxt === t('aboutApp')) {
-      setAboutTxt(t('aboutUs'));
-    } else if (aboutTxt === t('aboutUs')) {
-      setAboutTxt(t('aboutApp'));
-    }
+  const handleClick = (e: ButtonEvent) => {
+    setIsAboutUs(!isAboutUs);
+    isAboutUs
+      ? setBtnTitle(t('introPage.aboutUs'))
+      : setBtnTitle(t('introPage.aboutApp'));
   };
 
   return (
     <div className={styles.mainSection}>
       <div className={styles.mainContainer}>
-        {aboutTxt === t('aboutApp') && (
+        {isAboutUs && (
           <Slider>
-            {authors.map(({ name, role, srcPath, gitHubPath, cases }, i) => (
+            {authors.map(({ name, role, gitHubPath, cases }, i) => (
               <AuthorSlide
                 key={i}
                 name={name}
                 role={role}
-                srcPath={srcPath}
+                srcPath={photos[i]}
                 gitHubPath={gitHubPath}
                 cases={cases}
               />
@@ -75,7 +52,7 @@ export default function IntroPage() {
           </Slider>
         )}
 
-        {aboutTxt === t('aboutUs') && (
+        {!isAboutUs && (
           <Slider>
             <div>Example</div>
           </Slider>
@@ -85,7 +62,7 @@ export default function IntroPage() {
           type="button"
           handleClick={handleClick}
           btnClass={styles.buttonAbout}
-          title={aboutTxt}
+          title={btnTitle}
         />
       </div>
     </div>

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './App.scss';
 import PagesRoutes from './views/PagesRoutes';
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

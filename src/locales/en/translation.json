@@ -2,25 +2,103 @@
   "chooseBookFromLibrary": "Choose books from the library...",
   "noBookMore": "No book more...",
   "Register": "Register",
-  "aboutUs": "About us",
-  "aboutApp": "About app",
-  "authorSerhii": "Serhii",
-  "authorKateryna": "Kateryna",
-  "authorMaryna": "Maryna",
-  "authorSerhiiCases": ["do this", "and this", "and this this"],
-  "authorMarynaCases": [
-    "all functionality of Backend",
-    "this beautiful Intro Page",
-    "and Large Procrastination :)"
+
+  "introPage": {
+    "aboutUs": "About us",
+    "aboutApp": "About app"
+  },
+
+  "404Page": {
+    "articleNotFound": "Article not found",
+    "pageCanNotBeFound": "The page you requested cannot be found.",
+    "returnToHomepage": "Return to the Homepage"
+  },
+
+  "quotes": [
+    {
+      "text": "A room without books is like a person without a soul.",
+      "author": "O. P. Dovzhenko"
+    },
+    {
+      "text": "...A person who exists without a book seems strange and unnatural.",
+      "author": "T.G. Shevchenko"
+    },
+    {
+      "text": "A book is a source of education, knowledge, and if enrichment, then cultural and spiritual enrichment.",
+      "author": "M.T. Rylsky"
+    },
+    {
+      "text": "Whoever loves the book will go far in his development. The book saves the soul from woodiness.",
+      "author": "T.G. Shevchenko"
+    },
+    {
+      "text": "...books are written in order to be read, and read in order to reflect on what has been read.",
+      "author": "I.Ya. Franko"
+    },
+    {
+      "text": "Books are rivers that water the seas.",
+      "author": "Yaroslav Mudry"
+    },
+    {
+      "text": "Books are needed to remind a person that his original thoughts are not so new.",
+      "author": "A. Lincoln"
+    },
+    {
+      "text": "A house without a book is like a body without a soul.",
+      "author": "Cicero"
+    },
+    {
+      "text": "A person with a good book in his hands can never be lonely.",
+      "author": "K. Goldoni"
+    },
+    {
+      "text": "Books are best friends. You can turn to them in all difficult moments of life. They will never betray.",
+      "author": "A. Dode"
+    },
+    {
+      "text": "Some books make us dream, others immerse us in reality, but all of them are imbued with the most important thing for the author - sincerity.",
+      "author": "P. Coelho"
+    },
+    {
+      "text": "Mind did not come from books, but books came from mind.",
+      "author": "G. Skovoroda"
+    }
   ],
-  "authorKaterynaCases": ["do this", "and this", "and this this"],
-  "authorSchoolCases": [
-    "we learn HTML and CSS",
-    "JS, TS and OOP",
-    "Node.js",
-    "thank RS School we found new friends"
-  ],
-  "leadRole": "Team Lead",
-  "devRole": "Developer",
-  "schoolRole": "Our school"
+
+  "authors": [
+    {
+      "name": "Serhii",
+      "role": "Team Lead",
+      "gitHubPath": "https://github.com/serhiishf",
+      "cases": ["do this", "and this", "and this this"]
+    },
+    {
+      "name": "Kateryna",
+      "role": "Developer",
+      "gitHubPath": "https://github.com/Katerina-Zamiatina",
+      "cases": ["do this", "and this", "and this this"]
+    },
+    {
+      "name": "Maryna",
+      "role": "Developer",
+      "gitHubPath": "https://github.com/MarinaTripetska",
+      "cases": [
+        "all functionality of Backend",
+        "this beautiful Intro Page",
+        "and Large Procrastination :)"
+      ]
+    },
+
+    {
+      "name": "RS School",
+      "role": "Our school",
+      "gitHubPath": "https://rs.school/",
+      "cases": [
+        "we learn HTML and CSS",
+        "JS, TS and OOP",
+        "Node.js",
+        "thank RS School we found new friends"
+      ]
+    }
+  ]
 }
