@@ -2,30 +2,53 @@
   "chooseBookFromLibrary": "Обрати книги з бібліотеки...",
   "noBookMore": "Більше книжок нема...",
   "Register": "Реєстрація",
-  "aboutUs": "Про нас",
-  "aboutApp": "Про додаток",
-  "authorSerhii": "Сергій",
-  "authorMaryna": "Марина",
-  "authorKateryna": "Катерина",
-  "authorSerhiiCases": ["робив це", "і це", "а ще й це"],
-  "authorMarynaCases": [
-    "уся функціональність бекенду",
-    "цю прекрасну сторінку",
-    "решту часу я прокрастинувала :)"
-  ],
-  "authorKaterynaCases": ["робив це", "і це", "а ще й це"],
-  "authorSchoolCases": [
-    "ми навчились HTML і CSS",
-    "JS, TS і OOP",
-    "Node.js",
-    "вирішили мільйон задачок на CodeWars",
-    "дякуючи RS School ми знайшли нових друзів!"
-  ],
-  "leadRole": "Лідер команди",
-  "devRole": "Розробник",
-  "schoolRole": "Наша школа",
 
-  "articleNotFound": "Стаття не знайдена",
-  "pageCanNotBeFound": "Неможливо знайти сторінку, яку ви шукаєте.",
-  "returnToHomepage": "Повернутися на головну сторінку"
+  "introPage": {
+    "aboutUs": "Про нас",
+    "aboutApp": "Про додаток"
+  },
+
+  "404Page": {
+    "articleNotFound": "Стаття не знайдена",
+    "pageCanNotBeFound": "Неможливо знайти сторінку, яку ви шукаєте.",
+    "returnToHomepage": "Повернутися на головну сторінку"
+  },
+
+  "authors": [
+    {
+      "name": "Сергій",
+      "role": "Лідер команди",
+      "gitHubPath": "https://github.com/serhiishf",
+      "cases": ["робив це", "і це", "а ще й це"]
+    },
+    {
+      "name": "Катерина",
+      "role": "Розробник",
+      "gitHubPath": "https://github.com/Katerina-Zamiatina",
+      "cases": ["робив це", "і це", "а ще й це"]
+    },
+    {
+      "name": "Марина",
+      "role": "Розробник",
+      "gitHubPath": "https://github.com/MarinaTripetska",
+      "cases": [
+        "уся функціональність бекенду",
+        "цю прекрасну сторінку",
+        "решту часу я прокрастинувала :)"
+      ]
+    },
+
+    {
+      "name": "RS School",
+      "role": "Наша школа",
+      "gitHubPath": "https://rs.school/",
+      "cases": [
+        "ми навчились HTML і CSS",
+        "JS, TS і OOP",
+        "Node.js",
+        "вирішили мільйон задачок на CodeWars",
+        "дякуючи RS School ми знайшли нових друзів!"
+      ]
+    }
+  ]
 }

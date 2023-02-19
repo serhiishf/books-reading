@@ -13,15 +13,11 @@ export default function Page404() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>404</h1>
-      <p className={styles.txt1}>{t('articleNotFound')}</p>
-      <p className={styles.txt2}>{t('pageCanNotBeFound')}</p>
+      <p className={styles.txt1}>{t('404Page.articleNotFound')}</p>
+      <p className={styles.txt2}>{t('404Page.pageCanNotBeFound')}</p>
       <Link className={styles.link} to={isLogged ? '/library' : '/login'}>
-        {t('returnToHomepage')}
+        {t('404Page.returnToHomepage')}
       </Link>
     </div>
   );
 }
-
-//Article not found - 'articleNotFound'
-//The page you requested cannot be found. - 'pageCanNotBeFound'
-//Return to the Homepage = 'returnToHomepage'
