@@ -24,5 +24,8 @@
   "devRole": "Developer",
   "schoolRole": "Our school",
   "myTraining": "My training",
-  "myGoals": "My goals"
+  "myGoals": "My goals",
+  "numberOfBooks": "Amount of books",
+  "numberOfDays": "Amount of days",
+  "leftBooks": "Books left"
 }

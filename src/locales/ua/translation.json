@@ -25,5 +25,8 @@
   "devRole": "Розробник",
   "schoolRole": "Наша школа",
   "myTraining": "Моє тренування",
-  "myGoals": "Моя мета прочитати"
+  "myGoals": "Моя мета прочитати",
+  "numberOfBooks": "Кількість книжок",
+  "numberOfDays": "Кількість днів",
+  "leftBooks": "Залишилось книжок"
 }

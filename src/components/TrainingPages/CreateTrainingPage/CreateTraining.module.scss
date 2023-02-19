@@ -10,11 +10,22 @@
     flex-direction: column;
     padding-top: 30px;
   }
-/*   @media (max-width: 1279px) {
-    flex-direction: column;
-    padding-top: 30px;
-  }
-  @media (max-widt: 767px) {
+}
 
-  } */
+.mainContent {
+  max-width: 886px;
+  width: 100%;
+  @include for-size(tablet-only) {
+    max-width: 100%;
+    order: 2;
+  }
+}
+
+.sidebar {
+  max-width: 275px;
+  width: 100%;
+  @include for-size(tablet-only) {
+    max-width: 100%;
+    order: 1;
+  }
 }

@@ -4,6 +4,7 @@ import styles from './CreateTraining.module.scss';
 import { useTranslation } from 'react-i18next';
 import booksApi, { Book } from '../../../services/books/books-service';
 import Subheader from '../Subheader';
+import BookCounter from '../BookCounter';
 
 function CreateTraining() {
   const { t } = useTranslation();
@@ -28,7 +29,11 @@ function CreateTraining() {
         />
       </div>
       <div className={styles.sidebar}>
-        <Subheader title={t('myGoals')} />
+        <BookCounter
+          books={2}
+          days={14}
+          leftReading={3}
+        />
       </div>
     </div>
   );
