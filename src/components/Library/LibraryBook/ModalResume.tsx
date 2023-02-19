@@ -1,10 +1,14 @@
 import React from 'react';
 import styles from './ModalResume.module.scss';
 
-const ModalResume = (status: string) => {
+const ModalResume = (rating: number | null, resume: string | null) => {
   return (
     <>
-      <div></div>
+      <div>
+        MODAL
+        <span>{rating}</span>
+        <span>{resume}</span>
+      </div>
     </>
   );
 };

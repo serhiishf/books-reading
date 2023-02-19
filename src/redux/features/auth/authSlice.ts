@@ -67,8 +67,7 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isLoggedOn = false;
     },
-    logoutError: (state, { payload }) => {
-      state.error = payload?.message;
+    logoutError: (state) => {
       state.isLoading = false;
     },
     getCurrentUserRequest: (state) => {
@@ -81,8 +80,7 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isLoggedOn = true;
     },
-    getCurrentUserError: (state, { payload }) => {
-      state.error = payload;
+    getCurrentUserError: (state) => {
       state.isLoading = false;
       state.isLoggedOn = false;
     },
