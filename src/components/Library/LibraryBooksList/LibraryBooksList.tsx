@@ -4,9 +4,9 @@ import { BooksI } from '../library.interfaces';
 import styles from './LibraryBooksList.module.scss';
 
 const LibraryBooksList = ({ books }: BooksI) => {
-  const activeBooks = books.filter((book) => book.status === 'active');
-  const doneBooks = books.filter((book) => book.status === 'done');
-  const pendingBooks = books.filter((book) => book.status === 'pending');
+  const activeBooks = books?.filter((book) => book.status === 'active');
+  const doneBooks = books?.filter((book) => book.status === 'done');
+  const pendingBooks = books?.filter((book) => book.status === 'pending');
 
   return (
     <div className={styles.wrapper}>

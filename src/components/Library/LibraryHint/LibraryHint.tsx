@@ -8,7 +8,7 @@ export default function LibraryHint() {
   return (
     <div className={styles.wrapper}>
       <ul>
-        <li>
+        <li className={styles.item}>
           <h3 className={styles.title}>Step 1</h3>
           <div className={styles.blockTitle}>
             <Book className={styles.icon} />
@@ -21,7 +21,7 @@ export default function LibraryHint() {
             </span>
           </div>
         </li>
-        <li>
+        <li className={styles.item}>
           <h3 className={styles.title}>Step 2</h3>
           <div className={styles.blockTitle}>
             <Flag className={styles.icon} />

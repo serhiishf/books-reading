@@ -1,4 +1,5 @@
 @import '../../../scss/mixins';
+@import '../../../scss/variables';
 
 .wrapper {
   padding-top: 20px;
@@ -11,10 +12,10 @@
 }
 
 .sectionTitle {
+  margin-top: 40px;
   font-weight: 600;
   font-size: 19px;
-  // transform-origin: 0 0;
-  // transform: scale(1, 1);
+  color: $primary-text-color;
 }
 
 .titlesWrapper {
