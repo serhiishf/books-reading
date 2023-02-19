@@ -4,16 +4,43 @@
 .bookItem {
   display: flex;
   flex-direction: column;
+  margin-top: 15px;
   margin-bottom: 20px;
   background-color: $txt-color-white;
   padding: 20px;
+  box-shadow: $outer-shadow;
   @include for-size(tablet) {
-    flex-direction: row;
-    padding: 14px 20px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 5px;
+    align-items: center;
+    padding: 22px 20px;
     justify-content: space-between;
   }
   @include for-size(desktop) {
-    padding: 20px 85px 20px;
+    padding-right: 85px;
+  }
+}
+
+.itemDone {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  background-color: $txt-color-white;
+  padding: 20px;
+  box-shadow: $outer-shadow;
+
+  @include for-size(tablet) {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin-top: 5px;
+    align-items: center;
+    padding: 11px 20px;
+    // justify-content: space-between;
+  }
+  @include for-size(desktop) {
+    padding-right: 85px;
   }
 }
 
@@ -22,14 +49,56 @@
   color: $primary-text-color;
 }
 
+.itemDone > .bookInfo {
+  @include for-size(tablet) {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
+    padding: 0;
+  }
+}
+
+.bookInfo {
+  padding-right: 20px;
+  padding-left: 40px;
+  @include for-size(tablet) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  @include for-size(desktop) {
+    justify-items: end;
+  }
+}
+
+.bookInfo > div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  @include for-size(tablet) {
+    display: grid;
+    grid-template-columns: auto;
+    margin-top: 0;
+  }
+}
+
 .subtitleMob {
+  // padding-right: 20px;
   @include for-size(tablet) {
     display: none;
   }
 }
 
+.subtitle {
+  color: $primary-text-color;
+}
+
 .icon {
-  margin-right: 13px;
+  margin-right: 20px;
   fill: $secondary-text-color;
 }
 

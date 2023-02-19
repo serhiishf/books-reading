@@ -68,41 +68,43 @@ export default function LibraryForm() {
             <p className={styles.notification}>{formik.errors.name}</p>
           ) : null}
         </div>
-        <div className={styles.inputWrapper}>
-          <Input
-            labelName={'Author'}
-            name={'author'}
-            type={'text'}
-            value={formik.values.author}
-            handleChange={formik.handleChange}
-          />
-          {formik.errors.author && formik.touched.author ? (
-            <p className={styles.notification}>{formik.errors.author}</p>
-          ) : null}
-        </div>
-        <div className={styles.inputWrapper}>
-          <Input
-            labelName={'Publication date'}
-            name={'year'}
-            type={'text'}
-            value={formik.values.year}
-            handleChange={formik.handleChange}
-          />
-          {formik.errors.year && formik.touched.year ? (
-            <p className={styles.notification}>{formik.errors.year}</p>
-          ) : null}
-        </div>
-        <div className={styles.inputWrapper}>
-          <Input
-            labelName={'Amount of pages'}
-            name={'pages'}
-            type={'text'}
-            value={formik.values.pages}
-            handleChange={formik.handleChange}
-          />
-          {formik.errors.pages && formik.touched.pages ? (
-            <p className={styles.notification}>{formik.errors.pages}</p>
-          ) : null}
+        <div className={styles.inputsTablet}>
+          <div className={`${styles.inputWrapper} ${styles.wrapperAuthor}`}>
+            <Input
+              labelName={'Author'}
+              name={'author'}
+              type={'text'}
+              value={formik.values.author}
+              handleChange={formik.handleChange}
+            />
+            {formik.errors.author && formik.touched.author ? (
+              <p className={styles.notification}>{formik.errors.author}</p>
+            ) : null}
+          </div>
+          <div className={styles.inputWrapper}>
+            <Input
+              labelName={'Publication date'}
+              name={'year'}
+              type={'text'}
+              value={formik.values.year}
+              handleChange={formik.handleChange}
+            />
+            {formik.errors.year && formik.touched.year ? (
+              <p className={styles.notification}>{formik.errors.year}</p>
+            ) : null}
+          </div>
+          <div className={styles.inputWrapper}>
+            <Input
+              labelName={'Amount of pages'}
+              name={'pages'}
+              type={'text'}
+              value={formik.values.pages}
+              handleChange={formik.handleChange}
+            />
+            {formik.errors.pages && formik.touched.pages ? (
+              <p className={styles.notification}>{formik.errors.pages}</p>
+            ) : null}
+          </div>
         </div>
         <div className={styles.btn}>
           <button type="submit" className={styles.addBtn}>

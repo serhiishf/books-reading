@@ -2,8 +2,28 @@
 @import '../../../scss/mixins';
 @import '../../../scss/variables';
 
+.wrapper {
+  @include for-size(tablet) {
+    width: 594px;
+    margin: 0 auto;
+  }
+}
+
 .inputWrapper > label {
   color: $secondary-text-color;
+}
+
+.inputsTablet {
+  @include for-size(tablet) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.wrapperAuthor {
+  @include for-size(tablet) {
+    width: 240px;
+  }
 }
 
 .inputWrapper > label > input {
@@ -25,6 +45,7 @@
 
 .addBtn:hover {
   box-shadow: $active-shadow;
+  border-color: $accent-color;
 }
 
 // .wrapper {

@@ -15,14 +15,18 @@ const DoneEl = ({ rating, resume }: DoneT) => {
     <>
       <div className={styles.starWrapper}>
         <span className={styles.subtitleMob}>Resume:</span>
-        <Star />
-        <Star />
-        <Star />
-        <Star />
-        <Star />
+        <div>
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+        </div>
       </div>
       <div>
-        <button onClick={handleClick}>{'Resume'}</button>
+        <button onClick={handleClick} className={styles.resumeBtn}>
+          {'Resume'}
+        </button>
         {/* {openModal ? <ModalResume raiting={rating} resume={resume} /> : null} */}
       </div>
     </>

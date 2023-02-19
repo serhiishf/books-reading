@@ -12,13 +12,15 @@ const LibraryBooksList = ({ books }: BooksI) => {
     <div className={styles.wrapper}>
       {doneBooks ? (
         <div>
-          <h3>Already read</h3>
+          <h3 className={styles.sectionTitle}>Already read</h3>
           <div className={styles.titlesWrapper}>
             <span>Book title</span>
-            <span>Author</span>
-            <span>Year</span>
-            <span>Pages</span>
-            <span>Rating</span>
+            <div>
+              <span>Author</span>
+              <span>Year</span>
+              <span>Pages</span>
+              <span>Raiting</span>
+            </div>
           </div>
           <ul>
             {doneBooks.map((book, i) => (
@@ -29,12 +31,14 @@ const LibraryBooksList = ({ books }: BooksI) => {
       ) : null}
       {activeBooks ? (
         <div>
-          <h3>Reading now</h3>
-          <div className={styles.titlesWrapper}>
+          <h3 className={styles.sectionTitle}>Reading now</h3>
+          <div className={styles.wrapTitls}>
             <span>Book title</span>
-            <span>Author</span>
-            <span>Year</span>
-            <span>Pages</span>
+            <div>
+              <span>Author</span>
+              <span>Year</span>
+              <span>Pages</span>
+            </div>
           </div>
           <ul>
             {activeBooks.map((book, i) => (
@@ -45,12 +49,14 @@ const LibraryBooksList = ({ books }: BooksI) => {
       ) : null}
       {pendingBooks ? (
         <div>
-          <h3>Going to read</h3>
-          <div className={styles.titlesWrapper}>
+          <h3 className={styles.sectionTitle}>Going to read</h3>
+          <div className={styles.wrapTitls}>
             <span>Book title</span>
-            <span>Author</span>
-            <span>Year</span>
-            <span>Pages</span>
+            <div>
+              <span>Author</span>
+              <span>Year</span>
+              <span>Pages</span>
+            </div>
           </div>
           <ul>
             {pendingBooks.map((book, i) => (

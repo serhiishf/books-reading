@@ -6,7 +6,11 @@ import { BookProps } from '../library.interfaces';
 
 const LibraryBook: React.FC<BookProps> = ({ book }) => {
   return (
-    <li className={styles.bookItem}>
+    <li
+      className={`${
+        book.status === 'done' ? styles.itemDone : styles.bookItem
+      }`}
+    >
       <div className={styles.bookName}>
         <BookImg
           className={`${styles.icon} ${
@@ -15,21 +19,23 @@ const LibraryBook: React.FC<BookProps> = ({ book }) => {
         />
         <span>{book.name}</span>
       </div>
-      <div>
-        <span className={styles.subtitleMob}>Author:</span>
-        <span>{book.author}</span>
+      <div className={styles.bookInfo}>
+        <div>
+          <span className={styles.subtitleMob}>Author:</span>
+          <span className={styles.subtitle}>{book.author}</span>
+        </div>
+        <div>
+          <span className={styles.subtitleMob}>Year:</span>
+          <span className={styles.subtitle}>{book.year}</span>
+        </div>
+        <div>
+          <span className={styles.subtitleMob}>Pages:</span>
+          <span className={styles.subtitle}>{book.pages}</span>
+        </div>
+        {book.status === 'done' ? (
+          <DoneEl rating={book.rating} resume={book.resume} />
+        ) : null}
       </div>
-      <div>
-        <span className={styles.subtitleMob}>Year:</span>
-        <span>{book.year}</span>
-      </div>
-      <div>
-        <span className={styles.subtitleMob}>Pages:</span>
-        <span>{book.pages}</span>
-      </div>
-      {book.status === 'done' ? (
-        <DoneEl rating={book.rating} resume={book.resume} />
-      ) : null}
     </li>
   );
 };

@@ -2,16 +2,62 @@
 
 .wrapper {
   padding-top: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 
   @include for-size(tablet) {
     padding-top: 40px;
   }
 }
 
+.sectionTitle {
+  font-weight: 600;
+  font-size: 19px;
+  // transform-origin: 0 0;
+  // transform: scale(1, 1);
+}
+
 .titlesWrapper {
   display: none;
 
   @include for-size(tablet) {
-    display: flex;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.titlesWrapper > div {
+  @include for-size(tablet) {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
+  }
+  @include for-size(desktop) {
+    padding-right: 85px;
+  }
+}
+
+.wrapTitls {
+  display: none;
+
+  @include for-size(tablet) {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.wrapTitls > div {
+  @include for-size(tablet) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
   }
 }
