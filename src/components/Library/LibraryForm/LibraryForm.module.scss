@@ -7,6 +7,17 @@
     width: 594px;
     margin: 0 auto;
   }
+  @include for-size(desktop) {
+    width: 1117px;
+  }
+}
+
+.form {
+  @include for-size(desktop) {
+    display: grid;
+    grid-template-columns: 346px 540px auto;
+    column-gap: 15px;
+  }
 }
 
 .inputWrapper > label {
@@ -17,6 +28,12 @@
   @include for-size(tablet) {
     display: flex;
     justify-content: space-between;
+  }
+  @include for-size(desktop) {
+    display: grid;
+    grid-template-columns: 250px 130px 130px;
+    column-gap: 15px;
+    // justify-content: space-between;
   }
 }
 
@@ -30,6 +47,11 @@
   background-color: $txt-color-white;
 }
 
+.btn {
+  align-self: center;
+  justify-self: end;
+}
+
 .addBtn {
   display: block;
   margin: 0 auto;
@@ -41,6 +63,10 @@
   transition: all 250ms ease-in-out, transform 150ms ease;
   -webkit-appearance: none;
   -moz-appearance: none;
+  @include for-size(desktop) {
+    margin: 0;
+    display: flex;
+  }
 }
 
 .addBtn:hover {
@@ -48,87 +74,18 @@
   border-color: $accent-color;
 }
 
-// .wrapper {
-//   margin-left: auto;
-//   margin-right: auto;
-//   max-width: 1280px;
-//   @include for-size(desktop) {
-//     display: flex;
-//   }
-// }
-
-// .form {
-//   @include for-size(tablet) {
-//     display: flex;
-//     flex-wrap: wrap;
-//   }
-
-//   @include for-size(desktop) {
-//     flex-wrap: nowrap;
-//   }
-// }
-
-// .form > label {
-//   display: block;
-//   width: 270px;
-//   margin: 0 auto;
-//   color: $secondary-text-color;
-//   @include for-size(tablet) {
-//     width: 250px;
-//     margin: 0;
-//     margin-right: 15px;
-//   }
-// }
-
-// .form > label:first-child {
-//   display: block;
-//   width: 270px;
-//   @include for-size(tablet) {
-//     width: 594px;
-//     margin-right: 15px;
-//   }
-
-//   @include for-size(desktop) {
-//     width: 346px;
-//   }
-// }
-
-// .form > label:nth-last-child(-n + 2) {
-//   @include for-size(tablet) {
-//     width: 145px;
-//   }
-//   @include for-size(desktop) {
-//     width: 130px;
-//   }
-// }
-
-// .form > label > input {
-//   background-color: #fff;
-// }
-
-// .btn > button {
-//   margin: 0 auto;
-//   @include for-size(mobile-only) {
-//     display: block;
-//   }
-
-//   @include for-size(tablet-only) {
-//     display: block;
-//   }
-// }
-
-// .btn > button {
-//   display: block;
-// }
-
 .inputWrapper {
   position: relative;
 }
 
 .notification {
-  // width: 150px;
   position: absolute;
   bottom: -20px;
+  left: 10px;
   text-align: start;
   color: rgb(184, 0, 0);
+
+  @include for-size(tablet) {
+    bottom: 0;
+  }
 }
