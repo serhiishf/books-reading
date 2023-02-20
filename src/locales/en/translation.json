@@ -170,5 +170,10 @@
     "errorReg2": "Registration failed.",
     "errorLog1": "Wrong email or password.",
     "errorLog2": "Something went wrong. Try again."
-  }
+  },
+  "myTraining": "My training",
+  "myGoals": "My goals",
+  "numberOfBooks": "Amount of books",
+  "numberOfDays": "Amount of days",
+  "leftBooks": "Books left"
 }
