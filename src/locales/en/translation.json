@@ -161,6 +161,7 @@
     "min8": "Min 8 symbols",
     "min2": "Min 2 symbols",
     "min5": "Min 5 symbols",
+    "max60": "Max 60 symbols",
     "max50": "Max 50 symbols"
   },
   "toast": {

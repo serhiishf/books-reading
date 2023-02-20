@@ -22,12 +22,12 @@ export default function LibraryForm() {
       name: yup
         .string()
         .min(3, 'validation.min3')
-        .max(50, 'validation.max50')
+        .max(60, 'validation.max60')
         .required('validation.required'),
       author: yup
         .string()
         .min(3, 'validation.min3')
-        .max(40, 'validation.max54')
+        .max(40, 'validation.max40')
         .required('validation.required'),
       year: yup
         .string()
