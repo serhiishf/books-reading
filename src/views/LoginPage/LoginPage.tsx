@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import LoginForm from '../../components/LoginForm';
 import styles from './LoginPage.module.scss';
 import getRandomNum from '../../services/getRandomNum';
-import quotes from '../../data/quotes';
+import { useTranslation } from 'react-i18next';
 
 export interface QuoteI {
   text: string;
@@ -10,23 +10,8 @@ export interface QuoteI {
 }
 
 export default function LoginPage() {
-  const [allQuotes] = useState(quotes);
-  const [quote, setQuote] = useState({
-    text: '',
-    author: '',
-  });
-  const getQuote = () => {
-    const quoteNum = getRandomNum();
-    const randomQuote = {
-      text: allQuotes[quoteNum]?.text,
-      author: allQuotes[quoteNum]?.author,
-    };
-    return randomQuote;
-  };
-
-  useEffect(() => {
-    setQuote(getQuote());
-  }, []);
+  const { t } = useTranslation();
+  const randomIndex = getRandomNum(0, 11);
 
   return (
     <div className={styles.mainWrapper}>
@@ -35,8 +20,10 @@ export default function LoginPage() {
       </div>
       <div className={styles.rightSide}>
         <div className={styles.quoteSign}>&ldquo;</div>
-        <p className={styles.quoteText}>{quote.text}</p>
-        <p className={styles.quoteAuthor}>{quote.author}</p>
+        <p className={styles.quoteText}>{t(`quotes.${randomIndex}.text`)}</p>
+        <p className={styles.quoteAuthor}>
+          {t(`quotes.${randomIndex}.author`)}
+        </p>
       </div>
     </div>
   );
