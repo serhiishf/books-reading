@@ -5,6 +5,8 @@ import Loader from '../../components/Loader';
 import PublicRoute from '../../components/PublicRoute';
 import PrivateRoute from '../../components/PrivateRoute';
 import Header from '../../components/Header';
+import { useAppSelector } from '../../redux/app/hooks';
+import authSelectors from '../../redux/features/auth/authSelectors';
 
 const IntroPage = lazy(() => import('../IntroPage'));
 const LoginPage = lazy(() => import('../LoginPage'));
@@ -14,7 +16,8 @@ const TrainingPage = lazy(() => import('../TrainingPage'));
 const Page404 = lazy(() => import('../Page404'));
 
 const PagesRoutes = () => {
-  return (
+  const isFetchingUser = useAppSelector(authSelectors.getFetching);
+  return !isFetchingUser ? (
     <>
       <Header />
       <Suspense fallback={<Loader />}>
@@ -32,6 +35,8 @@ const PagesRoutes = () => {
         </Routes>
       </Suspense>
     </>
+  ) : (
+    <Loader />
   );
 };
 
