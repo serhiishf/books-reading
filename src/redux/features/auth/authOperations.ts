@@ -19,6 +19,7 @@ import {
 } from './authSlice';
 import apiService from '../../../services/auth/auth-service';
 import tokenService from '../../../services/auth/token-service';
+import i18n from '../../../i18n';
 
 type Credentials = {
   name: string;
@@ -37,15 +38,15 @@ const register =
       const response = await apiService.registerUser(credentials);
       dispatch(registerSuccess(response.data));
       if (response.code === 201) {
-        toast.success('Registration complete. Log in to access the app.');
+        toast.success(i18n?.t?.('toast.successReg'));
       }
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 400) {
-          toast.error('This email is already exist');
+          toast.error(i18n?.t?.('toast.errorReg1'));
         } else {
-          toast.error('Registration failed');
+          toast.error(i18n?.t?.('toast.errorReg2'));
         }
         dispatch(registerError(error.message));
       }
@@ -62,9 +63,9 @@ const logIn = (credentials: LoginCreds) => async (dispatch: AppDispatch) => {
   } catch (error) {
     if (error instanceof AxiosError) {
       if (error.response?.status === 401) {
-        toast.error('Wrong email or password');
+        toast.error(i18n?.t?.('toast.errorLog1'));
       } else {
-        toast.error('Something went wrong. Try again.');
+        toast.error(i18n?.t?.('toast.errorLog2'));
       }
       dispatch(loginError(error.message));
     }

@@ -162,5 +162,12 @@
     "min2": "Min 2 symbols",
     "min5": "Min 5 symbols",
     "max50": "Max 50 symbols"
+  },
+  "toast": {
+    "successReg": "Registration complete. Log in to access the app.",
+    "errorReg1": "This email is already exist.",
+    "errorReg2": "Registration failed.",
+    "errorLog1": "Wrong email or password.",
+    "errorLog2": "Something went wrong. Try again."
   }
 }
