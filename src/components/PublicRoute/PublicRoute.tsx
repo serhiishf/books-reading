@@ -1,13 +1,12 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import { useAppSelector } from '../../redux/app/hooks';
 import authSelectors from '../../redux/features/auth/authSelectors';
-import LibraryPage from '../../views/LibraryPage';
 
 const PublicRoute = () => {
   const isLogged = useAppSelector(authSelectors.getLoggedOn);
 
-  return <>{!isLogged ? <Outlet /> : <LibraryPage />}</>;
+  return <>{!isLogged ? <Outlet /> : <Navigate to="/library" />}</>;
 };
 
 export default PublicRoute;

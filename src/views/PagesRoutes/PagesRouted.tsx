@@ -22,8 +22,8 @@ const PagesRoutes = () => {
       <Header />
       <Suspense fallback={<Loader />}>
         <Routes>
+          <Route path="/" element={<IntroPage />} />
           <Route element={<PublicRoute />}>
-            <Route path="/" element={<IntroPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
           </Route>

@@ -13,6 +13,7 @@ import UserName from '../UserName';
 export default function NavAuth() {
   const dispatch = useAppDispatch();
   const userName = useAppSelector(authSelectors.getUserName);
+  // const isLoading = useAppSelector(authSelectors.getLoading);
 
   const { t } = useTranslation();
   const onLogoutClick = async () => {
