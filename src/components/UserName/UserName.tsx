@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './UserName.module.scss';
 import useViewportSizes from '../../hooks/useViewportSizes';
+import breakpoints from '../../utils/breakpoints';
 
 interface Props {
   userNameStr: string;
@@ -8,14 +9,14 @@ interface Props {
 
 const UserName: React.FC<Props> = ({ userNameStr }) => {
   const sizes = useViewportSizes();
-  console.log(sizes);
+  const isMobileView = sizes.innerWidth < breakpoints.TABLET;
 
   return (
     <div className={styles.box}>
       <div className={styles.circle}>
         {userNameStr.slice(0, 1).toUpperCase()}
       </div>
-      <p className={styles.name}>{userNameStr}</p>
+      {!isMobileView && <p className={styles.name}>{userNameStr}</p>}
     </div>
   );
 };
