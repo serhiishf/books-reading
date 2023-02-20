@@ -100,5 +100,10 @@
         "thank RS School we found new friends"
       ]
     }
-  ]
+  ],
+  "myTraining": "My training",
+  "myGoals": "My goals",
+  "numberOfBooks": "Amount of books",
+  "numberOfDays": "Amount of days",
+  "leftBooks": "Books left"
 }

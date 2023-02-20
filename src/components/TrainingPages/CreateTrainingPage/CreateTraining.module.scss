@@ -1,15 +1,31 @@
-@import '../../../scss/base.scss';
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
 
-.mainWrapper {
-  background-color: $bg-color-blue;
-  min-height: 100vh;
-  overflow: hidden;
+.wrapper {
   display: flex;
-  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
+  padding-top: 50px;
+  @include for-size(tablet-only) {
+    flex-direction: column;
+    padding-top: 30px;
+  }
 }
 
-.containerWrap {
-  max-width: 1280px;
-  border: 1px solid red;
-  margin: 0 auto;
+.mainContent {
+  max-width: 886px;
+  width: 100%;
+  @include for-size(tablet-only) {
+    max-width: 100%;
+    order: 2;
+  }
+}
+
+.sidebar {
+  max-width: 275px;
+  width: 100%;
+  @include for-size(tablet-only) {
+    max-width: 100%;
+    order: 1;
+  }
 }
