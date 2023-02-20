@@ -21,7 +21,11 @@ const LibraryPage = () => {
   return (
     <div className={styles.wrapper}>
       <LibraryForm />
-      {booksUser ? <LibraryBooksList books={booksUser} /> : <LibraryHint />}
+      {booksUser?.length ? (
+        <LibraryBooksList books={booksUser} />
+      ) : (
+        <LibraryHint />
+      )}
     </div>
   );
 };

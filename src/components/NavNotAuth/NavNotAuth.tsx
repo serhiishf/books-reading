@@ -1,22 +1,19 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './NavNotAuth.module.scss';
-import routes, { IRoute } from '../../views/routes';
-import { v4 as uuidv4 } from 'uuid';
+import { useTranslation } from 'react-i18next';
 
 export default function NavNotAuth() {
-  const navLinks: Array<IRoute> = useMemo(
-    () => routes.filter((route) => route.isNav),
-    [],
-  );
+  const { t } = useTranslation();
 
   return (
     <div className={styles.navWrapper}>
-      {navLinks.map((link: IRoute) => (
-        <NavLink key={uuidv4()} to={link.path} className={styles.navLink}>
-          {link.label}
-        </NavLink>
-      ))}
+      <NavLink to={'/login'} className={styles.navLink}>
+        {t('auth.login')}
+      </NavLink>
+      <NavLink to={'/register'} className={styles.navLink}>
+        {t('auth.register')}
+      </NavLink>
     </div>
   );
 }

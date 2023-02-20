@@ -17,7 +17,8 @@
   cursor: pointer;
   min-width: 36px;
   max-height: 30px;
-  padding: 8px;
+  padding-top: 5px;
+  // padding: 8px;
   position: absolute;
   top: 0;
   right: 0;
@@ -76,6 +77,7 @@
   transition: all 0.3s ease;
   width: 100%;
   z-index: 5;
+  color: $secondary-text-color;
   cursor: pointer;
   display: flex;
   gap: 4px;
