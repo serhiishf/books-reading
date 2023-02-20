@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 export default function NavAuth() {
   const dispatch = useAppDispatch();
   const userName = useAppSelector(authSelectors.getUserName);
+  // const isLoading = useAppSelector(authSelectors.getLoading);
 
   const { t } = useTranslation();
   const onLogoutClick = async () => {

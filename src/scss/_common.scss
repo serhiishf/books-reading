@@ -16,10 +16,7 @@ body {
   font-family: $primary-font;
   font-size: 14px;
   font-weight: 500;
-  max-width: 100%;
-  min-height: 100vh;
-  transform-origin: 0 0;
-  transform: scale(1.06, 1);
+  width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
