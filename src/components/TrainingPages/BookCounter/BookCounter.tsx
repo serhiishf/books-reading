@@ -21,17 +21,18 @@ export default function BookCounter({ books, days, leftReading }: BookCounterPro
         <UseCountItem
           count={books}
           title={t('numberOfBooks')}
-          smaller={true}
         />
         <UseCountItem
           count={days}
           title={t('numberOfDays')}
         />
-        <UseCountItem
-          count={days}
-          title={t('numberOfDays')}
-          highlight={true}
-        />
+        {leftReading && (
+          <UseCountItem
+            count={leftReading}
+            title={t('leftBooks')}
+            highlight={true}
+          />
+        )}
       </div>
     </div>
   );

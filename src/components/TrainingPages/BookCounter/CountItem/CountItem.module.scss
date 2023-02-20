@@ -48,4 +48,7 @@ $heightItem: 100px;
   @include for-size(tablet-only) {
     font-size: 11px;
   }
+  @include for-size(mobile-only) {
+    font-size: 14px;
+  }
 }

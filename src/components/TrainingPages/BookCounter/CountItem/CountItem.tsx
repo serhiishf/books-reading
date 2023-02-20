@@ -4,11 +4,10 @@ import styles from './CountItem.module.scss';
 interface CountItemProps {
   count: number;
   title: string;
-  smaller?: boolean;
-  highlight?: boolean;
+
 }
 
-export default function CountItem({ count, title, smaller = false, highlight = false }: CountItemProps) {
+export default function CountItem({ count, title }: CountItemProps) {
 
   return (
     <div className={styles.countItem}>
