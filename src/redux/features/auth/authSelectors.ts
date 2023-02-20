@@ -14,6 +14,8 @@ const getIsRefresh = (state: RootState) => state.auth.isRefreshed;
 
 const getLoading = (state: RootState) => state.auth.isLoading;
 
+const getFetching = (state: RootState) => state.auth.isFetching;
+
 const authSelectors = {
   getLoggedOn,
   getUserName,
@@ -22,6 +24,7 @@ const authSelectors = {
   getLoading,
   getIsRefresh,
   getIsRegistered,
+  getFetching,
 };
 
 export default authSelectors;
