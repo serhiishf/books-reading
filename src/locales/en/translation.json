@@ -3,11 +3,48 @@
   "noBookMore": "No book more...",
   "Register": "Register",
 
-  "auth":{
-"login": "Login",
-"email": "Email",
-"password": "Password",
-"register": "Register"
+  "auth": {
+    "login": "Login",
+    "name": "Name *",
+    "email": "Email *",
+    "password": "Password *",
+    "confirm": "Confirm password *",
+    "exAcc": "Already have an account",
+    "regTitle": "Books reading",
+    "regSubTO": "Will help you to",
+    "regGoal": "Create your goal faster and proceed to read",
+    "regProcess": "Divide process proportionally for each day ",
+    "regSuccess": "Track your success",
+    "regSubTT": "You may also",
+    "regPoint": "Pose your own independent point of view ",
+    "regScills": "Improve your professional skills according to new knowledge",
+    "regInter": "Become an interesting interlocutor",
+    "register": "Register",
+    "logout": "Logout"
+  },
+
+  "library": {
+    "title": "Book title",
+    "author": "Author",
+    "year": "Publication date",
+    "page": "Amount of pages",
+    "yearShort": "Year",
+    "pageShort": "Pages",
+    "rating": "Rating",
+    "resume": "Resume",
+    "add": "Add",
+    "done": "Already read",
+    "active": "Reading now",
+    "pending": "Going to read",
+    "step": "Step",
+    "createLib": "Create your own library",
+    "cerateLibDo": "Add there books which you are going to read.",
+    "createTrain": "Create your first training",
+    "createTrainDo": "Set a goal, choose period, start training.",
+    "leftRating": "Choose rating of the book",
+    "next": "Next",
+    "back": "Back",
+    "save": "Save"
   },
 
   "introPage": {
@@ -107,5 +144,23 @@
         "thank RS School we found new friends"
       ]
     }
-  ]
+  ],
+  "validation": {
+    "required": "Required",
+    "valid": "Must be a valid email",
+    "pass": "Password should be letters and numbers",
+    "notMatch": "Your passwords do not match.",
+    "confirm": "Please confirm your password",
+    "noSame": "Your passwords do not match",
+    "min3": "Min 3 symbols",
+    "max40": "Max 40 symbols",
+    "year": "Year should be number",
+    "min4": "Min 4 symbols",
+    "max4": "Max 4 symbols",
+    "pages": "Pages should be number",
+    "min8": "Min 8 symbols",
+    "min2": "Min 2 symbols",
+    "min5": "Min 5 symbols",
+    "max50": "Max 50 symbols"
+  }
 }

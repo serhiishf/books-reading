@@ -7,11 +7,13 @@ import styles from './NavAuth.module.scss';
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import authOperations from '../../redux/features/auth/authOperations';
 import authSelectors from '../../redux/features/auth/authSelectors';
+import { useTranslation } from 'react-i18next';
 
 export default function NavAuth() {
   const dispatch = useAppDispatch();
   const userName = useAppSelector(authSelectors.getUserName);
 
+  const { t } = useTranslation();
   const onLogoutClick = async () => {
     await dispatch(authOperations.logOut());
   };
@@ -32,7 +34,7 @@ export default function NavAuth() {
           to={'/'}
           onClick={onLogoutClick}
         >
-          Logout
+          {t('auth.logout')}
         </NavLink>
       </div>
     </div>

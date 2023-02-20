@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from './RegisterPage.module.scss';
 import RegisterForm from '../../components/RegisterForm';
-
+import { useTranslation } from 'react-i18next';
 
 export default function RegisterPage() {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.mainWrapper}>
       <div className={styles.leftSide}>
@@ -12,29 +14,19 @@ export default function RegisterPage() {
       <div className={styles.rightSide}>
         <h2 className={styles.title}>Books Reading</h2>
         <div className={styles.text}>
-          <p className={styles.subTitle}>Will help you to</p>
+          <p className={styles.subTitle}>{t('auth.regSubTO')}</p>
           <ul className={styles.list}>
-            <li className={styles.listItem}>
-              Create your goal faster and proceed to read
-            </li>
-            <li className={styles.listItem}>
-              Divide process proportionally for each day{' '}
-            </li>
-            <li className={styles.listItem}>Track your success</li>
+            <li className={styles.listItem}>{t('auth.regGoal')}</li>
+            <li className={styles.listItem}>{t('auth.regProcess')}</li>
+            <li className={styles.listItem}>{t('auth.regSuccess')}</li>
           </ul>
         </div>
         <div className={styles.text}>
-          <p className={styles.subTitle}>You may also</p>
+          <p className={styles.subTitle}>{t('auth.regSubTT')}</p>
           <ul className={styles.list}>
-            <li className={styles.listItem}>
-              Pose your own independent point of view
-            </li>
-            <li className={styles.listItem}>
-              Improve your professional skills according to new knowledge
-            </li>
-            <li className={styles.listItem}>
-              Become an interesting interlocutor
-            </li>
+            <li className={styles.listItem}>{t('auth.regPoint')}</li>
+            <li className={styles.listItem}>{t('auth.regScills')}</li>
+            <li className={styles.listItem}>{t('auth.regInter')}</li>
           </ul>
         </div>
       </div>

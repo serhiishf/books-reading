@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -8,13 +8,13 @@ import styles from '../LoginForm/LoginForm.module.scss';
 import btnStyles from '../Button/Button.module.scss';
 import Button from '../Button';
 import authOperations from '../../redux/features/auth/authOperations';
-import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
-import authSelectors from '../../redux/features/auth/authSelectors';
+import { useAppDispatch } from '../../redux/app/hooks';
+import { useTranslation } from 'react-i18next';
 
 export default function RegisterForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [isRegistered, setRegistered] = useState();
+  const { t } = useTranslation();
 
   const initialValues = {
     name: '',
@@ -26,30 +26,30 @@ export default function RegisterForm() {
   const formik = useFormik({
     initialValues,
     validationSchema: yup.object({
-      name: yup.string().min(3, 'Min 3 symbols').required(),
+      name: yup
+        .string()
+        .min(3, 'validation.min3')
+        .required('validation.required'),
       email: yup
         .string()
-        .email('Must be a valid email')
-        .min(5, 'Min 5 symbols')
-        .max(50, 'Max 50 symbols')
-        .required('Required'),
+        .email('validation.valid')
+        .min(5, 'validation.min5')
+        .max(50, 'validation.max50')
+        .required('validation.required'),
       password: yup
         .string()
-        .min(8, 'Min 8 symbols')
-        .max(40, 'Max 40 symbols')
-        .matches(
-          /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-          'Password should be letters and numbers',
-        )
-        .required('Required'),
+        .min(8, 'validation.min8')
+        .max(40, 'validation.max40')
+        .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, 'validation.pass')
+        .required('validation.required'),
       confirmPassword: yup
         .string()
         .label('confirm password')
-        .required('Please confirm your password.')
-        .oneOf([yup.ref('password')], 'Your passwords do not match.'),
+        .required('validation.confirm')
+        .oneOf([yup.ref('password')], 'validation.noSame'),
     }),
     onSubmit: async (values) => {
-      const { name, email, password, confirmPassword } = values;
+      const { name, email, password } = values;
       dispatch(authOperations.register({ name, email, password })).then(
         (res, _) => {
           if (res) {
@@ -81,63 +81,65 @@ export default function RegisterForm() {
       />
       <div className={styles.inputWrapper}>
         <Input
-          labelName={'Name *'}
+          labelName={t('auth.name')}
           name={'name'}
           type={'text'}
           value={formik.values.name}
           handleChange={formik.handleChange}
         />
         {formik.errors.name && formik.touched.name ? (
-          <p className={styles.notification}>{formik.errors.name}</p>
+          <p className={styles.notification}>{t(formik.errors.name)}</p>
         ) : null}
       </div>
 
       <div className={styles.inputWrapper}>
         <Input
-          labelName={'Email *'}
+          labelName={t('auth.email')}
           name={'email'}
           type={'text'}
           value={formik.values.email}
           handleChange={formik.handleChange}
         />
         {formik.errors.email && formik.touched.email ? (
-          <p className={styles.notification}>{formik.errors.email}</p>
+          <p className={styles.notification}>{t(formik.errors.email)}</p>
         ) : null}
       </div>
       <div className={styles.inputWrapper}>
         <Input
-          labelName={'Password *'}
+          labelName={t('auth.password')}
           name={'password'}
           type={'password'}
           value={formik.values.password}
           handleChange={formik.handleChange}
         />
         {formik.errors.password && formik.touched.password ? (
-          <p className={styles.notification}>{formik.errors.password}</p>
+          <p className={styles.notification}>{t(formik.errors.password)}</p>
         ) : null}
       </div>
 
       <div className={styles.inputWrapper}>
         <Input
-          labelName={'Confirm password *'}
+          labelName={t('auth.confirm')}
           name={'confirmPassword'}
           type={'password'}
           value={formik.values.confirmPassword}
           handleChange={formik.handleChange}
         />
         {formik.errors.confirmPassword && formik.touched.confirmPassword ? (
-          <p className={styles.notification}>{formik.errors.confirmPassword}</p>
+          <p className={styles.notification}>
+            {t(formik.errors.confirmPassword)}
+          </p>
         ) : null}
       </div>
 
       <Button
         handleClick={formik.handleSubmit}
         btnClass={btnStyles.login}
-        title={'Register'}
+        title={t('auth.register')}
       />
-      <span>Already have an account?</span>
+      <span>{t('auth.exAcc')}</span>
       <Link to="/login" className={styles.link}>
-        Log in
+        {t('auth.login')}
       </Link>
     </form>
   );

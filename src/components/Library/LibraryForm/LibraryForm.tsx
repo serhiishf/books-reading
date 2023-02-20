@@ -4,6 +4,7 @@ import Input from '../../Input';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import booksApi from '../../../services/books/books-service';
+import { useTranslation } from 'react-i18next';
 
 export default function LibraryForm() {
   const initialValues = {
@@ -13,30 +14,32 @@ export default function LibraryForm() {
     pages: '',
   };
 
+  const { t } = useTranslation();
+
   const formik = useFormik({
     initialValues,
     validationSchema: yup.object({
       name: yup
         .string()
-        .min(3, 'Min 3 symbols')
-        .max(50, 'Max 50 symbols')
-        .required('Required'),
+        .min(3, 'validation.min3')
+        .max(50, 'validation.max50')
+        .required('validation.required'),
       author: yup
         .string()
-        .min(3, 'Min 3 symbols')
-        .max(40, 'Max 40 symbols')
-        .required('Required'),
+        .min(3, 'validation.min3')
+        .max(40, 'validation.max54')
+        .required('validation.required'),
       year: yup
         .string()
-        .matches(/^[0-9]*$/, 'Year should be number')
-        .min(4, 'Min 4 symbols')
-        .max(4, 'Max 4 symbols'),
+        .matches(/^[0-9]*$/, 'validation.year')
+        .min(4, 'validation.min4')
+        .max(4, 'validation.max4'),
       pages: yup
         .string()
-        .matches(/^[0-9]*$/, 'Pages should be number')
-        .min(2, 'Min 2 symbols')
-        .max(4, 'Max 4 symbols')
-        .required('Required'),
+        .matches(/^[0-9]*$/, 'validation.pages')
+        .min(2, 'validation.min2')
+        .max(4, 'validation.max4')
+        .required('validation.required'),
     }),
     onSubmit: (values) => {
       const { name, author, year, pages } = values;
@@ -58,57 +61,57 @@ export default function LibraryForm() {
       >
         <div className={styles.inputWrapper}>
           <Input
-            labelName={'Book title'}
+            labelName={t('library.title')}
             name={'name'}
             type={'text'}
             value={formik.values.name}
             handleChange={formik.handleChange}
           />
           {formik.errors.name && formik.touched.name ? (
-            <p className={styles.notification}>{formik.errors.name}</p>
+            <p className={styles.notification}>{t(formik.errors.name)}</p>
           ) : null}
         </div>
         <div className={styles.inputsTablet}>
-          <div className={`${styles.inputWrapper} ${styles.wrapperAuthor}`}>
+          <div className={`${styles.inputWrapper} ${t(styles.wrapperAuthor)}`}>
             <Input
-              labelName={'Author'}
+              labelName={t('library.author')}
               name={'author'}
               type={'text'}
               value={formik.values.author}
               handleChange={formik.handleChange}
             />
             {formik.errors.author && formik.touched.author ? (
-              <p className={styles.notification}>{formik.errors.author}</p>
+              <p className={styles.notification}>{t(formik.errors.author)}</p>
             ) : null}
           </div>
           <div className={styles.inputWrapper}>
             <Input
-              labelName={'Publication date'}
+              labelName={t('library.year')}
               name={'year'}
               type={'text'}
               value={formik.values.year}
               handleChange={formik.handleChange}
             />
             {formik.errors.year && formik.touched.year ? (
-              <p className={styles.notification}>{formik.errors.year}</p>
+              <p className={styles.notification}>{t(formik.errors.year)}</p>
             ) : null}
           </div>
           <div className={styles.inputWrapper}>
             <Input
-              labelName={'Amount of pages'}
+              labelName={t('library.page')}
               name={'pages'}
               type={'text'}
               value={formik.values.pages}
               handleChange={formik.handleChange}
             />
             {formik.errors.pages && formik.touched.pages ? (
-              <p className={styles.notification}>{formik.errors.pages}</p>
+              <p className={styles.notification}>{t(formik.errors.pages)}</p>
             ) : null}
           </div>
         </div>
         <div className={styles.btn}>
           <button type="submit" className={styles.addBtn}>
-            {'Add'}
+            {t('library.add')}
           </button>
         </div>
       </form>
