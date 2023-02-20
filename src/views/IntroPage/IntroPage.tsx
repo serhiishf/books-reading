@@ -19,7 +19,7 @@ interface AuthorI {
   gitHubPath: string;
   cases: string[];
 }
-type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
+// type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
 
 export default function IntroPage() {
   const { t } = useTranslation();
@@ -27,7 +27,7 @@ export default function IntroPage() {
   const [btnTitle, setBtnTitle] = useState(t('introPage.aboutApp'));
   const authors = t('authors', { returnObjects: true }) as AuthorI[];
 
-  const handleClick = (e: ButtonEvent) => {
+  const handleClick = () => {
     setIsAboutUs(!isAboutUs);
     isAboutUs
       ? setBtnTitle(t('introPage.aboutUs'))
