@@ -12,7 +12,25 @@ const LibraryBooksList = ({ books }: BooksI) => {
 
   return (
     <div className={styles.wrapper}>
-      {doneBooks ? (
+      {activeBooks?.length ? (
+        <div>
+          <h3 className={styles.sectionTitle}>{t('library.active')}</h3>
+          <div className={styles.wrapTitls}>
+            <span>{t('library.title')}</span>
+            <div>
+              <span>{t('library.author')}</span>
+              <span>{t('library.yearShort')}</span>
+              <span>{t('library.pageShort')}</span>
+            </div>
+          </div>
+          <ul>
+            {activeBooks.map((book, i) => (
+              <LibraryBook book={book} key={i} />
+            ))}
+          </ul>
+        </div>
+      ) : null}
+      {doneBooks?.length ? (
         <div>
           <h3 className={styles.sectionTitle}>{t('library.done')}</h3>
           <div className={styles.titlesWrapper}>
@@ -31,24 +49,7 @@ const LibraryBooksList = ({ books }: BooksI) => {
           </ul>
         </div>
       ) : null}
-      {activeBooks ? (
-        <div>
-          <h3 className={styles.sectionTitle}>{t('library.active')}</h3>
-          <div className={styles.wrapTitls}>
-            <span>{t('library.title')}</span>
-            <div>
-              <span>{t('library.author')}</span>
-              <span>{t('library.yearShort')}</span>
-              <span>{t('library.pageShort')}</span>
-            </div>
-          </div>
-          <ul>
-            {activeBooks.map((book, i) => (
-              <LibraryBook book={book} key={i} />
-            ))}
-          </ul>
-        </div>
-      ) : null}
+
       {pendingBooks ? (
         <div>
           <h3 className={styles.sectionTitle}>{t('library.pending')}</h3>

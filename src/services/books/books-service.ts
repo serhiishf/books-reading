@@ -15,7 +15,7 @@ type UpdateStatusT = {
 type UpdateResumeT = {
   bookId: string;
   resume?: string;
-  raiting?: number;
+  rating?: number;
 };
 
 export interface Book {

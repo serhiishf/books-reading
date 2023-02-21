@@ -1,13 +1,9 @@
-import React, {
-  FunctionComponent,
-  useState,
-  ChangeEvent,
-  useEffect,
-} from 'react';
+import React, { FunctionComponent, useState, ChangeEvent } from 'react';
 import ReactDOM from 'react-dom';
 import Rating from './Rating';
 import styles from './ModalResume.module.scss';
 import { useTranslation } from 'react-i18next';
+// import booksApi from '../../../services/books/books-service';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -16,7 +12,13 @@ export interface ModalProps {
   rating: number | null;
 }
 
-type MessageT = string;
+// const bookId = '63f50f95a6e01486dd1cad4e';
+// const resume =
+//   'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum';
+
+// const rating = 3;
+
+// booksApi.updateBookResume({ bookId, resume, rating });
 
 const ModalResume: FunctionComponent<ModalProps> = ({
   rating,
@@ -25,38 +27,35 @@ const ModalResume: FunctionComponent<ModalProps> = ({
   hide,
 }) => {
   const { t } = useTranslation();
-  const [message, setMessage] = useState<MessageT>('');
+  const [message, setMessage] = useState(resume);
 
-  useEffect(() => {
-    setMessage(resume);
-  }, []);
+  const handleRating = () => {
+    console.log('rating');
+  };
 
   const handleResume = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
     setMessage(value);
-    console.log(value);
   };
 
   const modal = (
     <div className={styles.backdrop}>
       <div className={styles.wrapper}>
         <div className={styles.modal}>
-          <div>
-            <h3>{t('library.leftRating')}</h3>
+          <div onClick={handleRating}>
+            <h3 className={styles.title}>{t('library.leftRating')}</h3>
             <Rating />
-            <span>{rating}</span>
           </div>
           <div>
-            <h3>{t('library.resume')}</h3>
+            <h3 className={styles.title}>{t('library.resume')}</h3>
             <textarea
               className={styles.tetxarea}
               name="feedback"
-              value={message}
+              value={message || resume}
               rows={10}
               placeholder="Leave your feedback..."
               onChange={handleResume}
             />
-            <span>{resume}</span>
           </div>
           <div className={styles.btnWrapper}>
             <button className={styles.closeBtn} onClick={hide}>

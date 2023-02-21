@@ -44,7 +44,12 @@ const PagesRoutes = () => {
             <Route path="/register" element={<RegisterPage />} />
           </Route>
           <Route element={<PrivateRoute />}>
+            <Route path="/" element={<IntroPage />} />
+          </Route>
+          <Route element={<PrivateRoute />}>
             <Route path="/library" element={<LibraryPage />} />
+          </Route>
+          <Route element={<PrivateRoute />}>
             <Route path="/training" element={<TrainingPage />} />
           </Route>
           <Route path="*" element={<Page404 />} />

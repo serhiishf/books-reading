@@ -33,9 +33,14 @@
   box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
 }
 
+.title {
+  margin-bottom: 15px;
+}
+
 .tetxarea {
   resize: none;
-  width: 210px;
+  width: 100%;
+  border-color: $secondary-text-color;
   @include for-size(tablet) {
     width: 510px;
   }
