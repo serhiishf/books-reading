@@ -1,0 +1,34 @@
+@import '../../../scss/variables';
+
+.contentBox {
+  width: 100%;
+  // height: 50px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(97, 97, 127);
+  height: 100vh;
+  width: 50vw;
+  padding: 75px 25px;
+  position: fixed;
+  top: 0;
+}
+
+.burgerBtn {
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  margin: 0;
+  display: fixed;
+  transition: all $cubic;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
