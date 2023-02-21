@@ -9,37 +9,50 @@ import authOperations from '../../redux/features/auth/authOperations';
 import authSelectors from '../../redux/features/auth/authSelectors';
 import { useTranslation } from 'react-i18next';
 import UserName from '../UserName';
+import useViewportSizes from '../../hooks/useViewportSizes';
+import breakpoints from '../../utils/breakpoints';
 
 export default function NavAuth() {
   const dispatch = useAppDispatch();
-  const userName = useAppSelector(authSelectors.getUserName);
-
   const { t } = useTranslation();
+
+  const userName = useAppSelector(authSelectors.getUserName);
+  const sizes = useViewportSizes();
+  const isMobileView = sizes.innerWidth < breakpoints.TABLET;
+
   const onLogoutClick = async () => {
     await dispatch(authOperations.logOut());
   };
+  //algoritm:
+  //create 2 components: burgerMenu and desktopMenu
+  //onLogoutClick in props to both
+  //styled burger menu
+  //add portal and modal for asking about logout
 
   return (
     <div className={styles.navWrapper}>
       <UserName userNameStr={userName} />
 
-      <div className={styles.linksWrapper}>
-        <NavLink className={styles.navLink} key={uuidv4()} to={'/library'}>
-          <SvgLibrary className={styles.icon} />
-        </NavLink>
-        <NavLink className={styles.navLink} key={uuidv4()} to={'/training'}>
-          <SvgHome className={styles.icon} />
-        </NavLink>
-        <NavLink
-          className={styles.navLink}
-          key={uuidv4()}
-          to={'/'}
-          onClick={onLogoutClick}
-        >
-          {t('auth.logout')}
-        </NavLink>
-      </div>
+      {isMobileView && <div>burger</div>}
+
+      {!isMobileView && (
+        <div className={styles.linksWrapper}>
+          <NavLink className={styles.navLink} key={uuidv4()} to={'/library'}>
+            <SvgLibrary className={styles.icon} />
+          </NavLink>
+          <NavLink className={styles.navLink} key={uuidv4()} to={'/training'}>
+            <SvgHome className={styles.icon} />
+          </NavLink>
+          <NavLink
+            className={styles.navLink}
+            key={uuidv4()}
+            to={'/'}
+            onClick={onLogoutClick}
+          >
+            {t('auth.logout')}
+          </NavLink>
+        </div>
+      )}
     </div>
   );
 }
-//on mobile width instead linksWrapper shoud be burber and instead user name - icon
