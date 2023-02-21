@@ -1,3 +1,6 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
 .backdrop {
   position: fixed;
   width: 100%;
@@ -16,13 +19,66 @@
   z-index: 700;
   width: 270px;
   outline: 0;
+  @include for-size(tablet) {
+    width: 570px;
+  }
 }
 
 .modal {
-  padding: 30px;
+  padding: 35px 25px;
   z-index: 100;
   background: white;
   position: relative;
   margin: 0 auto;
   box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
+}
+
+.tetxarea {
+  resize: none;
+  width: 210px;
+  @include for-size(tablet) {
+    width: 510px;
+  }
+}
+
+.btnWrapper {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.closeBtn,
+.saveBtn {
+  border: none;
+  padding: 12px 0;
+  width: 98px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  @include for-size(tablet) {
+    width: 130px;
+  }
+}
+
+.closeBtn {
+  margin-right: 10px;
+  background-color: $bg-color-blue;
+  border: 1px solid $primary-text-color;
+}
+
+.closeBtn:hover {
+  box-shadow: $active-shadow;
+  border-color: $accent-color;
+}
+
+.saveBtn {
+  color: $txt-color-white;
+  background-color: $accent-color;
+}
+
+.saveBtn:hover {
+  box-shadow: $active-shadow;
+  background-color: $hover-color;
 }

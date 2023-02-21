@@ -1,4 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  ChangeEvent,
+  useEffect,
+} from 'react';
 import ReactDOM from 'react-dom';
 import Rating from './Rating';
 import styles from './ModalResume.module.scss';
@@ -7,9 +12,11 @@ import { useTranslation } from 'react-i18next';
 export interface ModalProps {
   isOpen: boolean;
   hide: () => void;
-  resume: string | null;
+  resume: string;
   rating: number | null;
 }
+
+type MessageT = string;
 
 const ModalResume: FunctionComponent<ModalProps> = ({
   rating,
@@ -18,9 +25,20 @@ const ModalResume: FunctionComponent<ModalProps> = ({
   hide,
 }) => {
   const { t } = useTranslation();
+  const [message, setMessage] = useState<MessageT>('');
+
+  useEffect(() => {
+    setMessage(resume);
+  }, []);
+
+  const handleResume = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = event.target;
+    setMessage(value);
+    console.log(value);
+  };
 
   const modal = (
-    <div className={styles.backdrop} onClick={hide}>
+    <div className={styles.backdrop}>
       <div className={styles.wrapper}>
         <div className={styles.modal}>
           <div>
@@ -30,9 +48,17 @@ const ModalResume: FunctionComponent<ModalProps> = ({
           </div>
           <div>
             <h3>{t('library.resume')}</h3>
+            <textarea
+              className={styles.tetxarea}
+              name="feedback"
+              value={message}
+              rows={10}
+              placeholder="Leave your feedback..."
+              onChange={handleResume}
+            />
             <span>{resume}</span>
           </div>
-          <div>
+          <div className={styles.btnWrapper}>
             <button className={styles.closeBtn} onClick={hide}>
               {t('library.back')}
             </button>

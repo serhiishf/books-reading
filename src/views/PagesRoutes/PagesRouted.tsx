@@ -1,6 +1,6 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Loader from '../../components/Loader';
 import PublicRoute from '../../components/PublicRoute';
 import PrivateRoute from '../../components/PrivateRoute';
@@ -14,14 +14,30 @@ const TrainingPage = lazy(() => import('../TrainingPage'));
 const Page404 = lazy(() => import('../Page404'));
 
 const PagesRoutes = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate(JSON.parse(window.sessionStorage.getItem('lastRoute') || '{}'));
+    window.onbeforeunload = () => {
+      window.sessionStorage.setItem(
+        'lastRoute',
+        JSON.stringify(window.location.pathname),
+      );
+    };
+  }, []);
+
   return (
     <>
       <Header />
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<IntroPage />} />
+          <Route element={<PublicRoute />}>
+            <Route path="/" element={<IntroPage />} />
+          </Route>
           <Route element={<PublicRoute />}>
             <Route path="/login" element={<LoginPage />} />
+          </Route>
+          <Route element={<PublicRoute />}>
             <Route path="/register" element={<RegisterPage />} />
           </Route>
           <Route element={<PrivateRoute />}>
