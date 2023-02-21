@@ -8,11 +8,11 @@ import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import authOperations from '../../redux/features/auth/authOperations';
 import authSelectors from '../../redux/features/auth/authSelectors';
 import { useTranslation } from 'react-i18next';
+import UserName from '../UserName';
 
 export default function NavAuth() {
   const dispatch = useAppDispatch();
   const userName = useAppSelector(authSelectors.getUserName);
-  // const isLoading = useAppSelector(authSelectors.getLoading);
 
   const { t } = useTranslation();
   const onLogoutClick = async () => {
@@ -21,7 +21,8 @@ export default function NavAuth() {
 
   return (
     <div className={styles.navWrapper}>
-      <div className={styles.userName}>{userName}</div>
+      <UserName userNameStr={userName} />
+
       <div className={styles.linksWrapper}>
         <NavLink className={styles.navLink} key={uuidv4()} to={'/library'}>
           <SvgLibrary className={styles.icon} />
@@ -41,3 +42,4 @@ export default function NavAuth() {
     </div>
   );
 }
+//on mobile width instead linksWrapper shoud be burber and instead user name - icon

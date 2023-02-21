@@ -9,6 +9,7 @@ export interface UserState {
   isRefreshed: boolean;
   isLoggedOn: boolean;
   isLoading: boolean;
+  isFetching: boolean;
 }
 
 const initialUserState: UserState = {
@@ -20,6 +21,7 @@ const initialUserState: UserState = {
   isRefreshed: false,
   isLoggedOn: false,
   isLoading: false,
+  isFetching: false,
 };
 
 const authSlice = createSlice({
@@ -72,6 +74,7 @@ const authSlice = createSlice({
     },
     getCurrentUserRequest: (state) => {
       state.isLoading = true;
+      state.isFetching = true;
     },
     getCurrentUserSuccess: (state, { payload }) => {
       state.user.name = payload.user.name;
@@ -79,10 +82,12 @@ const authSlice = createSlice({
       state.refreshToken = payload.tokens.refreshToken;
       state.isLoading = false;
       state.isLoggedOn = true;
+      state.isFetching = false;
     },
     getCurrentUserError: (state) => {
       state.isLoading = false;
       state.isLoggedOn = false;
+      state.isFetching = false;
     },
     setTokensRequest: (state) => {
       state.isLoading = true;

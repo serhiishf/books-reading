@@ -51,7 +51,7 @@ export default function RegisterForm() {
     onSubmit: async (values) => {
       const { name, email, password } = values;
       dispatch(authOperations.register({ name, email, password })).then(
-        (res, _) => {
+        (res) => {
           if (res) {
             navigate('/login', { replace: true });
           }
