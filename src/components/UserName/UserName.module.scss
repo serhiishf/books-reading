@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   gap: 11px;
+  align-self: center;
 }
 
 .circle {
@@ -30,8 +31,4 @@
   font-size: 14px;
   line-height: 2.7;
   color: $primary-text-color;
-
-  @include for-size(mobile-only) {
-    display: none;
-  }
 }
