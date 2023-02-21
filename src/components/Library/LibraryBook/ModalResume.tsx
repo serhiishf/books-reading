@@ -1,15 +1,24 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState, ChangeEvent } from 'react';
 import ReactDOM from 'react-dom';
 import Rating from './Rating';
 import styles from './ModalResume.module.scss';
 import { useTranslation } from 'react-i18next';
+// import booksApi from '../../../services/books/books-service';
 
 export interface ModalProps {
   isOpen: boolean;
   hide: () => void;
-  resume: string | null;
+  resume: string;
   rating: number | null;
 }
+
+// const bookId = '63f50f95a6e01486dd1cad4e';
+// const resume =
+//   'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum';
+
+// const rating = 3;
+
+// booksApi.updateBookResume({ bookId, resume, rating });
 
 const ModalResume: FunctionComponent<ModalProps> = ({
   rating,
@@ -18,21 +27,37 @@ const ModalResume: FunctionComponent<ModalProps> = ({
   hide,
 }) => {
   const { t } = useTranslation();
+  const [message, setMessage] = useState(resume);
+
+  const handleRating = () => {
+    console.log('rating', rating);
+  };
+
+  const handleResume = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = event.target;
+    setMessage(value);
+  };
 
   const modal = (
-    <div className={styles.backdrop} onClick={hide}>
+    <div className={styles.backdrop}>
       <div className={styles.wrapper}>
         <div className={styles.modal}>
-          <div>
-            <h3>{t('library.leftRating')}</h3>
+          <div onClick={handleRating}>
+            <h3 className={styles.title}>{t('library.leftRating')}</h3>
             <Rating />
-            <span>{rating}</span>
           </div>
           <div>
-            <h3>{t('library.resume')}</h3>
-            <span>{resume}</span>
+            <h3 className={styles.title}>{t('library.resume')}</h3>
+            <textarea
+              className={styles.tetxarea}
+              name="feedback"
+              value={message || resume}
+              rows={10}
+              placeholder="Leave your feedback..."
+              onChange={handleResume}
+            />
           </div>
-          <div>
+          <div className={styles.btnWrapper}>
             <button className={styles.closeBtn} onClick={hide}>
               {t('library.back')}
             </button>
