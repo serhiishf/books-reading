@@ -2,21 +2,14 @@
 @import '../../scss//mixins';
 
 .navWrapper {
+  width: 55%;
   display: flex;
+  justify-content: space-between;
 }
 
 .linksWrapper {
   display: flex;
   align-items: center;
-}
-
-.userName {
-  align-self: center;
-  margin-right: 10px;
-
-  @include for-size(tablet) {
-    margin-right: 50px;
-  }
 }
 
 .icon {
