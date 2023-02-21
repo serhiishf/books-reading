@@ -5,8 +5,7 @@ import authSelectors from '../../redux/features/auth/authSelectors';
 
 const PublicRoute = () => {
   const isLogged = useAppSelector(authSelectors.getLoggedOn);
-
-  return <>{!isLogged ? <Outlet /> : <Navigate to="/library" />}</>;
+  return isLogged ? <Navigate to="/library" /> : <Outlet />;
 };
 
 export default PublicRoute;
