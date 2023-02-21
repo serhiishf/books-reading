@@ -30,7 +30,7 @@ const ModalResume: FunctionComponent<ModalProps> = ({
   const [message, setMessage] = useState(resume);
 
   const handleRating = () => {
-    console.log('rating');
+    console.log('rating', rating);
   };
 
   const handleResume = (event: ChangeEvent<HTMLTextAreaElement>) => {

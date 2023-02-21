@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReactComponent as Star } from '../../../assets/img/star.svg';
 import { DoneT } from '../library.interfaces';
 import styles from './DoneEl.module.scss';
 import ModalResume from './ModalResume';
