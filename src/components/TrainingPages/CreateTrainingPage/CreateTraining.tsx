@@ -22,15 +22,18 @@ function CreateTraining() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainContent}>
-        <div className={styles.createForm}>
+        <form className={styles.createForm}>
           <Subheader title={t('myTraining')} />
-          <Calendar placeHolder='Початок'/>
+          <Calendar
+            placeHolder='Початок'
+            sameOrBefore={true}
+          />
           <Dropdown
             placeHolder={t('chooseBookFromLibrary')}
             options={books.map(book => ({ value: book.name, label: book.name }))}
             noOptionsMessage={t('noBookMore')}
           />
-        </div>
+        </form>
         <div className={styles.sidebar}>
           <BookCounter
             books={2}

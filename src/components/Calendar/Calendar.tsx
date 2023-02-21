@@ -1,57 +1,50 @@
-/* import React from 'react';
-import Datetime from 'react-datetime';
-import 'react-datetime/css/react-datetime.css';
-import { FaCalendarAlt, FaClock } from 'react-icons/fa';
-
-
-interface CalendarProps {
-  placeHolder: string;
-}
-
-function Calendar({ placeHolder }: CalendarProps) {
-  const inputProps = {
-    placeholder: placeHolder,
-    style: {
-      border: '1px solid #A6ABB9',
-      fontSize: '14px',
-      fontFamily: 'Montserrat',
-      fontWeight: '500',
-      minHeight: '42px',
-      padding: '0 13px',
-    }
-  };
-  return (
-    <div>
-      <Datetime inputProps={inputProps} />
-    </div>
-  );
-}
-
-export default Calendar; */
 import React from 'react';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import { ReactComponent as CalendarIcon } from './assets/calendar.svg';
 import { ReactComponent as InputArrow } from './assets/arrow.svg';
 import styles from './Calendar.module.scss';
+import moment from 'moment';
+import 'moment/locale/en-gb';
 
 
 interface CalendarProps {
   placeHolder: string;
+  sameOrBefore?: boolean;
+  sameOrAfter?: boolean
 }
 
-function Calendar({ placeHolder }: CalendarProps) {
+function Calendar({ placeHolder, sameOrBefore }: CalendarProps) {
   const CustomInput = ({ value, onClick }: { value: string, onClick: () => void }) => (
     <div className={styles.regularInput} onClick={onClick}>
-      <CalendarIcon />
-      <input className={styles.hiddenInput} type="text" placeholder={placeHolder} value={value} readOnly />
-      <InputArrow />
+      <CalendarIcon style={{ minWidth: '17px', minHeight: '17px' }} />
+      <input
+        className={styles.hiddenInput}
+        type="text"
+        placeholder={placeHolder}
+        value={value}
+        readOnly />
+      <InputArrow style={{ minWidth: '13px', minHeight: '10px' }} />
     </div>
   );
 
+  const isBefore = (currentDate: moment.Moment): boolean => {
+    return currentDate.isSameOrBefore(moment(), 'day');
+  };
+
+  /*   const isAfter = (currentDate: moment.Moment): boolean => {
+    return currentDate.isSameOrAfter(moment(), 'day');
+  }; */
+
   return (
     <div>
-      <Datetime renderInput={CustomInput} />
+      <Datetime
+        renderInput={CustomInput}
+        closeOnSelect={true}
+        locale="en-gb"
+        timeFormat={false}
+        isValidDate={sameOrBefore ? isBefore : undefined}
+      />
     </div>
   );
 }
