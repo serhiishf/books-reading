@@ -6,35 +6,58 @@
   align-items: center;
 }
 
-.icon {
-  fill: #a6abb9;
-}
-
-.icon:hover {
-  fill: $hover-color;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
 .navLink {
-  margin-left: 10px;
-  color: $secondary-text-color;
-
-  &:hover {
-    color: $hover-color;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: background-color $cubic;
+  svg {
+    fill: $icon-color;
   }
 
-  &:last-child {
-    padding-left: 10px;
-    border-left: 1px solid $accent-color;
+  &:first-child {
+    top: 2px;
+    margin-right: 14px;
+  }
+
+  &:last-of-type {
+    margin-right: 25px;
+    &::after {
+      display: block;
+      content: '';
+      width: 1px;
+      height: 33px;
+      background-color: $icon-color;
+
+      position: absolute;
+      right: -11px;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    background-color: $bg-color-input;
   }
 }
 
 .logoutBtn {
-  padding: 3px 0;
+  font-family: $primary-font;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 2.7;
+  text-decoration-line: underline;
+  color: $primary-text-color;
+  transition: color $cubic;
+  padding: 0;
   margin: 0;
   border: none;
   background-color: transparent;
-  color: $secondary-text-color;
+
   cursor: pointer;
 
   &:hover {

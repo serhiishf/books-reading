@@ -15,14 +15,12 @@ const DesktopMenu: React.FC<Props> = ({ logoutClick }) => {
   return (
     <div className={styles.linksWrapper}>
       <NavLink className={styles.navLink} to={'/library'}>
-        <SvgLibrary className={styles.icon} />
+        <SvgLibrary />
       </NavLink>
       <NavLink className={styles.navLink} to={'/training'}>
-        <SvgHome className={styles.icon} />
+        <SvgHome />
       </NavLink>
-      {/* <NavLink className={styles.navLink} to={'/'} onClick={logoutClick}>
-        {t('auth.logout')}
-      </NavLink> */}
+
       <button type="button" className={styles.logoutBtn} onClick={logoutClick}>
         {t('auth.logout')}
       </button>
