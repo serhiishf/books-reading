@@ -1,0 +1,33 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+
+
+/* .createForm {
+
+} */
+
+.controlPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  @include for-size(mobile-only) {
+    gap: 20px;
+  }
+}
+/* 
+.listBooks{
+  
+} */
+
+.calendarsWrap {
+  display: flex;
+  gap: 45px;
+  justify-content: center;
+  @include for-size(mobile-only) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
+

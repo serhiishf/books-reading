@@ -10,11 +10,12 @@ import 'moment/locale/en-gb';
 
 interface CalendarProps {
   placeHolder: string;
-  sameOrBefore?: boolean;
-  sameOrAfter?: boolean
+  onlyAfter?: boolean;
+  today?: boolean;
+  open?: boolean;
 }
 
-function Calendar({ placeHolder, sameOrBefore }: CalendarProps) {
+function Calendar({ placeHolder, onlyAfter, today, open }: CalendarProps) {
   const CustomInput = ({ value, onClick }: { value: string, onClick: () => void }) => (
     <div className={styles.regularInput} onClick={onClick}>
       <CalendarIcon style={{ minWidth: '17px', minHeight: '17px' }} />
@@ -28,13 +29,9 @@ function Calendar({ placeHolder, sameOrBefore }: CalendarProps) {
     </div>
   );
 
-  const isBefore = (currentDate: moment.Moment): boolean => {
-    return currentDate.isSameOrBefore(moment(), 'day');
+  const isAfter = (currentDate: moment.Moment): boolean => {
+    return currentDate.isAfter(moment(), 'day');
   };
-
-  /*   const isAfter = (currentDate: moment.Moment): boolean => {
-    return currentDate.isSameOrAfter(moment(), 'day');
-  }; */
 
   return (
     <div>
@@ -43,7 +40,9 @@ function Calendar({ placeHolder, sameOrBefore }: CalendarProps) {
         closeOnSelect={true}
         locale="en-gb"
         timeFormat={false}
-        isValidDate={sameOrBefore ? isBefore : undefined}
+        isValidDate={onlyAfter && !today ? isAfter : undefined}
+        initialValue={today ? new Date() : undefined}
+        open={open ? false : undefined}
       />
     </div>
   );

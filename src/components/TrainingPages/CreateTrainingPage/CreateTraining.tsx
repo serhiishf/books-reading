@@ -1,39 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import Dropdown from '../../Dropdown';
+import React/* , { useState, useEffect }  */from 'react';
 import styles from './CreateTraining.module.scss';
-import { useTranslation } from 'react-i18next';
-import booksApi, { Book } from '../../../services/books/books-service';
-import Subheader from '../Subheader';
+/* import { useTranslation } from 'react-i18next'; */
+import TrainingCreateForm from '../TrainingCreateForm';
 import BookCounter from '../BookCounter';
-import Calendar from '../../Calendar';
 
 function CreateTraining() {
-  const { t } = useTranslation();
-  const [books, setBooks] = useState<Book[]>([]);
+/*   const { t } = useTranslation(); */
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      const data = await booksApi.getAllBooks();
-      setBooks(data);
-    };
-    fetchBooks();
-  }, []);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainContent}>
-        <form className={styles.createForm}>
-          <Subheader title={t('myTraining')} />
-          <Calendar
-            placeHolder='Початок'
-            sameOrBefore={true}
-          />
-          <Dropdown
-            placeHolder={t('chooseBookFromLibrary')}
-            options={books.map(book => ({ value: book.name, label: book.name }))}
-            noOptionsMessage={t('noBookMore')}
-          />
-        </form>
+        <TrainingCreateForm />
         <div className={styles.sidebar}>
           <BookCounter
             books={2}
