@@ -18,13 +18,26 @@
 .navLink {
   margin-left: 10px;
   color: $secondary-text-color;
+
+  &:hover {
+    color: $hover-color;
+  }
+
+  &:last-child {
+    padding-left: 10px;
+    border-left: 1px solid $accent-color;
+  }
 }
 
-.navLink:hover {
-  color: $hover-color;
-}
+.logoutBtn {
+  padding: 3px 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  color: $secondary-text-color;
+  cursor: pointer;
 
-.navLink:last-child {
-  padding-left: 10px;
-  border-left: 1px solid $accent-color;
+  &:hover {
+    color: $hover-color;
+  }
 }

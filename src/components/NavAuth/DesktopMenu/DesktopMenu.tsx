@@ -20,9 +20,12 @@ const DesktopMenu: React.FC<Props> = ({ logoutClick }) => {
       <NavLink className={styles.navLink} to={'/training'}>
         <SvgHome className={styles.icon} />
       </NavLink>
-      <NavLink className={styles.navLink} to={'/'} onClick={logoutClick}>
+      {/* <NavLink className={styles.navLink} to={'/'} onClick={logoutClick}>
         {t('auth.logout')}
-      </NavLink>
+      </NavLink> */}
+      <button type="button" className={styles.logoutBtn} onClick={logoutClick}>
+        {t('auth.logout')}
+      </button>
     </div>
   );
 };

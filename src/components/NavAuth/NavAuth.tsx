@@ -16,11 +16,12 @@ export default function NavAuth() {
   const dispatch = useAppDispatch();
 
   const userName = useAppSelector(authSelectors.getUserName);
+
   const sizes = useViewportSizes();
   const isMobileView = sizes.innerWidth < breakpoints.TABLET;
 
-  const onLogoutClick = async () => {
-    await dispatch(authOperations.logOut());
+  const onLogoutClick = () => {
+    dispatch(authOperations.logOut());
   };
 
   //styled burger menu

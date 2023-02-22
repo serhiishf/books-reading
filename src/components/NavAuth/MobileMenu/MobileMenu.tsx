@@ -11,7 +11,7 @@ const MobileMenu: React.FC<Props> = ({ logoutClick }) => {
   const toggleHamburger = () => {
     setHamburgerOpen(!hamburgerOpen);
   };
-
+  //todo: i18n
   return (
     <>
       <div className={styles.contentBox}>

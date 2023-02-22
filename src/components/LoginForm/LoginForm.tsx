@@ -12,7 +12,6 @@ import { useTranslation } from 'react-i18next';
 
 export default function LoginForm() {
   const dispatch = useAppDispatch();
-
   const { t } = useTranslation();
 
   const initialValues = {
@@ -42,6 +41,7 @@ export default function LoginForm() {
       formik.resetForm();
     },
   });
+
   const handleGoogleBtnClick = () => {
     console.log('GoggleBtn');
   };
