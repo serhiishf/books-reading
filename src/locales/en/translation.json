@@ -1,8 +1,4 @@
 {
-  "chooseBookFromLibrary": "Choose books from the library...",
-  "noBookMore": "No book more...",
-  "Register": "Register",
-
   "auth": {
     "login": "Login",
     "name": "Name *",
@@ -50,6 +46,11 @@
   "introPage": {
     "aboutUs": "About us",
     "aboutApp": "About app"
+  },
+
+  "navigation": {
+    "library": "Library",
+    "training": "Training"
   },
 
   "404Page": {
@@ -145,6 +146,7 @@
       ]
     }
   ],
+
   "validation": {
     "required": "Required",
     "valid": "Must be a valid email",
@@ -164,6 +166,7 @@
     "max60": "Max 60 symbols",
     "max50": "Max 50 symbols"
   },
+
   "toast": {
     "successReg": "Registration complete. Log in to access the app.",
     "errorReg1": "This email is already exist.",
@@ -171,6 +174,10 @@
     "errorLog1": "Wrong email or password.",
     "errorLog2": "Something went wrong. Try again."
   },
+
+  "chooseBookFromLibrary": "Choose books from the library...",
+  "noBookMore": "No book more...",
+  "Register": "Register",
   "myTraining": "My training",
   "myGoals": "My goals",
   "numberOfBooks": "Amount of books",
