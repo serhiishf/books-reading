@@ -50,7 +50,7 @@ const ModalResume: FunctionComponent<ModalProps> = ({
     <div className={styles.backdrop}>
       <div className={styles.wrapper}>
         <div className={styles.modal}>
-          <div>
+          <div className={styles.ratingWrapper}>
             <h3 className={styles.title}>{t('library.leftRating')}</h3>
             <Rating
               count={5}

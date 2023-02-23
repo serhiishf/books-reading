@@ -16,7 +16,7 @@ const LibraryPage = () => {
 
   useEffect(() => {
     getUsersBooks();
-  }, []);
+  }, [booksUser]);
 
   return (
     <div className={styles.wrapper}>
