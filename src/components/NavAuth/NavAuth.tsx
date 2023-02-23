@@ -13,6 +13,7 @@ import MobileMenu from './MobileMenu';
 import styles from './NavAuth.module.scss';
 import Portal from '../Portal';
 import publicRoots from '../../utils/publicRoots';
+import ConfirmationModal from '../ConfirmationModal';
 
 export default function NavAuth() {
   const dispatch = useAppDispatch();
@@ -24,8 +25,8 @@ export default function NavAuth() {
   const [isOpenModal, setOpenModal] = useState(false);
 
   const onLogoutClick = () => {
-    dispatch(authOperations.logOut());
-    // setOpenModal(!isOpenModal);
+    // dispatch(authOperations.logOut());
+    setOpenModal(!isOpenModal);
   };
 
   return (
@@ -38,7 +39,7 @@ export default function NavAuth() {
 
       {isOpenModal && (
         <Portal wrapperId={publicRoots.ChoiceModal}>
-          <div>modal</div>
+          <ConfirmationModal />
         </Portal>
       )}
     </div>
