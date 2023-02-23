@@ -24,8 +24,8 @@ export default function NavAuth() {
   const [isOpenModal, setOpenModal] = useState(false);
 
   const onLogoutClick = () => {
-    // dispatch(authOperations.logOut());
-    setOpenModal(!isOpenModal);
+    dispatch(authOperations.logOut());
+    // setOpenModal(!isOpenModal);
   };
 
   return (
