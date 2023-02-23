@@ -5,6 +5,8 @@ import ModalResume from './ModalResume';
 import { useTranslation } from 'react-i18next';
 import { useModal } from '../../../hooks/useModal';
 import Rating from './Rating';
+import publicRoots from '../../../utils/publicRoots';
+import Portal from '../../Portal';
 
 const DoneEl = ({ _id, rating, resume }: DoneT) => {
   const { isShown, toggle } = useModal();
@@ -22,15 +24,17 @@ const DoneEl = ({ _id, rating, resume }: DoneT) => {
         <button onClick={toggle} className={styles.resumeBtn}>
           {t('library.resume')}
         </button>
-        {isShown ? (
-          <ModalResume
-            bookId={_id}
-            rating={rating}
-            resume={resume}
-            isOpen={isShown}
-            hide={toggle}
-          />
-        ) : null}
+        {isShown && (
+          <Portal wrapperId={publicRoots.ResumeModal}>
+            <ModalResume
+              bookId={_id}
+              rating={rating}
+              resume={resume}
+              isOpen={isShown}
+              hide={toggle}
+            />
+          </Portal>
+        )}
       </div>
     </>
   );

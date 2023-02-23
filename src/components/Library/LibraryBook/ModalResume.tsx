@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useState, ChangeEvent } from 'react';
-import ReactDOM from 'react-dom';
 import Rating from './Rating';
 import styles from './ModalResume.module.scss';
 import { useTranslation } from 'react-i18next';
@@ -46,7 +45,7 @@ const ModalResume: FunctionComponent<ModalProps> = ({
     hide();
   };
 
-  const modal = (
+  return isOpen ? (
     <div className={styles.backdrop}>
       <div className={styles.wrapper}>
         <div className={styles.modal}>
@@ -81,9 +80,7 @@ const ModalResume: FunctionComponent<ModalProps> = ({
         </div>
       </div>
     </div>
-  );
-
-  return isOpen ? ReactDOM.createPortal(modal, document.body) : null;
+  ) : null;
 };
 
 export default ModalResume;
