@@ -9,15 +9,13 @@ export default function Button({
   type = 'submit',
 }) {
   return (
-    <>
-      <button
-        type={type}
-        onClick={handleClick}
-        className={`${styles.btn} ${btnClass}`}
-      >
-        {title}
-      </button>
-    </>
+    <button
+      type={type}
+      onClick={handleClick}
+      className={`${styles.btn} ${btnClass}`}
+    >
+      {title}
+    </button>
   );
 }
 

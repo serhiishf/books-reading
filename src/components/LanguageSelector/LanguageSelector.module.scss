@@ -4,13 +4,15 @@
 .wrapper {
   display: flex;
   align-items: center;
-  height: 2rem;
+  height: 30px;
   min-width: 42px;
   position: absolute;
   z-index: 3;
   right: 5px;
   top: 60px;
-  background-color: transparent;
+  border-radius: 8px;
+  background-color: $txt-color-white;
+  box-shadow: $outer-shadow;
 }
 
 .list {

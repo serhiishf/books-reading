@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Loader from '../../components/Loader';
@@ -16,38 +16,33 @@ const TrainingPage = lazy(() => import('../TrainingPage'));
 const Page404 = lazy(() => import('../Page404'));
 
 const PagesRoutes = () => {
-  const [currentRoute, setCurrentRoute] = useState('');
   const isFetchingUser = useAppSelector(authSelectors.getFetching);
-
-  useEffect(() => {
-    window.onbeforeunload = () => {
-      window.sessionStorage.setItem(
-        'lastRoute',
-        JSON.stringify(window.location.pathname),
-      );
-    };
-    const route = window.sessionStorage.getItem('lastRoute') as string;
-    setCurrentRoute(route.slice(2, -1));
-  }, [currentRoute]);
 
   return !isFetchingUser ? (
     <>
       <Header />
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<IntroPage />} />
-          <Route element={<PublicRoute restricted redirectTo={currentRoute} />}>
+          <Route element={<PublicRoute restricted redirectTo="/library" />}>
+            <Route path="/" element={<IntroPage />} />
+          </Route>
+
+          <Route element={<PublicRoute restricted redirectTo="/library" />}>
             <Route path="/login" element={<LoginPage />} />
           </Route>
-          <Route element={<PublicRoute restricted redirectTo="/login" />}>
+
+          <Route element={<PublicRoute restricted redirectTo="/library" />}>
             <Route path="/register" element={<RegisterPage />} />
           </Route>
-          <Route element={<PrivateRoute redirectTo="/login" />}>
-            <Route path="/library" element={<LibraryPage />} />
+
+          <Route path="/library" element={<PrivateRoute />}>
+            <Route path="" element={<LibraryPage />} />
           </Route>
-          <Route element={<PrivateRoute redirectTo="/login" />}>
-            <Route path="/training" element={<TrainingPage />} />
+
+          <Route path="/training" element={<PrivateRoute />}>
+            <Route path="" element={<TrainingPage />} />
           </Route>
+
           <Route path="*" element={<Page404 />} />
         </Routes>
       </Suspense>
