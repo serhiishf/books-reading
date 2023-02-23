@@ -11,6 +11,10 @@ import authOperations from '../../redux/features/auth/authOperations';
 import { useAppDispatch } from '../../redux/app/hooks';
 import { useTranslation } from 'react-i18next';
 
+type RegRes = {
+  user: { email: string; name: string };
+};
+
 export default function RegisterForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -51,7 +55,7 @@ export default function RegisterForm() {
     onSubmit: async (values) => {
       const { name, email, password } = values;
       dispatch(authOperations.register({ name, email, password })).then(
-        (res) => {
+        (res: RegRes) => {
           if (res) {
             navigate('/login', { replace: true });
           }
