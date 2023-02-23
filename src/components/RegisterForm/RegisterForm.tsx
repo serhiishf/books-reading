@@ -43,7 +43,6 @@ export default function RegisterForm() {
       password: yup
         .string()
         .min(8, 'validation.min8')
-        .max(40, 'validation.max40')
         .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, 'validation.pass')
         .required('validation.required'),
       confirmPassword: yup
@@ -64,9 +63,9 @@ export default function RegisterForm() {
       formik.resetForm();
     },
   });
-  const handleGoogleBtnClick = () => {
-    console.log('GoggleBtn');
-  };
+  // const handleGoogleBtnClick = () => {
+  //   console.log('GoggleBtn');
+  // };
 
   return (
     <form
@@ -78,11 +77,11 @@ export default function RegisterForm() {
         }
       }}
     >
-      <Button
+      {/* <Button
         handleClick={handleGoogleBtnClick}
         btnClass={btnStyles.google}
         title={'Google'}
-      />
+      /> */}
       <div className={styles.inputWrapper}>
         <Input
           labelName={t('auth.name')}

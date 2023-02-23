@@ -155,7 +155,8 @@
     "confirm": "Please confirm your password",
     "noSame": "Your passwords do not match",
     "min3": "Min 3 symbols",
-    "max40": "Max 40 symbols",
+    "min1": "Min 1 symbol",
+    "max40": "Too long...",
     "year": "Year should be number",
     "min4": "Min 4 symbols",
     "max4": "Max 4 symbols",
@@ -163,7 +164,8 @@
     "min8": "Min 8 symbols",
     "min2": "Min 2 symbols",
     "min5": "Min 5 symbols",
-    "max60": "Max 60 symbols",
+    "max5": "Max 5 symbols",
+    "max100": "Max 100 symbols",
     "max50": "Max 50 symbols"
   },
 
