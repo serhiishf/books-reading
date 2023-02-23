@@ -7,7 +7,7 @@ export interface UserState {
   error: string;
   isRegistered: boolean;
   isRefreshed: boolean;
-  isLoggedOn: boolean;
+  isLoggedOn: boolean | undefined;
   isLoading: boolean;
   isFetching: boolean;
 }
@@ -19,7 +19,7 @@ const initialUserState: UserState = {
   error: '',
   isRegistered: false,
   isRefreshed: false,
-  isLoggedOn: false,
+  isLoggedOn: undefined,
   isLoading: false,
   isFetching: false,
 };
@@ -34,13 +34,11 @@ const authSlice = createSlice({
     registerSuccess: (state, { payload }) => {
       state.user.name = payload.user.name;
       state.isLoading = false;
-      state.isLoggedOn = false;
       state.isRegistered = true;
     },
     registerError: (state, { payload }) => {
       state.error = payload.message;
       state.isLoading = false;
-      state.isLoggedOn = false;
       state.isRegistered = false;
     },
     loginRequest: (state) => {
@@ -75,6 +73,7 @@ const authSlice = createSlice({
     getCurrentUserRequest: (state) => {
       state.isLoading = true;
       state.isFetching = true;
+      state.isLoggedOn = undefined;
     },
     getCurrentUserSuccess: (state, { payload }) => {
       state.user.name = payload.user.name;

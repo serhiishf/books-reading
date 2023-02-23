@@ -15,8 +15,8 @@ export default function NavAuth() {
   const userName = useAppSelector(authSelectors.getUserName);
 
   const { t } = useTranslation();
-  const onLogoutClick = async () => {
-    await dispatch(authOperations.logOut());
+  const onLogoutClick = () => {
+    dispatch(authOperations.logOut());
   };
 
   return (
