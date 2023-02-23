@@ -13,7 +13,7 @@ const LibraryBooksList = ({ books }: BooksI) => {
   return (
     <div className={styles.wrapper}>
       {activeBooks?.length ? (
-        <div>
+        <div className={styles.sectionWrapper}>
           <h3 className={styles.sectionTitle}>{t('library.active')}</h3>
           <div className={styles.wrapTitls}>
             <span>{t('library.title')}</span>
@@ -31,7 +31,7 @@ const LibraryBooksList = ({ books }: BooksI) => {
         </div>
       ) : null}
       {doneBooks?.length ? (
-        <div>
+        <div className={styles.sectionWrapper}>
           <h3 className={styles.sectionTitle}>{t('library.done')}</h3>
           <div className={styles.titlesWrapper}>
             <span>{t('library.title')}</span>

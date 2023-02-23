@@ -11,6 +11,10 @@
   }
 }
 
+.sectionWrapper {
+  border-bottom: 1px solid $light-grey;
+}
+
 .sectionTitle {
   margin-top: 40px;
   font-weight: 600;
@@ -20,6 +24,7 @@
 
 .titlesWrapper {
   display: none;
+  color: $secondary-text-color;
 
   @include for-size(tablet) {
     display: grid;
@@ -44,6 +49,7 @@
 
 .wrapTitls {
   display: none;
+  color: $secondary-text-color;
 
   @include for-size(tablet) {
     display: grid;

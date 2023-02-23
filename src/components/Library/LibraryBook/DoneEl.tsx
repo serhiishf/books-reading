@@ -5,8 +5,10 @@ import ModalResume from './ModalResume';
 import { useTranslation } from 'react-i18next';
 import { useModal } from '../../../hooks/useModal';
 import Rating from './Rating';
+import publicRoots from '../../../utils/publicRoots';
+import Portal from '../../Portal';
 
-const DoneEl = ({ rating, resume }: DoneT) => {
+const DoneEl = ({ _id, rating, resume }: DoneT) => {
   const { isShown, toggle } = useModal();
   const { t } = useTranslation();
 
@@ -15,21 +17,24 @@ const DoneEl = ({ rating, resume }: DoneT) => {
       <div className={styles.starWrapper}>
         <span className={styles.subtitleMob}>Resume:</span>
         <div>
-          <Rating />
+          <Rating count={5} value={rating || 0} edit={false} />
         </div>
       </div>
       <div>
         <button onClick={toggle} className={styles.resumeBtn}>
           {t('library.resume')}
         </button>
-        {isShown ? (
-          <ModalResume
-            rating={rating}
-            resume={resume}
-            isOpen={isShown}
-            hide={toggle}
-          />
-        ) : null}
+        {isShown && (
+          <Portal wrapperId={publicRoots.ResumeModal}>
+            <ModalResume
+              bookId={_id}
+              rating={rating}
+              resume={resume}
+              isOpen={isShown}
+              hide={toggle}
+            />
+          </Portal>
+        )}
       </div>
     </>
   );
