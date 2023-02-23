@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import authOperations from '../../redux/features/auth/authOperations';
@@ -11,21 +11,22 @@ import DesktopMenu from './DesktopMenu';
 import MobileMenu from './MobileMenu';
 
 import styles from './NavAuth.module.scss';
+import Portal from '../Portal';
+import publicRoots from '../../utils/publicRoots';
 
 export default function NavAuth() {
   const dispatch = useAppDispatch();
-
   const userName = useAppSelector(authSelectors.getUserName);
 
   const sizes = useViewportSizes();
   const isMobileView = sizes.innerWidth < breakpoints.TABLET;
 
-  const onLogoutClick = () => {
-    dispatch(authOperations.logOut());
-  };
+  const [isOpenModal, setOpenModal] = useState(false);
 
-  //styled burger menu
-  //add portal and modal for asking about logout
+  const onLogoutClick = () => {
+    // dispatch(authOperations.logOut());
+    setOpenModal(!isOpenModal);
+  };
 
   return (
     <div className={styles.navWrapper}>
@@ -34,6 +35,12 @@ export default function NavAuth() {
       {isMobileView && <MobileMenu logoutClick={onLogoutClick} />}
 
       {!isMobileView && <DesktopMenu logoutClick={onLogoutClick} />}
+
+      {isOpenModal && (
+        <Portal wrapperId={publicRoots.ChoiceModal}>
+          <div>modal</div>
+        </Portal>
+      )}
     </div>
   );
 }
