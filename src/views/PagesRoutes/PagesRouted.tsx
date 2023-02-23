@@ -26,18 +26,22 @@ const PagesRoutes = () => {
           <Route element={<PublicRoute restricted redirectTo="/library" />}>
             <Route path="/" element={<IntroPage />} />
           </Route>
+
           <Route element={<PublicRoute restricted redirectTo="/library" />}>
             <Route path="/login" element={<LoginPage />} />
           </Route>
+
           <Route element={<PublicRoute restricted redirectTo="/library" />}>
             <Route path="/register" element={<RegisterPage />} />
           </Route>
+
           <Route path="/library" element={<PrivateRoute />}>
             <Route path="" element={<LibraryPage />} />
           </Route>
           <Route path="/training" element={<PrivateRoute />}>
             <Route path="" element={<TrainingPage />} />
           </Route>
+
           <Route path="*" element={<Page404 />} />
         </Routes>
       </Suspense>

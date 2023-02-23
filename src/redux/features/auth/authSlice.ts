@@ -28,6 +28,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: initialUserState,
   reducers: {
+    //sign up
     registerRequest: (state) => {
       state.isLoading = true;
     },
@@ -41,6 +42,8 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isRegistered = false;
     },
+
+    //sign in
     loginRequest: (state) => {
       state.isLoading = true;
     },
@@ -56,6 +59,8 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isLoggedOn = false;
     },
+
+    //log out
     logoutRequest: (state) => {
       state.isLoading = true;
     },
@@ -70,6 +75,7 @@ const authSlice = createSlice({
     logoutError: (state) => {
       state.isLoading = false;
     },
+
     getCurrentUserRequest: (state) => {
       state.isLoading = true;
       state.isFetching = true;
