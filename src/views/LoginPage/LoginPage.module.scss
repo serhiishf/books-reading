@@ -2,7 +2,7 @@
 @import '../../scss/variables';
 
 .mainWrapper {
-  height: 100vh;
+  min-height: calc(100vh - 60px);
   @include for-size(desktop) {
     display: flex;
   }
@@ -13,7 +13,6 @@
   align-items: center;
   padding-top: 30px;
   padding-bottom: 30px;
-  // height: 50%;
   background-image: linear-gradient(
       to top,
       rgba(9, 30, 63, 0.8),
@@ -28,13 +27,11 @@
 
   @include for-size(desktop) {
     width: 45%;
-    height: 100vh;
     padding: 0;
   }
 }
 
 .rightSide {
-  // height: 40%;
   padding-top: 30px;
   margin: 0 auto;
   text-align: center;
@@ -48,7 +45,7 @@
   }
 
   @include for-size(desktop) {
-    height: 100vh;
+    padding: 0;
   }
 }
 
