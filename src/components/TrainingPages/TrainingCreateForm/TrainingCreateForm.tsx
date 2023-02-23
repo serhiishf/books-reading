@@ -5,6 +5,7 @@ import booksApi, { Book } from '../../../services/books/books-service';
 import Subheader from '../Subheader';
 import Calendar from '../../Calendar';
 import Dropdown from '../../Dropdown';
+import Button from '../../Button';
 
 
 function TrainingCreateForm() {
@@ -27,18 +28,19 @@ function TrainingCreateForm() {
             placeHolder='Початок'
             today={true}
             open={true}
-
           />
           <Calendar
             placeHolder='Закінчення'
             onlyAfter={true}
           />
         </div>
-        <Dropdown
-          placeHolder={t('chooseBookFromLibrary')}
-          options={books.map(book => ({ value: book.name, label: book.name }))}
-          noOptionsMessage={t('noBookMore')}
-        />
+        <div className={styles.selectWrap}>
+          <Dropdown
+            placeHolder={t('chooseBookFromLibrary')}
+            options={books.map(book => ({ value: book.name, label: book.name }))}
+            noOptionsMessage={t('noBookMore')}
+          />
+        </div>
       </div>
       <div className={styles.listBooks}></div>
     </form>
