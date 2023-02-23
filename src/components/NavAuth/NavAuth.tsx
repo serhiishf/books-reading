@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import authOperations from '../../redux/features/auth/authOperations';
 import authSelectors from '../../redux/features/auth/authSelectors';
@@ -23,7 +23,7 @@ export default function NavAuth() {
   const isMobileView = sizes.innerWidth < breakpoints.TABLET;
 
   const [isOpenModal, setOpenModal] = useState(false);
-
+  const { t } = useTranslation();
   const onLogoutClick = () => {
     setOpenModal(!isOpenModal);
   };
@@ -31,6 +31,7 @@ export default function NavAuth() {
   const onConfirmLogoutClick = () => {
     dispatch(authOperations.logOut());
   };
+
   const onResetLogoutClick = () => {
     setOpenModal(!isOpenModal);
   };
@@ -46,9 +47,9 @@ export default function NavAuth() {
       {isOpenModal && (
         <Portal wrapperId={publicRoots.ChoiceModal}>
           <ModalChoice
-            questionTxt="question text"
-            confirmBtnTxt="Confirm"
-            resetBtnTxt="Reset"
+            questionTxt={t('logoutChoiceModal.text')}
+            confirmBtnTxt={t('logoutChoiceModal.confirm')}
+            resetBtnTxt={t('logoutChoiceModal.reset')}
             onConfirmClick={onConfirmLogoutClick}
             onResetClick={onResetLogoutClick}
           />

@@ -19,8 +19,6 @@ const MobileMenu: React.FC<Props> = ({ logoutClick }) => {
     setMenuOpen(!menuOpen);
   };
 
-  //todo: i18n
-
   return (
     <>
       <div
