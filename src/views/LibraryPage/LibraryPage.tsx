@@ -10,8 +10,7 @@ const LibraryPage = () => {
 
   const getUsersBooks = async () => {
     const data = await booksApi.getAllBooks();
-    const usersBook = data;
-    setBooksUser(usersBook);
+    setBooksUser(data);
   };
 
   useEffect(() => {
@@ -21,7 +20,11 @@ const LibraryPage = () => {
   return (
     <div className={styles.wrapper}>
       <LibraryForm />
-      {booksUser ? <LibraryBooksList books={booksUser} /> : <LibraryHint />}
+      {booksUser?.length ? (
+        <LibraryBooksList books={booksUser} />
+      ) : (
+        <LibraryHint />
+      )}
     </div>
   );
 };

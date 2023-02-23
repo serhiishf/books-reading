@@ -12,7 +12,6 @@ import { useTranslation } from 'react-i18next';
 
 export default function LoginForm() {
   const dispatch = useAppDispatch();
-
   const { t } = useTranslation();
 
   const initialValues = {
@@ -25,16 +24,16 @@ export default function LoginForm() {
     validationSchema: yup.object({
       email: yup
         .string()
-        .email('Must be a valid email')
-        .min(5, 'Min 5 symbols')
-        .max(50, 'Max 50 symbols')
-        .required('Required'),
+        .email('validation.valid')
+        .min(5, 'validation.min5')
+        .max(50, 'validation.max50')
+        .required('validation.required'),
       password: yup
         .string()
-        .min(8, 'Min 8 symbols')
-        .max(40, 'Max 40 symbols')
-        .matches(/[A-z0-9]/, 'Password should be letters and numbers')
-        .required('Required'),
+        .min(8, 'validation.min8')
+        .max(40, 'validation.max40')
+        .matches(/[A-z0-9]/, 'validation.pass')
+        .required('validation.required'),
     }),
     onSubmit: (values) => {
       const { email, password } = values;
@@ -42,6 +41,7 @@ export default function LoginForm() {
       formik.resetForm();
     },
   });
+
   const handleGoogleBtnClick = () => {
     console.log('GoggleBtn');
   };
@@ -63,36 +63,36 @@ export default function LoginForm() {
       />
       <div className={styles.inputWrapper}>
         <Input
-          labelName={'Email *'}
+          labelName={t('auth.email')}
           name={'email'}
           type={'text'}
           value={formik.values.email}
           handleChange={formik.handleChange}
         />
         {formik.errors.email && formik.touched.email ? (
-          <p className={styles.notification}>{formik.errors.email}</p>
+          <p className={styles.notification}>{t(formik.errors.email)}</p>
         ) : null}
       </div>
       <div className={styles.inputWrapper}>
         <Input
-          labelName={'Password *'}
+          labelName={t('auth.password')}
           name={'password'}
           type={'password'}
           value={formik.values.password}
           handleChange={formik.handleChange}
         />
         {formik.errors.password && formik.touched.password ? (
-          <p className={styles.notification}>{formik.errors.password}</p>
+          <p className={styles.notification}>{t(formik.errors.password)}</p>
         ) : null}
       </div>
 
       <Button
         handleClick={formik.handleSubmit}
         btnClass={btnStyles.login}
-        title={'Login'}
+        title={t('auth.login')}
       />
       <Link className={styles.link} to="/register">
-        {t('Register')}
+        {t('auth.register')}
       </Link>
     </form>
   );

@@ -7,8 +7,9 @@ export interface UserState {
   error: string;
   isRegistered: boolean;
   isRefreshed: boolean;
-  isLoggedOn: boolean;
+  isLoggedOn: boolean | undefined;
   isLoading: boolean;
+  isFetching: boolean;
 }
 
 const initialUserState: UserState = {
@@ -18,29 +19,31 @@ const initialUserState: UserState = {
   error: '',
   isRegistered: false,
   isRefreshed: false,
-  isLoggedOn: false,
+  isLoggedOn: undefined,
   isLoading: false,
+  isFetching: false,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: initialUserState,
   reducers: {
+    //sign up
     registerRequest: (state) => {
       state.isLoading = true;
     },
     registerSuccess: (state, { payload }) => {
       state.user.name = payload.user.name;
       state.isLoading = false;
-      state.isLoggedOn = false;
       state.isRegistered = true;
     },
     registerError: (state, { payload }) => {
       state.error = payload.message;
       state.isLoading = false;
-      state.isLoggedOn = false;
       state.isRegistered = false;
     },
+
+    //sign in
     loginRequest: (state) => {
       state.isLoading = true;
     },
@@ -56,6 +59,8 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isLoggedOn = false;
     },
+
+    //log out
     logoutRequest: (state) => {
       state.isLoading = true;
     },
@@ -70,8 +75,11 @@ const authSlice = createSlice({
     logoutError: (state) => {
       state.isLoading = false;
     },
+
     getCurrentUserRequest: (state) => {
       state.isLoading = true;
+      state.isFetching = true;
+      state.isLoggedOn = undefined;
     },
     getCurrentUserSuccess: (state, { payload }) => {
       state.user.name = payload.user.name;
@@ -79,10 +87,12 @@ const authSlice = createSlice({
       state.refreshToken = payload.tokens.refreshToken;
       state.isLoading = false;
       state.isLoggedOn = true;
+      state.isFetching = false;
     },
     getCurrentUserError: (state) => {
       state.isLoading = false;
       state.isLoggedOn = false;
+      state.isFetching = false;
     },
     setTokensRequest: (state) => {
       state.isLoading = true;

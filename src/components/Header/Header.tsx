@@ -1,6 +1,5 @@
 import React from 'react';
 import Logo from '../Logo';
-import Nav from '../Nav';
 import NavNotAuth from '../NavNotAuth';
 import NavAuth from '../NavAuth';
 import styles from './Header.module.scss';
@@ -12,12 +11,14 @@ export default function Header() {
   const isLogged = useAppSelector(authSelectors.getLoggedOn);
 
   return (
-    <header className={styles.headerWrapper}>
-      <Logo />
-      <Nav>
-        <LanguageSelector />
-        {isLogged ? <NavAuth /> : <NavNotAuth />}
-      </Nav>
-    </header>
+    <>
+      <header className={styles.header}>
+        <Logo />
+        <nav className={styles.navigation}>
+          {isLogged ? <NavAuth /> : <NavNotAuth />}
+        </nav>
+      </header>
+      <LanguageSelector />
+    </>
   );
 }

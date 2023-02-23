@@ -4,7 +4,6 @@ import {
   setTokensRequest,
   getCurrentUserError,
   logoutSuccess,
-  getCurrentUserSuccess,
 } from '../../redux/features/auth/authSlice';
 import { getNewTokens } from './auth-service';
 import axiosInstance from '../axiosConfig';

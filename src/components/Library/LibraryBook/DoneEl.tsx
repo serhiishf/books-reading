@@ -1,29 +1,40 @@
-import React, { useState } from 'react';
-import { ReactComponent as Star } from '../../../assets/img/star.svg';
+import React from 'react';
 import { DoneT } from '../library.interfaces';
 import styles from './DoneEl.module.scss';
-// import ModalResume from './ModalResume';
+import ModalResume from './ModalResume';
+import { useTranslation } from 'react-i18next';
+import { useModal } from '../../../hooks/useModal';
+import Rating from './Rating';
+import publicRoots from '../../../utils/publicRoots';
+import Portal from '../../Portal';
 
-const DoneEl = ({ rating, resume }: DoneT) => {
-  const [openModal, setOpenModal] = useState(false);
-
-  const handleClick = () => {
-    setOpenModal(!openModal);
-  };
+const DoneEl = ({ _id, rating, resume }: DoneT) => {
+  const { isShown, toggle } = useModal();
+  const { t } = useTranslation();
 
   return (
     <>
       <div className={styles.starWrapper}>
         <span className={styles.subtitleMob}>Resume:</span>
-        <Star />
-        <Star />
-        <Star />
-        <Star />
-        <Star />
+        <div>
+          <Rating count={5} value={rating || 0} edit={false} />
+        </div>
       </div>
       <div>
-        <button onClick={handleClick}>{'Resume'}</button>
-        {/* {openModal ? <ModalResume raiting={rating} resume={resume} /> : null} */}
+        <button onClick={toggle} className={styles.resumeBtn}>
+          {t('library.resume')}
+        </button>
+        {isShown && (
+          <Portal wrapperId={publicRoots.ResumeModal}>
+            <ModalResume
+              bookId={_id}
+              rating={rating}
+              resume={resume}
+              isOpen={isShown}
+              hide={toggle}
+            />
+          </Portal>
+        )}
       </div>
     </>
   );
