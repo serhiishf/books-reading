@@ -20,6 +20,7 @@
 
 .titlesWrapper {
   display: none;
+  color: $secondary-text-color;
 
   @include for-size(tablet) {
     display: grid;
@@ -44,6 +45,7 @@
 
 .wrapTitls {
   display: none;
+  color: $secondary-text-color;
 
   @include for-size(tablet) {
     display: grid;

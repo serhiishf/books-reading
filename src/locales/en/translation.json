@@ -120,7 +120,7 @@
       "name": "Kateryna",
       "role": "Developer",
       "gitHubPath": "https://github.com/Katerina-Zamiatina",
-      "cases": ["do this", "and this", "and this this"]
+      "cases": ["user authorisation", "login/register page", "library page"]
     },
     {
       "name": "Maryna",

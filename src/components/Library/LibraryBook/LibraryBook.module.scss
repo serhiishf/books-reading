@@ -87,7 +87,7 @@
 }
 
 .subtitleMob {
-  // padding-right: 20px;
+  color: $secondary-text-color;
   @include for-size(tablet) {
     display: none;
   }

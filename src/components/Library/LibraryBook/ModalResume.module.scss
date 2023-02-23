@@ -40,10 +40,15 @@
 .tetxarea {
   resize: none;
   width: 100%;
+  padding: 5px;
   border-color: $secondary-text-color;
   @include for-size(tablet) {
     width: 510px;
   }
+}
+
+.tetxarea:focus-visible {
+  border-radius: 0;
 }
 
 .btnWrapper {

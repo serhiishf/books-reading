@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useModal } from '../../../hooks/useModal';
 import Rating from './Rating';
 
-const DoneEl = ({ rating, resume }: DoneT) => {
+const DoneEl = ({ _id, rating, resume }: DoneT) => {
   const { isShown, toggle } = useModal();
   const { t } = useTranslation();
 
@@ -15,7 +15,7 @@ const DoneEl = ({ rating, resume }: DoneT) => {
       <div className={styles.starWrapper}>
         <span className={styles.subtitleMob}>Resume:</span>
         <div>
-          <Rating />
+          <Rating count={5} value={rating || 0} edit={false} />
         </div>
       </div>
       <div>
@@ -24,6 +24,7 @@ const DoneEl = ({ rating, resume }: DoneT) => {
         </button>
         {isShown ? (
           <ModalResume
+            bookId={_id}
             rating={rating}
             resume={resume}
             isOpen={isShown}
