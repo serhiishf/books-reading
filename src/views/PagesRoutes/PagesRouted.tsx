@@ -38,7 +38,6 @@ const PagesRoutes = () => {
           <Route path="/library" element={<PrivateRoute />}>
             <Route path="" element={<LibraryPage />} />
           </Route>
-
           <Route path="/training" element={<PrivateRoute />}>
             <Route path="" element={<TrainingPage />} />
           </Route>

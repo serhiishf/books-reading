@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <>
-      <header className={styles.headerWrapper}>
+      <header className={styles.header}>
         <Logo />
         <nav className={styles.navigation}>
           {isLogged ? <NavAuth /> : <NavNotAuth />}

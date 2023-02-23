@@ -33,7 +33,7 @@ const LibraryBook: React.FC<BookProps> = ({ book }) => {
           <span className={styles.subtitle}>{book.pages}</span>
         </div>
         {book.status === 'done' ? (
-          <DoneEl rating={book.rating} resume={book.resume} />
+          <DoneEl _id={book._id} rating={book.rating} resume={book.resume} />
         ) : null}
       </div>
     </li>

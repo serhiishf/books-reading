@@ -10,6 +10,7 @@ type Props = {
 
 const PublicRoute: FC<Props> = ({ restricted = false, redirectTo = '/' }) => {
   const isLogged = useAppSelector(authSelectors.getLoggedOn);
+  
   const shouldRedirect = isLogged && restricted;
 
   return shouldRedirect ? <Navigate to={redirectTo} /> : <Outlet />;

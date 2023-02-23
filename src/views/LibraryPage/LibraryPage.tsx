@@ -10,8 +10,7 @@ const LibraryPage = () => {
 
   const getUsersBooks = async () => {
     const data = await booksApi.getAllBooks();
-    const usersBook = data;
-    setBooksUser(usersBook);
+    setBooksUser(data);
   };
 
   useEffect(() => {

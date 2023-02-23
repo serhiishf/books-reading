@@ -1,4 +1,7 @@
 import axiosInstance from '../axiosConfig';
+import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
+import i18n from '../../i18n';
 
 export type BookT = {
   name: string;
@@ -15,7 +18,7 @@ type UpdateStatusT = {
 type UpdateResumeT = {
   bookId: string;
   resume?: string;
-  rating?: number;
+  rating?: number | null;
 };
 
 export interface Book {
@@ -57,13 +60,19 @@ const getBooksByStatus = async (status: string) => {
 };
 
 const createBook = async ({ name, author, year, pages }: BookT) => {
-  const result = await axiosInstance.post('/books/create', {
-    name,
-    author,
-    year,
-    pages,
-  });
-  return result;
+  try {
+    const result = await axiosInstance.post('/books/create', {
+      name,
+      author,
+      year,
+      pages,
+    });
+    return result;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      toast.error(i18n?.t?.('toast.errorLog2'));
+    }
+  }
 };
 
 const deleteBook = async (bookId: string) => {
@@ -72,13 +81,25 @@ const deleteBook = async (bookId: string) => {
 };
 
 const updateBookStatus = async (body: UpdateStatusT) => {
-  const result = await axiosInstance.patch('/books/update-status', body);
-  return result;
+  try {
+    const result = await axiosInstance.patch('/books/update-status', body);
+    return result;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      toast.error(i18n?.t?.('toast.errorLog2'));
+    }
+  }
 };
 
 const updateBookResume = async (body: UpdateResumeT) => {
-  const result = await axiosInstance.patch('/books/update-resume', body);
-  return result;
+  try {
+    const result = await axiosInstance.patch('/books/update-resume', body);
+    return result;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      toast.error(i18n?.t?.('toast.errorLog2'));
+    }
+  }
 };
 
 const booksApi = {

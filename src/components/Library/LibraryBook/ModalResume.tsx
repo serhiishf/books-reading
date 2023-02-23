@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useState, ChangeEvent } from 'react';
-import ReactDOM from 'react-dom';
 import Rating from './Rating';
 import styles from './ModalResume.module.scss';
 import { useTranslation } from 'react-i18next';
-// import booksApi from '../../../services/books/books-service';
+import booksApi from '../../../services/books/books-service';
 
 export interface ModalProps {
+  bookId: string;
   isOpen: boolean;
   hide: () => void;
   resume: string;
@@ -21,6 +21,7 @@ export interface ModalProps {
 // booksApi.updateBookResume({ bookId, resume, rating });
 
 const ModalResume: FunctionComponent<ModalProps> = ({
+  bookId,
   rating,
   resume,
   isOpen,
@@ -28,30 +29,41 @@ const ModalResume: FunctionComponent<ModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const [message, setMessage] = useState(resume);
-
-  const handleRating = () => {
-    console.log('rating', rating);
-  };
+  const [newRating, setNewRating] = React.useState(rating);
 
   const handleResume = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
     setMessage(value);
   };
 
-  const modal = (
+  const handleChanges = async () => {
+    await booksApi.updateBookResume({
+      bookId,
+      resume: message,
+      rating: newRating,
+    });
+    hide();
+  };
+
+  return isOpen ? (
     <div className={styles.backdrop}>
       <div className={styles.wrapper}>
         <div className={styles.modal}>
-          <div onClick={handleRating}>
+          <div className={styles.ratingWrapper}>
             <h3 className={styles.title}>{t('library.leftRating')}</h3>
-            <Rating />
+            <Rating
+              count={5}
+              value={newRating || 0}
+              edit={true}
+              onChange={(value) => setNewRating(value)}
+            />
           </div>
           <div>
             <h3 className={styles.title}>{t('library.resume')}</h3>
             <textarea
               className={styles.tetxarea}
               name="feedback"
-              value={message || resume}
+              value={message}
               rows={10}
               placeholder="Leave your feedback..."
               onChange={handleResume}
@@ -61,14 +73,14 @@ const ModalResume: FunctionComponent<ModalProps> = ({
             <button className={styles.closeBtn} onClick={hide}>
               {t('library.back')}
             </button>
-            <button className={styles.saveBtn}>{t('library.save')}</button>
+            <button className={styles.saveBtn} onClick={handleChanges}>
+              {t('library.save')}
+            </button>
           </div>
         </div>
       </div>
     </div>
-  );
-
-  return isOpen ? ReactDOM.createPortal(modal, document.body) : null;
+  ) : null;
 };
 
 export default ModalResume;
