@@ -26,7 +26,7 @@ const Hamburger: React.FC<Props> = ({ isOpen }) => {
                     width: 25px;
                     height: 3px;
                     border-radius: 5px;
-                    background-color: #242a37;
+                    background-color: ${isOpen ? '#fff' : '#242a37'};
                     transform-origin: 1px;
                     transition: all 0.3s linear;
                 }
