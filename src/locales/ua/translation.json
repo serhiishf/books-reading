@@ -9,6 +9,17 @@
     "training": "Тренінг"
   },
 
+  "logoutChoiceModal": {
+    "text": "Ви впервені що хочете покинути обліковий запис?",
+    "confirm": "ТАК",
+    "reset": "Анулювати"
+  },
+
+  "confirmationModal": {
+    "YouAreGoodButNotEnough": "Ти молодчина, але потрібно швидше! Наступного разу тобі все вдасться!",
+    "confirm": "OK"
+  },
+
   "404Page": {
     "articleNotFound": "Стаття не знайдена",
     "pageCanNotBeFound": "Неможливо знайти сторінку, яку ви шукаєте.",

@@ -62,7 +62,7 @@ export default function IntroPage() {
           type="button"
           handleClick={handleClick}
           btnClass={styles.buttonAbout}
-          title={btnTitle}
+          title={btnTitle ? btnTitle : ''}
         />
       </div>
     </div>

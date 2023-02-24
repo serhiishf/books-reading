@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import authOperations from '../../redux/features/auth/authOperations';
 import authSelectors from '../../redux/features/auth/authSelectors';
@@ -13,6 +13,10 @@ import MobileMenu from './MobileMenu';
 import styles from './NavAuth.module.scss';
 import Portal from '../Portal';
 import publicRoots from '../../utils/publicRoots';
+import ModalChoice from '../ModalChoice';
+// import ModalConfirmation from '../ModalConfirmation';
+// import likeIcon from '../../assets/img/like.svg';
+import Loader from '../Loader';
 
 export default function NavAuth() {
   const dispatch = useAppDispatch();
@@ -22,10 +26,19 @@ export default function NavAuth() {
   const isMobileView = sizes.innerWidth < breakpoints.TABLET;
 
   const [isOpenModal, setOpenModal] = useState(false);
+  const { t } = useTranslation();
+  const isLoading = useAppSelector(authSelectors.getLoading);
 
   const onLogoutClick = () => {
+    setOpenModal(!isOpenModal);
+  };
+
+  const onConfirmLogoutClick = () => {
     dispatch(authOperations.logOut());
-    // setOpenModal(!isOpenModal);
+  };
+
+  const onResetLogoutClick = () => {
+    setOpenModal(!isOpenModal);
   };
 
   return (
@@ -38,7 +51,30 @@ export default function NavAuth() {
 
       {isOpenModal && (
         <Portal wrapperId={publicRoots.ChoiceModal}>
-          <div>modal</div>
+          <ModalChoice
+            questionTxt={t('logoutChoiceModal.text')}
+            confirmBtnTxt={t('logoutChoiceModal.confirm')}
+            resetBtnTxt={t('logoutChoiceModal.reset')}
+            onConfirmClick={onConfirmLogoutClick}
+            onResetClick={onResetLogoutClick}
+          />
+
+          {/* TEST confirmation modal:*/}
+
+          {/* <ModalConfirmation
+            iconPath={likeIcon}
+            questionTxt={t('confirmationModal.YouAreGoodButNotEnough')}
+            confirmBtnTxt={t('confirmationModal.confirm')}
+            onConfirmClick={onResetLogoutClick}
+          /> */}
+        </Portal>
+      )}
+
+      {isLoading && isOpenModal && (
+        <Portal wrapperId={publicRoots.Loader}>
+          <div className={styles.loaderWrapper}>
+            <Loader />
+          </div>
         </Portal>
       )}
     </div>

@@ -94,6 +94,7 @@ const authSlice = createSlice({
       state.isLoggedOn = false;
       state.isFetching = false;
     },
+
     setTokensRequest: (state) => {
       state.isLoading = true;
     },

@@ -1,7 +1,7 @@
 import {
   setTokensError,
   setTokensSuccess,
-  setTokensRequest,
+  // setTokensRequest,
   getCurrentUserError,
   logoutSuccess,
 } from '../../redux/features/auth/authSlice';
@@ -19,7 +19,7 @@ const setupInterceptors = (store: RootStoreType) => {
       const token = tokenService.getLocalAccessToken();
       if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
-        dispatch(setTokensRequest());
+        // dispatch(setTokensRequest());
       }
       return config;
     },
