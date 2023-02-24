@@ -21,24 +21,24 @@ export default function LibraryForm() {
     validationSchema: yup.object({
       name: yup
         .string()
-        .min(3, 'validation.min3')
-        .max(60, 'validation.max60')
+        .min(1, 'validation.min1')
+        .max(100, 'validation.max100')
         .required('validation.required'),
       author: yup
         .string()
-        .min(3, 'validation.min3')
-        .max(40, 'validation.max40')
+        .min(1, 'validation.min3')
+        .max(100, 'validation.max100')
         .required('validation.required'),
       year: yup
         .string()
         .matches(/^[0-9]*$/, 'validation.year')
-        .min(4, 'validation.min4')
+        .min(1, 'validation.min1')
         .max(4, 'validation.max4'),
       pages: yup
         .string()
         .matches(/^[0-9]*$/, 'validation.pages')
-        .min(2, 'validation.min2')
-        .max(4, 'validation.max4')
+        .min(1, 'validation.min1')
+        .max(5, 'validation.max5')
         .required('validation.required'),
     }),
     onSubmit: (values) => {
