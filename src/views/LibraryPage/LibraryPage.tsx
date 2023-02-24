@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LibraryForm from '../../components/Library/LibraryForm';
 import styles from './LibraryPage.module.scss';
 import LibraryHint from '../../components/Library/LibraryHint';
-import booksApi, { Book, BookT } from '../../services/books/books-service';
+import booksApi, { Book } from '../../services/books/books-service';
 import LibraryBooksList from '../../components/Library/LibraryBooksList';
 
 type HasBooks = boolean | undefined;
