@@ -36,7 +36,6 @@ export default function LoginForm() {
       password: yup
         .string()
         .min(8, 'validation.min8')
-        .max(40, 'validation.max40')
         .matches(/[A-z0-9]/, 'validation.pass')
         .required('validation.required'),
     }),
@@ -47,9 +46,9 @@ export default function LoginForm() {
     },
   });
 
-  const handleGoogleBtnClick = () => {
-    console.log('GoggleBtn');
-  };
+  // const handleGoogleBtnClick = () => {
+  //   console.log('GoggleBtn');
+  // };
 
   return (
     <form
@@ -61,11 +60,11 @@ export default function LoginForm() {
         }
       }}
     >
-      <Button
+      {/* <Button
         handleClick={handleGoogleBtnClick}
         btnClass={btnStyles.google}
         title={'Google'}
-      />
+      /> */}
       <div className={styles.inputWrapper}>
         <Input
           labelName={t('auth.email')}

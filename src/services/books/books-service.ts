@@ -59,14 +59,9 @@ const getBooksByStatus = async (status: string) => {
   return result;
 };
 
-const createBook = async ({ name, author, year, pages }: BookT) => {
+const createBook = async (body: BookT) => {
   try {
-    const result = await axiosInstance.post('/books/create', {
-      name,
-      author,
-      year,
-      pages,
-    });
+    const result = await axiosInstance.post('/books/create', body);
     return result;
   } catch (error) {
     if (error instanceof AxiosError) {

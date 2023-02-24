@@ -5,26 +5,32 @@ import LibraryHint from '../../components/Library/LibraryHint';
 import booksApi, { Book } from '../../services/books/books-service';
 import LibraryBooksList from '../../components/Library/LibraryBooksList';
 
+type HasBooks = boolean | undefined;
+
 const LibraryPage = () => {
   const [booksUser, setBooksUser] = useState<Book[]>();
+  const [hasBooks, setHasBooks] = useState<HasBooks>(true);
 
   const getUsersBooks = async () => {
     const data = await booksApi.getAllBooks();
     setBooksUser(data);
+    if (data.length) {
+      setHasBooks(true);
+    } else {
+      setHasBooks(false);
+    }
   };
 
   useEffect(() => {
     getUsersBooks();
   }, []);
 
+  
+
   return (
     <div className={styles.wrapper}>
       <LibraryForm />
-      {booksUser?.length ? (
-        <LibraryBooksList books={booksUser} />
-      ) : (
-        <LibraryHint />
-      )}
+      {hasBooks ? <LibraryBooksList books={booksUser} /> : <LibraryHint />}
     </div>
   );
 };
