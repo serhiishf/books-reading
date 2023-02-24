@@ -1,8 +1,9 @@
 import React from 'react';
-import LibraryBook from '../LibraryBook';
+import { useTranslation } from 'react-i18next';
+
+import BookListEl from './BookListEl';
 import { BooksI } from '../library.interfaces';
 import styles from './LibraryBooksList.module.scss';
-import { useTranslation } from 'react-i18next';
 
 const LibraryBooksList = ({ books }: BooksI) => {
   const activeBooks = books?.filter((book) => book.status === 'active');
@@ -23,13 +24,10 @@ const LibraryBooksList = ({ books }: BooksI) => {
               <span>{t('library.pageShort')}</span>
             </div>
           </div>
-          <ul>
-            {activeBooks.map((book, i) => (
-              <LibraryBook book={book} key={i} />
-            ))}
-          </ul>
+          <BookListEl books={activeBooks} />
         </div>
       ) : null}
+
       {doneBooks?.length ? (
         <div className={styles.sectionWrapper}>
           <h3 className={styles.sectionTitle}>{t('library.done')}</h3>
@@ -42,14 +40,10 @@ const LibraryBooksList = ({ books }: BooksI) => {
               <span>{t('library.rating')}</span>
             </div>
           </div>
-          <ul>
-            {doneBooks.map((book, i) => (
-              <LibraryBook book={book} key={i} />
-            ))}
-          </ul>
+          <BookListEl books={doneBooks} />
         </div>
       ) : null}
-
+      
       {pendingBooks ? (
         <div>
           <h3 className={styles.sectionTitle}>{t('library.pending')}</h3>
@@ -61,11 +55,7 @@ const LibraryBooksList = ({ books }: BooksI) => {
               <span>{t('library.pageShort')}</span>
             </div>
           </div>
-          <ul>
-            {pendingBooks.map((book, i) => (
-              <LibraryBook book={book} key={i} />
-            ))}
-          </ul>
+          <BookListEl books={pendingBooks} />
         </div>
       ) : null}
     </div>

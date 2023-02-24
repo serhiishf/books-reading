@@ -8,4 +8,5 @@ export interface BooksI {
 
 export interface BookProps {
   book: Book;
+  index: number;
 }
