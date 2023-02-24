@@ -19,7 +19,7 @@ const setupInterceptors = (store: RootStoreType) => {
       const token = tokenService.getLocalAccessToken();
       if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
-        dispatch(setTokensRequest());
+        // dispatch(setTokensRequest());
       }
       return config;
     },
@@ -30,6 +30,8 @@ const setupInterceptors = (store: RootStoreType) => {
 
   axiosInstance.interceptors.response.use(
     (res) => {
+      // console.log('RES', res);
+      // dispatch(setTokensSuccess());
       return res;
     },
     async (err) => {
