@@ -1,13 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import styles from './Button.module.scss';
 
-export default function Button({
+type ButtonProps = {
+  handleClick: () => void;
+  btnClass: string;
+  title: string;
+  type?: 'submit' | 'button' | 'reset' | undefined;
+};
+
+const Button: FC<ButtonProps> = ({
   handleClick,
   btnClass,
   title,
   type = 'submit',
-}) {
+}) => {
   return (
     <button
       type={type}
@@ -17,11 +23,6 @@ export default function Button({
       {title}
     </button>
   );
-}
-
-Button.propTypes = {
-  handleClick: PropTypes.func,
-  btnClass: PropTypes.string,
-  title: PropTypes.string,
-  type: PropTypes.string,
 };
+
+export default Button;
