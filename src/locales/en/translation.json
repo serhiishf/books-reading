@@ -183,7 +183,18 @@
     "myGoals": "My goals",
     "numberOfBooks": "Amount of books",
     "numberOfDays": "Amount of days",
-    "leftBooks": "Books left"
+    "leftBooks": "Books left",
+    "add": "Add",
+    "startTaining": "Start training",
+    "addResult": "Add result",
+    "bookTitle": "Book title",
+    "author": "Author",
+    "year": "Year",
+    "pages": "Pages",
+    "date": "Date",
+    "amountOfPages": "Amount of pages",
+    "statisctics": "STATISTICS"
+    
   }
   
 }

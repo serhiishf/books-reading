@@ -184,7 +184,17 @@
     "myGoals": "Моя мета прочитати",
     "numberOfBooks": "Кількість книжок",
     "numberOfDays": "Кількість днів",
-    "leftBooks": "Залишилось книжок"
+    "leftBooks": "Залишилось книжок",
+    "add": "Додати",
+    "startTaining": "Почати тренування",
+    "addResult": "Додати результат",
+    "bookTitle": "Назва книги",
+    "author": "Автор",
+    "year": "Рік",
+    "pages": "Стор.",
+    "date": "Дата",
+    "amountOfPages": "Кількість сторінок",
+    "statisctics": "СТАТИСТИКА"
   }
  
 }
