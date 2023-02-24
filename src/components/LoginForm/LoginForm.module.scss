@@ -41,7 +41,24 @@
   bottom: 15px;
   right: 15px;
 }
+//it is for all span in project:
+// span {
+//   color: $secondary-text-color;
+// }
 
-span {
-  color: $secondary-text-color;
+.loaderWrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background-color: #ffffffac;
+
+  & div {
+    z-index: 1000;
+  }
 }

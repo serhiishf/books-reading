@@ -6,13 +6,18 @@ import styles from './LoginForm.module.scss';
 import btnStyles from '../Button/Button.module.scss';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../redux/app/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import authOperations from '../../redux/features/auth/authOperations';
 import { useTranslation } from 'react-i18next';
+import Portal from '../Portal';
+import publicRoots from '../../utils/publicRoots';
+import Loader from '../Loader';
+import authSelectors from '../../redux/features/auth/authSelectors';
 
 export default function LoginForm() {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const isLoading = useAppSelector(authSelectors.getLoading);
 
   const initialValues = {
     email: '',
@@ -94,6 +99,14 @@ export default function LoginForm() {
       <Link className={styles.link} to="/register">
         {t('auth.register')}
       </Link>
+
+      {isLoading && (
+        <Portal wrapperId={publicRoots.Loader}>
+          <div className={styles.loaderWrapper}>
+            <Loader />
+          </div>
+        </Portal>
+      )}
     </form>
   );
 }
