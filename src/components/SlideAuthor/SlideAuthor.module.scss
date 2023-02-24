@@ -38,7 +38,8 @@
 
 .contentBox {
   width: 100%;
-  padding: 10px 30px;
+  padding: 10px 25px 5px 25px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,10 +58,19 @@
     width: 50%;
     height: 100%;
   }
+  @include for-size(mobile-only) {
+    padding: 10px 20px;
+  }
 }
 
 .name {
-  font-size: 1.5em;
+  font-family: $secondary-font;
+  font-weight: 400;
+  font-size: 24px;
+
+  @include for-size(mobile-only) {
+    font-size: 18px;
+  }
 }
 
 .role {
@@ -76,7 +86,15 @@
 .list {
   align-self: start;
   list-style-type: square;
-  font-size: 0.9em;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+
+  @include for-size(mobile-only) {
+    font-size: 12px;
+  }
 }
 
 .link {
