@@ -1,7 +1,7 @@
 import {
   setTokensError,
   setTokensSuccess,
-  setTokensRequest,
+  // setTokensRequest,
   getCurrentUserError,
   logoutSuccess,
 } from '../../redux/features/auth/authSlice';
