@@ -6,22 +6,31 @@
 /* .createForm {
 
 } */
+.overlayControlPanel {
+  @include for-size(mobile-only) {
+    width: 0vw;
+    height: 100vh;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    opacity: 0;
+    padding: 25px;
+    gap: 20px;
+
+    &.openControlPanel {
+      width: 100vw;
+      opacity: 1;
+      background-color: $bg-color-blue;
+    }
+  }
+}
 
 .controlPanel {
   display: flex;
   flex-direction: column;
   gap: 25px;
-  @include for-size(mobile-only) {
-    gap: 20px;
-  }
-}
-
-
-/* 
-.listBooks{
   
-} 
-*/
+}
 
 .calendarsWrap {
   display: flex;
@@ -37,6 +46,11 @@
 .selectWrap {
   display: flex;
   gap: 46px;
+  @include for-size(tablet-only) {
+    flex-direction: column;
+    gap: 35px;
+    align-items: center;
+  }
 }
 
 .dropdownWrap {
@@ -46,3 +60,9 @@
   min-width: 171px;
 }
 
+
+/* 
+.listBooks{
+  
+} 
+*/
