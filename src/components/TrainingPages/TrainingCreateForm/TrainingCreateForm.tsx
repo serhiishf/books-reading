@@ -26,7 +26,7 @@ function TrainingCreateForm() {
   return (
     <form className={styles.createForm}>
       <div className={styles.controlPanel}>
-        <Subheader title={t('myTraining')} />
+        <Subheader title={t('training.myTraining')} />
         <div className={styles.calendarsWrap}>
           <Calendar
             placeHolder='Початок'
@@ -40,9 +40,9 @@ function TrainingCreateForm() {
         </div>
         <div className={styles.selectWrap}>
           <Dropdown
-            placeHolder={t('chooseBookFromLibrary')}
+            placeHolder={t('training.chooseBookFromLibrary')}
             options={books.map(book => ({ value: book.name, label: book.name }))}
-            noOptionsMessage={t('noBookMore')}
+            noOptionsMessage={t('training.noBookMore')}
           />
           <Button
             type={ButtonType.add}

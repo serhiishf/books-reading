@@ -175,13 +175,16 @@
     "errorLog1": "Невірні електронная адреса чи пароль.",
     "errorLog2": "Щось пійшло не так. Спробуйте ще раз."
   },
-
-  "chooseBookFromLibrary": "Обрати книги з бібліотеки...",
-  "noBookMore": "Більше книжок нема...",
-  "Register": "Реєстрація",
-  "myTraining": "Моє тренування",
-  "myGoals": "Моя мета прочитати",
-  "numberOfBooks": "Кількість книжок",
-  "numberOfDays": "Кількість днів",
-  "leftBooks": "Залишилось книжок"
+  
+  "training": {
+    "chooseBookFromLibrary": "Обрати книги з бібліотеки...",
+    "noBookMore": "Більше книжок нема...",
+    "Register": "Реєстрація",
+    "myTraining": "Моє тренування",
+    "myGoals": "Моя мета прочитати",
+    "numberOfBooks": "Кількість книжок",
+    "numberOfDays": "Кількість днів",
+    "leftBooks": "Залишилось книжок"
+  }
+ 
 }

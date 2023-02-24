@@ -175,12 +175,15 @@
     "errorLog2": "Something went wrong. Try again."
   },
 
-  "chooseBookFromLibrary": "Choose books from the library...",
-  "noBookMore": "No book more...",
-  "Register": "Register",
-  "myTraining": "My training",
-  "myGoals": "My goals",
-  "numberOfBooks": "Amount of books",
-  "numberOfDays": "Amount of days",
-  "leftBooks": "Books left"
+  "training": {
+    "chooseBookFromLibrary": "Choose books from the library...",
+    "noBookMore": "No book more...",
+    "Register": "Register",
+    "myTraining": "My training",
+    "myGoals": "My goals",
+    "numberOfBooks": "Amount of books",
+    "numberOfDays": "Amount of days",
+    "leftBooks": "Books left"
+  }
+  
 }
