@@ -5,8 +5,8 @@ import booksApi, { Book } from '../../../services/books/books-service';
 import Subheader from '../Subheader';
 import Calendar from '../../Calendar';
 import Dropdown from '../../Dropdown';
-import Button from '../../Button';
-
+import Button from '../Button';
+import { ButtonType } from '../Button/Button';
 
 function TrainingCreateForm() {
   const { t } = useTranslation();
@@ -19,6 +19,10 @@ function TrainingCreateForm() {
     };
     fetchBooks();
   }, []);
+  const handleSubmit = () => {
+    console.log('Submit btn');
+  };
+
   return (
     <form className={styles.createForm}>
       <div className={styles.controlPanel}>
@@ -39,6 +43,11 @@ function TrainingCreateForm() {
             placeHolder={t('chooseBookFromLibrary')}
             options={books.map(book => ({ value: book.name, label: book.name }))}
             noOptionsMessage={t('noBookMore')}
+          />
+          <Button
+            type={ButtonType.add}
+            handleClick={handleSubmit}
+            title={t('auth.register')}
           />
         </div>
       </div>
