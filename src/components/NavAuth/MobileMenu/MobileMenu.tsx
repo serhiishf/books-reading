@@ -66,7 +66,7 @@ const MobileMenu: React.FC<Props> = ({ logoutClick }) => {
       <button
         type="button"
         onClick={toggleHamburger}
-        className={styles.burgerBtn}
+        className={classNames(styles.burgerBtn, menuOpen && styles.openMenu)}
       >
         <Hamburger isOpen={menuOpen} />
       </button>

@@ -114,10 +114,10 @@
   background-color: transparent;
   padding: 0px;
   margin: 0;
-  display: fixed;
+
   transition: all $cubic;
 
-  position: fixed;
+  position: absolute;
   right: 20px;
   top: 20px;
   z-index: 100;
@@ -126,5 +126,9 @@
 
   &:hover {
     transform: scale(1.1);
+  }
+
+  &.openMenu {
+    position: fixed;
   }
 }
