@@ -9,10 +9,10 @@
     "regTitle": "Books reading",
     "regSubTO": "Will help you to",
     "regGoal": "Create your goal faster and proceed to read",
-    "regProcess": "Divide process proportionally for each day ",
+    "regProcess": "Divide process proportionally for each day",
     "regSuccess": "Track your success",
     "regSubTT": "You may also",
-    "regPoint": "Pose your own independent point of view ",
+    "regPoint": "Pose your own independent point of view",
     "regScills": "Improve your professional skills according to new knowledge",
     "regInter": "Become an interesting interlocutor",
     "register": "Register",
@@ -45,7 +45,10 @@
 
   "introPage": {
     "aboutUs": "About us",
-    "aboutApp": "About app"
+    "aboutApp": "About app",
+    "seeMore": "see more",
+    "helpYou": "Will help you to",
+    "youMayAlso": "You may also"
   },
 
   "navigation": {
@@ -158,6 +161,71 @@
     }
   ],
 
+  "aboutApp": [
+    {
+      "title": "Book Reading",
+      "casesList1": [
+        "Create your goal faster and proceed to read",
+        "Divide process proportionally for each day ",
+        "Track your success"
+      ],
+      "casesList2": [
+        "Pose your own independent point of view",
+        "Improve your professional skills according to new knowledge",
+        "Become an interesting interlocutor"
+      ]
+    },
+    {
+      "title": "Your own account",
+      "casesList1": [
+        "Create your own account",
+        "Protect your data",
+        "Do not lose the names of the books that you have been advised to read"
+      ],
+      "casesList2": [
+        "Come back to the app later and find here all the books you've saved",
+        "Add private comments to books you've already read",
+        "Use the application without payments or advertising"
+      ]
+    },
+    {
+      "title": "List of books",
+      "casesList1": [
+        "Add new book to the list that you plan to read",
+        "Change the status of books to 'already read'",
+        "Add feedback or main theses of the book you read"
+      ],
+      "casesList2": [
+        "Do not forget the name of the book or the author",
+        "Track how many books you've read"
+      ]
+    },
+    {
+      "title": "Book marathon",
+      "casesList1": [
+        "Start a personal reading marathon",
+        "Track your progress",
+        "Add the number of pages you read per day"
+      ],
+      "casesList2": [
+        "Keep up with your own plan",
+        "Celebrate your own achievements!"
+      ]
+    },
+    {
+      "title": "App in development",
+      "casesList1": [
+        "Become a more attentive user",
+        "Try yourself in the role of a Dev Tester"
+      ],
+      "casesList2": [
+        "Leave your feedback about the application in social networks",
+        "Inform us about the issue",
+        "Share this app with your friends so they can try it too!"
+      ]
+    }
+  ],
+
   "validation": {
     "required": "Required",
     "valid": "Must be a valid email",
@@ -207,7 +275,5 @@
     "date": "Date",
     "amountOfPages": "Amount of pages",
     "statisctics": "STATISTICS"
-    
   }
-  
 }

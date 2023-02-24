@@ -33,12 +33,12 @@ const Slider: React.FC<Props> = ({ children }) => {
       draggable={true}
       showDots={true}
       infinite={true}
-      transitionDuration={1000}
+      transitionDuration={500}
       keyBoardControl={true}
       removeArrowOnDeviceType={['mobile', 'tablet']}
       responsive={responsive}
       autoPlay={true}
-      autoPlaySpeed={3000}
+      autoPlaySpeed={10000}
       containerClass={styles.carouselContainer}
       itemClass={styles.carouselItem}
     >
