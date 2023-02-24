@@ -16,7 +16,9 @@ export default function BookCounter({ books, days, leftReading }: BookCounterPro
   const { t } = useTranslation();
   return (
     <div className={styles.bookCounter}>
-      <Subheader title={t('training.myGoals')} />
+      <div className={styles.subheaderWrap}>
+        <Subheader title={t('training.myGoals')} />
+      </div>
       <div className={styles.counters}>
         <UseCountItem
           count={books}

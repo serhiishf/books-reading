@@ -29,26 +29,30 @@ function TrainingCreateForm() {
         <Subheader title={t('training.myTraining')} />
         <div className={styles.calendarsWrap}>
           <Calendar
-            placeHolder='Початок'
+            placeHolder={t('training.start')}
             today={true}
             open={true}
           />
           <Calendar
-            placeHolder='Закінчення'
+            placeHolder={t('training.finish')}
             onlyAfter={true}
           />
         </div>
         <div className={styles.selectWrap}>
-          <Dropdown
-            placeHolder={t('training.chooseBookFromLibrary')}
-            options={books.map(book => ({ value: book.name, label: book.name }))}
-            noOptionsMessage={t('training.noBookMore')}
-          />
-          <Button
-            type={ButtonType.add}
-            handleClick={handleSubmit}
-            title={t('auth.register')}
-          />
+          <div className={styles.dropdownWrap}>
+            <Dropdown
+              placeHolder={t('training.chooseBookFromLibrary')}
+              options={books.map(book => ({ value: book.name, label: book.name }))}
+              noOptionsMessage={t('training.noBookMore')}
+            />
+          </div>
+          <div className={styles.buttonWrap}>
+            <Button
+              type={ButtonType.add}
+              handleClick={handleSubmit}
+              title={t('training.add')}
+            />
+          </div>
         </div>
       </div>
       <div className={styles.listBooks}></div>

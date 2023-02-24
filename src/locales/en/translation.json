@@ -206,8 +206,9 @@
     "pages": "Pages",
     "date": "Date",
     "amountOfPages": "Amount of pages",
-    "statisctics": "STATISTICS"
-    
+    "statisctics": "STATISTICS",
+    "start": "Start",
+    "finish": "Finish"    
   }
   
 }

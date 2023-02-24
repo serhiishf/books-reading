@@ -15,6 +15,8 @@
     gap: 20px;
   }
 }
+
+
 /* 
 .listBooks{
   
@@ -30,5 +32,17 @@
     align-items: center;
     gap: 20px;
   }
+}
+
+.selectWrap {
+  display: flex;
+  gap: 46px;
+}
+
+.dropdownWrap {
+  width: 100%;
+}
+.buttonWrap {
+  min-width: 171px;
 }
 

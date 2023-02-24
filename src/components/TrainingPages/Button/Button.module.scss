@@ -1,0 +1,30 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.btn {
+  display: block;
+  cursor: pointer;
+  text-align: center;
+  transition: all 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.plus {
+  background: red;
+}
+
+.add {
+  border: 1px solid $primary-text-color;
+  background-color: $bg-color-blue;
+  width: 100%;
+  padding: 12px 20px;
+  &:hover {
+    box-shadow: $active-shadow;
+    border-color: $accent-color;
+  }
+}
+
+.done {
+
+}

@@ -17,7 +17,6 @@ function CreateTraining() {
         <BookCounter
           books={2}
           days={14}
-          leftReading={3}
         />
       </div>
     </div>
