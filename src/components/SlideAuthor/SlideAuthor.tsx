@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from './AuthorSlide.module.scss';
+import { useTranslation } from 'react-i18next';
+import styles from './SlideAuthor.module.scss';
 
 interface Props {
   name: string;
@@ -9,13 +10,15 @@ interface Props {
   cases: string[];
 }
 
-const AuthorSlide: React.FC<Props> = ({
+const SlideAuthor: React.FC<Props> = ({
   name,
   role,
   srcPath,
   gitHubPath,
   cases,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.container}>
       <div className={styles.imageBox}>
@@ -38,11 +41,11 @@ const AuthorSlide: React.FC<Props> = ({
           target="_blank"
           rel="noopener noreferrer"
         >
-          See more
+          {t('introPage.seeMore')}
         </a>
       </div>
     </div>
   );
 };
 
-export default AuthorSlide;
+export default SlideAuthor;
