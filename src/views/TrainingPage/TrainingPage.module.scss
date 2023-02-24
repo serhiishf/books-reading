@@ -3,7 +3,7 @@
 
 .mainWrapper {
   background-color: $bg-color-blue;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   overflow: hidden;
   display: flex;
   flex-direction: column;

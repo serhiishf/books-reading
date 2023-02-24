@@ -16,20 +16,20 @@ export default function BookCounter({ books, days, leftReading }: BookCounterPro
   const { t } = useTranslation();
   return (
     <div className={styles.bookCounter}>
-      <Subheader title={t('myGoals')} />
+      <Subheader title={t('training.myGoals')} />
       <div className={styles.counters}>
         <UseCountItem
           count={books}
-          title={t('numberOfBooks')}
+          title={t('training.numberOfBooks')}
         />
         <UseCountItem
           count={days}
-          title={t('numberOfDays')}
+          title={t('training.numberOfDays')}
         />
         {leftReading && (
           <UseCountItem
             count={leftReading}
-            title={t('leftBooks')}
+            title={t('training.leftBooks')}
             highlight={true}
           />
         )}
