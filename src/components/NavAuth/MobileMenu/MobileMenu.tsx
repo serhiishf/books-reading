@@ -6,17 +6,26 @@ import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as SvgLibrary } from '../../../assets/img/book.svg';
 import { ReactComponent as SvgHome } from '../../../assets/img/home.svg';
+import useViewportSizes from '../../../hooks/useViewportSizes';
+import breakpoints from '../../../utils/breakpoints';
 
 interface Props {
   logoutClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const MobileMenu: React.FC<Props> = ({ logoutClick }) => {
+  const { innerWidth } = useViewportSizes();
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useTranslation();
 
   const toggleHamburger = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const onLinkClick = () => {
+    if (innerWidth <= breakpoints.LargeMobile) {
+      toggleHamburger();
+    }
   };
 
   return (
@@ -29,11 +38,19 @@ const MobileMenu: React.FC<Props> = ({ logoutClick }) => {
         className={classNames(styles.contentBox, menuOpen && styles.openMenu)}
       >
         <div className={styles.list}>
-          <NavLink className={styles.link} to={'/library'}>
+          <NavLink
+            className={styles.link}
+            to={'/library'}
+            onClick={onLinkClick}
+          >
             <SvgLibrary />
             {t('navigation.library')}
           </NavLink>
-          <NavLink className={styles.link} to={'/training'}>
+          <NavLink
+            className={styles.link}
+            to={'/training'}
+            onClick={onLinkClick}
+          >
             <SvgHome /> {t('navigation.training')}
           </NavLink>
           <button
