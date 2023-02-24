@@ -59,6 +59,11 @@
     "reset": "Cancel"
   },
 
+  "confirmationModal": {
+    "YouAreGoodButNotEnough": "You're good, but you need to do it faster! Next time you will succeed!",
+    "confirm": "OK"
+  },
+
   "404Page": {
     "articleNotFound": "Article not found",
     "pageCanNotBeFound": "The page you requested cannot be found.",

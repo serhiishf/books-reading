@@ -14,6 +14,8 @@ import styles from './NavAuth.module.scss';
 import Portal from '../Portal';
 import publicRoots from '../../utils/publicRoots';
 import ModalChoice from '../ModalChoice';
+import ModalConfirmation from '../ModalConfirmation';
+import likeIcon from '../../assets/img/like.svg';
 
 export default function NavAuth() {
   const dispatch = useAppDispatch();
@@ -53,6 +55,15 @@ export default function NavAuth() {
             onConfirmClick={onConfirmLogoutClick}
             onResetClick={onResetLogoutClick}
           />
+
+          {/* TEST confirmation modal:*/}
+
+          {/* <ModalConfirmation
+            iconPath={likeIcon}
+            questionTxt={t('confirmationModal.YouAreGoodButNotEnough')}
+            confirmBtnTxt={t('confirmationModal.confirm')}
+            onConfirmClick={onResetLogoutClick}
+          /> */}
         </Portal>
       )}
     </div>

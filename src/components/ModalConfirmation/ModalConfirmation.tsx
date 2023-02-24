@@ -2,12 +2,14 @@ import React from 'react';
 import styles from './ModalConfirmation.module.scss';
 
 interface Props {
+  iconPath?: string;
   questionTxt: string;
   confirmBtnTxt: string;
   onConfirmClick: () => void;
 }
 
 const ModalConfirmation: React.FC<Props> = ({
+  iconPath,
   questionTxt,
   confirmBtnTxt,
   onConfirmClick,
@@ -15,8 +17,13 @@ const ModalConfirmation: React.FC<Props> = ({
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <p>{questionTxt}</p>
-        <button type="button" onClick={onConfirmClick}>
+        {iconPath && <img src={iconPath} alt="" />}
+        <p className={styles.text}>{questionTxt}</p>
+        <button
+          className={styles.confirmBtn}
+          type="button"
+          onClick={onConfirmClick}
+        >
           {confirmBtnTxt}
         </button>
       </div>
