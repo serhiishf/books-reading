@@ -16,6 +16,7 @@ import publicRoots from '../../utils/publicRoots';
 import ModalChoice from '../ModalChoice';
 import ModalConfirmation from '../ModalConfirmation';
 import likeIcon from '../../assets/img/like.svg';
+import Loader from '../Loader';
 
 export default function NavAuth() {
   const dispatch = useAppDispatch();
@@ -26,6 +27,8 @@ export default function NavAuth() {
 
   const [isOpenModal, setOpenModal] = useState(false);
   const { t } = useTranslation();
+  const isLoading = useAppSelector(authSelectors.getLoading);
+  console.log(isLoading);
   const onLogoutClick = () => {
     setOpenModal(!isOpenModal);
   };
@@ -64,6 +67,14 @@ export default function NavAuth() {
             confirmBtnTxt={t('confirmationModal.confirm')}
             onConfirmClick={onResetLogoutClick}
           /> */}
+        </Portal>
+      )}
+
+      {isLoading && isOpenModal && (
+        <Portal wrapperId={publicRoots.Loader}>
+          <div className={styles.loaderWrapper}>
+            <Loader />
+          </div>
         </Portal>
       )}
     </div>
