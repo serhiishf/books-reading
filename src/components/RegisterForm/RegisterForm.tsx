@@ -8,8 +8,12 @@ import styles from '../LoginForm/LoginForm.module.scss';
 import btnStyles from '../Button/Button.module.scss';
 import Button from '../Button';
 import authOperations from '../../redux/features/auth/authOperations';
-import { useAppDispatch } from '../../redux/app/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import { useTranslation } from 'react-i18next';
+import authSelectors from '../../redux/features/auth/authSelectors';
+import Portal from '../Portal';
+import publicRoots from '../../utils/publicRoots';
+import Loader from '../Loader';
 
 type RegRes = {
   user: { email: string; name: string };
@@ -19,6 +23,7 @@ export default function RegisterForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const isLoading = useAppSelector(authSelectors.getLoading);
 
   const initialValues = {
     name: '',
@@ -144,6 +149,14 @@ export default function RegisterForm() {
       <Link to="/login" className={styles.link}>
         {t('auth.login')}
       </Link>
+
+      {isLoading && (
+        <Portal wrapperId={publicRoots.Loader}>
+          <div className={styles.loaderWrapper}>
+            <Loader />
+          </div>
+        </Portal>
+      )}
     </form>
   );
 }
