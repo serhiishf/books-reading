@@ -23,6 +23,12 @@
     "confirm": "OK"
   },
 
+  "deleteBookModal": {
+    "text": "Ви впевнені, що хочете видалить цю книгу?",
+    "confirm": "ТАК",
+    "reset": "НІ"
+  },
+
   "404Page": {
     "articleNotFound": "Стаття не знайдена",
     "pageCanNotBeFound": "Неможливо знайти сторінку, яку ви шукаєте.",

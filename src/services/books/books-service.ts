@@ -85,7 +85,7 @@ const createBook = async (body: BookT) => {
 };
 
 const deleteBook = async (bookId: string) => {
-  const result = await axiosInstance.post(`/books/delete/?bookId=${bookId}`);
+  const result = await axiosInstance.delete(`/books/delete/?bookId=${bookId}`);
   return result;
 };
 

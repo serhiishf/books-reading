@@ -107,26 +107,79 @@
   fill: $accent-color;
 }
 
-.editBtn {
+.btnEditDone,
+.btnEditPending,
+.btnDelPending,
+.btnDelDone {
   padding: 0;
   cursor: pointer;
   background-color: #fff;
   border: none;
   border-radius: 2px;
   position: absolute;
-  left: 0;
-  top: 10px;
+  // left: 0;
+  // top: 10px;
 
+  // @include for-size(tablet) {
+  //   left: 98%;
+  //   top: 0;
+  // }
+  // @include for-size(desktop) {
+  //   left: 105%;
+  // }
+}
+
+.btnEditDone {
+  left: 4px;
+  top: 17px;
   @include for-size(tablet) {
     left: 98%;
-    top: 15%;
+    top: 0;
   }
   @include for-size(desktop) {
     left: 105%;
   }
 }
 
-.editBtn:hover {
+.btnDelDone {
+  left: 98%;
+  bottom: 107%;
+  @include for-size(tablet) {
+    bottom: 0;
+  }
+  @include for-size(desktop) {
+    left: 105%;
+  }
+}
+
+.btnEditPending {
+  left: 4px;
+  top: 17px;
+  @include for-size(tablet) {
+    left: 98%;
+    top: -15px;
+  }
+  @include for-size(desktop) {
+    left: 105%;
+  }
+}
+
+.btnDelPending {
+  left: 98%;
+  bottom: 107%;
+  @include for-size(tablet) {
+    left: 98%;
+    bottom: -15px;
+  }
+  @include for-size(desktop) {
+    left: 105%;
+  }
+}
+
+.btnEditDone:hover,
+.btnEditPending:hover,
+.btnDelPending:hover,
+.btnDelDone:hover {
   border: 1px solid $accent-color;
   box-shadow: $active-shadow;
 }
