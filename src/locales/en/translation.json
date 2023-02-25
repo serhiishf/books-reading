@@ -40,7 +40,10 @@
     "leftRating": "Choose rating of the book",
     "next": "Next",
     "back": "Back",
-    "save": "Save"
+    "save": "Save",
+    "edit": "Edit",
+    "status-done": "Already read",
+    "status-pending": "Going to read"
   },
 
   "introPage": {

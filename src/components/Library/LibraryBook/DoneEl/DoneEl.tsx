@@ -1,12 +1,12 @@
 import React from 'react';
-import { DoneT } from '../library.interfaces';
-import styles from './DoneEl.module.scss';
-import ModalResume from './ModalResume';
 import { useTranslation } from 'react-i18next';
-import { useModal } from '../../../hooks/useModal';
-import Rating from './Rating';
-import publicRoots from '../../../utils/publicRoots';
-import Portal from '../../Portal';
+import { useModal } from '../../../../hooks/useModal';
+import publicRoots from '../../../../utils/publicRoots';
+import ModalResume from '../ModalResume';
+import Rating from '../Rating';
+import Portal from '../../../Portal';
+import { DoneT } from '../../library.interfaces';
+import styles from './DoneEl.module.scss';
 
 const DoneEl = ({ _id, rating, resume }: DoneT) => {
   const { isShown, toggle } = useModal();

@@ -60,6 +60,7 @@
 }
 
 .bookInfo {
+  position: relative;
   padding-right: 20px;
   padding-left: 40px;
   @include for-size(tablet) {
@@ -104,4 +105,28 @@
 
 .iconActive {
   fill: $accent-color;
+}
+
+.editBtn {
+  padding: 0;
+  cursor: pointer;
+  background-color: #fff;
+  border: none;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  top: 10px;
+
+  @include for-size(tablet) {
+    left: 98%;
+    top: 15%;
+  }
+  @include for-size(desktop) {
+    left: 105%;
+  }
+}
+
+.editBtn:hover {
+  border: 1px solid $accent-color;
+  box-shadow: $active-shadow;
 }
