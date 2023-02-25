@@ -13,6 +13,11 @@ import ButtonBack from '../../ButtonBack';
 function TrainingCreateForm() {
   const { t } = useTranslation();
   const [books, setBooks] = useState<Book[]>([]);
+  const [controlPanelOpen, setControlPanelOpen] = useState(false);
+
+  const toggleStateControlPanel = () => {
+    setControlPanelOpen(!controlPanelOpen);
+  };
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -27,9 +32,13 @@ function TrainingCreateForm() {
 
   return (
     <form className={styles.createForm}>
-      <div className={classNames(styles.overlayControlPanel, styles.openControlPanel)}>
+      <div className={classNames(styles.overlayControlPanel, controlPanelOpen && styles.openControlPanel)}>
         <div className={classNames(styles.controlPanel)}>
-          {/* <ButtonBack /> */}
+          <div className={classNames(styles.buttonBackWrap, !controlPanelOpen && styles.hidden)}>
+            <ButtonBack
+              handleClick={toggleStateControlPanel}
+            />
+          </div>
           <Subheader title={t('training.myTraining')} />
           <div className={styles.calendarsWrap}>
             <Calendar
@@ -60,7 +69,14 @@ function TrainingCreateForm() {
           </div>
         </div>
       </div>
-
+      <div className={classNames(styles.btnPLusWrap)}>
+        <Button
+          type={ButtonType.plus}
+          handleClick={() => {
+            toggleStateControlPanel();
+          }}
+        />
+      </div>
       <div className={styles.listBooks}></div>
     </form>
   );

@@ -2,6 +2,7 @@
 @import '../../../scss/variables';
 
 .btn {
+  all:unset;
   display: block;
   cursor: pointer;
   text-align: center;
@@ -11,7 +12,31 @@
 }
 
 .plus {
-  background: red;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: $accent-color;
+/*   position: relative; */
+/*   &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 2px;
+    background-color: white;
+    transform: translate(-50%, -50%);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 16px;
+    height: 2px;
+    background-color: white;
+    transform: translate(-50%, -50%);
+  } */
 }
 
 .add {
@@ -23,6 +48,7 @@
     box-shadow: $active-shadow;
     border-color: $accent-color;
   }
+  
 }
 
 .done {

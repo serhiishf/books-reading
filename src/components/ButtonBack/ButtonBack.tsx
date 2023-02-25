@@ -2,15 +2,23 @@ import React from 'react';
 import { ReactComponent as BackIcon } from './assets/back.svg';
 import styles from './ButtonBack.module.scss';
 
+interface ButtonBackProps {
+  handleClick: () => void;
+}
 
-function ButtonBack() {
+function ButtonBack({ handleClick }: ButtonBackProps) {
+  const handleClickWrapper = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    handleClick();
+  };
   return (
-    <div
+    <button
       className={styles.buttonBack}
+      onClick={handleClickWrapper}
     >
       <BackIcon />
-    </div>
+    </button>
   );
 }
 
-export default ButtonBack;
+export default ButtonBack; 
