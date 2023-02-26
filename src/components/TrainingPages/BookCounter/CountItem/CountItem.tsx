@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './CountItem.module.scss';
 
 interface CountItemProps {
-  count: number;
+  count: number | string;
   title: string;
 
 }

@@ -21,6 +21,15 @@ type UpdateResumeT = {
   rating?: number | null;
 };
 
+type UpdateBookT = {
+  bookId: string;
+  name?: string;
+  author?: string;
+  year?: string;
+  pages?: string;
+  status?: string;
+};
+
 export interface Book {
   _id: string;
   name: string;
@@ -55,8 +64,13 @@ const getBookById = async (bookId: string) => {
 };
 
 const getBooksByStatus = async (status: string) => {
-  const result = await axiosInstance.get(`/books/status/?status=${status}`);
-  return result;
+  try {
+    const { data } = await axiosInstance.get(`/books/status/?status=${status}`);
+    return data;
+  } catch (error) {
+    console.error(`Error fetching books: ${error}`);
+    return [];
+  }
 };
 
 const createBook = async (body: BookT) => {
@@ -71,7 +85,7 @@ const createBook = async (body: BookT) => {
 };
 
 const deleteBook = async (bookId: string) => {
-  const result = await axiosInstance.post(`/books/delete/?bookId=${bookId}`);
+  const result = await axiosInstance.delete(`/books/delete/?bookId=${bookId}`);
   return result;
 };
 
@@ -97,6 +111,17 @@ const updateBookResume = async (body: UpdateResumeT) => {
   }
 };
 
+const updateBookInfo = async (body: UpdateBookT) => {
+  try {
+    const { data } = await axiosInstance.put('/books/update', body);
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      toast.error(i18n?.t?.('toast.errorLog2'));
+    }
+  }
+};
+
 const booksApi = {
   getAllBooks,
   updateBookResume,
@@ -105,6 +130,7 @@ const booksApi = {
   createBook,
   getBooksByStatus,
   getBookById,
+  updateBookInfo,
 };
 
 export default booksApi;

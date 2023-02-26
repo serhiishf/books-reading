@@ -30,6 +30,8 @@ const setupInterceptors = (store: RootStoreType) => {
 
   axiosInstance.interceptors.response.use(
     (res) => {
+      // console.log('RES', res);
+      // dispatch(setTokensSuccess());
       return res;
     },
     async (err) => {
