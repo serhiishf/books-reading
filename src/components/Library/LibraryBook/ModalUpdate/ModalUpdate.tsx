@@ -7,15 +7,20 @@ export interface ModalProps {
   book: Book;
   isOpen: boolean;
   hide: () => void;
+  update: (updatedBook: Book) => void;
 }
 
-const ModalUpdate: FunctionComponent<ModalProps> = ({ book, isOpen, hide }) => {
-
+const ModalUpdate: FunctionComponent<ModalProps> = ({
+  book,
+  isOpen,
+  hide,
+  update,
+}) => {
   return isOpen ? (
     <div className={styles.backdrop}>
       <div className={styles.wrapper}>
         <div className={styles.modal}>
-          <ModalUpdateForm book={book} hide={hide} />
+          <ModalUpdateForm book={book} hide={hide} onUpdate={update} />
         </div>
       </div>
     </div>

@@ -12,8 +12,9 @@ import publicRoots from '../../../utils/publicRoots';
 import ModalUpdate from './ModalUpdate/ModalUpdate';
 import ModalChoice from '../../ModalChoice';
 import booksApi from '../../../services/books/books-service';
+import { BookStatus } from '../LibraryBooksList/LibraryBooksList';
 
-const LibraryBook: React.FC<BookProps> = ({ book }) => {
+const LibraryBook: React.FC<BookProps> = ({ book, update, onDelete }) => {
   const { isShown, toggle } = useModal();
   const [isOpenModal, setOpenModal] = useState(false);
 
@@ -29,19 +30,20 @@ const LibraryBook: React.FC<BookProps> = ({ book }) => {
 
   const onConfirmClick = () => {
     booksApi.deleteBook(book._id);
+    onDelete(book);
     setOpenModal(!isOpenModal);
   };
 
   return (
     <li
       className={`${
-        book.status === 'done' ? styles.itemDone : styles.bookItem
+        book.status === BookStatus.DONE ? styles.itemDone : styles.bookItem
       }`}
     >
       <div className={styles.bookName}>
         <BookImg
           className={`${styles.icon} ${
-            book.status === 'active' ? styles.iconActive : ''
+            book.status === BookStatus.ACTIVE ? styles.iconActive : ''
           }`}
         />
         <span>{book.name}</span>
@@ -59,12 +61,19 @@ const LibraryBook: React.FC<BookProps> = ({ book }) => {
           <span className={styles.subtitleMob}>{t('library.pageShort')}:</span>
           <span className={styles.subtitle}>{book.pages}</span>
         </div>
-        {book.status === 'done' ? (
-          <DoneEl _id={book._id} rating={book.rating} resume={book.resume} />
+        {book.status === BookStatus.DONE ? (
+          <DoneEl
+            _id={book._id}
+            rating={book.rating}
+            resume={book.resume}
+            onUpdate={update}
+          />
         ) : null}
         <button
           className={`${
-            book.status === 'done' ? styles.btnEditDone : styles.btnEditPending
+            book.status === BookStatus.DONE
+              ? styles.btnEditDone
+              : styles.btnEditPending
           }`}
           onClick={toggle}
         >
@@ -72,16 +81,23 @@ const LibraryBook: React.FC<BookProps> = ({ book }) => {
         </button>
         {isShown && (
           <Portal wrapperId={publicRoots.UpdateModal}>
-            <ModalUpdate book={book} isOpen={isShown} hide={toggle} />
+            <ModalUpdate
+              book={book}
+              isOpen={isShown}
+              hide={toggle}
+              update={update}
+            />
           </Portal>
         )}
         <button
           className={`${
-            book.status === 'done' ? styles.btnDelDone : styles.btnDelPending
+            book.status === BookStatus.DONE
+              ? styles.btnDelDone
+              : styles.btnDelPending
           }`}
           onClick={onOpenClick}
         >
-          <AiOutlineDelete title={t('library.edit')} color="#a6abb9" />
+          <AiOutlineDelete color="#a6abb9" />
         </button>
         {isOpenModal && (
           <Portal wrapperId={publicRoots.UpdateModal}>

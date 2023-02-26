@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useModal } from '../../../../hooks/useModal';
 import publicRoots from '../../../../utils/publicRoots';
 import ModalResume from '../ModalResume';
 import Rating from '../Rating';
 import Portal from '../../../Portal';
-import { DoneT } from '../../library.interfaces';
 import styles from './DoneEl.module.scss';
+import { Book } from '../../../../services/books/books-service';
 
-const DoneEl = ({ _id, rating, resume }: DoneT) => {
+type Props = {
+  _id: string;
+  rating: number | null;
+  resume: string;
+  onUpdate: (updatedBook: Book) => void;
+};
+
+const DoneEl: FC<Props> = ({ _id, rating, resume, onUpdate }) => {
   const { isShown, toggle } = useModal();
   const { t } = useTranslation();
 
@@ -32,6 +39,7 @@ const DoneEl = ({ _id, rating, resume }: DoneT) => {
               resume={resume}
               isOpen={isShown}
               hide={toggle}
+              onUpdate={onUpdate}
             />
           </Portal>
         )}

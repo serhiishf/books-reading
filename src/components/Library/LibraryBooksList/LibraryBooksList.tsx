@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import BookListEl from './BookListEl';
 import styles from './LibraryBooksList.module.scss';
-import booksApi, { Book } from '../../../services/books/books-service';
+import { Book } from '../../../services/books/books-service';
 import ActiveBookList from './ActiveBookList';
 
-enum BookStatus {
+export enum BookStatus {
   'PENDING' = 'pending',
   'DONE' = 'done',
   'ACTIVE' = 'active',
@@ -16,29 +16,22 @@ export type DropBook = {
   items: Book[];
 };
 
-const LibraryBooksList = () => {
-  const [booksUser, setBooksUser] = useState<Book[]>([]);
-  const [activeBooks, setActiveBooks] = useState<Book[]>([]);
-  const [doneBooks, setDoneBooks] = useState<Book[]>([]);
-  const [pendingBooks, setPendingBooks] = useState<Book[]>([]);
+type Props = {
+  books: Book[];
+  handleUpdate: (updatedBook: Book) => void;
+  handleDelete: (deletedBook: Book) => void;
+};
+
+const LibraryBooksList: FC<Props> = ({ books, handleUpdate, handleDelete }) => {
+  const activeBooks = books?.filter(
+    (book) => book.status === BookStatus.ACTIVE,
+  );
+  const doneBooks = books?.filter((book) => book.status === BookStatus.DONE);
+  const pendingBooks = books?.filter(
+    (book) => book.status === BookStatus.PENDING,
+  );
 
   const { t } = useTranslation();
-
-  const getUsersBooks = async () => {
-    const data = await booksApi.getAllBooks();
-    const done = await booksApi.getBooksByStatus(BookStatus.DONE);
-    const pending = await booksApi.getBooksByStatus(BookStatus.PENDING);
-    const active = await booksApi.getBooksByStatus(BookStatus.ACTIVE);
-    setBooksUser(data);
-    setActiveBooks(active.data);
-    setDoneBooks(done.data);
-    setPendingBooks(pending.data);
-  };
-
-  useEffect(() => {
-    getUsersBooks();
-    // console.log(booksUser);
-  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -69,7 +62,11 @@ const LibraryBooksList = () => {
               <span>{t('library.rating')}</span>
             </div>
           </div>
-          <BookListEl books={doneBooks} />
+          <BookListEl
+            books={doneBooks}
+            handleUpdate={handleUpdate}
+            onDelete={handleDelete}
+          />
         </div>
       ) : null}
 
@@ -84,7 +81,11 @@ const LibraryBooksList = () => {
               <span>{t('library.pageShort')}</span>
             </div>
           </div>
-          <BookListEl books={pendingBooks} />
+          <BookListEl
+            books={pendingBooks}
+            handleUpdate={handleUpdate}
+            onDelete={handleDelete}
+          />
         </div>
       ) : null}
     </div>
