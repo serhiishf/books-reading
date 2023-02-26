@@ -21,7 +21,7 @@ type UpdateResumeT = {
   rating?: number | null;
 };
 
-type UpdateBookT = {
+export type UpdateBookT = {
   bookId: string;
   name?: string;
   author?: string;
@@ -34,8 +34,8 @@ export interface Book {
   _id: string;
   name: string;
   author: string;
-  year: number;
-  pages: number;
+  year: string;
+  pages: string;
   status: 'pending' | 'active' | 'done';
   owner: {
     _id: string;
@@ -75,8 +75,8 @@ const getBooksByStatus = async (status: string) => {
 
 const createBook = async (body: BookT) => {
   try {
-    const result = await axiosInstance.post('/books/create', body);
-    return result;
+    const { data } = await axiosInstance.post('/books/create', body);
+    return data;
   } catch (error) {
     if (error instanceof AxiosError) {
       toast.error(i18n?.t?.('toast.errorLog2'));
@@ -102,8 +102,8 @@ const updateBookStatus = async (body: UpdateStatusT) => {
 
 const updateBookResume = async (body: UpdateResumeT) => {
   try {
-    const result = await axiosInstance.patch('/books/update-resume', body);
-    return result;
+    const { data } = await axiosInstance.patch('/books/update-resume', body);
+    return data;
   } catch (error) {
     if (error instanceof AxiosError) {
       toast.error(i18n?.t?.('toast.errorLog2'));
