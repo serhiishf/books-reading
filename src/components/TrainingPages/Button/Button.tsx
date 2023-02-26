@@ -1,4 +1,6 @@
+import classNames from 'classnames';
 import React from 'react';
+import styles from './Button.module.scss';
 
 interface ButtonProp {
   type: ButtonType;
@@ -19,6 +21,7 @@ function Button({ type, handleClick, title }: ButtonProp) {
   };
   return (
     <button
+      className={classNames(styles.btn, (type === ButtonType.plus) && styles.plus, (type === ButtonType.add) && styles.add)}
       onClick={handleClickWrapper}
     >
       {title}
