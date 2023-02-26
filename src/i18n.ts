@@ -13,11 +13,18 @@ export const resources = {
   },
 };
 
+declare module 'i18next' {
+  interface CustomTypeOptions {
+    returnNull: false;
+  }
+}
+
 i18n
   .use(initReactI18next)
   .use(LanguageDetector)
   .init({
     resources,
+    returnNull: false,
     lng: localStorage.getItem('LOCALE') || 'en',
     fallbackLng: ['ua', 'en'],
     interpolation: {

@@ -1,14 +1,44 @@
-import React from 'react';
-import LibraryBook from '../LibraryBook';
-import { BooksI } from '../library.interfaces';
-import styles from './LibraryBooksList.module.scss';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import BookListEl from './BookListEl';
+import styles from './LibraryBooksList.module.scss';
+import booksApi, { Book } from '../../../services/books/books-service';
+import ActiveBookList from './ActiveBookList';
 
-const LibraryBooksList = ({ books }: BooksI) => {
-  const activeBooks = books?.filter((book) => book.status === 'active');
-  const doneBooks = books?.filter((book) => book.status === 'done');
-  const pendingBooks = books?.filter((book) => book.status === 'pending');
+enum BookStatus {
+  'PENDING' = 'pending',
+  'DONE' = 'done',
+  'ACTIVE' = 'active',
+}
+
+export type DropBook = {
+  id: string;
+  items: Book[];
+};
+
+const LibraryBooksList = () => {
+  const [booksUser, setBooksUser] = useState<Book[]>([]);
+  const [activeBooks, setActiveBooks] = useState<Book[]>([]);
+  const [doneBooks, setDoneBooks] = useState<Book[]>([]);
+  const [pendingBooks, setPendingBooks] = useState<Book[]>([]);
+
   const { t } = useTranslation();
+
+  const getUsersBooks = async () => {
+    const data = await booksApi.getAllBooks();
+    const done = await booksApi.getBooksByStatus(BookStatus.DONE);
+    const pending = await booksApi.getBooksByStatus(BookStatus.PENDING);
+    const active = await booksApi.getBooksByStatus(BookStatus.ACTIVE);
+    setBooksUser(data);
+    setActiveBooks(active.data);
+    setDoneBooks(done.data);
+    setPendingBooks(pending.data);
+  };
+
+  useEffect(() => {
+    getUsersBooks();
+    // console.log(booksUser);
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -23,13 +53,10 @@ const LibraryBooksList = ({ books }: BooksI) => {
               <span>{t('library.pageShort')}</span>
             </div>
           </div>
-          <ul>
-            {activeBooks.map((book, i) => (
-              <LibraryBook book={book} key={i} />
-            ))}
-          </ul>
+          <ActiveBookList books={activeBooks} />
         </div>
       ) : null}
+
       {doneBooks?.length ? (
         <div className={styles.sectionWrapper}>
           <h3 className={styles.sectionTitle}>{t('library.done')}</h3>
@@ -42,11 +69,7 @@ const LibraryBooksList = ({ books }: BooksI) => {
               <span>{t('library.rating')}</span>
             </div>
           </div>
-          <ul>
-            {doneBooks.map((book, i) => (
-              <LibraryBook book={book} key={i} />
-            ))}
-          </ul>
+          <BookListEl books={doneBooks} />
         </div>
       ) : null}
 
@@ -61,11 +84,7 @@ const LibraryBooksList = ({ books }: BooksI) => {
               <span>{t('library.pageShort')}</span>
             </div>
           </div>
-          <ul>
-            {pendingBooks.map((book, i) => (
-              <LibraryBook book={book} key={i} />
-            ))}
-          </ul>
+          <BookListEl books={pendingBooks} />
         </div>
       ) : null}
     </div>
