@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
 import LibraryBook from '../LibraryBook';
 import { Book } from '../../../services/books/books-service';
-import { BooksI } from '../library.interfaces';
 
-const BookListEl = ({ books }: BooksI) => {
+type Props = {
+  books: Book[];
+  handleUpdate: (updatedBook: Book) => void;
+  onDelete: (deletedBook: Book) => void;
+};
+
+const BookListEl: FC<Props> = ({ books, handleUpdate, onDelete }) => {
   return (
     <ul>
       {books?.map((book: Book, i: number) => (
-        <LibraryBook book={book} key={book._id} index={i} />
+        <LibraryBook
+          book={book}
+          key={book._id}
+          index={i}
+          update={handleUpdate}
+          onDelete={onDelete}
+        />
       ))}
     </ul>
   );

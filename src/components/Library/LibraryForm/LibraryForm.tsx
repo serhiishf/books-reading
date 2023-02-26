@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { FC} from 'react';
 import styles from './LibraryForm.module.scss';
 import Input from '../../Input';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import booksApi from '../../../services/books/books-service';
+import booksApi, { Book } from '../../../services/books/books-service';
 import { useTranslation } from 'react-i18next';
 
-export default function LibraryForm() {
+type Props = {
+  onAdd: (newBook: Book) => void;
+};
+
+const LibraryForm: FC<Props> = ({ onAdd }) => {
   const initialValues = {
     name: '',
     author: '',
@@ -41,9 +45,10 @@ export default function LibraryForm() {
         .max(5, 'validation.max5')
         .required('validation.required'),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const { name, author, year, pages } = values;
-      booksApi.createBook({ name, author, year, pages });
+      const newBook = await booksApi.createBook({ name, author, year, pages });
+      onAdd(newBook?.data);
       formik.resetForm();
     },
   });
@@ -117,4 +122,6 @@ export default function LibraryForm() {
       </form>
     </div>
   );
-}
+};
+
+export default LibraryForm;

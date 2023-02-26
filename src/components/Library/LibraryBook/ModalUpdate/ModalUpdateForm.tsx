@@ -11,9 +11,10 @@ import booksApi from '../../../../services/books/books-service';
 export interface Props {
   book: Book;
   hide: () => void;
+  onUpdate: (udatedBook: Book) => void;
 }
 
-const ModalUpdateForm: FC<Props> = ({ book, hide }) => {
+const ModalUpdateForm: FC<Props> = ({ book, hide, onUpdate }) => {
   const { name, author, year, pages, status, _id } = book;
   const bookId = _id;
 
@@ -54,10 +55,17 @@ const ModalUpdateForm: FC<Props> = ({ book, hide }) => {
       status: yup.string(),
     }),
 
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const { name, author, year, pages, status } = values;
-      console.log(status);
-      booksApi.updateBookInfo({ bookId, name, author, year, pages, status });
+      const updatedBook = await booksApi.updateBookInfo({
+        bookId,
+        name,
+        author,
+        year,
+        pages,
+        status,
+      });
+      onUpdate(updatedBook.data);
       hide();
       formik.resetForm();
     },
