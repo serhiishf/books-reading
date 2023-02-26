@@ -288,6 +288,8 @@
     "pages": "Стор.",
     "date": "Дата",
     "amountOfPages": "Кількість сторінок",
-    "statisctics": "СТАТИСТИКА"
+    "statisctics": "СТАТИСТИКА",
+    "start": "Початок",
+    "finish": "Закінчення"
   }
 }

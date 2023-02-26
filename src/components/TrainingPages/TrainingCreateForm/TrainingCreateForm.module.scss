@@ -6,20 +6,40 @@
 /* .createForm {
 
 } */
+.overlayControlPanel {
+  @include for-size(mobile-only) {
+    width: 0vw;
+    height: 100vh;
+    position: fixed;
+    top: 60px;
+    left: -100%;
+    opacity: 0;
+    padding: 25px;
+    gap: 20px;
+
+    &.openControlPanel {
+      top: 60px;
+      left: 0;
+      width: 100vw;
+      opacity: 1;
+      background-color: $bg-color-blue;
+    }
+  }
+}
 
 .controlPanel {
   display: flex;
   flex-direction: column;
   gap: 25px;
-  @include for-size(mobile-only) {
-    gap: 20px;
+  
+}
+
+.buttonBackWrap {
+
+  &.hidden {
+    display: none;
   }
 }
-/* 
-.listBooks{
-  
-} 
-*/
 
 .calendarsWrap {
   display: flex;
@@ -32,3 +52,32 @@
   }
 }
 
+.selectWrap {
+  display: flex;
+  gap: 46px;
+  @include for-size(tablet-only) {
+    flex-direction: column;
+    gap: 35px;
+    align-items: center;
+  }
+}
+
+.dropdownWrap {
+  width: 100%;
+}
+.buttonWrap {
+  min-width: 171px;
+}
+
+.btnPLusWrap {
+  display: none;
+  @include for-size(mobile-only) {
+    display: flex;
+    justify-content: center;
+  }
+}
+/* 
+.listBooks{
+  
+} 
+*/
