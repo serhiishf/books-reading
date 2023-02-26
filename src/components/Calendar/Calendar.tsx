@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import { ReactComponent as CalendarIcon } from './assets/calendar.svg';
@@ -13,9 +13,10 @@ interface CalendarProps {
   onlyAfter?: boolean;
   today?: boolean;
   open?: boolean;
+  setDate?: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Calendar({ placeHolder, onlyAfter, today, open }: CalendarProps) {
+function Calendar({ placeHolder, onlyAfter, today, open, setDate }: CalendarProps) {
   const CustomInput = ({ value, onClick }: { value: string, onClick: () => void }) => (
     <div className={styles.regularInput} onClick={onClick}>
       <CalendarIcon style={{ minWidth: '17px', minHeight: '17px' }} />
@@ -33,6 +34,21 @@ function Calendar({ placeHolder, onlyAfter, today, open }: CalendarProps) {
     return currentDate.isAfter(moment(), 'day');
   };
 
+  useEffect(() => {
+    if (today && setDate) setDate(new Date().toISOString());
+  }, []);
+
+
+  const handleDateChange = (date: string | moment.Moment): void => {
+    if (typeof date !== 'string') {
+      date = date.endOf('day').toISOString();
+    }
+    if (setDate) {
+      setDate(moment(date).endOf('day').toISOString());
+    }
+    console.log(date);
+  };
+
   return (
     <div>
       <Datetime
@@ -43,6 +59,7 @@ function Calendar({ placeHolder, onlyAfter, today, open }: CalendarProps) {
         isValidDate={onlyAfter && !today ? isAfter : undefined}
         initialValue={today ? new Date() : undefined}
         open={open ? false : undefined}
+        onChange={handleDateChange}
       />
     </div>
   );

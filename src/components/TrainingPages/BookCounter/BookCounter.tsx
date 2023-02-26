@@ -6,8 +6,8 @@ import CountItem from './CountItem';
 import CountItemSmall from './CountItemSmall';
 
 interface BookCounterProps {
-  books: number;
-  days: number;
+  books: number | string;
+  days: number | string;
   leftReading?: number;
 }
 

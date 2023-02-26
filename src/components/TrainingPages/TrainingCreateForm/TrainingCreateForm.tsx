@@ -10,7 +10,13 @@ import Button from '../Button';
 import { ButtonType } from '../Button/Button';
 import ButtonBack from '../../ButtonBack';
 
-function TrainingCreateForm() {
+interface TrainingCreateFormProps {
+  setSelectedBook: React.Dispatch<React.SetStateAction<number>>;
+  setStartDate: React.Dispatch<React.SetStateAction<string>>;
+  setEndDate: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function TrainingCreateForm({ /* setSelectedBook, */ setStartDate, setEndDate }: TrainingCreateFormProps) {
   const { t } = useTranslation();
   const [books, setBooks] = useState<Book[]>([]);
   const [controlPanelOpen, setControlPanelOpen] = useState(false);
@@ -45,10 +51,12 @@ function TrainingCreateForm() {
               placeHolder={t('training.start')}
               today={true}
               open={true}
+              setDate={setStartDate}
             />
             <Calendar
               placeHolder={t('training.finish')}
               onlyAfter={true}
+              setDate={setEndDate}
             />
           </div>
           <div className={styles.selectWrap}>
