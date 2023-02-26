@@ -13,12 +13,19 @@
 }
 
 .mainContent {
+  display: flex;
+  flex-direction: column;
   max-width: 886px;
   width: 100%;
+  gap: 40px;
   @include for-size(tablet-only) {
     max-width: 100%;
     order: 2;
   }
+}
+
+.startBtnWrap {
+  align-self: center;
 }
 
 .sidebar {

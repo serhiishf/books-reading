@@ -42,7 +42,7 @@ export interface Book {
     name: string;
     email: string;
   };
-  resume: string;
+  resume: string | null;
   rating: number | null;
   __v: number;
 }
@@ -59,8 +59,14 @@ const getAllBooks = async (): Promise<Book[]> => {
 };
 
 const getBookById = async (bookId: string) => {
-  const result = await axiosInstance.get(`/books/book/?bookId=${bookId}`);
-  return result;
+  try {
+    const responce = await axiosInstance.get(`/books/book/?bookId=${bookId}`);
+    const result: Book = responce.data.data;
+    return result;
+  } catch (error) {
+    console.error(`Error fetching books: ${error}`);
+  }
+  
 };
 
 const getBooksByStatus = async (status: string) => {

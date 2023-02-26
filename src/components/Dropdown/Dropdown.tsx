@@ -1,8 +1,14 @@
 import React from 'react';
-import Select, { StylesConfig, } from 'react-select';
-import { PropsDropdown } from './Dropdown.interface';
+import Select, { StylesConfig, MultiValue, ActionMeta } from 'react-select';
+import { PropsDropdown, DropdownOption } from './Dropdown.interface';
 
-const Dropdown: React.FC<PropsDropdown> = ({ placeHolder, options, noOptionsMessage }) => {
+const Dropdown: React.FC<PropsDropdown> = ({ placeHolder, options, noOptionsMessage, onChange }) => {
+
+  const handleChange = (selectedOptions: MultiValue<unknown>,  actionMeta: ActionMeta<unknown>) => {
+    const valueArr = (selectedOptions as DropdownOption[]).map(option => option.value);
+    onChange(valueArr);
+  };
+
   const customStyles: StylesConfig = {
     menu: (styles) => ({
       ...styles,
@@ -32,6 +38,7 @@ const Dropdown: React.FC<PropsDropdown> = ({ placeHolder, options, noOptionsMess
         noOptionsMessage={() => noOptionsMessage}
         isMulti
         options={options}
+        onChange={handleChange}
       />
     </>
   );

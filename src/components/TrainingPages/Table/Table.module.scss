@@ -1,0 +1,27 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.mainWrap {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tHead {
+  //display: block;
+  min-height: 40px;
+  border-top: 1px $table-line solid;
+  border-bottom: 1px $table-line solid;
+  color: $secondary-text-color;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 38px;
+}
+
+.textItem {
+  text-align: left;
+}
+.numberItem {
+  text-align: right;
+}

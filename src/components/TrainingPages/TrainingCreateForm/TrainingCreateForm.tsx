@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import styles from './TrainingCreateForm.module.scss';
 import { useTranslation } from 'react-i18next';
-import booksApi, { Book } from '../../../services/books/books-service';
+import booksApi, { Book, BookT } from '../../../services/books/books-service';
 import Subheader from '../Subheader';
 import Calendar from '../../Calendar';
 import Dropdown from '../../Dropdown';
@@ -11,15 +11,17 @@ import { ButtonType } from '../Button/Button';
 import ButtonBack from '../../ButtonBack';
 
 interface TrainingCreateFormProps {
-  setSelectedBook: React.Dispatch<React.SetStateAction<number>>;
+  setSelectedBookCount: React.Dispatch<React.SetStateAction<number>>;
   setStartDate: React.Dispatch<React.SetStateAction<string>>;
   setEndDate: React.Dispatch<React.SetStateAction<string>>;
+  setAddedBooks: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-function TrainingCreateForm({ /* setSelectedBook, */ setStartDate, setEndDate }: TrainingCreateFormProps) {
+function TrainingCreateForm({ setStartDate, setEndDate, setAddedBooks }: TrainingCreateFormProps) {
   const { t } = useTranslation();
   const [books, setBooks] = useState<Book[]>([]);
   const [controlPanelOpen, setControlPanelOpen] = useState(false);
+  const [selectedBooks, setSelectedBooks] = useState<string[]>([]);
 
   const toggleStateControlPanel = () => {
     setControlPanelOpen(!controlPanelOpen);
@@ -33,7 +35,7 @@ function TrainingCreateForm({ /* setSelectedBook, */ setStartDate, setEndDate }:
     fetchBooks();
   }, []);
   const handleSubmit = () => {
-    console.log('Submit btn');
+    setAddedBooks(selectedBooks);
   };
 
   return (
@@ -63,8 +65,9 @@ function TrainingCreateForm({ /* setSelectedBook, */ setStartDate, setEndDate }:
             <div className={styles.dropdownWrap}>
               <Dropdown
                 placeHolder={t('training.chooseBookFromLibrary')}
-                options={books.map(book => ({ value: book.name, label: book.name }))}
+                options={books.map(book => ({ value: book._id, label: book.name }))}
                 noOptionsMessage={t('training.noBookMore')}
+                onChange={setSelectedBooks}
               />
             </div>
             <div className={styles.buttonWrap}>

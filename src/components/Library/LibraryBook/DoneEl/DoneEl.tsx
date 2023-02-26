@@ -29,7 +29,7 @@ const DoneEl = ({ _id, rating, resume }: DoneT) => {
             <ModalResume
               bookId={_id}
               rating={rating}
-              resume={resume}
+              resume={resume ? resume : ''}
               isOpen={isShown}
               hide={toggle}
             />
