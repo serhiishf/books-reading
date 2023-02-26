@@ -1,13 +1,14 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixins';
 
-.mainWrap {
+.table {
   width: 100%;
   border-collapse: collapse;
+
+  table-layout: fixed; 
 }
 
 .tHead {
-  //display: block;
   min-height: 40px;
   border-top: 1px $table-line solid;
   border-bottom: 1px $table-line solid;
@@ -20,8 +21,58 @@
 }
 
 .textItem {
+  max-width: 37%;
   text-align: left;
 }
 .numberItem {
+  width: 70px;
   text-align: right;
+}
+.deleteColumn {
+  width: 40px;
+}
+
+
+.booksItem {
+  height: 48px;
+  @include for-size(tablet-only) {
+    border-bottom: 1px $table-line solid;
+  }
+
+  &__bookTitleContent {
+    display: flex;
+    gap: 17px;
+    text-overflow: ellipsis;
+  }
+  &__svgWrap {
+
+  }
+  &__numberItem {
+    text-align: right;
+  }
+  &__textItem {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__deleteColumn{
+    width: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  &__deleteBtn {
+    all:unset;
+    display: flex;
+    cursor: pointer;
+    text-align: center;
+    justify-content: end;
+  }
+  &__deleteBtnSvgWrap {
+    height: 18px;
+    width: 14px;
+    transition: all 250ms ease-in-out, transform 150ms ease;
+    &:hover {
+      scale: 120%;
+      transition: all 250ms ease-in-out, transform 150ms ease;
+    }
+  }
 }

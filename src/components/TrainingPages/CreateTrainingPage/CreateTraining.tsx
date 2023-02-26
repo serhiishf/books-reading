@@ -12,12 +12,16 @@ import { ButtonType } from '../Button/Button';
 
 function CreateTraining() {
   const { t } = useTranslation();
-  const [selectedBookCount, setSelectedBookCount] = useState(0);
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [bookCounterDays, setBookCounterDays] = useState<number>(0);
   const [addedBooksID, setAddedBooksID] = useState<string[]>([]);
   const [addedBooks, setAddedBooks] = useState<Book[]>([]);
+
+  function handleDeleteBook(id: string) {
+    const updatedBooks = addedBooksID.filter((bookId) => bookId !== id);
+    setAddedBooksID(updatedBooks);
+  }
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -50,7 +54,6 @@ function CreateTraining() {
     <div className={styles.wrapper}>
       <div className={styles.mainContent}>
         <TrainingCreateForm
-          setSelectedBookCount={setSelectedBookCount}
           setStartDate={setStartDate}
           setEndDate={setEndDate}
           setAddedBooks={setAddedBooksID}
@@ -59,6 +62,7 @@ function CreateTraining() {
           canDelete={true}
           canMarkedDone={true}
           books={addedBooks}
+          deleteItemFunc={handleDeleteBook}
         />
         <div className={styles.startBtnWrap}>
           <Button
@@ -70,7 +74,7 @@ function CreateTraining() {
       </div>
       <div className={styles.sidebar}>
         <BookCounter
-          books={selectedBookCount}
+          books={addedBooks.length}
           days={bookCounterDays}
         />
       </div>

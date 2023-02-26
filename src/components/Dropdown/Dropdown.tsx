@@ -5,6 +5,9 @@ import { PropsDropdown, DropdownOption } from './Dropdown.interface';
 const Dropdown: React.FC<PropsDropdown> = ({ placeHolder, options, noOptionsMessage, onChange }) => {
 
   const handleChange = (selectedOptions: MultiValue<unknown>,  actionMeta: ActionMeta<unknown>) => {
+    if(!actionMeta) {
+      //console.log('its only for type');
+    }
     const valueArr = (selectedOptions as DropdownOption[]).map(option => option.value);
     onChange(valueArr);
   };

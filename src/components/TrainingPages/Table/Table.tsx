@@ -1,42 +1,61 @@
 import React from 'react';
 import styles from './Table.module.scss';
-import { BookT, Book } from '../../../services/books/books-service';
+import classNames from 'classnames';
+import { Book } from '../../../services/books/books-service';
 import { useTranslation } from 'react-i18next';
+import { ReactComponent as BookIcon } from './assets/book.svg';
+import { ReactComponent as DeleteIcon } from './assets/delete.svg';
 
 interface TableProps {
-  canDelete: boolean,
-  canMarkedDone: boolean,
+  canDelete?: boolean,
+  canMarkedDone?: boolean,
   books: Book[];
+  deleteItemFunc: (id: string) => void;
 }
 
-function Table({ canDelete, canMarkedDone, books }: TableProps) {
+function Table({ canDelete, books, deleteItemFunc }: TableProps) {
   const { t } = useTranslation();
-  /*   const handleDelete = (index) => {
-    const newRows = [...rows];
-    newRows.splice(index, 1);
-    props.setRows(newRows);
-  }; */
+  const handleDeleteBtn = (id: string) => {
+    console.log('delete btn');
+    deleteItemFunc(id);
+  };
 
   return (
-    <table className={styles.mainWrap}>
+    <table className={styles.table}>
       <thead className={styles.tHead}>
         <tr>
           <th className={styles.textItem}>{t('training.bookTitle')}</th>
           <th className={styles.textItem}>{t('training.author')}</th>
           <th className={styles.numberItem}>{t('training.year')}</th>
           <th className={styles.numberItem}>{t('training.pages')}</th>
-          <th></th>
+          <th className={classNames(canDelete && styles.deleteColumn)}></th>
         </tr>
       </thead>
       <tbody>
         {books.map((book) => (
-          <tr key={book.name}>
-            <td>{book.name}</td>
-            <td>{book.author}</td>
-            <td className={styles.numberItem}>{book.year}</td>
-            <td className={styles.numberItem}>{book.pages}</td>
-            <td></td>
-            {canDelete && <td><button>Delete</button></td>}
+          <tr className={styles.booksItem} key={book.name}>
+            <td className={styles.booksItem__textItem}>
+              <div className={styles.booksItem__bookTitleContent}>
+                <div className={styles.booksItem__svgWrap}>
+                  <BookIcon />
+                </div>
+                {book.name}
+              </div>
+            </td>
+            <td className={styles.booksItem__textItem}>{book.author}</td>
+            <td className={styles.booksItem__numberItem}>{book.year}</td>
+            <td className={styles.booksItem__numberItem}>{book.pages}</td>
+            {canDelete && <td>
+              <div className={styles.booksItem__deleteColumn}>
+                <button
+                  className={styles.booksItem__deleteBtn}
+                  onClick={() => handleDeleteBtn(book._id)}>
+                  <div className={styles.booksItem__deleteBtnSvgWrap}>
+                    <DeleteIcon />
+                  </div>
+                </button>
+              </div>
+            </td>}
           </tr>
         ))}
       </tbody>
