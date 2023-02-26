@@ -65,7 +65,7 @@ const LibraryBook: React.FC<BookProps> = ({ book, update, onDelete }) => {
           <DoneEl
             _id={book._id}
             rating={book.rating}
-            resume={book.resume}
+            resume={book.resume? book.resume : ''}
             onUpdate={update}
           />
         ) : null}
