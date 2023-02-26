@@ -18,7 +18,7 @@ type UpdateStatusT = {
 type UpdateResumeT = {
   bookId: string;
   resume?: string;
-  rating?: number | null;
+  rating?: number;
 };
 
 export type UpdateBookT = {
