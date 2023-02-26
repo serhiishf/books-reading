@@ -145,7 +145,7 @@ export default function RegisterForm() {
         btnClass={btnStyles.login}
         title={t('auth.register')}
       />
-      <span>{t('auth.exAcc')}</span>
+      <span className={styles.textLog}>{t('auth.exAcc')}</span>
       <Link to="/login" className={styles.link}>
         {t('auth.login')}
       </Link>

@@ -46,6 +46,14 @@
 //   color: $secondary-text-color;
 // }
 
+.textLog {
+  color: $txt-color-white;
+
+  @include for-size(tablet) {
+    color: $secondary-text-color;
+  }
+}
+
 .loaderWrapper {
   position: fixed;
   width: 100vw;

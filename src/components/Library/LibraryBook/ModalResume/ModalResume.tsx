@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useState, ChangeEvent } from 'react';
-import Rating from './Rating';
+import Rating from '../Rating';
 import styles from './ModalResume.module.scss';
 import { useTranslation } from 'react-i18next';
-import booksApi from '../../../services/books/books-service';
+import booksApi from '../../../../services/books/books-service';
 
 export interface ModalProps {
   bookId: string;
