@@ -36,7 +36,6 @@ const ModalResume: FunctionComponent<ModalProps> = ({
       resume: message,
       rating: newRating,
     });
-    console.log(updatedBook?.data);
     onUpdate(updatedBook?.data);
     hide();
   };
