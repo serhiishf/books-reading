@@ -74,7 +74,7 @@ const ModalUpdateForm: FC<Props> = ({ book, hide, onUpdate }) => {
   return (
     <div className={formStyles.modalFormWrapper}>
       <form
-        className={formStyles.form}
+        className={formStyles.formUpdate}
         onSubmit={formik.handleSubmit}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
