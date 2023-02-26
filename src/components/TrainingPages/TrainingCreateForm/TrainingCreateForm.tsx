@@ -39,12 +39,20 @@ function TrainingCreateForm({ setStartDate, setEndDate, setAddedBooks }: Trainin
 
   return (
     <form className={styles.createForm}>
-      <div className={classNames(styles.overlayControlPanel, controlPanelOpen && styles.openControlPanel)}>
+      <div
+        className={classNames(
+          styles.overlayControlPanel,
+          controlPanelOpen && styles.openControlPanel,
+        )}
+      >
         <div className={classNames(styles.controlPanel)}>
-          <div className={classNames(styles.buttonBackWrap, !controlPanelOpen && styles.hidden)}>
-            <ButtonBack
-              handleClick={toggleStateControlPanel}
-            />
+          <div
+            className={classNames(
+              styles.buttonBackWrap,
+              !controlPanelOpen && styles.hidden,
+            )}
+          >
+            <ButtonBack handleClick={toggleStateControlPanel} />
           </div>
           <Subheader title={t('training.myTraining')} />
           <div className={styles.calendarsWrap}>

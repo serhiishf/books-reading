@@ -3,10 +3,6 @@ import { ReactComponent as Star } from '../../../../assets/img/star.svg';
 import { ReactComponent as FullStar } from '../../../../assets/img/starFull.svg';
 import styles from './Rating.module.scss';
 
-// type Props = {
-//   rating: number | null;
-// };
-
 interface RatingProps {
   count: number;
   className?: string;

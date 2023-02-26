@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState, ChangeEvent } from 'react';
 import Rating from '../Rating';
 import styles from './ModalResume.module.scss';
 import { useTranslation } from 'react-i18next';
-import booksApi from '../../../../services/books/books-service';
+import booksApi, { Book } from '../../../../services/books/books-service';
 
 export interface ModalProps {
   bookId: string;
@@ -10,15 +10,8 @@ export interface ModalProps {
   hide: () => void;
   resume: string;
   rating: number | null;
+  onUpdate: (updatedBook: Book) => void;
 }
-
-// const bookId = '63f50f95a6e01486dd1cad4e';
-// const resume =
-//   'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum';
-
-// const rating = 3;
-
-// booksApi.updateBookResume({ bookId, resume, rating });
 
 const ModalResume: FunctionComponent<ModalProps> = ({
   bookId,
@@ -26,10 +19,11 @@ const ModalResume: FunctionComponent<ModalProps> = ({
   resume,
   isOpen,
   hide,
+  onUpdate,
 }) => {
   const { t } = useTranslation();
   const [message, setMessage] = useState(resume);
-  const [newRating, setNewRating] = React.useState(rating);
+  const [newRating, setNewRating] = React.useState(() => (rating ? rating : 0));
 
   const handleResume = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
@@ -37,11 +31,26 @@ const ModalResume: FunctionComponent<ModalProps> = ({
   };
 
   const handleChanges = async () => {
-    await booksApi.updateBookResume({
+    const objForSending: {
+      bookId: string;
+      resume?: string;
+      rating?: number;
+    } = {
       bookId,
-      resume: message,
-      rating: newRating,
-    });
+    };
+
+    if (message !== '') {
+      objForSending.resume = message;
+    }
+    if (newRating !== 0) {
+      objForSending.rating = newRating;
+    }
+
+    if (objForSending.rating || objForSending.resume) {
+      const updatedBook = await booksApi.updateBookResume(objForSending);
+      onUpdate(updatedBook?.data);
+    }
+
     hide();
   };
 
@@ -53,7 +62,7 @@ const ModalResume: FunctionComponent<ModalProps> = ({
             <h3 className={styles.title}>{t('library.leftRating')}</h3>
             <Rating
               count={5}
-              value={newRating || 0}
+              value={newRating}
               edit={true}
               onChange={(value) => setNewRating(value)}
             />

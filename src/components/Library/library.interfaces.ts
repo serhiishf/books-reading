@@ -9,4 +9,6 @@ export interface BooksI {
 export interface BookProps {
   book: Book;
   index: number;
+  update: (updatedBook: Book) => void;
+  onDelete: (deletedBook: Book) => void;
 }
