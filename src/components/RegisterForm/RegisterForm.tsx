@@ -105,7 +105,7 @@ export default function RegisterForm() {
           labelName={t('auth.email')}
           name={'email'}
           type={'text'}
-          value={formik.values.email}
+          value={formik.values.email.toLowerCase()}
           handleChange={formik.handleChange}
         />
         {formik.errors.email && formik.touched.email ? (

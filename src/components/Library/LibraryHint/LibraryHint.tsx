@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './LibraryHint.module.scss';
 import { ReactComponent as Flag } from '../../../assets/img/flag.svg';
 import { ReactComponent as Arr } from '../../../assets/img/ancle-arr.svg';
 import { ReactComponent as Book } from '../../../assets/img/book.svg';
 import { useTranslation } from 'react-i18next';
 
-export default function LibraryHint() {
+// type Props = {
+//   hasBooks: boolean|undefined;
+// };
+
+const LibraryHint = () => {
   const { t } = useTranslation();
 
   return (
@@ -36,4 +40,6 @@ export default function LibraryHint() {
       </ul>
     </div>
   );
-}
+};
+
+export default LibraryHint;

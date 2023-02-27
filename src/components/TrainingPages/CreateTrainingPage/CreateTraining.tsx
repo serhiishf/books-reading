@@ -9,7 +9,9 @@ import { Book } from '../../../services/books/books-service';
 import booksApi from '../../../services/books/books-service';
 import Button from '../Button';
 import { ButtonType } from '../Button/Button';
-import trainingApi, { CreateTrainingInterface } from '../../../services/training/training-service';
+import trainingApi, {
+  CreateTrainingInterface,
+} from '../../../services/training/training-service';
 import TrainingDiagram from '../../TrainingDiagram';
 import { toast } from 'react-toastify';
 
@@ -34,6 +36,7 @@ function CreateTraining({ handleSuccess }: CreateTrainingProps) {
     if (startDate && endDate) {
       const days = moment(endDate).diff(moment(startDate), 'days');
       setBookCounterDays(days);
+      // console.log(bookCounterDays);
     }
   }, [startDate, endDate]);
 
@@ -51,7 +54,6 @@ function CreateTraining({ handleSuccess }: CreateTrainingProps) {
       setAddedBooks([]);
     }
   }, [addedBooksID]);
-
 
   const checkPermitionCreate = (): boolean => {
     if (endDate === '') {
@@ -99,7 +101,7 @@ function CreateTraining({ handleSuccess }: CreateTrainingProps) {
           />
         </div>
         <div className={styles.wrapChartDiagram}>
-          <TrainingDiagram isRealTraining={false} />
+          <TrainingDiagram isRealTraining={true} />
         </div>
       </div>
       <div className={styles.sidebar}>
