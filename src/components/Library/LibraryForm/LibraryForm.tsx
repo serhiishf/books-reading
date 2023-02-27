@@ -1,4 +1,4 @@
-import React, { FC} from 'react';
+import React, { FC } from 'react';
 import styles from './LibraryForm.module.scss';
 import Input from '../../Input';
 import { useFormik } from 'formik';
@@ -47,8 +47,19 @@ const LibraryForm: FC<Props> = ({ onAdd }) => {
     }),
     onSubmit: async (values) => {
       const { name, author, year, pages } = values;
-      const newBook = await booksApi.createBook({ name, author, year, pages });
-      onAdd(newBook?.data);
+
+      if (year === '') {
+        const newBook = await booksApi.createBook({ name, author, pages });
+        onAdd(newBook?.data);
+      } else {
+        const newBook = await booksApi.createBook({
+          name,
+          author,
+          year,
+          pages,
+        });
+        onAdd(newBook?.data);
+      }
       formik.resetForm();
     },
   });
