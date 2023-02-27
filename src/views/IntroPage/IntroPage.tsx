@@ -43,16 +43,12 @@ interface AboutAppI {
 
 export default function IntroPage() {
   const { t } = useTranslation();
-  const [isAboutUs, setIsAboutUs] = useState(true);
-  const [btnTitle, setBtnTitle] = useState(t('introPage.aboutApp'));
+  const [isAboutUs, setIsAboutUs] = useState(false);
   const authors = t('authors', { returnObjects: true }) as AuthorI[];
   const aboutApp = t('aboutApp', { returnObjects: true }) as AboutAppI[];
 
   const handleClick = () => {
     setIsAboutUs(!isAboutUs);
-    isAboutUs
-      ? setBtnTitle(t('introPage.aboutUs'))
-      : setBtnTitle(t('introPage.aboutApp'));
   };
 
   return (
@@ -91,7 +87,8 @@ export default function IntroPage() {
           type="button"
           handleClick={handleClick}
           btnClass={styles.buttonAbout}
-          title={btnTitle ? btnTitle : ''}
+          // title={btnTitle ? btnTitle : ''}
+          title={isAboutUs ? t('introPage.aboutApp') : t('introPage.aboutUs')}
         />
       </div>
     </div>
