@@ -66,7 +66,6 @@ const getBookById = async (bookId: string) => {
   } catch (error) {
     console.error(`Error fetching books: ${error}`);
   }
-  
 };
 
 const getBooksByStatus = async (status: string) => {

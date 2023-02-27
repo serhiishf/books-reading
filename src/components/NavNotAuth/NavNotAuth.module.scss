@@ -1,10 +1,14 @@
 @import '../../scss/variables';
+@import '../../scss/mixins';
 
 .navWrapper {
   display: flex;
   color: $accent-color;
-  font-size: 20px;
-  font-weight: 600;
+
+  @include for-size(tablet) {
+    font-size: 20px;
+    font-weight: 600;
+  }
 }
 
 .navLink {

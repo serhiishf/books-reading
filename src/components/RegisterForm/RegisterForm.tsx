@@ -58,6 +58,7 @@ export default function RegisterForm() {
     }),
     onSubmit: async (values) => {
       const { name, email, password } = values;
+      console.log(email);
       dispatch(authOperations.register({ name, email, password })).then(
         (res: RegRes) => {
           if (res) {

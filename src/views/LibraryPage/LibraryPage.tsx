@@ -5,19 +5,23 @@ import LibraryHint from '../../components/Library/LibraryHint';
 import booksApi, { Book } from '../../services/books/books-service';
 import LibraryBooksList from '../../components/Library/LibraryBooksList';
 
-type HasBooks = boolean | undefined;
+enum Status {
+  'PENDING' = 'pending',
+  'ACTIVE' = 'active',
+  'NOTACTIVE' = 'notActive',
+}
 
 const LibraryPage = () => {
   const [booksUser, setBooksUser] = useState<Book[]>([]);
-  const [hasBooks, setHasBooks] = useState<HasBooks>(true);
+  const [status, setStatus] = useState(Status.PENDING);
 
   const getHasBooks = async () => {
     const data = await booksApi.getAllBooks();
     setBooksUser(data);
     if (data.length) {
-      setHasBooks(true);
+      setStatus(Status.ACTIVE);
     } else {
-      setHasBooks(false);
+      setStatus(Status.NOTACTIVE);
     }
   };
 
@@ -27,6 +31,7 @@ const LibraryPage = () => {
 
   const handleAddBook = (newBook: Book) => {
     setBooksUser([...booksUser, newBook]);
+    setStatus(Status.ACTIVE);
   };
 
   const handleDeleteBook = (deletedBook: Book) => {
@@ -34,6 +39,9 @@ const LibraryPage = () => {
       (book) => book._id !== deletedBook._id,
     );
     setBooksUser(updatedBooks);
+    if (!updatedBooks.length) {
+      setStatus(Status.NOTACTIVE);
+    }
   };
 
   const handleUpdateBook = (updatedBook: Book) => {
@@ -46,15 +54,14 @@ const LibraryPage = () => {
   return (
     <div className={styles.wrapper}>
       <LibraryForm onAdd={handleAddBook} />
-      {hasBooks ? (
+      {status === Status.ACTIVE && (
         <LibraryBooksList
           books={booksUser}
-          handleUpdate={handleUpdateBook}
           handleDelete={handleDeleteBook}
+          handleUpdate={handleUpdateBook}
         />
-      ) : (
-        <LibraryHint />
       )}
+      {status === Status.NOTACTIVE && <LibraryHint />}
     </div>
   );
 };
