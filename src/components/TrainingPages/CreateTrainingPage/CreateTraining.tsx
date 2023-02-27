@@ -9,6 +9,7 @@ import { Book } from '../../../services/books/books-service';
 import booksApi from '../../../services/books/books-service';
 import Button from '../Button';
 import { ButtonType } from '../Button/Button';
+import trainingApi, { CreateTrainingInterface } from '../../../services/training/training-service';
 import TrainingDiagram from '../../TrainingDiagram';
 
 function CreateTraining() {
@@ -20,8 +21,8 @@ function CreateTraining() {
   const [addedBooks, setAddedBooks] = useState<Book[]>([]);
 
   function handleDeleteBook(id: string) {
-    const updatedBooks = addedBooksID.filter((bookId) => bookId !== id);
-    setAddedBooksID(updatedBooks);
+    const updatedBooks = addedBooks.filter((book) => book._id !== id);
+    setAddedBooks(updatedBooks);
   }
 
   useEffect(() => {
@@ -47,7 +48,28 @@ function CreateTraining() {
     }
   }, [addedBooksID]);
 
+
+  const checkPermitionCreate = (): boolean => {
+    if (endDate === '') {
+      alert('Add Finish Date!');
+      return false;
+    } else if (addedBooksID.length === 0) {
+      console.log('Add book in your training');
+      return false;
+    }
+    return true;
+  };
+
   const handleStartBtn = () => {
+    if (checkPermitionCreate()) {
+      trainingApi.createTraining({
+        start: startDate.replace('T', ' '),
+        finish: endDate.replace('T', ' '),
+        books: addedBooksID.map((bookId: string) => {
+          return { book: bookId };
+        }),
+      });
+    }
     console.log('Start btn');
   };
 
