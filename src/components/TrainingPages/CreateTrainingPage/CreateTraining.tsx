@@ -11,8 +11,13 @@ import Button from '../Button';
 import { ButtonType } from '../Button/Button';
 import trainingApi, { CreateTrainingInterface } from '../../../services/training/training-service';
 import TrainingDiagram from '../../TrainingDiagram';
+import { toast } from 'react-toastify';
 
-function CreateTraining() {
+interface CreateTrainingProps {
+  handleSuccess: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function CreateTraining({ handleSuccess }: CreateTrainingProps) {
   const { t } = useTranslation();
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
@@ -39,7 +44,6 @@ function CreateTraining() {
       );
       const books = response.filter((book) => book !== undefined) as Book[];
       setAddedBooks(books);
-      console.log(response);
     };
     if (addedBooksID.length > 0) {
       fetchBooks();
@@ -54,7 +58,7 @@ function CreateTraining() {
       alert('Add Finish Date!');
       return false;
     } else if (addedBooksID.length === 0) {
-      console.log('Add book in your training');
+      alert('Add book in your training!');
       return false;
     }
     return true;
@@ -69,8 +73,8 @@ function CreateTraining() {
           return { book: bookId };
         }),
       });
+      handleSuccess('true');
     }
-    console.log('Start btn');
   };
 
   return (
