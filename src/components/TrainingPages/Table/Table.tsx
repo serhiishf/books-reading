@@ -10,14 +10,16 @@ interface TableProps {
   canDelete?: boolean,
   canMarkedDone?: boolean,
   books: Book[];
-  deleteItemFunc: (id: string) => void;
+  deleteItemFunc?: (id: string) => void;
 }
 
 function Table({ canDelete, books, deleteItemFunc }: TableProps) {
   const { t } = useTranslation();
   const handleDeleteBtn = (id: string) => {
     console.log('delete btn');
-    deleteItemFunc(id);
+    if (deleteItemFunc) {
+      deleteItemFunc(id);
+    }
   };
 
   return (

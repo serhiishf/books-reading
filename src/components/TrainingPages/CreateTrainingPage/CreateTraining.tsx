@@ -71,6 +71,9 @@ function CreateTraining() {
             title={t('training.startTaining')}
           />
         </div>
+        <div className={styles.wrapChartDiagram}>
+          {/* TODO: insert diagram here */}
+        </div>
       </div>
       <div className={styles.sidebar}>
         <BookCounter

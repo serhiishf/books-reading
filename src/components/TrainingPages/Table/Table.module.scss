@@ -60,11 +60,11 @@
     justify-content: center;
   }
   &__deleteBtn {
-    all:unset;
+    all: unset;
     display: flex;
     cursor: pointer;
     text-align: center;
-    justify-content: end;
+    justify-content: flex-end;
   }
   &__deleteBtnSvgWrap {
     height: 18px;
