@@ -30,8 +30,21 @@
   }
 }
 
-/* 
-.done {
 
+.done {
+  color: #ffffff;
+  background-color: $accent-color;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  min-height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @include for-size(only-tablet) {
+    width: 320px;
+  }
+  &:hover {
+    background-color: $hover-color;
+  }
 } 
-*/

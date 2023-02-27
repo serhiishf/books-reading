@@ -36,14 +36,12 @@ const LibraryBook: React.FC<BookProps> = ({ book, update, onDelete }) => {
 
   return (
     <li
-      className={`${
-        book.status === BookStatus.DONE ? styles.itemDone : styles.bookItem
+      className={`${book.status === BookStatus.DONE ? styles.itemDone : styles.bookItem
       }`}
     >
       <div className={styles.bookName}>
         <BookImg
-          className={`${styles.icon} ${
-            book.status === BookStatus.ACTIVE ? styles.iconActive : ''
+          className={`${styles.icon} ${book.status === BookStatus.ACTIVE ? styles.iconActive : ''
           }`}
         />
         <span>{book.name}</span>
@@ -70,10 +68,9 @@ const LibraryBook: React.FC<BookProps> = ({ book, update, onDelete }) => {
           />
         ) : null}
         <button
-          className={`${
-            book.status === BookStatus.DONE
-              ? styles.btnEditDone
-              : styles.btnEditPending
+          className={`${book.status === BookStatus.DONE
+            ? styles.btnEditDone
+            : styles.btnEditPending
           }`}
           onClick={toggle}
         >
@@ -90,10 +87,9 @@ const LibraryBook: React.FC<BookProps> = ({ book, update, onDelete }) => {
           </Portal>
         )}
         <button
-          className={`${
-            book.status === BookStatus.DONE
-              ? styles.btnDelDone
-              : styles.btnDelPending
+          className={`${book.status === BookStatus.DONE
+            ? styles.btnDelDone
+            : styles.btnDelPending
           }`}
           onClick={onOpenClick}
         >
