@@ -36,7 +36,7 @@ const DoneEl: FC<Props> = ({ _id, rating, resume, onUpdate }) => {
             <ModalResume
               bookId={_id}
               rating={rating}
-              resume={resume ? resume : ''}
+              resume={resume}
               isOpen={isShown}
               hide={toggle}
               onUpdate={onUpdate}

@@ -42,7 +42,7 @@ export interface Book {
     name: string;
     email: string;
   };
-  resume: string | null;
+  resume: string;
   rating: number | null;
   __v: number;
 }
