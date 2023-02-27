@@ -285,6 +285,7 @@
     "amountOfPages": "Amount of pages",
     "statisctics": "STATISTICS",
     "start": "Start",
-    "finish": "Finish"    
+    "finish": "Finish",
+    "diagramTitle": "Number of pages / day"
   }
 }

@@ -10,7 +10,7 @@
 }
 
 .containerWrap {
-  max-width: 1280px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   @include for-size(desctop-only) {
@@ -22,4 +22,12 @@
   @include for-size(mobile-only) {
     padding: 0 25px;
   }
+}
+
+.bottomPosition {
+  margin-top: 40px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
 }
