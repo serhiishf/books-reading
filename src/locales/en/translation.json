@@ -140,7 +140,11 @@
       "name": "Serhii",
       "role": "Team Lead",
       "gitHubPath": "https://github.com/serhiishf",
-      "cases": ["Setting up web hosting and server infrastructure", "Development of a training page", "Leading and managing a team's work"]
+      "cases": [
+        "Setting up web hosting and server infrastructure",
+        "Development of a training page",
+        "Leading and managing a team's work"
+      ]
     },
     {
       "name": "Kateryna",
@@ -155,7 +159,10 @@
       "cases": [
         "all functionality of Backend",
         "this beautiful Intro Page",
-        "and Large Procrastination :)"
+        "404 Page",
+        "Modal windows and Portal Component",
+        "Diagram Component and logic",
+        "Bud fixes and code review"
       ]
     },
 
