@@ -51,7 +51,9 @@
     "aboutApp": "About app",
     "seeMore": "see more",
     "helpYou": "Will help you to",
-    "youMayAlso": "You may also"
+    "youMayAlso": "You may also",
+    "titleApp": "Do you know what is 'Book Reading'?",
+    "titleAuthors": "Do you know who develop 'Book Reading'?"
   },
 
   "navigation": {
@@ -138,7 +140,7 @@
       "name": "Serhii",
       "role": "Team Lead",
       "gitHubPath": "https://github.com/serhiishf",
-      "cases": ["do this", "and this", "and this this"]
+      "cases": ["Setting up web hosting and server infrastructure", "Development of a training page", "Leading and managing a team's work"]
     },
     {
       "name": "Kateryna",
@@ -285,6 +287,7 @@
     "amountOfPages": "Amount of pages",
     "statisctics": "STATISTICS",
     "start": "Start",
-    "finish": "Finish"    
+    "finish": "Finish",
+    "diagramTitle": "Number of pages / day"
   }
 }

@@ -27,6 +27,7 @@ const LibraryBooksList: FC<Props> = ({ books, handleUpdate, handleDelete }) => {
     (book) => book.status === BookStatus.ACTIVE,
   );
   const doneBooks = books?.filter((book) => book.status === BookStatus.DONE);
+
   const pendingBooks = books?.filter(
     (book) => book.status === BookStatus.PENDING,
   );

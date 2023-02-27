@@ -7,7 +7,6 @@ import styles from './Calendar.module.scss';
 import moment from 'moment';
 import 'moment/locale/en-gb';
 
-
 interface CalendarProps {
   placeHolder: string;
   onlyAfter?: boolean;
@@ -37,7 +36,6 @@ function Calendar({ placeHolder, onlyAfter, today, open, setDate }: CalendarProp
   useEffect(() => {
     if (today && setDate) setDate(new Date().toISOString());
   }, []);
-
 
   const handleDateChange = (date: string | moment.Moment): void => {
     if (typeof date !== 'string') {
