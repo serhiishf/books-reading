@@ -55,32 +55,38 @@ export default function IntroPage() {
     <div className={styles.mainSection}>
       <div className={styles.mainContainer}>
         {isAboutUs && (
-          <Slider>
-            {authors.map(({ name, role, gitHubPath, cases }, i) => (
-              <SlideAuthor
-                key={i}
-                name={name}
-                role={role}
-                srcPath={photos[i]}
-                gitHubPath={gitHubPath}
-                cases={cases}
-              />
-            ))}
-          </Slider>
+          <>
+            <h1 className={styles.title}>{t('introPage.titleAuthors')}</h1>
+            <Slider>
+              {authors.map(({ name, role, gitHubPath, cases }, i) => (
+                <SlideAuthor
+                  key={i}
+                  name={name}
+                  role={role}
+                  srcPath={photos[i]}
+                  gitHubPath={gitHubPath}
+                  cases={cases}
+                />
+              ))}
+            </Slider>
+          </>
         )}
 
         {!isAboutUs && (
-          <Slider>
-            {aboutApp.map(({ title, casesList1, casesList2 }, i) => (
-              <SlideApp
-                key={i}
-                srcPath={aboutAppSrc[i]}
-                title={title}
-                cases1={casesList1}
-                cases2={casesList2}
-              />
-            ))}
-          </Slider>
+          <>
+            <h1 className={styles.title}>{t('introPage.titleApp')}</h1>
+            <Slider>
+              {aboutApp.map(({ title, casesList1, casesList2 }, i) => (
+                <SlideApp
+                  key={i}
+                  srcPath={aboutAppSrc[i]}
+                  title={title}
+                  cases1={casesList1}
+                  cases2={casesList2}
+                />
+              ))}
+            </Slider>
+          </>
         )}
 
         <Button
