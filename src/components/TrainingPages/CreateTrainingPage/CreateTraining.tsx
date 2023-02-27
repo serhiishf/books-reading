@@ -28,6 +28,7 @@ function CreateTraining() {
     if (startDate && endDate) {
       const days = moment(endDate).diff(moment(startDate), 'days');
       setBookCounterDays(days);
+      // console.log(bookCounterDays);
     }
   }, [startDate, endDate]);
 
@@ -38,7 +39,10 @@ function CreateTraining() {
       );
       const books = response.filter((book) => book !== undefined) as Book[];
       setAddedBooks(books);
-      console.log(response);
+      // console.log(bookCounterDays);
+      // console.log(addedBooks);
+
+      // console.log(response);
     };
     if (addedBooksID.length > 0) {
       fetchBooks();
@@ -73,7 +77,7 @@ function CreateTraining() {
           />
         </div>
         <div className={styles.wrapChartDiagram}>
-          <TrainingDiagram isRealTraining={false} />
+          <TrainingDiagram isRealTraining={true} />
         </div>
       </div>
       <div className={styles.sidebar}>

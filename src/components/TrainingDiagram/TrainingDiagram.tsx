@@ -1,11 +1,13 @@
 import React from 'react';
-import { ResponsiveBump } from '@nivo/bump';
+// import { ResponsiveBump } from '@nivo/bump';
+import { ResponsiveLine } from '@nivo/line';
 
 import { defaultData } from './defaultData';
 import { Props } from './types';
 import styles from './TrainingDiagram.module.scss';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
+import { number } from 'yup';
 
 /*                "start": "2023-02-13T17:15:24.002Z",
                 "finish": "2023-02-17T12:30:30.002Z",
@@ -27,7 +29,7 @@ const TrainingDiagram: React.FC<Props> = ({
   data = defaultData,
   isRealTraining = false,
   daysAmount = 6, //for default tmpl
-  totalPages = 300, //for default tmpl
+  totalPages = 200, //for default tmpl
 }) => {
   const { t } = useTranslation();
 
@@ -40,48 +42,109 @@ const TrainingDiagram: React.FC<Props> = ({
         <span>{Math.round(totalPages / daysAmount)}</span>
       </h3>
 
-      <ResponsiveBump
+      <ResponsiveLine
         data={data}
-        xPadding={0.65}
-        xOuterPadding={0}
-        yOuterPadding={1}
-        colors={{ scheme: 'nivo' }}
-        lineWidth={3}
-        inactiveLineWidth={2}
-        inactiveOpacity={0.5}
-        startLabelTextColor="#e71313"
-        endLabelPadding={24}
-        endLabelTextColor="#949494"
-        pointSize={3}
-        activePointSize={4}
-        inactivePointSize={0}
-        pointColor={{ theme: 'background' }}
-        pointBorderWidth={9}
-        activePointBorderWidth={9}
-        pointBorderColor={{ from: 'serie.color', modifiers: [] }}
-        enableGridY={false}
+        margin={{ top: 50, right: 50, bottom: 30, left: 45 }}
+        xScale={{ type: 'point' }}
+        yScale={{
+          type: 'point',
+        }}
+        curve="cardinal"
         axisTop={null}
+        axisRight={null}
         axisBottom={{
-          tickSize: 5,
+          tickSize: 0,
           tickPadding: 5,
           tickRotation: 0,
           legend: '',
+
           legendPosition: 'middle',
-          legendOffset: 32,
         }}
         axisLeft={{
-          tickSize: 0,
+          tickSize: 2,
           tickPadding: 20,
-          tickRotation: -6,
+          tickRotation: 0,
           legend: '',
           legendPosition: 'middle',
-          legendOffset: -8,
         }}
-        margin={{ top: 0, right: 100, bottom: 0, left: 60 }}
-        axisRight={null}
+        enableGridY={false}
+        colors={{ scheme: 'category10' }}
+        lineWidth={3}
+        pointSize={7}
+        pointColor={{ from: 'color', modifiers: [] }}
+        pointBorderWidth={2}
+        pointBorderColor={{ from: 'serieColor', modifiers: [] }}
+        pointLabelYOffset={-12}
+        areaBlendMode="lighten"
+        areaBaselineValue={40}
+        areaOpacity={0.25}
+        enableCrosshair={false}
+        useMesh={true}
+        legends={[
+          {
+            anchor: 'bottom-right',
+            direction: 'column',
+            justify: false,
+            translateX: 50,
+            translateY: -20,
+            itemWidth: 40,
+            itemHeight: 30,
+            itemsSpacing: 0,
+            symbolSize: 9,
+            symbolShape: 'circle',
+            itemDirection: 'left-to-right',
+            itemTextColor: '#777',
+            effects: [
+              {
+                on: 'hover',
+                style: {
+                  itemBackground: 'rgba(0, 0, 0, .03)',
+                  itemOpacity: 1,
+                },
+              },
+            ],
+          },
+        ]}
+        motionConfig="default"
       />
     </div>
   );
 };
 
 export default TrainingDiagram;
+
+// <ResponsiveBump
+//   data={data}
+//   xPadding={0.55}
+//   xOuterPadding={0}
+//   yOuterPadding={1}
+//   colors={{ scheme: 'nivo' }}
+//   lineWidth={3}
+//   inactiveLineWidth={2}
+//   inactiveOpacity={0.5}
+//   startLabelTextColor="#e71313"
+//   endLabelPadding={21}
+//   endLabelTextColor="#949494"
+//   pointSize={3}
+//   activePointSize={4}
+//   inactivePointSize={0}
+//   pointColor={{ theme: 'background' }}
+//   pointBorderWidth={9}
+//   activePointBorderWidth={9}
+//   pointBorderColor={{ from: 'serie.color', modifiers: [] }}
+//   enableGridY={false}
+//   axisTop={null}
+//   axisBottom={{
+//     tickPadding: 5,
+//     tickRotation: 0,
+//     legend: '',
+//   }}
+//   axisLeft={{
+//     tickSize: 5,
+//     tickPadding: 20,
+//     tickRotation: 0,
+//     legend: '',
+//   }}
+//   margin={{ top: 0, right: 100, bottom: 40, left: 60 }}
+//   axisRight={null}
+// />;
