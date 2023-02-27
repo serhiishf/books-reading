@@ -9,11 +9,9 @@ import { Book } from '../../../services/books/books-service';
 import booksApi from '../../../services/books/books-service';
 import Button from '../Button';
 import { ButtonType } from '../Button/Button';
-import trainingApi, {
-  CreateTrainingInterface,
-} from '../../../services/training/training-service';
+import trainingApi from '../../../services/training/training-service';
 import TrainingDiagram from '../../TrainingDiagram';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 interface CreateTrainingProps {
   handleSuccess: React.Dispatch<React.SetStateAction<string>>;

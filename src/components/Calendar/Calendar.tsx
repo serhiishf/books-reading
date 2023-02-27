@@ -15,8 +15,20 @@ interface CalendarProps {
   setDate?: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Calendar({ placeHolder, onlyAfter, today, open, setDate }: CalendarProps) {
-  const CustomInput = ({ value, onClick }: { value: string, onClick: () => void }) => (
+function Calendar({
+  placeHolder,
+  onlyAfter,
+  today,
+  open,
+  setDate,
+}: CalendarProps) {
+  const CustomInput = ({
+    value,
+    onClick,
+  }: {
+    value: string;
+    onClick: () => void;
+  }) => (
     <div className={styles.regularInput} onClick={onClick}>
       <CalendarIcon style={{ minWidth: '17px', minHeight: '17px' }} />
       <input
@@ -24,7 +36,8 @@ function Calendar({ placeHolder, onlyAfter, today, open, setDate }: CalendarProp
         type="text"
         placeholder={placeHolder}
         value={value}
-        readOnly />
+        readOnly
+      />
       <InputArrow style={{ minWidth: '13px', minHeight: '10px' }} />
     </div>
   );
@@ -44,7 +57,7 @@ function Calendar({ placeHolder, onlyAfter, today, open, setDate }: CalendarProp
     if (setDate) {
       setDate(moment(date).endOf('day').toISOString());
     }
-    console.log(date);
+    // console.log(date);
   };
 
   return (

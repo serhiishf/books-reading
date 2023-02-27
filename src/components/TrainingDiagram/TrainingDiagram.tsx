@@ -7,7 +7,7 @@ import { Props } from './types';
 import styles from './TrainingDiagram.module.scss';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import { number } from 'yup';
+
 
 /*                "start": "2023-02-13T17:15:24.002Z",
                 "finish": "2023-02-17T12:30:30.002Z",

@@ -1,35 +1,17 @@
 import { IData } from './types';
 
-export const defaultData = [
+export const defaultData: IData[] = [
   {
     id: 'Fact',
-    // color: '#ff6b08',
     data: [
       {
         x: '27.02',
         y: 40,
       },
-      // {
-      //   x: '28.02',
-      //   y: 35,
-      // },
-      // {
-      //   x: '01.03',
-      //   y: null,
-      // },
-      // {
-      //   x: '02.03',
-      //   y: null,
-      // },
-      // {
-      //   x: '03.03',
-      //   y: null,
-      // },
     ],
   },
   {
     id: 'Plan',
-    // color: '#000',
     data: [
       {
         x: '27.02',
