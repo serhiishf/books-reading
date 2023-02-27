@@ -21,7 +21,12 @@ function Button({ type, handleClick, title }: ButtonProp) {
   };
   return (
     <button
-      className={classNames(styles.btn, (type === ButtonType.plus) && styles.plus, (type === ButtonType.add) && styles.add)}
+      className={
+        classNames(
+          styles.btn,
+          (type === ButtonType.plus) && styles.plus,
+          (type === ButtonType.add) && styles.add,
+          (type === ButtonType.done) && styles.done)}
       onClick={handleClickWrapper}
     >
       {title}

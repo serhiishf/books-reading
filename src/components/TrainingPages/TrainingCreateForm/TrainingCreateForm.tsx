@@ -11,18 +11,16 @@ import { ButtonType } from '../Button/Button';
 import ButtonBack from '../../ButtonBack';
 
 interface TrainingCreateFormProps {
-  setSelectedBook: React.Dispatch<React.SetStateAction<number>>;
   setStartDate: React.Dispatch<React.SetStateAction<string>>;
   setEndDate: React.Dispatch<React.SetStateAction<string>>;
+  setAddedBooks: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-function TrainingCreateForm({
-  /* setSelectedBook, */ setStartDate,
-  setEndDate,
-}: TrainingCreateFormProps) {
+function TrainingCreateForm({ setStartDate, setEndDate, setAddedBooks }: TrainingCreateFormProps) {
   const { t } = useTranslation();
   const [books, setBooks] = useState<Book[]>([]);
   const [controlPanelOpen, setControlPanelOpen] = useState(false);
+  const [selectedBooks, setSelectedBooks] = useState<string[]>([]);
 
   const toggleStateControlPanel = () => {
     setControlPanelOpen(!controlPanelOpen);
@@ -36,7 +34,7 @@ function TrainingCreateForm({
     fetchBooks();
   }, []);
   const handleSubmit = () => {
-    console.log('Submit btn');
+    setAddedBooks(selectedBooks);
   };
 
   return (
@@ -74,11 +72,9 @@ function TrainingCreateForm({
             <div className={styles.dropdownWrap}>
               <Dropdown
                 placeHolder={t('training.chooseBookFromLibrary')}
-                options={books.map((book) => ({
-                  value: book.name,
-                  label: book.name,
-                }))}
+                options={books.map(book => ({ value: book._id, label: book.name }))}
                 noOptionsMessage={t('training.noBookMore')}
+                onChange={setSelectedBooks}
               />
             </div>
             <div className={styles.buttonWrap}>

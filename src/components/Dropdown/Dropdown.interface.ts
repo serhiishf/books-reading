@@ -1,7 +1,8 @@
 export interface PropsDropdown {
   placeHolder: string,
   options: DropdownOption[],
-  noOptionsMessage: string
+  noOptionsMessage: string,
+  onChange: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 export interface DropdownOption {
