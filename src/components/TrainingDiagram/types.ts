@@ -1,9 +1,16 @@
 export type IData = {
   id: string;
-  data: {
-    x: number | string;
-    y: number;
-  }[];
+  // color: string;
+  data: (
+    | {
+        x: string | Date;
+        y: number | null;
+      }
+    | {
+        x: string | Date;
+        y: number | null;
+      }
+  )[];
 };
 
 export interface Props {

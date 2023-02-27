@@ -1,4 +1,5 @@
 import axiosInstance from '../axiosConfig';
+import { Book } from '../books/books-service';
 /* import { AxiosError } from 'axios';
 import { toast } from 'react-toastify'; */
 
@@ -13,12 +14,33 @@ export interface CreateTrainingInterface {
   books: BookId[],
 }
 
+type Statistics = {
+  date: string;
+  pages: number;
+  _id: string;
+}
+
+export interface ReadingTraining {
+  _id: string;
+  start: string;
+  finish: string;
+  totalPages: number;
+  readPages: number;
+  books: Book[];
+  owner: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+  statistics: Statistics[];
+  createdAt: string;
+  updatedAt: string;
+}
 
 const getActiveTraining = async () => {
   try {
     const responce = await axiosInstance.get('/trainings/active-trainings');
     const result = responce.data.data.trainings;
-    console.log(result);
     return result;
   } catch (error) {
     console.log(`Error fetching active training: ${error}`);
