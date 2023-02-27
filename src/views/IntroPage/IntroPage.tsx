@@ -43,55 +43,58 @@ interface AboutAppI {
 
 export default function IntroPage() {
   const { t } = useTranslation();
-  const [isAboutUs, setIsAboutUs] = useState(true);
-  const [btnTitle, setBtnTitle] = useState(t('introPage.aboutApp'));
+  const [isAboutUs, setIsAboutUs] = useState(false);
   const authors = t('authors', { returnObjects: true }) as AuthorI[];
   const aboutApp = t('aboutApp', { returnObjects: true }) as AboutAppI[];
 
   const handleClick = () => {
     setIsAboutUs(!isAboutUs);
-    isAboutUs
-      ? setBtnTitle(t('introPage.aboutUs'))
-      : setBtnTitle(t('introPage.aboutApp'));
   };
 
   return (
     <div className={styles.mainSection}>
       <div className={styles.mainContainer}>
         {isAboutUs && (
-          <Slider>
-            {authors.map(({ name, role, gitHubPath, cases }, i) => (
-              <SlideAuthor
-                key={i}
-                name={name}
-                role={role}
-                srcPath={photos[i]}
-                gitHubPath={gitHubPath}
-                cases={cases}
-              />
-            ))}
-          </Slider>
+          <>
+            <h1 className={styles.title}>{t('introPage.titleAuthors')}</h1>
+            <Slider>
+              {authors.map(({ name, role, gitHubPath, cases }, i) => (
+                <SlideAuthor
+                  key={i}
+                  name={name}
+                  role={role}
+                  srcPath={photos[i]}
+                  gitHubPath={gitHubPath}
+                  cases={cases}
+                />
+              ))}
+            </Slider>
+          </>
         )}
 
         {!isAboutUs && (
-          <Slider>
-            {aboutApp.map(({ title, casesList1, casesList2 }, i) => (
-              <SlideApp
-                key={i}
-                srcPath={aboutAppSrc[i]}
-                title={title}
-                cases1={casesList1}
-                cases2={casesList2}
-              />
-            ))}
-          </Slider>
+          <>
+            <h1 className={styles.title}>{t('introPage.titleApp')}</h1>
+            <Slider>
+              {aboutApp.map(({ title, casesList1, casesList2 }, i) => (
+                <SlideApp
+                  key={i}
+                  srcPath={aboutAppSrc[i]}
+                  title={title}
+                  cases1={casesList1}
+                  cases2={casesList2}
+                />
+              ))}
+            </Slider>
+          </>
         )}
 
         <Button
           type="button"
           handleClick={handleClick}
           btnClass={styles.buttonAbout}
-          title={btnTitle ? btnTitle : ''}
+          // title={btnTitle ? btnTitle : ''}
+          title={isAboutUs ? t('introPage.aboutApp') : t('introPage.aboutUs')}
         />
       </div>
     </div>

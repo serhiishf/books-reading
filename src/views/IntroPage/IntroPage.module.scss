@@ -36,3 +36,20 @@
     box-shadow: $active-shadow;
   }
 }
+
+.title {
+  font-family: $secondary-font;
+  font-weight: 400;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 30px;
+
+  @include for-size(correct-mobile-only) {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  @include for-size(desktop) {
+    margin-bottom: 0;
+  }
+}

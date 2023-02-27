@@ -10,6 +10,7 @@ import booksApi from '../../../services/books/books-service';
 import Button from '../Button';
 import { ButtonType } from '../Button/Button';
 import trainingApi, { CreateTrainingInterface } from '../../../services/training/training-service';
+import TrainingDiagram from '../../TrainingDiagram';
 
 function CreateTraining() {
   const { t } = useTranslation();
@@ -34,7 +35,7 @@ function CreateTraining() {
   useEffect(() => {
     const fetchBooks = async () => {
       const response = await Promise.all(
-        addedBooksID.map((id) => booksApi.getBookById(id))
+        addedBooksID.map((id) => booksApi.getBookById(id)),
       );
       const books = response.filter((book) => book !== undefined) as Book[];
       setAddedBooks(books);
@@ -94,14 +95,11 @@ function CreateTraining() {
           />
         </div>
         <div className={styles.wrapChartDiagram}>
-          {/* TODO: insert diagram here */}
+          <TrainingDiagram isRealTraining={false} />
         </div>
       </div>
       <div className={styles.sidebar}>
-        <BookCounter
-          books={addedBooks.length}
-          days={bookCounterDays}
-        />
+        <BookCounter books={addedBooks.length} days={bookCounterDays} />
       </div>
     </div>
   );
