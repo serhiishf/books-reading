@@ -1,7 +1,17 @@
 import axiosInstance from '../axiosConfig';
-import { AxiosError } from 'axios';
-import { toast } from 'react-toastify';
+/* import { AxiosError } from 'axios';
+import { toast } from 'react-toastify'; */
 
+
+interface BookId {
+  book: string
+}
+
+export interface CreateTrainingInterface {
+  start: string,
+  finish: string,
+  books: BookId[],
+}
 
 
 const getActiveTraining = async () => {
@@ -15,8 +25,20 @@ const getActiveTraining = async () => {
   }
 };
 
+const createTraining = async (body: CreateTrainingInterface) => {
+  try {
+    const { data } = await axiosInstance.post('/trainings', body);
+    return data;
+  } catch (error) {
+    console.log(`Error creating training: ${error}`);
+  }
+};
+
+
+
 const trainingApi = {
   getActiveTraining,
+  createTraining,
 };
 
 export default trainingApi;
