@@ -1,11 +1,55 @@
-import React /* , { useState, useEffect } */ from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './ShowTrainingPage.module.scss';
 import BookCounter from '../BookCounter';
 import Table from '../Table';
 import { Book } from '../../../services/books/books-service';
 import TrainingDiagram from '../../TrainingDiagram';
+import trainingApi from '../../../services/training/training-service';
 
-function ShowTrainingPage() {
+
+type Statistics = {
+  date: string;
+  pages: number;
+  _id: string;
+}
+
+interface ReadingTraining {
+  _id?: string;
+  start: string;
+  finish: string;
+  totalPages?: number;
+  readPages?: number;
+  books: Book[];
+  owner?: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+  statistics?: Statistics[];
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+interface ShowTraining {
+  trainingId: string;
+}
+
+function ShowTrainingPage({ trainingId }: ShowTraining) {
+  const [trainingData, setTrainingData] = useState<ReadingTraining[]>([]);
+  const [trainingBooks, setTrainingBooks] = useState([]);
+  const [startDate, setStartDate] = useState<string>('');
+  const [finishDate, setFinishDate] = useState<string>('');
+
+
+  const getTrainingData = async () => {
+    const data = await trainingApi.getActiveTraining() as ReadingTraining[];
+    setTrainingData(data);
+  };
+
+  useEffect(() => {
+    getTrainingData();
+  }, []);
+
   const readingBooks: Book[] = [];
   const leftDays = 9;
   const leftReadingBooks = 2;

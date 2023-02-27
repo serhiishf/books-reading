@@ -9,9 +9,17 @@ import { Book } from '../../../services/books/books-service';
 import booksApi from '../../../services/books/books-service';
 import Button from '../Button';
 import { ButtonType } from '../Button/Button';
+import trainingApi, {
+  CreateTrainingInterface,
+} from '../../../services/training/training-service';
 import TrainingDiagram from '../../TrainingDiagram';
+import { toast } from 'react-toastify';
 
-function CreateTraining() {
+interface CreateTrainingProps {
+  handleSuccess: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function CreateTraining({ handleSuccess }: CreateTrainingProps) {
   const { t } = useTranslation();
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
@@ -20,8 +28,8 @@ function CreateTraining() {
   const [addedBooks, setAddedBooks] = useState<Book[]>([]);
 
   function handleDeleteBook(id: string) {
-    const updatedBooks = addedBooksID.filter((bookId) => bookId !== id);
-    setAddedBooksID(updatedBooks);
+    const updatedBooks = addedBooks.filter((book) => book._id !== id);
+    setAddedBooks(updatedBooks);
   }
 
   useEffect(() => {
@@ -39,10 +47,6 @@ function CreateTraining() {
       );
       const books = response.filter((book) => book !== undefined) as Book[];
       setAddedBooks(books);
-      // console.log(bookCounterDays);
-      // console.log(addedBooks);
-
-      // console.log(response);
     };
     if (addedBooksID.length > 0) {
       fetchBooks();
@@ -51,8 +55,28 @@ function CreateTraining() {
     }
   }, [addedBooksID]);
 
+  const checkPermitionCreate = (): boolean => {
+    if (endDate === '') {
+      alert('Add Finish Date!');
+      return false;
+    } else if (addedBooksID.length === 0) {
+      alert('Add book in your training!');
+      return false;
+    }
+    return true;
+  };
+
   const handleStartBtn = () => {
-    console.log('Start btn');
+    if (checkPermitionCreate()) {
+      trainingApi.createTraining({
+        start: startDate.replace('T', ' '),
+        finish: endDate.replace('T', ' '),
+        books: addedBooksID.map((bookId: string) => {
+          return { book: bookId };
+        }),
+      });
+      handleSuccess('true');
+    }
   };
 
   return (
