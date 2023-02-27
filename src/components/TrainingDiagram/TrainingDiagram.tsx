@@ -26,8 +26,8 @@ import classNames from 'classnames';
 const TrainingDiagram: React.FC<Props> = ({
   data = defaultData,
   isRealTraining = false,
-  daysAmount = 6,
-  totalPages = 300,
+  daysAmount = 6, //for default tmpl
+  totalPages = 300, //for default tmpl
 }) => {
   const { t } = useTranslation();
 

@@ -9,7 +9,8 @@ type HasActiveTraining = boolean | undefined;
 export default function TrainingPage() {
   const [trainingUser, setTrainingUser] = useState([]);
   const [trainingBooks, setTrainingBooks] = useState([]);
-  const [hasActiveTraining, setHasActiveTraining] = useState<HasActiveTraining>(true);
+  const [hasActiveTraining, setHasActiveTraining] =
+    useState<HasActiveTraining>(true);
 
   const getHasActiveTraining = async () => {
     const data = await trainingApi.getActiveTraining();
@@ -28,16 +29,8 @@ export default function TrainingPage() {
   return (
     <div className={styles.mainWrapper}>
       <div className={styles.containerWrap}>
-        {hasActiveTraining ? (
-          <ShowTrainingPage />) :
-          (<CreateTraining />)
-        }
+        {hasActiveTraining ? <ShowTrainingPage /> : <CreateTraining />}
       </div>
     </div>
   );
 }
-
-// <div className={styles.bottomPosition}>
-//   <TrainingDiagram />
-//   {/* statistic component */}
-// </div>
