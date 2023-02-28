@@ -27,6 +27,12 @@ const TrainingPageNew = () => {
     }
   };
 
+  // on add new training change status/set newTraining and render TrainingFull Component
+  const changeTrainingStatus = (training: ReadingTraining) => {
+    setTraining(training);
+    setStatus(Status.FULL);
+  };
+
   const setBookStatus = (onjBookId: string, status: BookStatus) => {
     //it's work but I think we don't need it
     // if (training) {
@@ -48,7 +54,9 @@ const TrainingPageNew = () => {
       {status === Status.FULL && training && (
         <TrainingFull training={training} setBookStatus={setBookStatus} />
       )}
-      {status === Status.EMPTY && <TrainingEmpty />}
+      {status === Status.EMPTY && (
+        <TrainingEmpty changeTrainingStatus={changeTrainingStatus} />
+      )}
     </>
   );
 };

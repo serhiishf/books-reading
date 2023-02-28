@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import booksApi, { Book } from '../../../services/books/books-service';
 import { useTranslation } from 'react-i18next';
 // import styles from './TrainingEmpty.module.scss';
 import AddTraining from '../AddTraining';
 import AddedBooksList from '../AddedBookList';
+import { ReadingTraining } from '../../../services/training/training-service';
 
-const TrainingEmpty = () => {
+type Props = {
+  changeTrainingStatus: (training: ReadingTraining) => void;
+};
+
+const TrainingEmpty: FC<Props> = ({ changeTrainingStatus }) => {
   const [pendingBooks, setPendingBooks] = useState<Book[]>([]);
   const [booksActive, setActiveBooks] = useState<Book[]>([]);
 
@@ -20,8 +25,18 @@ const TrainingEmpty = () => {
     getPendingBooks();
   }, []);
 
-  const onAddBooks = (newBook: Book) => {
+  const onAddToList = (newBook: Book) => {
     setActiveBooks([...booksActive, newBook]);
+  };
+
+  const onCreateTraining = () => {
+    booksActive.map(async (book) => {
+      await booksApi.updateBookStatus({ bookId: book._id, status: 'active' });
+    });
+    // const newTraining = trainingApi.createTraining();
+    // if (newTraining) {
+    //   changeTrainingStatus(newTraining)
+    // }
   };
 
   return (
@@ -29,7 +44,8 @@ const TrainingEmpty = () => {
       <AddTraining
         books={pendingBooks}
         activeBooks={booksActive}
-        onAddActive={onAddBooks}
+        onAddActive={onAddToList}
+        handleCreateTraining={onCreateTraining}
       />
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './AddTraining.module.scss';
 import Calendar from '../../Calendar';
-import booksApi, { Book } from '../../../services/books/books-service';
+import { Book } from '../../../services/books/books-service';
 import BookSelectInput from '../BookSelectInput';
 import AddedBooksList from '../AddedBookList';
 
@@ -10,23 +10,20 @@ type Props = {
   books: Book[];
   activeBooks: Book[];
   onAddActive: (newBook: Book) => void;
+  handleCreateTraining: () => void;
 };
 
-const AddTraining: FC<Props> = ({ books, activeBooks, onAddActive }) => {
+const AddTraining: FC<Props> = ({
+  books,
+  activeBooks,
+  onAddActive,
+  handleCreateTraining,
+}) => {
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [bookCounterDays, setBookCounterDays] = useState<number>(0);
 
   const { t } = useTranslation();
-
-  const handleAddTraining = () => {
-    console.log('!!!!!!');
-    console.log(activeBooks);
-    activeBooks.map(async (book) => {
-      console.log(book);
-      await booksApi.updateBookStatus({ bookId: book._id, status: 'active' });
-    });
-  };
 
   return (
     <div className={styles.addTrainingWrapper}>
@@ -46,7 +43,7 @@ const AddTraining: FC<Props> = ({ books, activeBooks, onAddActive }) => {
       </div>
       <BookSelectInput books={books} onAddActive={onAddActive} />
       <AddedBooksList activeBooks={activeBooks} />
-      <button type="button" onClick={handleAddTraining}>
+      <button type="button" onClick={handleCreateTraining}>
         {t('training.startTaining')}
       </button>
     </div>
