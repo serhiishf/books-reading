@@ -25,7 +25,7 @@ export interface ReadingTraining {
   finish: string;
   totalPages: number;
   readPages: number;
-  books: Book[];
+  books: [{ book: Book; _id: string }];
   owner: {
     _id: string;
     name: string;
@@ -39,7 +39,7 @@ export interface ReadingTraining {
 const getActiveTraining = async () => {
   try {
     const response = await axiosInstance.get('/trainings/active-trainings');
-    const result = <ReadingTraining[]>response.data.data.trainings;
+    const result = <ReadingTraining[] | []>response.data.data.trainings;
     return result;
   } catch (error) {
     console.log(`Error fetching active training: ${error}`);
