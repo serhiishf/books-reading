@@ -1,19 +1,36 @@
 import React, { useState, FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from './AddTraining.module.scss';
+import styles from './AddTrainingBlock.module.scss';
 import Calendar from '../../Calendar';
 import { Book } from '../../../services/books/books-service';
 import BookSelectInput from '../BookSelectInput';
 import AddedBooksList from '../AddedBookList';
+import { toast } from 'react-toastify';
+import { string } from 'yup/lib/locale';
+
+const checkPermissionCreate = (books: Book[], endDate: string) => {
+  if (endDate === '') {
+    toast.error('Add Finish Date!');
+    return false;
+  } else if (!books.length) {
+    toast.error('Add book in your training!');
+    return false;
+  }
+  return true;
+};
 
 type Props = {
   books: Book[];
   activeBooks: Book[];
   onAddActive: (newBook: Book) => void;
-  handleCreateTraining: () => void;
+  handleCreateTraining: (
+    startDate: string,
+    endDate: string,
+    books: Book[],
+  ) => Promise<void>;
 };
 
-const AddTraining: FC<Props> = ({
+const AddTrainingBlock: FC<Props> = ({
   books,
   activeBooks,
   onAddActive,
@@ -25,15 +42,10 @@ const AddTraining: FC<Props> = ({
 
   const { t } = useTranslation();
 
-  const checkPermissionCreate = (): boolean => {
-    if (endDate === '') {
-      alert('Add Finish Date!');
-      return false;
-    } else if (!activeBooks.length) {
-      alert('Add book in your training!');
-      return false;
+  const createTraining = () => {
+    if (checkPermissionCreate(activeBooks, endDate)) {
+      handleCreateTraining(startDate, endDate, activeBooks);
     }
-    return true;
   };
 
   return (
@@ -54,11 +66,11 @@ const AddTraining: FC<Props> = ({
       </div>
       <BookSelectInput books={books} onAddActive={onAddActive} />
       <AddedBooksList activeBooks={activeBooks} />
-      <button type="button" onClick={handleCreateTraining}>
+      <button type="button" onClick={createTraining}>
         {t('training.startTaining')}
       </button>
     </div>
   );
 };
 
-export default AddTraining;
+export default AddTrainingBlock;

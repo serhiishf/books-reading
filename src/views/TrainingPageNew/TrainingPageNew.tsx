@@ -27,9 +27,8 @@ const TrainingPageNew = () => {
     }
   };
 
-
   // on add new training change status/set newTraining and render TrainingFull Component
-  const changeTrainingStatus = (training: ReadingTraining) => {
+  const startTraining = (training: ReadingTraining) => {
     setTraining(training);
     setStatus(Status.FULL);
   };
@@ -69,7 +68,7 @@ const TrainingPageNew = () => {
         <TrainingFull training={training} setBookStatus={setBookStatus} />
       )}
       {status === Status.EMPTY && (
-        <TrainingEmpty changeTrainingStatus={changeTrainingStatus} />
+        <TrainingEmpty changeTraining={startTraining} />
       )}
     </>
   );
