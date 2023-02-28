@@ -4,12 +4,7 @@ import BookListEl from './BookListEl';
 import styles from './LibraryBooksList.module.scss';
 import { Book } from '../../../services/books/books-service';
 import ActiveBookList from './ActiveBookList';
-
-export enum BookStatus {
-  'PENDING' = 'pending',
-  'DONE' = 'done',
-  'ACTIVE' = 'active',
-}
+import { statusBook } from '../../../utils/bookStatus';
 
 export type DropBook = {
   id: string;
@@ -24,12 +19,12 @@ type Props = {
 
 const LibraryBooksList: FC<Props> = ({ books, handleUpdate, handleDelete }) => {
   const activeBooks = books?.filter(
-    (book) => book.status === BookStatus.ACTIVE,
+    (book) => book.status === statusBook.ACTIVE,
   );
-  const doneBooks = books?.filter((book) => book.status === BookStatus.DONE);
+  const doneBooks = books?.filter((book) => book.status === statusBook.DONE);
 
   const pendingBooks = books?.filter(
-    (book) => book.status === BookStatus.PENDING,
+    (book) => book.status === statusBook.PENDING,
   );
 
   const { t } = useTranslation();

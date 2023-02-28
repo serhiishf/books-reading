@@ -5,6 +5,7 @@ import trainingApi, {
 import Loader from '../../components/Loader';
 import TrainingFull from '../../components/Training/TrainingFull';
 import TrainingEmpty from '../../components/Training/TrainingEmpty';
+import BookStatus from '../../utils/bookStatus';
 
 enum Status {
   'PENDING' = 'pending',
@@ -18,13 +19,23 @@ const TrainingPageNew = () => {
 
   const getStatus = async () => {
     const data = await trainingApi.getActiveTraining();
-    // console.log(data);
     if (data?.length) {
       setStatus(Status.FULL);
       setTraining(data[0]);
     } else {
       setStatus(Status.EMPTY);
     }
+  };
+
+  const setBookStatus = (onjBookId: string, status: BookStatus) => {
+    //it's work but I think we don't need it
+    // if (training) {
+    //   const book = training.books.find((book) => book._id === onjBookId);
+    //   if (book) {
+    //     book.book.status = status;
+    //   }
+    //   console.log(training);
+    // }
   };
 
   useEffect(() => {
@@ -35,7 +46,7 @@ const TrainingPageNew = () => {
     <>
       {status === Status.PENDING && <Loader />}
       {status === Status.FULL && training && (
-        <TrainingFull training={training} />
+        <TrainingFull training={training} setBookStatus={setBookStatus} />
       )}
       {status === Status.EMPTY && <TrainingEmpty />}
     </>
