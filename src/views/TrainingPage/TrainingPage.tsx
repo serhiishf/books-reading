@@ -24,6 +24,10 @@ export default function TrainingPage() {
     }
   };
 
+  function hundleSucces() {
+    getHasActiveTraining();
+  }
+
   useEffect(() => {
     getHasActiveTraining();
   }, []);
@@ -42,7 +46,7 @@ export default function TrainingPage() {
           trainingId={trainingUser[0]._id}
         />}
         {hasActiveTraining === 'false' && <CreateTraining
-          handleSuccess={setHasActiveTraining}
+          handleSuccess={hundleSucces}
         />}
       </div>
     </div>

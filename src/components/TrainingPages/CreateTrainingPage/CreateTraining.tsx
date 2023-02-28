@@ -14,7 +14,8 @@ import TrainingDiagram from '../../TrainingDiagram';
 import { toast } from 'react-toastify';
 
 interface CreateTrainingProps {
-  handleSuccess: React.Dispatch<React.SetStateAction<string>>;
+  handleSuccess: () => void;
+ /*  handleSuccess: React.Dispatch<React.SetStateAction<string>>; */
 }
 
 function CreateTraining({ handleSuccess }: CreateTrainingProps) {
@@ -64,16 +65,16 @@ function CreateTraining({ handleSuccess }: CreateTrainingProps) {
     return true;
   };
 
-  const handleStartBtn = () => {
+  const handleStartBtn = async () => {
     if (checkPermitionCreate()) {
-      trainingApi.createTraining({
+      await trainingApi.createTraining({
         start: startDate.replace('T', ' '),
         finish: endDate.replace('T', ' '),
         books: addedBooksID.map((bookId: string) => {
           return { book: bookId };
         }),
       });
-      handleSuccess('true');
+      handleSuccess(/* 'true' */);
     }
   };
 
