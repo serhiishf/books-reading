@@ -4,9 +4,14 @@ import { toast } from 'react-toastify';
 import { Book } from '../../../services/books/books-service';
 import Calendar from '../../Calendar';
 import BookSelectInput from '../BookSelectInput';
+<<<<<<< HEAD
 import BookListEmpty from '../BookListEmpty';
 import styles from './AddTrainingBlock.module.scss';
 // import { string } from 'yup/lib/locale';
+=======
+import AddedBooksList from '../AddedBookList';
+import { toast } from 'react-toastify';
+>>>>>>> 1342f13b0bb45d8c3227d4eb8b3168cf56f0b1e1
 
 const checkPermissionCreate = (books: Book[], endDate: string) => {
   if (endDate === '') {

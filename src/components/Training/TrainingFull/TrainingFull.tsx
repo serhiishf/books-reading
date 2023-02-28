@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import booksApi from '../../../services/books/books-service';
 import trainingApi, {
   ReadingTraining,
 } from '../../../services/training/training-service';
 import BookStatusI, { statusBook } from '../../../utils/bookStatus';
 import countDays from '../../../utils/countDays';
+import publicRoots from '../../../utils/publicRoots';
+import ModalChoice from '../../ModalChoice';
+import Portal from '../../Portal';
 import BoolListFull from '../BookListFull/BookListFull';
 import Counter from '../Counter';
 import Diagram from '../Diagram';
 
 interface Props {
   training: ReadingTraining;
-  setTraining: (training: ReadingTraining | null) => void;
+  updateTraining: (training: ReadingTraining | null) => void;
   setBookStatus: (bookId: string, status: BookStatusI) => void;
 }
 
@@ -21,12 +25,14 @@ const getNotFinishedBooks = (training: ReadingTraining) => {
 
 const TrainingFull: React.FC<Props> = ({
   training,
-  setTraining,
+  updateTraining,
   setBookStatus,
 }) => {
+  const { t } = useTranslation();
   const [notFinishedBooks, setNotFinishedBooks] = useState(
     getNotFinishedBooks(training),
   );
+  const [isOpenModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     setNotFinishedBooks(getNotFinishedBooks(training));
@@ -47,6 +53,27 @@ const TrainingFull: React.FC<Props> = ({
     setBookStatus(objBookId, body.status);
   };
 
+  const onClickDelete = () => {
+    setOpenModal(!isOpenModal);
+  };
+
+  const onConfirmClick = async () => {
+    Promise.all(
+      training.books.map(async (book) => {
+        await booksApi.updateBookStatus({
+          bookId: book.book._id,
+          status: statusBook.PENDING,
+        });
+      }),
+    );
+    await trainingApi.deleteTraining(training._id);
+    updateTraining(null);
+  };
+
+  const onResetClick = () => {
+    setOpenModal(!isOpenModal);
+  };
+
   return (
     <div>
       <div>
@@ -62,15 +89,20 @@ const TrainingFull: React.FC<Props> = ({
         <Diagram />
         {/* statistics */}
       </div>
-      <button
-        type="button"
-        onClick={() => {
-          trainingApi.deleteTraining(training._id);
-          setTraining(null);
-        }}
-      >
+      <button type="button" onClick={onClickDelete}>
         Remove Training
       </button>
+      {isOpenModal && (
+        <Portal wrapperId={publicRoots.ChoiceModal}>
+          <ModalChoice
+            questionTxt={t('training.confirmDeleteTXT')}
+            confirmBtnTxt={t('training.confirmDelete')}
+            resetBtnTxt={t('training.resetDelete')}
+            onConfirmClick={onConfirmClick}
+            onResetClick={onResetClick}
+          />
+        </Portal>
+      )}
     </div>
   );
 };

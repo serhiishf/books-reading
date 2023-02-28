@@ -56,7 +56,10 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
           });
         }),
       );
-      changeTraining(newTraining);
+      const newTrainingActual = await trainingApi.getActiveTraining();
+      if (newTrainingActual && newTrainingActual.length > 0) {
+        changeTraining(newTrainingActual[0]);
+      }
     }
   };
 
