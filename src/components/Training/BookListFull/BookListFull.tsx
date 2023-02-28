@@ -12,7 +12,6 @@ interface Props {
     status: BookStatusI,
     objBookId: string,
   ) => void;
-  // setBookStatus: (bookId: string, status: BookStatusI) => void;
 }
 
 const BoolListFull: React.FC<Props> = ({ training, onCheckboxClick }) => {

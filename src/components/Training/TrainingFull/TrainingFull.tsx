@@ -7,6 +7,7 @@ import BookStatusI, { statusBook } from '../../../utils/bookStatus';
 import countDays from '../../../utils/countDays';
 import BoolListFull from '../BookListFull/BookListFull';
 import Counter from '../Counter';
+import Diagram from '../Diagram';
 
 interface Props {
   training: ReadingTraining;
@@ -58,7 +59,7 @@ const TrainingFull: React.FC<Props> = ({
         />
       </div>
       <div>
-        {/* diagram */}
+        <Diagram />
         {/* statistics */}
       </div>
       <button
