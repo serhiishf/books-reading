@@ -9,9 +9,9 @@ import { Book } from '../../../services/books/books-service';
 import booksApi from '../../../services/books/books-service';
 import Button from '../Button';
 import { ButtonType } from '../Button/Button';
-import trainingApi, { CreateTrainingInterface } from '../../../services/training/training-service';
+import trainingApi from '../../../services/training/training-service';
 import TrainingDiagram from '../../TrainingDiagram';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 interface CreateTrainingProps {
   handleSuccess: () => void;
@@ -25,11 +25,7 @@ function CreateTraining({ handleSuccess }: CreateTrainingProps) {
   const [bookCounterDays, setBookCounterDays] = useState<number>(0);
   const [addedBooksID, setAddedBooksID] = useState<string[]>([]);
   const [addedBooks, setAddedBooks] = useState<Book[]>([]);
-
-  function handleDeleteBook(id: string) {
-    const updatedBooks = addedBooks.filter((book) => book._id !== id);
-    setAddedBooks(updatedBooks);
-  }
+  // const [totalPages, setTotalPages] = useState<number>(0);
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -39,13 +35,6 @@ function CreateTraining({ handleSuccess }: CreateTrainingProps) {
   }, [startDate, endDate]);
 
   useEffect(() => {
-    const fetchBooks = async () => {
-      const response = await Promise.all(
-        addedBooksID.map((id) => booksApi.getBookById(id)),
-      );
-      const books = response.filter((book) => book !== undefined) as Book[];
-      setAddedBooks(books);
-    };
     if (addedBooksID.length > 0) {
       fetchBooks();
     } else {
@@ -53,6 +42,19 @@ function CreateTraining({ handleSuccess }: CreateTrainingProps) {
     }
   }, [addedBooksID]);
 
+  function handleDeleteBook(id: string) {
+    const updatedBooks = addedBooks.filter((book) => book._id !== id);
+    setAddedBooks(updatedBooks);
+  }
+
+  const fetchBooks = async () => {
+    const response = await Promise.all(
+      addedBooksID.map((id) => booksApi.getBookById(id)),
+    );
+
+    const books = response.filter((book) => book !== undefined) as Book[];
+    setAddedBooks(books);
+  };
 
   const checkPermitionCreate = (): boolean => {
     if (endDate === '') {
@@ -100,7 +102,12 @@ function CreateTraining({ handleSuccess }: CreateTrainingProps) {
           />
         </div>
         <div className={styles.wrapChartDiagram}>
-          <TrainingDiagram isRealTraining={false} />
+          <TrainingDiagram
+            isRealTraining={true}
+            daysAmount={bookCounterDays}
+            addedBooks={addedBooks}
+            // totalPages={}
+          />
         </div>
       </div>
       <div className={styles.sidebar}>

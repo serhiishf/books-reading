@@ -8,14 +8,13 @@ import { ReadingTraining } from '../../services/training/training-service';
 import Loader from '../../components/Loader';
 import publicRoots from '../../utils/publicRoots'; */
 
-
 export default function TrainingPage() {
   const [trainingUser, setTrainingUser] = useState<ReadingTraining[]>([]);
-  const [trainingBooks, setTrainingBooks] = useState([]);
+  // const [trainingBooks, setTrainingBooks] = useState([]);
   const [hasActiveTraining, setHasActiveTraining] = useState<string>('pending');
 
   const getHasActiveTraining = async () => {
-    const data = await trainingApi.getActiveTraining() as ReadingTraining[];
+    const data = (await trainingApi.getActiveTraining()) as ReadingTraining[];
     setTrainingUser(data);
     if (data.length) {
       setHasActiveTraining('true');

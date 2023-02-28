@@ -38,7 +38,7 @@ const ModalResume: FunctionComponent<ModalProps> = ({
     } = {
       bookId,
     };
-
+    
     if (message !== '') {
       objForSending.resume = message;
     }
@@ -50,7 +50,6 @@ const ModalResume: FunctionComponent<ModalProps> = ({
       const updatedBook = await booksApi.updateBookResume(objForSending);
       onUpdate(updatedBook?.data);
     }
-
     hide();
   };
 

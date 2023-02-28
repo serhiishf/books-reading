@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import styles from '../../LibraryBook/ModalResume/ModalResume.module.scss';
 import ModalUpdateForm from './ModalUpdateForm';
 import { Book } from '../../../../services/books/books-service';
@@ -10,12 +10,7 @@ export interface ModalProps {
   update: (updatedBook: Book) => void;
 }
 
-const ModalUpdate: FunctionComponent<ModalProps> = ({
-  book,
-  isOpen,
-  hide,
-  update,
-}) => {
+const ModalUpdate: FC<ModalProps> = ({ book, isOpen, hide, update }) => {
   return isOpen ? (
     <div className={styles.backdrop}>
       <div className={styles.wrapper}>

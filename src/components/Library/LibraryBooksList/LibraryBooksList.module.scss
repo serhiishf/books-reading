@@ -58,6 +58,10 @@
     padding-left: 20px;
     padding-right: 20px;
   }
+
+  @include for-size(desktop) {
+    grid-template-columns: 53% 48%;
+  }
 }
 
 .wrapTitls > div {
