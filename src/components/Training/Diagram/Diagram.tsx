@@ -2,7 +2,7 @@ import React from 'react';
 import { ResponsiveLine } from '@nivo/line';
 import { defaultData } from './defaultData';
 import { Props } from './types';
-import styles from './TrainingDiagram.module.scss';
+import styles from './Diagram.module.scss';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
@@ -27,7 +27,7 @@ const TrainingDiagram: React.FC<Props> = ({
   addedBooks,
   isRealTraining = false,
   daysAmount = 6,
-  totalPages = 200,
+  // totalPages = 200,
 }) => {
   const { t } = useTranslation();
 

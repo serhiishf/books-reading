@@ -6,7 +6,7 @@ import { Book } from '../../../services/books/books-service';
 import BookSelectInput from '../BookSelectInput';
 import AddedBooksList from '../AddedBookList';
 import { toast } from 'react-toastify';
-import { string } from 'yup/lib/locale';
+// import { string } from 'yup/lib/locale';
 
 const checkPermissionCreate = (books: Book[], endDate: string) => {
   if (endDate === '') {
