@@ -6,12 +6,11 @@ import { Book } from '../../../services/books/books-service';
 import TrainingDiagram from '../../TrainingDiagram';
 import trainingApi from '../../../services/training/training-service';
 
-
 type Statistics = {
   date: string;
   pages: number;
   _id: string;
-}
+};
 
 interface ReadingTraining {
   _id?: string;
@@ -36,13 +35,12 @@ interface ShowTraining {
 
 function ShowTrainingPage({ trainingId }: ShowTraining) {
   const [trainingData, setTrainingData] = useState<ReadingTraining[]>([]);
-  const [trainingBooks, setTrainingBooks] = useState([]);
-  const [startDate, setStartDate] = useState<string>('');
-  const [finishDate, setFinishDate] = useState<string>('');
-
+  // const [trainingBooks, setTrainingBooks] = useState([]);
+  // const [startDate, setStartDate] = useState<string>('');
+  // const [finishDate, setFinishDate] = useState<string>('');
 
   const getTrainingData = async () => {
-    const data = await trainingApi.getActiveTraining() as ReadingTraining[];
+    const data = (await trainingApi.getActiveTraining()) as ReadingTraining[];
     setTrainingData(data);
   };
 
