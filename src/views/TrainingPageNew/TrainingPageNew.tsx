@@ -27,16 +27,6 @@ const TrainingPageNew = () => {
     }
   };
 
-  // const setBookStatus = (onjBookId: string, status: BookStatus) => {
-  //   if (training) {
-  //     const book = training.books.find((book) => book._id === onjBookId);
-  //     if (book) {
-  //       book.book.status = status;
-  //       setTraining(training);
-  //     }
-  //   }
-  // };
-
   const setBookStatus = (onjBookId: string, status: BookStatus) => {
     if (training) {
       const updatedBooks = training.books.map((book) => {
@@ -69,9 +59,13 @@ const TrainingPageNew = () => {
     <>
       {status === Status.PENDING && <Loader />}
       {status === Status.FULL && training && (
-        <TrainingFull training={training} setBookStatus={setBookStatus} />
+        <TrainingFull
+          training={training}
+          setTraining={setTraining}
+          setBookStatus={setBookStatus}
+        />
       )}
-      {status === Status.EMPTY && <TrainingEmpty />}
+      {status === Status.EMPTY && training === null && <TrainingEmpty />}
     </>
   );
 };

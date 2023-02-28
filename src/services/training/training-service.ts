@@ -55,9 +55,21 @@ const createTraining = async (body: CreateTrainingInterface) => {
   }
 };
 
+const deleteTraining = async (trainingId: string) => {
+  try {
+    const { data } = await axiosInstance.delete(
+      `trainings/?trainingId=${trainingId}`,
+    );
+    return data;
+  } catch (error) {
+    console.log(`Error deleting training: ${error}`);
+  }
+};
+
 const trainingApi = {
   getActiveTraining,
   createTraining,
+  deleteTraining,
 };
 
 export default trainingApi;

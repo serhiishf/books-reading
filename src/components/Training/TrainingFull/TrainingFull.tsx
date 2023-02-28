@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import booksApi from '../../../services/books/books-service';
-import { ReadingTraining } from '../../../services/training/training-service';
+import trainingApi, {
+  ReadingTraining,
+} from '../../../services/training/training-service';
 import BookStatusI, { statusBook } from '../../../utils/bookStatus';
 import countDays from '../../../utils/countDays';
 import BoolListFull from '../BookListFull/BookListFull';
@@ -8,6 +10,7 @@ import Counter from '../Counter';
 
 interface Props {
   training: ReadingTraining;
+  setTraining: (training: ReadingTraining | null) => void;
   setBookStatus: (bookId: string, status: BookStatusI) => void;
 }
 
@@ -15,7 +18,11 @@ const getNotFinishedBooks = (training: ReadingTraining) => {
   return training.books.filter(({ book }) => book.status === statusBook.ACTIVE);
 };
 
-const TrainingFull: React.FC<Props> = ({ training, setBookStatus }) => {
+const TrainingFull: React.FC<Props> = ({
+  training,
+  setTraining,
+  setBookStatus,
+}) => {
   const [notFinishedBooks, setNotFinishedBooks] = useState(
     getNotFinishedBooks(training),
   );
@@ -35,7 +42,7 @@ const TrainingFull: React.FC<Props> = ({ training, setBookStatus }) => {
         status === statusBook.ACTIVE ? statusBook.DONE : statusBook.ACTIVE,
     };
     await booksApi.updateBookStatus(body);
-
+    //todo: set statistics ?
     setBookStatus(objBookId, body.status);
   };
 
@@ -54,6 +61,15 @@ const TrainingFull: React.FC<Props> = ({ training, setBookStatus }) => {
         {/* diagram */}
         {/* statistics */}
       </div>
+      <button
+        type="button"
+        onClick={() => {
+          trainingApi.deleteTraining(training._id);
+          setTraining(null);
+        }}
+      >
+        Remove Training
+      </button>
     </div>
   );
 };
