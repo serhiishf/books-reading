@@ -46,7 +46,7 @@ const TrainingDiagram: React.FC<Props> = ({
 
   const mathPagesPerDay = () => {
     const totalPages = mathTotalPages();
-    console.log(totalPages);
+    // console.log(totalPages);
     if (daysAmount > 0) {
       return Math.round(totalPages / daysAmount);
     }
