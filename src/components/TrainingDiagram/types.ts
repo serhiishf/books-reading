@@ -1,3 +1,5 @@
+import { Book } from '../../services/books/books-service';
+
 export type IData = {
   id: string;
   // color: string;
@@ -15,6 +17,7 @@ export type IData = {
 
 export interface Props {
   data?: IData[];
+  addedBooks?: Book[];
   isRealTraining?: boolean;
   daysAmount?: number;
   totalPages?: number;

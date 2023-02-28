@@ -8,7 +8,6 @@ import styles from './TrainingDiagram.module.scss';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
-
 /*                "start": "2023-02-13T17:15:24.002Z",
                 "finish": "2023-02-17T12:30:30.002Z",
                 "totalPages": 24,
@@ -27,11 +26,32 @@ import classNames from 'classnames';
 
 const TrainingDiagram: React.FC<Props> = ({
   data = defaultData,
+  addedBooks,
   isRealTraining = false,
   daysAmount = 6, //for default tmpl
   totalPages = 200, //for default tmpl
 }) => {
+  // console.log('books', addedBooks);
+  // console.log('days', daysAmount);
+
   const { t } = useTranslation();
+
+  const mathTotalPages = () => {
+    if (addedBooks && addedBooks.length > 0) {
+      const pagesSum = addedBooks.reduce((acc, cur) => cur.pages + acc, 0);
+      return pagesSum;
+    }
+    return 0;
+  };
+
+  const mathPagesPerDay = () => {
+    const totalPages = mathTotalPages();
+    console.log(totalPages);
+    if (daysAmount > 0) {
+      return Math.round(totalPages / daysAmount);
+    }
+    return 0;
+  };
 
   return (
     <div className={styles.thumb}>
@@ -39,7 +59,7 @@ const TrainingDiagram: React.FC<Props> = ({
       <h3 className={styles.title}>
         {t('training.diagramTitle') + ' '}
 
-        <span>{Math.round(totalPages / daysAmount)}</span>
+        <span>{mathPagesPerDay()}</span>
       </h3>
 
       <ResponsiveLine
