@@ -1,7 +1,13 @@
-import React from "react";
+import React from 'react';
+import { ReadingTraining } from '../../../services/training/training-service';
 
-const TrainingFull = () => {
+interface Props {
+  training: ReadingTraining | null;
+}
 
-  return <div>TrainingFull</div>;
+const TrainingFull: React.FC<Props> = ({ training }) => {
+  console.log(training);
+
+  return <div>training</div>;
 };
 export default TrainingFull;

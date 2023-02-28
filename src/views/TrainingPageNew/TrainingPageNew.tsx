@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import trainingApi from '../../services/training/training-service';
+import trainingApi, {
+  ReadingTraining,
+} from '../../services/training/training-service';
 import Loader from '../../components/Loader';
+import TrainingFull from '../../components/Training/TrainingFull';
+import TrainingEmpty from '../../components/Training/TrainingEmpty';
 
 enum Status {
   'PENDING' = 'pending',
@@ -9,17 +13,15 @@ enum Status {
 }
 
 const TrainingPageNew = () => {
-  const [training, setTraining] = useState(
-    async () => await trainingApi.getActiveTraining(),
-  );
+  const [training, setTraining] = useState<ReadingTraining | null>(null);
   const [status, setStatus] = useState(Status.PENDING);
 
   const getStatus = async () => {
     const data = await trainingApi.getActiveTraining();
-    console.log(data);
-    if (data.length) {
+    // console.log(data);
+    if (data?.length) {
       setStatus(Status.FULL);
-      setTraining(data);
+      setTraining(data[0]);
     } else {
       setStatus(Status.EMPTY);
     }
@@ -32,8 +34,8 @@ const TrainingPageNew = () => {
   return (
     <div>
       {status === Status.PENDING && <Loader />}
-      {status === Status.FULL && <div>Training Full</div>}
-      {status === Status.EMPTY && <div>TrainingEmpty</div>}
+      {status === Status.FULL && <TrainingFull training={training} />}
+      {status === Status.EMPTY && <TrainingEmpty />}
     </div>
   );
 };
