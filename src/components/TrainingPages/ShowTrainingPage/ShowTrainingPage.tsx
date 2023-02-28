@@ -34,19 +34,21 @@ interface ShowTraining {
 }
 
 function ShowTrainingPage({ trainingId }: ShowTraining) {
-  const [trainingData, setTrainingData] = useState<ReadingTraining[]>([]);
+  // const [trainingData, setTrainingData] = useState<ReadingTraining[] | []>([]);
   // const [trainingBooks, setTrainingBooks] = useState([]);
   // const [startDate, setStartDate] = useState<string>('');
   // const [finishDate, setFinishDate] = useState<string>('');
 
-  const getTrainingData = async () => {
-    const data = (await trainingApi.getActiveTraining()) as ReadingTraining[];
-    setTrainingData(data);
-  };
+  // const getTrainingData = async () => {
+  //   const data = await trainingApi.getActiveTraining();
+  //   if (data) {
+  //     setTrainingData(data);
+  //   }
+  // };
 
-  useEffect(() => {
-    getTrainingData();
-  }, []);
+  // useEffect(() => {
+  //   getTrainingData();
+  // }, []);
 
   const readingBooks: Book[] = [];
   const leftDays = 9;

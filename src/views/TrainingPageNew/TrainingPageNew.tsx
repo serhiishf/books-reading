@@ -32,11 +32,13 @@ const TrainingPageNew = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {status === Status.PENDING && <Loader />}
-      {status === Status.FULL && <TrainingFull training={training} />}
+      {status === Status.FULL && training && (
+        <TrainingFull training={training} />
+      )}
       {status === Status.EMPTY && <TrainingEmpty />}
-    </div>
+    </>
   );
 };
 
