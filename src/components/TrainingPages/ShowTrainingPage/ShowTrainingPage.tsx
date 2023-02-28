@@ -65,6 +65,10 @@ function ShowTrainingPage({ trainingId }: ShowTraining) {
             title={t('training.yearCountdown')}
           /* finishDate={'2023-02-28T15:45:48.361Z'} */
           />
+          <Countdown
+            title={t('training.goalCountdown')}
+            finishDate={'2023-03-14T15:45:48.361Z'}
+          />
         </div>
         <Table canDelete={false} canMarkedDone={true} books={readingBooks} />
         <div className={styles.wrapChartDiagram}>
