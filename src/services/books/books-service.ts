@@ -34,8 +34,8 @@ export interface Book {
   _id: string;
   name: string;
   author: string;
-  year: string;
-  pages: string;
+  year: number;
+  pages: number;
   status: 'pending' | 'active' | 'done';
   owner: {
     _id: string;

@@ -7,8 +7,8 @@ import { ReactComponent as BookIcon } from './assets/book.svg';
 import { ReactComponent as DeleteIcon } from './assets/delete.svg';
 
 interface TableProps {
-  canDelete?: boolean,
-  canMarkedDone?: boolean,
+  canDelete?: boolean;
+  canMarkedDone?: boolean;
   books: Book[];
   deleteItemFunc?: (id: string) => void;
 }
@@ -16,7 +16,7 @@ interface TableProps {
 function Table({ canDelete, books, deleteItemFunc }: TableProps) {
   const { t } = useTranslation();
   const handleDeleteBtn = (id: string) => {
-    console.log('delete btn');
+    // console.log('delete btn');
     if (deleteItemFunc) {
       deleteItemFunc(id);
     }
@@ -47,17 +47,20 @@ function Table({ canDelete, books, deleteItemFunc }: TableProps) {
             <td className={styles.booksItem__textItem}>{book.author}</td>
             <td className={styles.booksItem__numberItem}>{book.year}</td>
             <td className={styles.booksItem__numberItem}>{book.pages}</td>
-            {canDelete && <td>
-              <div className={styles.booksItem__deleteColumn}>
-                <button
-                  className={styles.booksItem__deleteBtn}
-                  onClick={() => handleDeleteBtn(book._id)}>
-                  <div className={styles.booksItem__deleteBtnSvgWrap}>
-                    <DeleteIcon />
-                  </div>
-                </button>
-              </div>
-            </td>}
+            {canDelete && (
+              <td>
+                <div className={styles.booksItem__deleteColumn}>
+                  <button
+                    className={styles.booksItem__deleteBtn}
+                    onClick={() => handleDeleteBtn(book._id)}
+                  >
+                    <div className={styles.booksItem__deleteBtnSvgWrap}>
+                      <DeleteIcon />
+                    </div>
+                  </button>
+                </div>
+              </td>
+            )}
           </tr>
         ))}
       </tbody>
