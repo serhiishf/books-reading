@@ -15,9 +15,10 @@ const BookSelectInput: FC<Props> = ({ books, onAddActive }) => {
   return (
     <Formik
       initialValues={{ book: '' }}
-      onSubmit={(values) => {
+      onSubmit={(values, actions) => {
         const selectedBook = JSON.parse(values.book);
         onAddActive(selectedBook);
+        actions.resetForm({ values: { book: '' } });
         console.log(selectedBook);
       }}
     >

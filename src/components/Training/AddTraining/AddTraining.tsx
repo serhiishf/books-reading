@@ -2,7 +2,7 @@ import React, { useState, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './AddTraining.module.scss';
 import Calendar from '../../Calendar';
-import { Book } from '../../../services/books/books-service';
+import booksApi, { Book } from '../../../services/books/books-service';
 import BookSelectInput from '../BookSelectInput';
 import AddedBooksList from '../AddedBookList';
 
@@ -19,6 +19,15 @@ const AddTraining: FC<Props> = ({ books, activeBooks, onAddActive }) => {
 
   const { t } = useTranslation();
 
+  const handleAddTraining = () => {
+    console.log('!!!!!!');
+    console.log(activeBooks);
+    activeBooks.map(async (book) => {
+      console.log(book);
+      await booksApi.updateBookStatus({ bookId: book._id, status: 'active' });
+    });
+  };
+
   return (
     <div className={styles.addTrainingWrapper}>
       <h3>{t('training.myTraining')}</h3>
@@ -34,9 +43,12 @@ const AddTraining: FC<Props> = ({ books, activeBooks, onAddActive }) => {
           onlyAfter={true}
           setDate={setEndDate}
         />
-        <BookSelectInput books={books} onAddActive={onAddActive} />
-        <AddedBooksList activeBooks={activeBooks} />
       </div>
+      <BookSelectInput books={books} onAddActive={onAddActive} />
+      <AddedBooksList activeBooks={activeBooks} />
+      <button type="button" onClick={handleAddTraining}>
+        {t('training.startTaining')}
+      </button>
     </div>
   );
 };
