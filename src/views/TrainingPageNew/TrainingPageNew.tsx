@@ -28,9 +28,13 @@ const TrainingPageNew = () => {
   };
 
   // on add new training change status/set newTraining and render TrainingFull Component
-  const startTraining = (training: ReadingTraining) => {
+  const updateTrainingPage = (training: ReadingTraining | null) => {
     setTraining(training);
-    setStatus(Status.FULL);
+    if (training) {
+      setStatus(Status.FULL);
+    } else {
+      setStatus(Status.EMPTY);
+    }
   };
 
   const setBookStatus = (onjBookId: string, status: BookStatus) => {
@@ -67,14 +71,16 @@ const TrainingPageNew = () => {
       {status === Status.FULL && training && (
         <TrainingFull
           training={training}
-          setTraining={setTraining}
+          updateTraining={updateTrainingPage}
           setBookStatus={setBookStatus}
         />
       )}
 
-     {/* {status === Status.EMPTY && (<TrainingEmpty changeTraining={startTraining} />)} */}
+      {/* {status === Status.EMPTY && (<TrainingEmpty changeTraining={startTraining} />)} */}
 
-      {status === Status.EMPTY && training === null && <TrainingEmpty changeTraining={startTraining}/>}
+      {status === Status.EMPTY && !training && (
+        <TrainingEmpty changeTraining={updateTrainingPage} />
+      )}
     </>
   );
 };
