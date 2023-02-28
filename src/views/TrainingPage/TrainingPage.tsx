@@ -41,12 +41,12 @@ export default function TrainingPage() {
             </div>
           </Portal>
         )} */}
-        {hasActiveTraining === 'true' && <ShowTrainingPage
-          trainingId={trainingUser[0]._id}
-        />}
-        {hasActiveTraining === 'false' && <CreateTraining
-          handleSuccess={hundleSucces}
-        />}
+        {hasActiveTraining === 'true' && (
+          <ShowTrainingPage trainingId={trainingUser[0]._id} />
+        )}
+        {hasActiveTraining === 'false' && (
+          <CreateTraining handleSuccess={hundleSucces} />
+        )}
       </div>
     </div>
   );
