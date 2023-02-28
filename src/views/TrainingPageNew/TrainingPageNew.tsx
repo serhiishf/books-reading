@@ -65,11 +65,16 @@ const TrainingPageNew = () => {
     <>
       {status === Status.PENDING && <Loader />}
       {status === Status.FULL && training && (
-        <TrainingFull training={training} setBookStatus={setBookStatus} />
+        <TrainingFull
+          training={training}
+          setTraining={setTraining}
+          setBookStatus={setBookStatus}
+        />
       )}
-      {status === Status.EMPTY && (
-        <TrainingEmpty changeTraining={startTraining} />
-      )}
+
+     {/* {status === Status.EMPTY && (<TrainingEmpty changeTraining={startTraining} />)} */}
+
+      {status === Status.EMPTY && training === null && <TrainingEmpty changeTraining={startTraining}/>}
     </>
   );
 };
