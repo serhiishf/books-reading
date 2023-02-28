@@ -60,8 +60,8 @@ const getAllBooks = async (): Promise<Book[]> => {
 
 const getBookById = async (bookId: string) => {
   try {
-    const responce = await axiosInstance.get(`/books/book/?bookId=${bookId}`);
-    const result: Book = responce.data.data;
+    const response = await axiosInstance.get(`/books/book/?bookId=${bookId}`);
+    const result: Book = response.data.data;
     return result;
   } catch (error) {
     console.error(`Error fetching books: ${error}`);
