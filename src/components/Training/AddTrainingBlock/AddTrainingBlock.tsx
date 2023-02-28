@@ -1,31 +1,51 @@
 import React, { useState, FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from './AddTraining.module.scss';
+import styles from './AddTrainingBlock.module.scss';
 import Calendar from '../../Calendar';
-import booksApi, { Book } from '../../../services/books/books-service';
+import { Book } from '../../../services/books/books-service';
 import BookSelectInput from '../BookSelectInput';
 import AddedBooksList from '../AddedBookList';
+import { toast } from 'react-toastify';
+import { string } from 'yup/lib/locale';
+
+const checkPermissionCreate = (books: Book[], endDate: string) => {
+  if (endDate === '') {
+    toast.error('Add Finish Date!');
+    return false;
+  } else if (!books.length) {
+    toast.error('Add book in your training!');
+    return false;
+  }
+  return true;
+};
 
 type Props = {
   books: Book[];
   activeBooks: Book[];
   onAddActive: (newBook: Book) => void;
+  handleCreateTraining: (
+    startDate: string,
+    endDate: string,
+    books: Book[],
+  ) => Promise<void>;
 };
 
-const AddTraining: FC<Props> = ({ books, activeBooks, onAddActive }) => {
+const AddTrainingBlock: FC<Props> = ({
+  books,
+  activeBooks,
+  onAddActive,
+  handleCreateTraining,
+}) => {
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [bookCounterDays, setBookCounterDays] = useState<number>(0);
 
   const { t } = useTranslation();
 
-  const handleAddTraining = () => {
-    console.log('!!!!!!');
-    console.log(activeBooks);
-    activeBooks.map(async (book) => {
-      console.log(book);
-      await booksApi.updateBookStatus({ bookId: book._id, status: 'active' });
-    });
+  const createTraining = () => {
+    if (checkPermissionCreate(activeBooks, endDate)) {
+      handleCreateTraining(startDate, endDate, activeBooks);
+    }
   };
 
   return (
@@ -46,11 +66,11 @@ const AddTraining: FC<Props> = ({ books, activeBooks, onAddActive }) => {
       </div>
       <BookSelectInput books={books} onAddActive={onAddActive} />
       <AddedBooksList activeBooks={activeBooks} />
-      <button type="button" onClick={handleAddTraining}>
+      <button type="button" onClick={createTraining}>
         {t('training.startTaining')}
       </button>
     </div>
   );
 };
 
-export default AddTraining;
+export default AddTrainingBlock;
