@@ -9,14 +9,13 @@ import { Book } from '../../../services/books/books-service';
 import booksApi from '../../../services/books/books-service';
 import Button from '../Button';
 import { ButtonType } from '../Button/Button';
-import trainingApi, {
-  CreateTrainingInterface,
-} from '../../../services/training/training-service';
+import trainingApi from '../../../services/training/training-service';
 import TrainingDiagram from '../../TrainingDiagram';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 interface CreateTrainingProps {
-  handleSuccess: React.Dispatch<React.SetStateAction<string>>;
+  handleSuccess: () => void;
+ /*  handleSuccess: React.Dispatch<React.SetStateAction<string>>; */
 }
 
 function CreateTraining({ handleSuccess }: CreateTrainingProps) {
@@ -26,34 +25,36 @@ function CreateTraining({ handleSuccess }: CreateTrainingProps) {
   const [bookCounterDays, setBookCounterDays] = useState<number>(0);
   const [addedBooksID, setAddedBooksID] = useState<string[]>([]);
   const [addedBooks, setAddedBooks] = useState<Book[]>([]);
-
-  function handleDeleteBook(id: string) {
-    const updatedBooks = addedBooks.filter((book) => book._id !== id);
-    setAddedBooks(updatedBooks);
-  }
+  // const [totalPages, setTotalPages] = useState<number>(0);
 
   useEffect(() => {
     if (startDate && endDate) {
       const days = moment(endDate).diff(moment(startDate), 'days');
       setBookCounterDays(days);
-      // console.log(bookCounterDays);
     }
   }, [startDate, endDate]);
 
   useEffect(() => {
-    const fetchBooks = async () => {
-      const response = await Promise.all(
-        addedBooksID.map((id) => booksApi.getBookById(id)),
-      );
-      const books = response.filter((book) => book !== undefined) as Book[];
-      setAddedBooks(books);
-    };
     if (addedBooksID.length > 0) {
       fetchBooks();
     } else {
       setAddedBooks([]);
     }
   }, [addedBooksID]);
+
+  function handleDeleteBook(id: string) {
+    const updatedBooks = addedBooks.filter((book) => book._id !== id);
+    setAddedBooks(updatedBooks);
+  }
+
+  const fetchBooks = async () => {
+    const response = await Promise.all(
+      addedBooksID.map((id) => booksApi.getBookById(id)),
+    );
+
+    const books = response.filter((book) => book !== undefined) as Book[];
+    setAddedBooks(books);
+  };
 
   const checkPermitionCreate = (): boolean => {
     if (endDate === '') {
@@ -66,16 +67,16 @@ function CreateTraining({ handleSuccess }: CreateTrainingProps) {
     return true;
   };
 
-  const handleStartBtn = () => {
+  const handleStartBtn = async () => {
     if (checkPermitionCreate()) {
-      trainingApi.createTraining({
+      await trainingApi.createTraining({
         start: startDate.replace('T', ' '),
         finish: endDate.replace('T', ' '),
         books: addedBooksID.map((bookId: string) => {
           return { book: bookId };
         }),
       });
-      handleSuccess('true');
+      handleSuccess(/* 'true' */);
     }
   };
 
@@ -101,7 +102,12 @@ function CreateTraining({ handleSuccess }: CreateTrainingProps) {
           />
         </div>
         <div className={styles.wrapChartDiagram}>
-          <TrainingDiagram isRealTraining={true} />
+          <TrainingDiagram
+            isRealTraining={true}
+            daysAmount={bookCounterDays}
+            addedBooks={addedBooks}
+            // totalPages={}
+          />
         </div>
       </div>
       <div className={styles.sidebar}>

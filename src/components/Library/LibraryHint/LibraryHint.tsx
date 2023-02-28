@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styles from './LibraryHint.module.scss';
 import { ReactComponent as Flag } from '../../../assets/img/flag.svg';
 import { ReactComponent as Arr } from '../../../assets/img/ancle-arr.svg';
