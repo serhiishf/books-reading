@@ -2,9 +2,8 @@ import React from 'react';
 import booksApi from '../../../services/books/books-service';
 import { ReadingTraining } from '../../../services/training/training-service';
 import BookStatusI, { statusBook } from '../../../utils/bookStatus';
-import BookItem from '../BookItem';
-import BookListHeader from '../BookListHeader';
-import Checkbox from '../Checkbox';
+import BoolListFull from '../BookListFull/BookListFull';
+import Counter from '../Counter';
 
 interface Props {
   training: ReadingTraining;
@@ -22,7 +21,7 @@ const TrainingFull: React.FC<Props> = ({ training, setBookStatus }) => {
       status:
         status === statusBook.ACTIVE ? statusBook.DONE : statusBook.ACTIVE,
     };
-    const res = await booksApi.updateBookStatus(body);
+    await booksApi.updateBookStatus(body);
 
     // setBookStatus(objBookId, body.status);
   };
@@ -30,21 +29,13 @@ const TrainingFull: React.FC<Props> = ({ training, setBookStatus }) => {
   return (
     <div>
       <div>
-        <BookListHeader />
-        <ul>
-          {training.books.map((bookObj) => {
-            const { book, _id } = bookObj;
-            return (
-              <>
-                <Checkbox
-                  status={book.status}
-                  clb={() => onClickCheckbox(book._id, book.status, _id)}
-                />
-                <BookItem key={_id} book={book} />
-              </>
-            );
-          })}
-        </ul>
+        {/* timers */}
+        <BoolListFull training={training} onCheckboxClick={onClickCheckbox} />
+        <Counter books={3} days={7} booksLeft={2} />
+      </div>
+      <div>
+        {/* diagram */}
+        {/* statistics */}
       </div>
     </div>
   );
