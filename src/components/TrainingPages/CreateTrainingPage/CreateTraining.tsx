@@ -15,7 +15,7 @@ import TrainingDiagram from '../../TrainingDiagram';
 
 interface CreateTrainingProps {
   handleSuccess: () => void;
- /*  handleSuccess: React.Dispatch<React.SetStateAction<string>>; */
+  /*  handleSuccess: React.Dispatch<React.SetStateAction<string>>; */
 }
 
 function CreateTraining({ handleSuccess }: CreateTrainingProps) {
