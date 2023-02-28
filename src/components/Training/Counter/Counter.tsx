@@ -11,7 +11,9 @@ interface CounterProps {
 }
 
 export default function BookCounter({ books, days, booksLeft }: CounterProps) {
-  const UseCountItem = booksLeft ? CountItemSmall : CountItem;
+  const isActiveTraining = typeof booksLeft === 'number';
+
+  const UseCountItem = isActiveTraining ? CountItemSmall : CountItem;
 
   const { t } = useTranslation();
 
@@ -26,9 +28,9 @@ export default function BookCounter({ books, days, booksLeft }: CounterProps) {
       <div className={styles.counters}>
         <UseCountItem count={books} title={t('training.numberOfBooks')} />
         <UseCountItem count={days} title={t('training.numberOfDays')} />
-        {booksLeft && (
+        {isActiveTraining && (
           <UseCountItem
-            count={booksLeft}
+            count={booksLeft as number}
             title={t('training.leftBooks')}
             highlight={true}
           />

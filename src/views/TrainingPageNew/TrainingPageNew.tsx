@@ -27,15 +27,38 @@ const TrainingPageNew = () => {
     }
   };
 
+  // const setBookStatus = (onjBookId: string, status: BookStatus) => {
+  //   if (training) {
+  //     const book = training.books.find((book) => book._id === onjBookId);
+  //     if (book) {
+  //       book.book.status = status;
+  //       setTraining(training);
+  //     }
+  //   }
+  // };
+
   const setBookStatus = (onjBookId: string, status: BookStatus) => {
-    //it's work but I think we don't need it
-    // if (training) {
-    //   const book = training.books.find((book) => book._id === onjBookId);
-    //   if (book) {
-    //     book.book.status = status;
-    //   }
-    //   console.log(training);
-    // }
+    if (training) {
+      const updatedBooks = training.books.map((book) => {
+        if (book._id === onjBookId) {
+          return {
+            _id: book._id,
+            book: {
+              ...book.book,
+              status,
+            },
+          };
+        }
+        return book;
+      });
+
+      const updatedTraining = {
+        ...training,
+        books: updatedBooks,
+      };
+
+      setTraining(updatedTraining as ReadingTraining);
+    }
   };
 
   useEffect(() => {

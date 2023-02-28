@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import booksApi from '../../../services/books/books-service';
 import { ReadingTraining } from '../../../services/training/training-service';
 import BookStatusI, { statusBook } from '../../../utils/bookStatus';
+import countDays from '../../../utils/countDays';
 import BoolListFull from '../BookListFull/BookListFull';
 import Counter from '../Counter';
 
@@ -10,7 +11,19 @@ interface Props {
   setBookStatus: (bookId: string, status: BookStatusI) => void;
 }
 
+const getNotFinishedBooks = (training: ReadingTraining) => {
+  return training.books.filter(({ book }) => book.status === statusBook.ACTIVE);
+};
+
 const TrainingFull: React.FC<Props> = ({ training, setBookStatus }) => {
+  const [notFinishedBooks, setNotFinishedBooks] = useState(
+    getNotFinishedBooks(training),
+  );
+
+  useEffect(() => {
+    setNotFinishedBooks(getNotFinishedBooks(training));
+  }, [training]);
+
   const onClickCheckbox = async (
     bookId: string,
     status: BookStatusI,
@@ -23,7 +36,7 @@ const TrainingFull: React.FC<Props> = ({ training, setBookStatus }) => {
     };
     await booksApi.updateBookStatus(body);
 
-    // setBookStatus(objBookId, body.status);
+    setBookStatus(objBookId, body.status);
   };
 
   return (
@@ -31,7 +44,11 @@ const TrainingFull: React.FC<Props> = ({ training, setBookStatus }) => {
       <div>
         {/* timers */}
         <BoolListFull training={training} onCheckboxClick={onClickCheckbox} />
-        <Counter books={3} days={7} booksLeft={2} />
+        <Counter
+          books={training.books.length}
+          days={countDays(training.start, training.finish)}
+          booksLeft={notFinishedBooks.length}
+        />
       </div>
       <div>
         {/* diagram */}
