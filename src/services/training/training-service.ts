@@ -39,8 +39,8 @@ export interface ReadingTraining {
 
 const getActiveTraining = async () => {
   try {
-    const responce = await axiosInstance.get('/trainings/active-trainings');
-    const result = responce.data.data.trainings;
+    const response = await axiosInstance.get('/trainings/active-trainings');
+    const result = response.data.data.trainings;
     return result;
   } catch (error) {
     console.log(`Error fetching active training: ${error}`);
