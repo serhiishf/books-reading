@@ -25,6 +25,17 @@ const AddTraining: FC<Props> = ({
 
   const { t } = useTranslation();
 
+  const checkPermissionCreate = (): boolean => {
+    if (endDate === '') {
+      alert('Add Finish Date!');
+      return false;
+    } else if (!activeBooks.length) {
+      alert('Add book in your training!');
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div className={styles.addTrainingWrapper}>
       <h3>{t('training.myTraining')}</h3>
