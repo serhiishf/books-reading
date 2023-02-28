@@ -28,6 +28,11 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
 
   const onAddToList = (newBook: Book) => {
     setActiveBooks([...booksActive, newBook]);
+    const updatedBooks = pendingBooks.filter(
+      (book) => book._id !== newBook._id,
+    );
+    setPendingBooks(updatedBooks);
+    console.log('updatedBooks', pendingBooks);
   };
 
   const onCreateTraining = async (

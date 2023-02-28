@@ -1,11 +1,11 @@
 import React, { useState, FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from './AddTrainingBlock.module.scss';
-import Calendar from '../../Calendar';
-import { Book } from '../../../services/books/books-service';
-import BookSelectInput from '../BookSelectInput';
-import AddedBooksList from '../AddedBookList';
 import { toast } from 'react-toastify';
+import { Book } from '../../../services/books/books-service';
+import Calendar from '../../Calendar';
+import BookSelectInput from '../BookSelectInput';
+import BookListEmpty from '../BookListEmpty';
+import styles from './AddTrainingBlock.module.scss';
 // import { string } from 'yup/lib/locale';
 
 const checkPermissionCreate = (books: Book[], endDate: string) => {
@@ -65,7 +65,7 @@ const AddTrainingBlock: FC<Props> = ({
         />
       </div>
       <BookSelectInput books={books} onAddActive={onAddActive} />
-      <AddedBooksList activeBooks={activeBooks} />
+      <BookListEmpty activeBooks={activeBooks} />
       <button type="button" onClick={createTraining}>
         {t('training.startTaining')}
       </button>

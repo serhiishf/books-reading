@@ -19,7 +19,6 @@ const BookSelectInput: FC<Props> = ({ books, onAddActive }) => {
         const selectedBook = JSON.parse(values.book);
         onAddActive(selectedBook);
         actions.resetForm({ values: { book: '' } });
-        console.log(selectedBook);
       }}
     >
       {({ handleSubmit }) => (

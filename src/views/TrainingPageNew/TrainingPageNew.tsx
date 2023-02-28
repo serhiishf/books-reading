@@ -72,9 +72,11 @@ const TrainingPageNew = () => {
         />
       )}
 
-     {/* {status === Status.EMPTY && (<TrainingEmpty changeTraining={startTraining} />)} */}
+      {/* {status === Status.EMPTY && (<TrainingEmpty changeTraining={startTraining} />)} */}
 
-      {status === Status.EMPTY && training === null && <TrainingEmpty changeTraining={startTraining}/>}
+      {status === Status.EMPTY && training === null && (
+        <TrainingEmpty changeTraining={startTraining} />
+      )}
     </>
   );
 };

@@ -8,7 +8,7 @@ interface Props {
 
 const BookItem: React.FC<Props> = ({ book }) => {
   return (
-    <li className={styles.thumb}>
+    <li className={styles.thumb} key={book._id}>
       <p className={styles.name}>{book.name}</p>
       <p className={styles.author}>{book.author}</p>
       <p className={styles.year}>{book.year}</p>
