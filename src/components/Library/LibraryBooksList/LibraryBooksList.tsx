@@ -31,7 +31,7 @@ const LibraryBooksList: FC<Props> = ({ books, handleUpdate, handleDelete }) => {
 
   return (
     <div className={styles.wrapper}>
-      {activeBooks.length ? (
+      {activeBooks?.length ? (
         <div className={styles.sectionWrapper}>
           <h3 className={styles.sectionTitle}>{t('library.active')}</h3>
           <div className={styles.wrapTitls}>
@@ -46,7 +46,7 @@ const LibraryBooksList: FC<Props> = ({ books, handleUpdate, handleDelete }) => {
         </div>
       ) : null}
 
-      {doneBooks.length ? (
+      {doneBooks?.length ? (
         <div className={styles.sectionWrapper}>
           <h3 className={styles.sectionTitle}>{t('library.done')}</h3>
           <div className={styles.titlesWrapper}>
@@ -66,7 +66,7 @@ const LibraryBooksList: FC<Props> = ({ books, handleUpdate, handleDelete }) => {
         </div>
       ) : null}
 
-      {pendingBooks.length ? (
+      {pendingBooks?.length ? (
         <div>
           <h3 className={styles.sectionTitle}>{t('library.pending')}</h3>
           <div className={styles.wrapTitls}>
