@@ -90,7 +90,10 @@ const TrainingFull: React.FC<Props> = ({
       <div>
         <Diagram activeTraining={training} />
         {/* statistics */}
-        {/* <Results /> */}
+        <Results
+          startTrainingDate={training.start}
+          totalPages={training.totalPages}
+        />
       </div>
       <button type="button" onClick={onClickDelete}>
         Remove Training
