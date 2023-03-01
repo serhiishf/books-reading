@@ -30,6 +30,18 @@ const Diagram: React.FC<Props> = ({ activeTraining, createTraining }) => {
     return 0;
   };
 
+  const axisBottomObj = {
+    tickSize: 0,
+    tickPadding: 5,
+    tickRotation: 0,
+    legend: '',
+    legendPosition: 'middle',
+  };
+  const axisBottom =
+    data[data.findIndex((el) => el.id === 'Plan')].data.length > 10
+      ? null
+      : (axisBottomObj as any);
+
   const chooseDataGenerateStrategy = () => {
     if (activeTraining) {
       //if we have an active training
@@ -69,14 +81,7 @@ const Diagram: React.FC<Props> = ({ activeTraining, createTraining }) => {
         curve="cardinal"
         axisTop={null}
         axisRight={null}
-        axisBottom={{
-          tickSize: 0,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: '',
-
-          legendPosition: 'middle',
-        }}
+        axisBottom={axisBottom}
         axisLeft={null}
         enableGridY={false}
         colors={{ scheme: 'category10' }}
