@@ -7,6 +7,8 @@ import { toast } from 'react-toastify';
 interface ResultsProps {
   startTrainingDate: string;
   totalPages: number;
+  isDataSaved: boolean;
+  onSaveData: () => void;
 }
 
 export interface Result {
@@ -15,7 +17,12 @@ export interface Result {
   pages: number;
 }
 
-const Results: FC<ResultsProps> = ({ startTrainingDate, totalPages }) => {
+const Results: FC<ResultsProps> = ({
+  startTrainingDate,
+  totalPages,
+  isDataSaved,
+  onSaveData,
+}) => {
   const [results, setResults] = useState<Result[]>([]);
 
   const removeResult = (index: number) => {
