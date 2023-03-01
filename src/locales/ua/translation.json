@@ -306,7 +306,8 @@
     "confirmDelete": "Підтвердити",
     "resetDelete": "Скасувати",
     "yearCountdown": "До закінчення року залишилось",
-    "goalCountdown": "До досягнення мети залишилось"
+    "goalCountdown": "До досягнення мети залишилось",
+    "removeTraining": "Видалити тренінг"
   },
 
   "countdown": {

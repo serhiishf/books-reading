@@ -101,7 +101,7 @@ const TrainingFull: React.FC<Props> = ({
           <Button
             type={ButtonType.done}
             handleClick={onClickDelete}
-            title={'Remove training'}
+            title={t('training.removeTraining')}
           />
         </div>
       </div>
