@@ -54,7 +54,21 @@ function generatePlan(training: ReadingTraining): Datum[] {
 
   return planData;
 }
+function generateFact(training: ReadingTraining): Datum[] {
+  const { start, finish, statistics, totalPages } = training;
 
+  if (statistics.length === 0) {
+    const average = getAveragePagesPerDay(start, finish, totalPages);
+    const factData: Datum[] = [{ x: formatDate(start), y: average + 5 }];
+    return factData;
+  } else {
+    const factData: Datum[] = [];
+    statistics.forEach(({ date, pages }) => {
+      factData.push({ x: formatDate(date), y: pages });
+    });
+    return factData;
+  }
+}
 function getEndOfDay(dateString: string) {
   const date = new Date(dateString);
   const remainingMilliseconds =
@@ -69,7 +83,8 @@ function getStartOfDay(dateStr: string) {
   return date;
 }
 
-function generateFact(training: ReadingTraining): Datum[] {
+export function generateFactTest(training: ReadingTraining): Datum[] {
+  console.log('training', training);
   const { start, finish, statistics, totalPages } = training;
   const factData: Datum[] = [];
 
@@ -93,18 +108,20 @@ function generateFact(training: ReadingTraining): Datum[] {
 
   while (prevDate < new Date(finish)) {
     if (i < statistics.length) {
+      console.log(i);
       const statDate = new Date(statistics[i].date);
 
       // If current date is within the current day
       if (statDate >= startOfDay && statDate <= endOfDay) {
         sumPages += statistics[i].pages;
-        i++;
+
+        // i++;
         continue;
       }
 
       // If current date is before the current day, move to next record
       if (statDate < startOfDay) {
-        i++;
+        // i++;
         continue;
       }
 
@@ -115,7 +132,11 @@ function generateFact(training: ReadingTraining): Datum[] {
       startOfDay = getStartOfDay(prevDate.toISOString());
       endOfDay = getEndOfDay(prevDate.toISOString());
       sumPages = 0;
+      i++;
     }
+    // else if (i >= statistics.length) {
+    //   break;
+    // }
   }
 
   // Add last point if it's not already added
