@@ -6,6 +6,11 @@ import Calendar from '../../Calendar';
 import BookSelectInput from '../BookSelectInput';
 import BookListEmpty from '../BookListEmpty';
 import styles from './AddTrainingBlock.module.scss';
+import Subheader from '../Subheader';
+import classNames from 'classnames';
+import ButtonBack from '../../ButtonBack';
+import Button from '../Button';
+import { ButtonType } from '../Button/Button';
 
 // import { string } from 'yup/lib/locale';
 
@@ -44,6 +49,7 @@ const AddTrainingBlock: FC<Props> = ({
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [bookCounterDays, setBookCounterDays] = useState<number>(0);
+  const [controlPanelOpen, setControlPanelOpen] = useState(false);
 
   const updateStartDay = (date: string) => {
     setStartDateEmptyC(date);
@@ -53,6 +59,10 @@ const AddTrainingBlock: FC<Props> = ({
   const updateFinishDate = (date: string) => {
     setFinishDateEmptyC(date);
     setEndDate(date);
+  };
+
+  const toggleStateControlPanel = () => {
+    setControlPanelOpen(!controlPanelOpen);
   };
 
   const { t } = useTranslation();
@@ -66,27 +76,61 @@ const AddTrainingBlock: FC<Props> = ({
 
   return (
     <div className={styles.addTrainingWrapper}>
-      <h3>{t('training.myTraining')}</h3>
-      <div className={styles.calendarsWrap}>
-        <Calendar
-          placeHolder={t('training.start')}
-          today={true}
-          open={true}
-          updateDate={updateStartDay}
-        /* setDate={setStartDate} */
-        />
-        <Calendar
-          placeHolder={t('training.finish')}
-          onlyAfter={true}
-          updateDate={updateFinishDate}
-        /* setDate={setEndDate} */
+      <div
+        className={classNames(
+          styles.overlayControlPanel,
+          controlPanelOpen && styles.openControlPanel,
+        )}
+      >
+        <div className={classNames(styles.controlPanel)}>
+          <div
+            className={classNames(
+              styles.buttonBackWrap,
+              !controlPanelOpen && styles.hidden,
+            )}
+          >
+            <ButtonBack handleClick={toggleStateControlPanel} />
+          </div>
+          <Subheader
+            title={t('training.myTraining')}
+          />
+          <div className={styles.calendarsWrap}>
+            <Calendar
+              placeHolder={t('training.start')}
+              today={true}
+              open={true}
+              updateDate={updateStartDay}
+            />
+            <Calendar
+              placeHolder={t('training.finish')}
+              onlyAfter={true}
+              updateDate={updateFinishDate}
+            />
+          </div>
+          <div className={styles.selectWrap}>
+            <div className={styles.dropdownWrap}>
+              <BookSelectInput books={books} onAddActive={onAddActive} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={classNames(styles.btnPLusWrap)}>
+        <Button
+          type={ButtonType.plus}
+          handleClick={() => {
+            toggleStateControlPanel();
+          }}
         />
       </div>
-      <BookSelectInput books={books} onAddActive={onAddActive} />
       <BookListEmpty activeBooks={activeBooks} />
-      <button type="button" onClick={createTraining}>
-        {t('training.startTaining')}
-      </button>
+      <div className={styles.buttonDoneWrap}>
+        <Button
+          type={ButtonType.done}
+          handleClick={createTraining}
+          title={t('training.startTaining')}
+        />
+      </div>
     </div>
   );
 };
