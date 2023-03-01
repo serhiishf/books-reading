@@ -11,7 +11,6 @@ import ModalChoice from '../../ModalChoice';
 import Portal from '../../Portal';
 import BoolListFull from '../BookListFull/BookListFull';
 import BookCounter from '../BookCounter';
-/* import Counter from '../Counter'; */
 import Diagram from '../Diagram';
 import Results from '../Results';
 
@@ -107,9 +106,7 @@ const TrainingFull: React.FC<Props> = ({
       <div className={styles.mainContent}>
         <div>
           <div className={styles.countdownsWrap}>
-            <Countdown
-              title={t('training.yearCountdown')}
-            />
+            <Countdown title={t('training.yearCountdown')} />
             <Countdown
               finishDate={training.finish}
               title={t('training.goalCountdown')}
@@ -127,9 +124,6 @@ const TrainingFull: React.FC<Props> = ({
             title={'Remove training'}
           />
         </div>
-        {/*         <button type="button" onClick={onClickDelete}>
-          Remove Training
-        </button> */}
       </div>
       <div className={styles.sidebar}>
         <BookCounter
