@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import trainingApi from '../../services/training/training-service';
+import trainingApi, {
+  ReadingTraining,
+} from '../../services/training/training-service';
 import Loader from '../../components/Loader';
+import TrainingFull from '../../components/Training/TrainingFull';
+import TrainingEmpty from '../../components/Training/TrainingEmpty';
+import BookStatus from '../../utils/bookStatus';
 
 enum Status {
   'PENDING' = 'pending',
@@ -9,19 +14,50 @@ enum Status {
 }
 
 const TrainingPageNew = () => {
-  const [training, setTraining] = useState(
-    async () => await trainingApi.getActiveTraining(),
-  );
+  const [training, setTraining] = useState<ReadingTraining | null>(null);
   const [status, setStatus] = useState(Status.PENDING);
 
   const getStatus = async () => {
     const data = await trainingApi.getActiveTraining();
-    console.log(data);
-    if (data.length) {
+    if (data?.length) {
       setStatus(Status.FULL);
-      setTraining(data);
+      setTraining(data[0]);
     } else {
       setStatus(Status.EMPTY);
+    }
+  };
+
+  // on add new training change status/set newTraining and render TrainingFull Component
+  const updateTrainingPage = (training: ReadingTraining | null) => {
+    setTraining(training);
+    if (training) {
+      setStatus(Status.FULL);
+    } else {
+      setStatus(Status.EMPTY);
+    }
+  };
+
+  const setBookStatus = (onjBookId: string, status: BookStatus) => {
+    if (training) {
+      const updatedBooks = training.books.map((book) => {
+        if (book._id === onjBookId) {
+          return {
+            _id: book._id,
+            book: {
+              ...book.book,
+              status,
+            },
+          };
+        }
+        return book;
+      });
+
+      const updatedTraining = {
+        ...training,
+        books: updatedBooks,
+      };
+
+      setTraining(updatedTraining as ReadingTraining);
     }
   };
 
@@ -30,11 +66,20 @@ const TrainingPageNew = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {status === Status.PENDING && <Loader />}
-      {status === Status.FULL && <div>Training Full</div>}
-      {status === Status.EMPTY && <div>TrainingEmpty</div>}
-    </div>
+      {status === Status.FULL && training && (
+        <TrainingFull
+          training={training}
+          updateTraining={updateTrainingPage}
+          setBookStatus={setBookStatus}
+        />
+      )}
+
+      {status === Status.EMPTY && !training && (
+        <TrainingEmpty changeTraining={updateTrainingPage} />
+      )}
+    </>
   );
 };
 
