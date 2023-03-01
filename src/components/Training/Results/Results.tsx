@@ -5,13 +5,16 @@ import ResultsTable from '../ResultsTable';
 import { toast } from 'react-toastify';
 import trainingApi, {
   Statistics,
+  ReadingTraining,
 } from '../../../services/training/training-service';
 
 interface ResultsProps {
   startTrainingDate: string;
   totalPages: number;
+  readPages: number;
   trainingId: string;
   statistics: Statistics[];
+  updateTraining: (training: ReadingTraining | null) => void;
 }
 
 export interface Result {
@@ -23,8 +26,10 @@ export interface Result {
 const Results: FC<ResultsProps> = ({
   startTrainingDate,
   totalPages,
+  readPages,
   trainingId,
   statistics,
+  updateTraining,
 }) => {
   const [results, setResults] = useState<Result[]>([]);
   const [leftPages, setLeftPages] = useState<number>(totalPages);
@@ -37,8 +42,11 @@ const Results: FC<ResultsProps> = ({
   };
 
   useEffect(() => {
-    const updatedStatistics = transformStatistics(statistics);
-    setResults(updatedStatistics);
+    if (statistics) {
+      const updatedStatistics = transformStatistics(statistics);
+      setResults(updatedStatistics);
+      setLeftPages(totalPages - readPages);
+    }
   }, []);
 
   const transformStatistics = (arr: Statistics[]) => {
@@ -54,27 +62,22 @@ const Results: FC<ResultsProps> = ({
     });
   };
 
-  const getTotalReadPages = statistics.reduce((totalPages: number, stat) => {
-    return totalPages + stat.pages;
-  }, 0);
-
-  console.log(getTotalReadPages);
-
   const handleFormSubmit = async (
     values: { date: string; pages: number },
     dateToSend: string,
   ) => {
-    const newPages = totalPages - values.pages;
-    setLeftPages(newPages);
-    console.log(newPages);
-    const freshAddedResult = await trainingApi.addResults({
+    const freshAddedTraining = await trainingApi.addResults({
       date: dateToSend,
       pages: values.pages,
       trainingId: trainingId,
     });
-    const newResult = transformStatistics(freshAddedResult);
-    setResults([...newResult]);
-    toast.success('Результат успішно додано!');
+    if (freshAddedTraining.statistics) {
+      const newResult = transformStatistics(freshAddedTraining.statistics);
+      updateTraining(freshAddedTraining);
+      setResults([...newResult]);
+
+      toast.success('Результат успішно додано!');
+    }
   };
 
   return (

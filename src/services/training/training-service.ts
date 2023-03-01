@@ -69,7 +69,7 @@ const deleteTraining = async (trainingId: string) => {
 const addResults = async (body: Statistics) => {
   try {
     const { data } = await axiosInstance.patch('trainings/statistic', body);
-    return data.data.statistics;
+    return data.data;
   } catch (error) {
     console.log(`Error deleting training: ${error}`);
   }
