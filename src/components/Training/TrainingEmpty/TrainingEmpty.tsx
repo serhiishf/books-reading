@@ -6,6 +6,7 @@ import AddTrainingBlock from '../AddTrainingBlock';
 import trainingApi, {
   ReadingTraining,
 } from '../../../services/training/training-service';
+import Diagram from '../Diagram';
 
 type Props = {
   changeTraining: (training: ReadingTraining) => void;
@@ -28,6 +29,7 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
 
   const onAddToList = (newBook: Book) => {
     setActiveBooks([...booksActive, newBook]);
+
     const updatedBooks = pendingBooks.filter(
       (book) => book._id !== newBook._id,
     );
@@ -71,6 +73,7 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
         onAddActive={onAddToList}
         handleCreateTraining={onCreateTraining}
       />
+      <Diagram books={booksActive} />
     </div>
   );
 };

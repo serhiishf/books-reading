@@ -6,23 +6,18 @@ import styles from './Diagram.module.scss';
 import { useTranslation } from 'react-i18next';
 import generateData, { getAveragePagesPerDay } from './generateData';
 
-const Diagram: React.FC<Props> = ({ activeTraining }) => {
+const Diagram: React.FC<Props> = ({ activeTraining, books }) => {
   const { t } = useTranslation();
-
-  // const mathTotalPages = () => {
-  //   if (addedBooks && addedBooks.length > 0) {
-  //     const pagesSum = addedBooks.reduce((acc, cur) => cur.pages + acc, 0);
-  //     return pagesSum;
-  //   }
-  //   return 0;
-  // };
 
   const getAverage = () => {
     if (activeTraining) {
       const { start, finish, totalPages } = activeTraining;
       const { average } = getAveragePagesPerDay(start, finish, totalPages);
       return average;
+    } else if (books && books.length) {
+      const totalPages = books.reduce((acc, cur) => cur.pages + acc, 0);
     }
+    return 0;
   };
 
   return (
@@ -41,8 +36,6 @@ const Diagram: React.FC<Props> = ({ activeTraining }) => {
           type: 'linear',
           min: 'auto',
           max: 'auto',
-          // stacked: true,
-          // reverse: false,
         }}
         curve="cardinal"
         axisTop={null}
