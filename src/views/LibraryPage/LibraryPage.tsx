@@ -30,8 +30,10 @@ const LibraryPage = () => {
   }, []);
 
   const handleAddBook = (newBook: Book) => {
-    setBooksUser([...booksUser, newBook]);
-    setStatus(Status.ACTIVE);
+    if (newBook) {
+      setBooksUser([...booksUser, newBook]);
+      setStatus(Status.ACTIVE);
+    }
   };
 
   const handleDeleteBook = (deletedBook: Book) => {

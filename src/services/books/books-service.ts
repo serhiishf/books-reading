@@ -84,7 +84,11 @@ const createBook = async (body: BookT) => {
     return data;
   } catch (error) {
     if (error instanceof AxiosError) {
-      toast.error(i18n?.t?.('toast.errorLog2'));
+      if (error.response?.status === 400) {
+        toast.error(i18n?.t?.('toast.existedBook'));
+      } else {
+        toast.error(i18n?.t?.('toast.errorLog2'));
+      }
     }
   }
 };
