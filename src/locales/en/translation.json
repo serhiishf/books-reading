@@ -263,7 +263,8 @@
     "min5": "Min 5 symbols",
     "max5": "Max 5 symbols",
     "max100": "Max 100 symbols",
-    "max50": "Max 50 symbols"
+    "max50": "Max 50 symbols",
+    "max2023": "Max year 2023"
   },
 
   "toast": {
@@ -301,7 +302,8 @@
     "confirmDelete": "Confirm",
     "resetDelete": "Cancel",
     "yearCountdown": "Year countdown",
-    "goalCountdown": "Goal countdown"
+    "goalCountdown": "Goal countdown",
+    "congrats": "Congratulations! You have finished your training! Don't stop, proceed to create a new one!"
   },
 
   "countdown": {

@@ -94,9 +94,7 @@ const TrainingFull: React.FC<Props> = ({
           </div>
           <BoolListFull training={training} onCheckboxClick={onClickCheckbox} />
         </div>
-        <div>
-          <Diagram activeTraining={training} />
-        </div>
+        <div>{/* <Diagram activeTraining={training} /> */}</div>
         <div className={styles.buttonWrap}>
           <Button
             type={ButtonType.done}
@@ -113,14 +111,7 @@ const TrainingFull: React.FC<Props> = ({
           leftReading={notFinishedBooks.length.toString()}
         />
 
-        <Results
-          startTrainingDate={training.start}
-          totalPages={training.totalPages}
-          readPages={training.readPages}
-          trainingId={training._id}
-          statistics={training.statistics}
-          updateTraining={updateTraining}
-        />
+        <Results training={training} updateTraining={updateTraining} />
       </div>
 
       {isOpenModal && (
