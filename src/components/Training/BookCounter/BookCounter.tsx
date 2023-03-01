@@ -8,7 +8,7 @@ import CountItemSmall from './CountItemSmall';
 interface BookCounterProps {
   books: number | string;
   days: number | string;
-  leftReading?: number;
+  leftReading?: number | string;
 }
 
 export default function BookCounter({ books, days, leftReading }: BookCounterProps) {
