@@ -124,9 +124,13 @@ const AddTrainingBlock: FC<Props> = ({
         />
       </div>
       <BookListEmpty activeBooks={activeBooks} />
-      <button type="button" onClick={createTraining}>
-        {t('training.startTaining')}
-      </button>
+      <div className={styles.buttonDoneWrap}>
+        <Button
+          type={ButtonType.done}
+          handleClick={createTraining}
+          title={t('training.startTaining')}
+        />
+      </div>
     </div>
   );
 };
