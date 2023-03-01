@@ -295,6 +295,15 @@
     "statisctics": "STATISTICS",
     "start": "Start",
     "finish": "Finish",
-    "diagramTitle": "Number of pages / day"
+    "diagramTitle": "Number of pages / day",
+    "yearCountdown": "Year countdown",
+    "goalCountdown": "Goal countdown"
+  },
+
+  "countdown": {
+    "days": "DAYS",
+    "hrs": "HRS",
+    "mins": "MINS",
+    "secs": "SECS"
   }
 }
