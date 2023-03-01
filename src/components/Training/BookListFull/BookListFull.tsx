@@ -22,6 +22,7 @@ const BoolListFull: React.FC<Props> = ({ training, onCheckboxClick }) => {
         {training.books.map((bookObj) => {
           const { book, _id } = bookObj;
           return (
+            // here should be tag with key value <div key={_id}></div>
             <>
               <Checkbox
                 status={book.status}
