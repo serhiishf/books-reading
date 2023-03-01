@@ -301,7 +301,8 @@
     "confirmDelete": "Confirm",
     "resetDelete": "Cancel",
     "yearCountdown": "Year countdown",
-    "goalCountdown": "Goal countdown"
+    "goalCountdown": "Goal countdown",
+    "removeTraining": "Remove training"
   },
 
   "countdown": {
