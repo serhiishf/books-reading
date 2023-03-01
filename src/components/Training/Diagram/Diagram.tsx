@@ -1,35 +1,64 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ResponsiveLine } from '@nivo/line';
 import { defaultData } from './defaultData';
 import { Props } from './types';
 import styles from './Diagram.module.scss';
 import { useTranslation } from 'react-i18next';
-import generateData, { getAveragePagesPerDay } from './generateData';
+import {
+  generateData,
+  generateDataOnCreateTraining,
+  getAveragePagesPerDay,
+} from './generateData';
+import classNames from 'classnames';
 
-const Diagram: React.FC<Props> = ({ activeTraining, books }) => {
+const Diagram: React.FC<Props> = ({ activeTraining, createTraining }) => {
   const { t } = useTranslation();
+  const [data, setData] = useState(defaultData);
+  const isCreateTraining =
+    createTraining?.books.length && createTraining?.finishDate;
+  const isDefaultView = !activeTraining && !isCreateTraining;
 
-  const getAverage = () => {
+  const getPagesAverage = () => {
     if (activeTraining) {
       const { start, finish, totalPages } = activeTraining;
-      const { average } = getAveragePagesPerDay(start, finish, totalPages);
-      return average;
-    } else if (books && books.length) {
+      return getAveragePagesPerDay(start, finish, totalPages);
+    } else if (isCreateTraining) {
+      const { books, startDate, finishDate } = createTraining;
       const totalPages = books.reduce((acc, cur) => cur.pages + acc, 0);
+      return getAveragePagesPerDay(startDate, finishDate, totalPages);
     }
     return 0;
   };
 
+  const chooseDataGenerateStrategy = () => {
+    if (activeTraining) {
+      //if we have an active training
+      setData(generateData(activeTraining));
+    } else if (isCreateTraining) {
+      //if we create training
+      const { books, startDate, finishDate } = createTraining;
+      setData(generateDataOnCreateTraining(books, startDate, finishDate));
+    } else {
+      setData(defaultData);
+    }
+  };
+
+  useEffect(() => {
+    chooseDataGenerateStrategy();
+  }, [activeTraining, createTraining]);
+
   return (
     <div className={styles.thumb}>
+      <div className={classNames(isDefaultView && styles.mask)}></div>
+
       <h3 className={styles.title}>
         {t('training.diagramTitle') + ' '}
 
-        <span>{getAverage()}</span>
+        <span>{getPagesAverage()}</span>
       </h3>
 
       <ResponsiveLine
-        data={activeTraining ? generateData(activeTraining) : defaultData}
+        data={data}
         margin={{ top: 50, right: 50, bottom: 30, left: 45 }}
         xScale={{ type: 'point' }}
         yScale={{
