@@ -7,10 +7,6 @@ import authOperations from './redux/features/auth/authOperations';
 import tokenService from './services/auth/token-service';
 
 function App() {
-  console.log(
-    'Уважаемый проверяющий! Мы очень старались закончить наше приложение вовремя, но, к сожалению, из-за необходимости создания своего бекенда и изучения Реакта, мы не успели доделать одну страницу - Тренинг. Пожалуйста, подари нам еще 2 дня и проверь работу в четверг! Спасибо огромное за понимание :)',
-  );
-
   const dispatch = useAppDispatch();
   const accessToken = tokenService.getLocalAccessToken();
 

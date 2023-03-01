@@ -45,13 +45,13 @@ const Results: FC<ResultsProps> = ({
     const newPages = totalPages - values.pages;
     setLeftPages(newPages);
     setResults([...results, result]);
-    console.log(result);
+    // console.log(result);
     const freshAddedResult = await trainingApi.addResults({
       date: dateToSend,
       pages: values.pages,
       trainingId: trainingId,
     });
-    console.log(freshAddedResult);
+    // console.log(freshAddedResult);
     toast.success('Результат успішно додано!');
   };
 
