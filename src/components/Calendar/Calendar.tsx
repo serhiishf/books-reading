@@ -12,6 +12,7 @@ interface CalendarProps {
   onlyAfter?: boolean;
   today?: boolean;
   open?: boolean;
+  updateDate?: (date: string) => void;
   setDate?: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -21,6 +22,7 @@ function Calendar({
   today,
   open,
   setDate,
+  updateDate
 }: CalendarProps) {
   const CustomInput = ({
     value,
@@ -47,17 +49,16 @@ function Calendar({
   };
 
   useEffect(() => {
-    if (today && setDate) setDate(new Date().toISOString());
+    if (today && updateDate) updateDate(new Date().toISOString());
   }, []);
 
   const handleDateChange = (date: string | moment.Moment): void => {
     if (typeof date !== 'string') {
       date = date.endOf('day').toISOString();
     }
-    if (setDate) {
-      setDate(moment(date).endOf('day').toISOString());
+    if (updateDate) {
+      updateDate(moment(date).endOf('day').toISOString());
     }
-    // console.log(date);
   };
 
   return (
