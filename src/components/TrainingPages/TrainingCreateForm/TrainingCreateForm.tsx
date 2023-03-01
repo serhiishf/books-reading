@@ -22,7 +22,7 @@ function TrainingCreateForm({ setStartDate, setEndDate, setAddedBooks }: Trainin
   const [controlPanelOpen, setControlPanelOpen] = useState(false);
   const [selectedBooks, setSelectedBooks] = useState<string[]>([]);
 
-  
+
 
   const toggleStateControlPanel = () => {
     setControlPanelOpen(!controlPanelOpen);

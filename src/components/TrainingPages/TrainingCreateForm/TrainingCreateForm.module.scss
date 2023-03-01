@@ -13,7 +13,7 @@
     position: fixed;
     top: 60px;
     left: -100%;
-    opacity: 0;
+    opacity: 1;
     padding: 25px;
     gap: 20px;
 
@@ -26,6 +26,7 @@
     }
   }
 }
+
 
 .controlPanel {
   display: flex;
