@@ -34,3 +34,18 @@
     order: 1;
   }
 }
+
+.countdownsWrap {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 15px;
+  gap: 30px;
+  @include for-size(mobile-only) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.buttonWrap {
+  align-self: center;
+}

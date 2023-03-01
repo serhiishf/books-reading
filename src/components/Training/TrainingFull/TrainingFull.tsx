@@ -14,6 +14,9 @@ import BookCounter from '../BookCounter';
 /* import Counter from '../Counter'; */
 import Diagram from '../Diagram';
 import styles from './TrainingFull.module.scss';
+import Button from '../Button';
+import { ButtonType } from '../Button/Button';
+import Countdown from '../../Countdown';
 
 interface Props {
   training: ReadingTraining;
@@ -81,21 +84,36 @@ const TrainingFull: React.FC<Props> = ({
     <div className={styles.wrapper}>
       <div className={styles.mainContent}>
         <div>
-          {/* timers */}
+          <div className={styles.countdownsWrap}>
+            <Countdown
+              title={t('training.yearCountdown')}
+            />
+            <Countdown
+              finishDate={training.finish}
+              title={t('training.goalCountdown')}
+            />
+          </div>
           <BoolListFull training={training} onCheckboxClick={onClickCheckbox} />
         </div>
         <div>
           <Diagram activeTraining={training} />
         </div>
-        <button type="button" onClick={onClickDelete}>
+        <div className={styles.buttonWrap}>
+          <Button
+            type={ButtonType.done}
+            handleClick={onClickDelete}
+            title={'Remove training'}
+          />
+        </div>
+        {/*         <button type="button" onClick={onClickDelete}>
           Remove Training
-        </button>
+        </button> */}
       </div>
       <div className={styles.sidebar}>
         <BookCounter
           books={training.books.length}
           days={countDays(training.start, training.finish)}
-          leftReading={notFinishedBooks.length}
+          leftReading={notFinishedBooks.length.toString()}
         />
         {/* TODO: insert statistics here */}
       </div>
