@@ -34,10 +34,10 @@ const LibraryForm: FC<Props> = ({ onAdd }) => {
         .max(100, 'validation.max100')
         .required('validation.required'),
       year: yup
-        .string()
-        .matches(/^[0-9]*$/, 'validation.year')
+        .number()
+        // .matches(/^[0-9]*$/, 'validation.year')
         .min(1, 'validation.min1')
-        .max(4, 'validation.max4'),
+        .max(2023, 'validation.max2023'),
       pages: yup
         .string()
         .matches(/^[0-9]*$/, 'validation.pages')

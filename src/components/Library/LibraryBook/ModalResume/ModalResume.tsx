@@ -38,7 +38,7 @@ const ModalResume: FunctionComponent<ModalProps> = ({
     } = {
       bookId,
     };
-    
+
     if (message !== '') {
       objForSending.resume = message;
     }
@@ -73,6 +73,7 @@ const ModalResume: FunctionComponent<ModalProps> = ({
               name="feedback"
               value={message}
               rows={10}
+              maxLength={600}
               placeholder="Leave your feedback..."
               onChange={handleResume}
             />

@@ -113,14 +113,7 @@ const TrainingFull: React.FC<Props> = ({
           leftReading={notFinishedBooks.length.toString()}
         />
 
-        <Results
-          startTrainingDate={training.start}
-          totalPages={training.totalPages}
-          readPages={training.readPages}
-          trainingId={training._id}
-          statistics={training.statistics}
-          updateTraining={updateTraining}
-        />
+        <Results training={training} updateTraining={updateTraining} />
       </div>
 
       {isOpenModal && (
