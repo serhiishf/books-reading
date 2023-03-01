@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import styles from './ResultsForm.module.scss';
 
 interface ResultFormProps {
   onSubmitForm: (values: { date: string; pages: number }) => void;
@@ -47,43 +48,55 @@ const ResultsForm: FC<ResultFormProps> = ({
   const isFormValid =
     Object.keys(errors).length === 0 && Object.keys(touched).length !== 0;
 
-  const handlePageLeave = (e: BeforeUnloadEvent) => {
-    if (!isFormValid) {
-      e.preventDefault();
-      e.returnValue = '';
-    }
-  };
+  // const handlePageLeave = (e: BeforeUnloadEvent) => {
+  //   if (!isFormValid) {
+  //     e.preventDefault();
+  //     e.returnValue = '';
+  //   }
+  // };
 
-  window.addEventListener('beforeunload', handlePageLeave);
+  // window.addEventListener('beforeunload', handlePageLeave);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="date">Дата:</label>
-      <input
-        id="date"
-        name="date"
-        type="date"
-        max={new Date().toISOString().slice(0, 10)}
-        min={startTrainingDate.slice(0, 10)}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.date}
-      />
-      {errors.date && touched.date ? <div>{errors.date}</div> : null}
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.inputWrapper}>
+        <div>
+          <label htmlFor="date" className={styles.label}>
+            Date
+          </label>
+          <input
+            className={styles.input}
+            id="date"
+            name="date"
+            type="date"
+            max={new Date().toISOString().slice(0, 10)}
+            min={startTrainingDate.slice(0, 10)}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.date}
+          />
+          {errors.date && touched.date ? <div>{errors.date}</div> : null}
+        </div>
 
-      <label htmlFor="pages">Кількість сторінок:</label>
-      <input
-        id="pages"
-        name="pages"
-        type="number"
-        max={totalPages}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.pages}
-      />
-      {errors.pages && touched.pages ? <div>{errors.pages}</div> : null}
+        <div>
+          <label htmlFor="pages" className={styles.label}>
+            Amount of pages
+          </label>
+          <input
+            className={styles.input}
+            id="pages"
+            name="pages"
+            type="number"
+            max={totalPages}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.pages}
+          />
+          {errors.pages && touched.pages ? <div>{errors.pages}</div> : null}
+        </div>
+      </div>
 
-      <button type="submit" disabled={!isFormValid}>
+      <button type="submit" disabled={!isFormValid} className={styles.button}>
         Додати результат
       </button>
     </form>
