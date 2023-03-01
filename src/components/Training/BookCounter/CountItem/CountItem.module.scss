@@ -11,7 +11,7 @@ $heightItem: 100px;
 }
 
 .countBlock {
-  background: #F5F7FA;
+  background: #f5f7fa;
   box-shadow: 4px 4px 8px rgba(36, 42, 55, 0.15);
   width: 100px;
   height: 100px;
@@ -33,22 +33,16 @@ $heightItem: 100px;
   font-size: 45px;
   line-height: 38px;
   text-align: center;
-  color: #091E3F;
+  color: #091e3f;
 }
 
 .countTitle {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 17px;
   text-align: center;
-  color: #898F9F;
+  color: #898f9f;
   width: 100px;
-  @include for-size(tablet-only) {
-    font-size: 11px;
-  }
-  @include for-size(mobile-only) {
-    font-size: 14px;
-  }
 }

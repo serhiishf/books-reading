@@ -10,7 +10,7 @@ import booksApi from '../../../services/books/books-service';
 import Button from '../Button';
 import { ButtonType } from '../Button/Button';
 import trainingApi from '../../../services/training/training-service';
-import TrainingDiagram from '../../TrainingDiagram';
+// import TrainingDiagram from '../../TrainingDiagram';
 // import { toast } from 'react-toastify';
 
 interface CreateTrainingProps {
@@ -102,12 +102,12 @@ function CreateTraining({ handleSuccess }: CreateTrainingProps) {
           />
         </div>
         <div className={styles.wrapChartDiagram}>
-          <TrainingDiagram
+          {/* <TrainingDiagram
             isRealTraining={true}
             daysAmount={bookCounterDays}
             addedBooks={addedBooks}
             // totalPages={}
-          />
+          /> */}
         </div>
       </div>
       <div className={styles.sidebar}>
