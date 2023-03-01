@@ -303,7 +303,8 @@
     "resetDelete": "Cancel",
     "yearCountdown": "Year countdown",
     "goalCountdown": "Goal countdown",
-    "congrats": "Congratulations! You have finished your training! Don't stop, proceed to create a new one!"
+    "congrats": "Congratulations! You have finished your training! Don't stop, proceed to create a new one!",
+    "removeTraining": "Remove training"
   },
 
   "countdown": {
