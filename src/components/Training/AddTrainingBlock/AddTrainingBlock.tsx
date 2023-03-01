@@ -44,11 +44,11 @@ const AddTrainingBlock: FC<Props> = ({
   onAddActive,
   handleCreateTraining,
   setStartDateEmptyC,
-  setFinishDateEmptyC
+  setFinishDateEmptyC,
 }) => {
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
-  const [bookCounterDays, setBookCounterDays] = useState<number>(0);
+  // const [bookCounterDays, setBookCounterDays] = useState<number>(0);
   const [controlPanelOpen, setControlPanelOpen] = useState(false);
 
   const updateStartDay = (date: string) => {
@@ -66,7 +66,6 @@ const AddTrainingBlock: FC<Props> = ({
   };
 
   const { t } = useTranslation();
-
 
   const createTraining = () => {
     if (checkPermissionCreate(activeBooks, endDate)) {
@@ -91,9 +90,7 @@ const AddTrainingBlock: FC<Props> = ({
           >
             <ButtonBack handleClick={toggleStateControlPanel} />
           </div>
-          <Subheader
-            title={t('training.myTraining')}
-          />
+          <Subheader title={t('training.myTraining')} />
           <div className={styles.calendarsWrap}>
             <Calendar
               placeHolder={t('training.start')}

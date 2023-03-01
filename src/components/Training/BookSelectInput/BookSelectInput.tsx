@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Formik, Field } from 'formik';
 import styles from './BookSelectInput.module.scss';
-import Button from '../Button';
-import { ButtonType } from '../Button/Button';
+// import Button from '../Button';
+// import { ButtonType } from '../Button/Button';
 
 import { Book } from '../../../services/books/books-service';
 import { useTranslation } from 'react-i18next';
@@ -26,10 +26,10 @@ const BookSelectInput: FC<Props> = ({ books, onAddActive }) => {
     >
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit} className={styles.form}>
-          <Field name="book" as="select"
-            className={styles.select}
-          >
-            <option value="" className={styles.option}>{t('training.chooseBookFromLibrary')}</option>
+          <Field name="book" as="select" className={styles.select}>
+            <option value="" className={styles.option}>
+              {t('training.chooseBookFromLibrary')}
+            </option>
             {books.map((book) => (
               <option key={book._id} value={JSON.stringify(book)}>
                 {book.name}
@@ -37,7 +37,9 @@ const BookSelectInput: FC<Props> = ({ books, onAddActive }) => {
             ))}
           </Field>
           <div className={styles.buttonWrap}>
-            <button type="submit" className={styles.btn_add}>{t('training.add')}</button>
+            <button type="submit" className={styles.btn_add}>
+              {t('training.add')}
+            </button>
           </div>
         </form>
       )}
