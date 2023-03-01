@@ -44,7 +44,8 @@ const Results: FC<ResultsProps> = ({
   };
 
   return (
-    <div>
+    <div className={styles.resultsWrapper}>
+      <h3 className={styles.title}>results</h3>
       <ResultsForm
         onSubmitForm={handleFormSubmit}
         startTrainingDate={startTrainingDate}
