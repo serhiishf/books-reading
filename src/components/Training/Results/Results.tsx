@@ -7,13 +7,15 @@ import trainingApi, {
   Statistics,
   ReadingTraining,
 } from '../../../services/training/training-service';
+import Portal from '../../Portal';
+import { useTranslation } from 'react-i18next';
+import ModalConfirmation from '../../ModalConfirmation';
+import publicRoots from '../../../utils/publicRoots';
+import { statusBook } from '../../../utils/bookStatus';
+import booksApi from '../../../services/books/books-service';
 
 interface ResultsProps {
-  startTrainingDate: string;
-  totalPages: number;
-  readPages: number;
-  trainingId: string;
-  statistics: Statistics[];
+  training: ReadingTraining;
   updateTraining: (training: ReadingTraining | null) => void;
 }
 
@@ -23,16 +25,11 @@ export interface Result {
   pages: number;
 }
 
-const Results: FC<ResultsProps> = ({
-  startTrainingDate,
-  totalPages,
-  readPages,
-  trainingId,
-  statistics,
-  updateTraining,
-}) => {
+const Results: FC<ResultsProps> = ({ training, updateTraining }) => {
   const [results, setResults] = useState<Result[]>([]);
-  const [leftPages, setLeftPages] = useState<number>(totalPages);
+  const [leftPages, setLeftPages] = useState<number>(training.totalPages);
+  const [isOpenModal, setOpenModal] = useState(false);
+  const { t } = useTranslation();
 
   const removeResult = (index: number) => {
     const newResults = [...results];
@@ -42,12 +39,28 @@ const Results: FC<ResultsProps> = ({
   };
 
   useEffect(() => {
-    if (statistics) {
-      const updatedStatistics = transformStatistics(statistics);
+    if (training.statistics) {
+      const updatedStatistics = transformStatistics(training.statistics);
       setResults(updatedStatistics);
-      setLeftPages(totalPages - readPages);
+      setLeftPages(training.totalPages - training.readPages);
     }
-  }, []);
+    if (training.totalPages - training.readPages === 0) {
+      setOpenModal(true);
+    }
+  }, [training]);
+
+  const onConfirmClick = async () => {
+    Promise.all(
+      training.books.map(async (book) => {
+        await booksApi.updateBookStatus({
+          bookId: book.book._id,
+          status: statusBook.DONE,
+        });
+      }),
+    );
+    await trainingApi.deleteTraining(training._id);
+    updateTraining(null);
+  };
 
   const transformStatistics = (arr: Statistics[]) => {
     return arr.map((el) => {
@@ -69,13 +82,18 @@ const Results: FC<ResultsProps> = ({
     const freshAddedTraining = await trainingApi.addResults({
       date: dateToSend,
       pages: values.pages,
-      trainingId: trainingId,
+      trainingId: training._id,
     });
     if (freshAddedTraining.statistics) {
       const newResult = transformStatistics(freshAddedTraining.statistics);
       updateTraining(freshAddedTraining);
       setResults([...newResult]);
+      const left = training.totalPages - training.readPages;
+      setLeftPages(left);
       toast.success('Результат успішно додано!');
+      if (freshAddedTraining.totalPages - freshAddedTraining.readPages === 0) {
+        setOpenModal(true);
+      }
     }
   };
 
@@ -84,10 +102,19 @@ const Results: FC<ResultsProps> = ({
       <h3 className={styles.title}>results</h3>
       <ResultsForm
         onSubmitForm={handleFormSubmit}
-        startTrainingDate={startTrainingDate}
+        startTrainingDate={training.start}
         leftPages={leftPages}
       />
       <ResultsTable results={results} onRemove={removeResult} />
+      {isOpenModal && (
+        <Portal wrapperId={publicRoots.ConfirmModal}>
+          <ModalConfirmation
+            questionTxt={t('training.congrats')}
+            confirmBtnTxt={t('confirmationModal.confirm')}
+            onConfirmClick={onConfirmClick}
+          />
+        </Portal>
+      )}
     </div>
   );
 };
