@@ -15,7 +15,7 @@ const ResultsTable: FC<Props> = ({ results, onRemove }) => {
         {results.map((result, index) => (
           <tr key={index}>
             <td>{result.date}</td>
-            <td>{result.time}</td>
+            <td className={styles.time}>{result.time}</td>
             <td>{result.pages}</td>
             {/* <td>
               <button onClick={() => onRemove(index)}>Видалити</button>

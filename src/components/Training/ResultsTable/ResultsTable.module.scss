@@ -3,7 +3,8 @@
 
 .table {
   height: 110px;
-  overflow: scroll;
+  // overflow: auto;
+  // overscroll-behavior-y: contain;
   //   text-overflow: ellipsis;
   @include for-size(tablet) {
     width: 240px;
@@ -39,4 +40,8 @@
   background-color: $icon-color;
   top: 7px;
   right: 5px;
+}
+
+.time {
+  color: $secondary-text-color;
 }
