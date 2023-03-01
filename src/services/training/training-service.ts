@@ -16,7 +16,7 @@ export interface CreateTrainingInterface {
 type Statistics = {
   date: string;
   pages: number;
-  _id: string;
+  trainingId: string;
 };
 
 export interface ReadingTraining {
@@ -66,10 +66,20 @@ const deleteTraining = async (trainingId: string) => {
   }
 };
 
+const addResults = async (body: Statistics) => {
+  try {
+    const { data } = await axiosInstance.patch('trainings/statistic', body);
+    return data.data.statistics;
+  } catch (error) {
+    console.log(`Error deleting training: ${error}`);
+  }
+};
+
 const trainingApi = {
   getActiveTraining,
   createTraining,
   deleteTraining,
+  addResults,
 };
 
 export default trainingApi;

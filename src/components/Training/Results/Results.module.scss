@@ -11,6 +11,7 @@
   background-color: $txt-color-white;
   padding: 20px;
   box-shadow: $outer-shadow;
+  
   @include for-size(tablet) {
     width: 100%;
     padding-left: 84px;
