@@ -16,10 +16,10 @@ const BookListEmpty: FC<Props> = ({ activeBooks }) => {
       <ul>
         {activeBooks.map((book) => {
           return (
-            <div className={styles.bookName} key={book._id}>
+            <li className={styles.bookName} key={book._id}>
               <BookImg className={styles.icon} />
               <BookItem key={book._id} book={book} />
-            </div>
+            </li>
           );
         })}
       </ul>
