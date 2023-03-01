@@ -12,6 +12,7 @@ import Portal from '../../Portal';
 import BoolListFull from '../BookListFull/BookListFull';
 import Counter from '../Counter';
 import Diagram from '../Diagram';
+import Results from '../Results';
 
 interface Props {
   training: ReadingTraining;
@@ -89,6 +90,7 @@ const TrainingFull: React.FC<Props> = ({
       <div>
         <Diagram activeTraining={training} />
         {/* statistics */}
+        {/* <Results /> */}
       </div>
       <button type="button" onClick={onClickDelete}>
         Remove Training
