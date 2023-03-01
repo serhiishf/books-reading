@@ -94,7 +94,9 @@ const TrainingFull: React.FC<Props> = ({
           </div>
           <BoolListFull training={training} onCheckboxClick={onClickCheckbox} />
         </div>
-        <div>{/* <Diagram activeTraining={training} /> */}</div>
+        <div>
+          <Diagram activeTraining={training} />
+        </div>
         <div className={styles.buttonWrap}>
           <Button
             type={ButtonType.done}
