@@ -1,4 +1,5 @@
 import { Book } from '../../../services/books/books-service';
+import { ReadingTraining } from '../../../services/training/training-service';
 
 export type IData = {
   id: string;
@@ -16,7 +17,7 @@ export type IData = {
 };
 
 export interface Props {
-  data?: IData[];
+  activeTraining?: ReadingTraining;
   addedBooks?: Book[];
   isRealTraining?: boolean;
   daysAmount?: number;

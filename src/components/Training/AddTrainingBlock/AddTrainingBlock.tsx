@@ -6,8 +6,8 @@ import Calendar from '../../Calendar';
 import BookSelectInput from '../BookSelectInput';
 import BookListEmpty from '../BookListEmpty';
 import styles from './AddTrainingBlock.module.scss';
-// import { string } from 'yup/lib/locale';
 
+// import { string } from 'yup/lib/locale';
 
 const checkPermissionCreate = (books: Book[], endDate: string) => {
   if (endDate === '') {

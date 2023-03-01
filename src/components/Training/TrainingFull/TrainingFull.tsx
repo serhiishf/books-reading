@@ -29,10 +29,11 @@ const TrainingFull: React.FC<Props> = ({
   setBookStatus,
 }) => {
   const { t } = useTranslation();
+
+  const [isOpenModal, setOpenModal] = useState(false);
   const [notFinishedBooks, setNotFinishedBooks] = useState(
     getNotFinishedBooks(training),
   );
-  const [isOpenModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     setNotFinishedBooks(getNotFinishedBooks(training));
@@ -86,7 +87,7 @@ const TrainingFull: React.FC<Props> = ({
         />
       </div>
       <div>
-        <Diagram />
+        <Diagram activeTraining={training} />
         {/* statistics */}
       </div>
       <button type="button" onClick={onClickDelete}>

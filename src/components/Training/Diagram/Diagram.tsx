@@ -4,65 +4,45 @@ import { defaultData } from './defaultData';
 import { Props } from './types';
 import styles from './Diagram.module.scss';
 import { useTranslation } from 'react-i18next';
-import classNames from 'classnames';
+import generateData, { getAveragePagesPerDay } from './generateData';
 
-/*                "start": "2023-02-13T17:15:24.002Z",
-                "finish": "2023-02-17T12:30:30.002Z",
-                "totalPages": 24,
-                "readPages": 20,
-                "books": [....],
-                "statistics": [
-                    {
-                        "date": "2023-02-13T22:13:24.216Z",
-                        "pages": 10,
-                    },
-                    {
-                        "date": "2023-02-14T22:13:24.216Z",
-                        "pages": 10,
-                    },
-                ],*/
-
-const TrainingDiagram: React.FC<Props> = ({
-  data = defaultData,
-  addedBooks,
-  isRealTraining = false,
-  daysAmount = 6,
-  // totalPages = 200,
-}) => {
+const Diagram: React.FC<Props> = ({ activeTraining }) => {
   const { t } = useTranslation();
 
-  const mathTotalPages = () => {
-    if (addedBooks && addedBooks.length > 0) {
-      const pagesSum = addedBooks.reduce((acc, cur) => cur.pages + acc, 0);
-      return pagesSum;
-    }
-    return 0;
-  };
+  // const mathTotalPages = () => {
+  //   if (addedBooks && addedBooks.length > 0) {
+  //     const pagesSum = addedBooks.reduce((acc, cur) => cur.pages + acc, 0);
+  //     return pagesSum;
+  //   }
+  //   return 0;
+  // };
 
-  const mathPagesPerDay = () => {
-    const totalPages = mathTotalPages();
-    // console.log(totalPages);
-    if (daysAmount > 0) {
-      return Math.round(totalPages / daysAmount);
+  const getAverage = () => {
+    if (activeTraining) {
+      const { start, finish, totalPages } = activeTraining;
+      const { average } = getAveragePagesPerDay(start, finish, totalPages);
+      return average;
     }
-    return 0;
   };
 
   return (
     <div className={styles.thumb}>
-      <div className={classNames(!isRealTraining && styles.mask)}></div>
       <h3 className={styles.title}>
         {t('training.diagramTitle') + ' '}
 
-        <span>{mathPagesPerDay()}</span>
+        <span>{getAverage()}</span>
       </h3>
 
       <ResponsiveLine
-        data={data}
+        data={activeTraining ? generateData(activeTraining) : defaultData}
         margin={{ top: 50, right: 50, bottom: 30, left: 45 }}
         xScale={{ type: 'point' }}
         yScale={{
-          type: 'point',
+          type: 'linear',
+          min: 'auto',
+          max: 'auto',
+          // stacked: true,
+          // reverse: false,
         }}
         curve="cardinal"
         axisTop={null}
@@ -75,13 +55,7 @@ const TrainingDiagram: React.FC<Props> = ({
 
           legendPosition: 'middle',
         }}
-        axisLeft={{
-          tickSize: 2,
-          tickPadding: 20,
-          tickRotation: 0,
-          legend: '',
-          legendPosition: 'middle',
-        }}
+        axisLeft={null}
         enableGridY={false}
         colors={{ scheme: 'category10' }}
         lineWidth={3}
@@ -126,4 +100,4 @@ const TrainingDiagram: React.FC<Props> = ({
   );
 };
 
-export default TrainingDiagram;
+export default Diagram;
