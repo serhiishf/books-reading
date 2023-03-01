@@ -13,6 +13,8 @@ import BoolListFull from '../BookListFull/BookListFull';
 import BookCounter from '../BookCounter';
 /* import Counter from '../Counter'; */
 import Diagram from '../Diagram';
+import Results from '../Results';
+
 import styles from './TrainingFull.module.scss';
 import Button from '../Button';
 import { ButtonType } from '../Button/Button';
@@ -55,7 +57,7 @@ const TrainingFull: React.FC<Props> = ({
         status === statusBook.ACTIVE ? statusBook.DONE : statusBook.ACTIVE,
     };
     await booksApi.updateBookStatus(body);
-    //todo: set statistics ?
+    //todo: set results ?
     setBookStatus(objBookId, body.status);
   };
 
@@ -116,6 +118,10 @@ const TrainingFull: React.FC<Props> = ({
           leftReading={notFinishedBooks.length.toString()}
         />
         {/* TODO: insert statistics here */}
+        <Results
+          startTrainingDate={training.start}
+          totalPages={training.totalPages}
+        />
       </div>
       {isOpenModal && (
         <Portal wrapperId={publicRoots.ChoiceModal}>
