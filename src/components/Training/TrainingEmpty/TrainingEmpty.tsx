@@ -32,7 +32,6 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
       (book) => book._id !== newBook._id,
     );
     setPendingBooks(updatedBooks);
-    console.log('updatedBooks', pendingBooks);
   };
 
   const onCreateTraining = async (
@@ -55,11 +54,12 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
             status: 'active',
           });
         }),
-      );
-      const newTrainingActual = await trainingApi.getActiveTraining();
-      if (newTrainingActual && newTrainingActual.length > 0) {
-        changeTraining(newTrainingActual[0]);
-      }
+      ).then(async () => {
+        const newTrainingActual = await trainingApi.getActiveTraining();
+        if (newTrainingActual && newTrainingActual.length > 0) {
+          changeTraining(newTrainingActual[0]);
+        }
+      });
     }
   };
 
