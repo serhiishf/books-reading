@@ -125,13 +125,14 @@ const TrainingFull: React.FC<Props> = ({
           />
         </div>
       </div>
+
       <div className={styles.sidebar}>
         <BookCounter
           books={training.books.length}
           days={countDays(training.start, training.finish)}
           leftReading={notFinishedBooks.length.toString()}
         />
-        {/* TODO: insert statistics here */}
+
         <Results
           startTrainingDate={training.start}
           totalPages={training.totalPages}
@@ -139,6 +140,7 @@ const TrainingFull: React.FC<Props> = ({
           onSaveData={onSaveData}
         />
       </div>
+
       {isOpenModal && (
         <Portal wrapperId={publicRoots.ChoiceModal}>
           <ModalChoice
