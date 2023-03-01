@@ -1,7 +1,7 @@
 import React, { useState, useEffect, FC } from 'react';
 import styles from './TrainingEmpty.module.scss';
 import booksApi, { Book } from '../../../services/books/books-service';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import BookCounter from '../BookCounter';
 // import styles from './TrainingEmpty.module.scss';
 import AddTrainingBlock from '../AddTrainingBlock';
@@ -22,7 +22,7 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
   const [pendingBooks, setPendingBooks] = useState<Book[]>([]);
   const [booksActive, setActiveBooks] = useState<Book[]>([]);
 
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   useEffect(() => {
     if (startDate && finishDate) {
@@ -89,7 +89,9 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
           setStartDateEmptyC={setStartDate}
           setFinishDateEmptyC={setFinishDate}
         />
-        <Diagram books={booksActive} />
+        <Diagram
+          createTraining={{ books: booksActive, startDate, finishDate }}
+        />
       </div>
       <div className={styles.sidebar}>
         <BookCounter books={booksActive.length} days={bookCounterDays} />

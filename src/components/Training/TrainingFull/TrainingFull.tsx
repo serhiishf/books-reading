@@ -40,30 +40,10 @@ const TrainingFull: React.FC<Props> = ({
   const [notFinishedBooks, setNotFinishedBooks] = useState(
     getNotFinishedBooks(training),
   );
-  // For unsaved statistics
-  const [isDataSaved, setDataSaved] = useState(true);
 
   useEffect(() => {
     setNotFinishedBooks(getNotFinishedBooks(training));
   }, [training]);
-
-  // For unsaved statistics
-
-  useEffect(() => {
-    const beforeUnload = (e: BeforeUnloadEvent) => {
-      if (!isDataSaved) {
-        e.preventDefault();
-        e.returnValue = '';
-      }
-    };
-    window.addEventListener('beforeunload', beforeUnload);
-    return () => window.removeEventListener('beforeunload', beforeUnload);
-  }, [isDataSaved]);
-
-  // For unsaved statistics
-  const onSaveData = () => {
-    setDataSaved(true);
-  };
 
   const onClickCheckbox = async (
     bookId: string,
@@ -136,8 +116,7 @@ const TrainingFull: React.FC<Props> = ({
         <Results
           startTrainingDate={training.start}
           totalPages={training.totalPages}
-          isDataSaved={isDataSaved}
-          onSaveData={onSaveData}
+          trainingId={training._id}
         />
       </div>
 
