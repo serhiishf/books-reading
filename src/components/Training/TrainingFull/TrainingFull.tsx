@@ -12,6 +12,7 @@ import Portal from '../../Portal';
 import BoolListFull from '../BookListFull/BookListFull';
 import Counter from '../Counter';
 import Diagram from '../Diagram';
+import styles from './TrainingFull.module.scss';
 
 interface Props {
   training: ReadingTraining;
@@ -76,23 +77,27 @@ const TrainingFull: React.FC<Props> = ({
   };
 
   return (
-    <div>
-      <div>
-        {/* timers */}
-        <BoolListFull training={training} onCheckboxClick={onClickCheckbox} />
+    <div className={styles.wrapper}>
+      <div className={styles.mainContent}>
+        <div>
+          {/* timers */}
+          <BoolListFull training={training} onCheckboxClick={onClickCheckbox} />
+        </div>
+        <div>
+          <Diagram activeTraining={training} />
+        </div>
+        <button type="button" onClick={onClickDelete}>
+          Remove Training
+        </button>
+      </div>
+      <div className={styles.sidebar}>
         <Counter
           books={training.books.length}
           days={countDays(training.start, training.finish)}
           booksLeft={notFinishedBooks.length}
         />
+        {/* TODO: insert statistics here */}
       </div>
-      <div>
-        <Diagram activeTraining={training} />
-        {/* statistics */}
-      </div>
-      <button type="button" onClick={onClickDelete}>
-        Remove Training
-      </button>
       {isOpenModal && (
         <Portal wrapperId={publicRoots.ChoiceModal}>
           <ModalChoice
