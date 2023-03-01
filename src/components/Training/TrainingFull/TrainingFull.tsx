@@ -10,7 +10,8 @@ import publicRoots from '../../../utils/publicRoots';
 import ModalChoice from '../../ModalChoice';
 import Portal from '../../Portal';
 import BoolListFull from '../BookListFull/BookListFull';
-import Counter from '../Counter';
+import BookCounter from '../BookCounter';
+/* import Counter from '../Counter'; */
 import Diagram from '../Diagram';
 import styles from './TrainingFull.module.scss';
 
@@ -91,10 +92,10 @@ const TrainingFull: React.FC<Props> = ({
         </button>
       </div>
       <div className={styles.sidebar}>
-        <Counter
+        <BookCounter
           books={training.books.length}
           days={countDays(training.start, training.finish)}
-          booksLeft={notFinishedBooks.length}
+          leftReading={notFinishedBooks.length}
         />
         {/* TODO: insert statistics here */}
       </div>
