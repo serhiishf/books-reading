@@ -55,61 +55,75 @@ function generatePlan(training: ReadingTraining): Datum[] {
   return planData;
 }
 
-// function generateFact(training: ReadingTraining): Datum[] {
-//   const { start, finish, statistics, totalPages } = training;
+function getEndOfDay(dateString: string) {
+  const date = new Date(dateString);
+  const remainingMilliseconds =
+    24 * 60 * 60 * 1000 - (date.getTime() - date.setHours(0, 0, 0, 0));
+  const newDate = new Date(date.getTime() + remainingMilliseconds);
+  return newDate;
+}
 
-//   if (statistics.length === 0) {
-//     const average = getAveragePagesPerDay(start, finish, totalPages);
-//     const factData: Datum[] = [{ x: formatDate(start), y: average + 5 }];
-//     return factData;
-//   } else {
-//     const factData: Datum[] = [];
-//     statistics.forEach(({ date, pages }) => {
-//       factData.push({ x: formatDate(date), y: pages });
-//     });
-//     return factData;
-//   }
-// }
+function getStartOfDay(dateStr: string) {
+  const date = new Date(dateStr);
+  date.setHours(0, 0, 0, 0);
+  return date;
+}
+
 function generateFact(training: ReadingTraining): Datum[] {
   const { start, finish, statistics, totalPages } = training;
   const factData: Datum[] = [];
-  const startObj = new Date(start);
-  const finishObj = new Date(finish);
 
+  //if statistic is empty
   if (statistics.length === 0) {
     const average = getAveragePagesPerDay(start, finish, totalPages);
     factData.push({ x: formatDate(start), y: average + 5 });
     return factData;
   }
 
+  // Sort statistics by date
+  statistics.sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+  );
+
   let prevDate = new Date(start);
+  let startOfDay = getStartOfDay(prevDate.toISOString());
+  let endOfDay = getEndOfDay(prevDate.toISOString());
   let sumPages = 0;
+  let i = 0;
 
-  for (let i = 0; i < statistics.length; i++) {
-    const statDate = new Date(statistics[i].date);
+  while (prevDate < new Date(finish)) {
+    if (i < statistics.length) {
+      const statDate = new Date(statistics[i].date);
 
-    if (statDate >= prevDate && statDate <= finishObj) {
-      sumPages += statistics[i].pages;
-      prevDate = statDate;
-    } else {
-      if (sumPages > 0) {
-        const formattedDate = formatDate(prevDate.toISOString());
-        factData.push({ x: formattedDate, y: sumPages });
-        sumPages = 0;
-      }
-      if (statDate >= startObj && statDate <= finishObj) {
+      // If current date is within the current day
+      if (statDate >= startOfDay && statDate <= endOfDay) {
         sumPages += statistics[i].pages;
-        prevDate = statDate;
+        i++;
+        continue;
       }
+
+      // If current date is before the current day, move to next record
+      if (statDate < startOfDay) {
+        i++;
+        continue;
+      }
+
+      // If current date is after the current day, generate point with 0 pages
+      const formattedDate = formatDate(startOfDay.toISOString());
+      factData.push({ x: formattedDate, y: sumPages });
+      prevDate = new Date(startOfDay);
+      startOfDay = getStartOfDay(prevDate.toISOString());
+      endOfDay = getEndOfDay(prevDate.toISOString());
+      sumPages = 0;
     }
   }
 
-  if (sumPages > 0) {
-    const formattedDate = formatDate(prevDate.toISOString());
-    factData.push({ x: formattedDate, y: sumPages });
-  } else if (factData.length === 0) {
-    const average = getAveragePagesPerDay(start, finish, totalPages);
-    factData.push({ x: formatDate(start), y: average + 5 });
+  // Add last point if it's not already added
+  if (
+    factData.length > 0 &&
+    factData[factData.length - 1].x !== formatDate(prevDate.toISOString())
+  ) {
+    factData.push({ x: formatDate(prevDate.toISOString()), y: sumPages });
   }
 
   return factData;

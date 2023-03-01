@@ -75,7 +75,6 @@ const Results: FC<ResultsProps> = ({
       const newResult = transformStatistics(freshAddedTraining.statistics);
       updateTraining(freshAddedTraining);
       setResults([...newResult]);
-
       toast.success('Результат успішно додано!');
     }
   };
