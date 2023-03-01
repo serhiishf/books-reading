@@ -272,7 +272,7 @@
     "errorReg2": "Registration failed.",
     "errorLog1": "Wrong email or password.",
     "errorLog2": "Something went wrong. Try again.",
-    "existedBook":"Book is already exist. Check all categories."
+    "existedBook": "Book is already exist. Check all categories."
   },
 
   "training": {
