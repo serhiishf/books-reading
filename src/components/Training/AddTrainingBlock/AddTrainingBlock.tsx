@@ -6,6 +6,7 @@ import Calendar from '../../Calendar';
 import BookSelectInput from '../BookSelectInput';
 import BookListEmpty from '../BookListEmpty';
 import styles from './AddTrainingBlock.module.scss';
+import Subheader from '../Subheader';
 
 // import { string } from 'yup/lib/locale';
 
@@ -66,7 +67,9 @@ const AddTrainingBlock: FC<Props> = ({
 
   return (
     <div className={styles.addTrainingWrapper}>
-      <h3>{t('training.myTraining')}</h3>
+      <Subheader
+        title={t('training.myTraining')}
+      />
       <div className={styles.calendarsWrap}>
         <Calendar
           placeHolder={t('training.start')}
