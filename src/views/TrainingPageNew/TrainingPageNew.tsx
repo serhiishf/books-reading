@@ -6,6 +6,7 @@ import Loader from '../../components/Loader';
 import TrainingFull from '../../components/Training/TrainingFull';
 import TrainingEmpty from '../../components/Training/TrainingEmpty';
 import BookStatus from '../../utils/bookStatus';
+import styles from './TrainingPage.module.scss';
 
 enum Status {
   'PENDING' = 'pending',
@@ -66,20 +67,22 @@ const TrainingPageNew = () => {
   }, []);
 
   return (
-    <>
-      {status === Status.PENDING && <Loader />}
-      {status === Status.FULL && training && (
-        <TrainingFull
-          training={training}
-          updateTraining={updateTrainingPage}
-          setBookStatus={setBookStatus}
-        />
-      )}
+    <div className={styles.mainWrapper}>
+      <div className={styles.containerWrap}>
+        {status === Status.PENDING && <Loader />}
+        {status === Status.FULL && training && (
+          <TrainingFull
+            training={training}
+            updateTraining={updateTrainingPage}
+            setBookStatus={setBookStatus}
+          />
+        )}
 
-      {status === Status.EMPTY && !training && (
-        <TrainingEmpty changeTraining={updateTrainingPage} />
-      )}
-    </>
+        {status === Status.EMPTY && !training && (
+          <TrainingEmpty changeTraining={updateTrainingPage} />
+        )}
+      </div>
+    </div>
   );
 };
 

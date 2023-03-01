@@ -272,7 +272,7 @@
     "errorReg2": "Registration failed.",
     "errorLog1": "Wrong email or password.",
     "errorLog2": "Something went wrong. Try again.",
-    "existedBook":"Book is already exist. Check all categories."
+    "existedBook": "Book is already exist. Check all categories."
   },
 
   "training": {
@@ -299,6 +299,15 @@
     "diagramTitle": "Number of pages / day",
     "confirmDeleteTXT": "Are you sure you want to delete the training? All your books will be marked as 'unread'!",
     "confirmDelete": "Confirm",
-    "resetDelete": "Cancel"
+    "resetDelete": "Cancel",
+    "yearCountdown": "Year countdown",
+    "goalCountdown": "Goal countdown"
+  },
+
+  "countdown": {
+    "days": "DAYS",
+    "hrs": "HRS",
+    "mins": "MINS",
+    "secs": "SECS"
   }
 }

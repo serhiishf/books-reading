@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ShowTrainingPage.module.scss';
+import { useTranslation } from 'react-i18next';
 import BookCounter from '../BookCounter';
 import Table from '../Table';
 import { Book } from '../../../services/books/books-service';
 import TrainingDiagram from '../../TrainingDiagram';
 import trainingApi from '../../../services/training/training-service';
+import Countdown from '../../Countdown';
 
 type Statistics = {
   date: string;
@@ -34,6 +36,7 @@ interface ShowTraining {
 }
 
 function ShowTrainingPage({ trainingId }: ShowTraining) {
+  const { t } = useTranslation();
   // const [trainingData, setTrainingData] = useState<ReadingTraining[] | []>([]);
   // const [trainingBooks, setTrainingBooks] = useState([]);
   // const [startDate, setStartDate] = useState<string>('');
@@ -58,7 +61,16 @@ function ShowTrainingPage({ trainingId }: ShowTraining) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainContent}>
-        <div className={styles.wrapCountdown}></div>
+        <div className={styles.wrapCountdown}>
+          <Countdown
+            title={t('training.yearCountdown')}
+          /* finishDate={'2023-02-28T15:45:48.361Z'} */
+          />
+          <Countdown
+            title={t('training.goalCountdown')}
+            finishDate={'2023-03-14T15:45:48.361Z'}
+          />
+        </div>
         <Table canDelete={false} canMarkedDone={true} books={readingBooks} />
         <div className={styles.wrapChartDiagram}>
           <TrainingDiagram

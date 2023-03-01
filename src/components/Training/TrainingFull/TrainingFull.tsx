@@ -10,9 +10,12 @@ import publicRoots from '../../../utils/publicRoots';
 import ModalChoice from '../../ModalChoice';
 import Portal from '../../Portal';
 import BoolListFull from '../BookListFull/BookListFull';
-import Counter from '../Counter';
+import BookCounter from '../BookCounter';
+/* import Counter from '../Counter'; */
 import Diagram from '../Diagram';
 import Results from '../Results';
+
+import styles from './TrainingFull.module.scss';
 
 interface Props {
   training: ReadingTraining;
@@ -77,27 +80,31 @@ const TrainingFull: React.FC<Props> = ({
   };
 
   return (
-    <div>
-      <div>
-        {/* timers */}
-        <BoolListFull training={training} onCheckboxClick={onClickCheckbox} />
-        <Counter
+    <div className={styles.wrapper}>
+      <div className={styles.mainContent}>
+        <div>
+          {/* timers */}
+          <BoolListFull training={training} onCheckboxClick={onClickCheckbox} />
+        </div>
+        <div>
+          <Diagram activeTraining={training} />
+        </div>
+        <button type="button" onClick={onClickDelete}>
+          Remove Training
+        </button>
+      </div>
+      <div className={styles.sidebar}>
+        <BookCounter
           books={training.books.length}
           days={countDays(training.start, training.finish)}
-          booksLeft={notFinishedBooks.length}
+          leftReading={notFinishedBooks.length}
         />
-      </div>
-      <div>
-        <Diagram activeTraining={training} />
-        {/* statistics */}
+        {/* TODO: insert statistics here */}
         <Results
           startTrainingDate={training.start}
           totalPages={training.totalPages}
         />
       </div>
-      <button type="button" onClick={onClickDelete}>
-        Remove Training
-      </button>
       {isOpenModal && (
         <Portal wrapperId={publicRoots.ChoiceModal}>
           <ModalChoice
