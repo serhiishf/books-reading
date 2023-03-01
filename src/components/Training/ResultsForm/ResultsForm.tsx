@@ -4,9 +4,12 @@ import * as Yup from 'yup';
 import styles from './ResultsForm.module.scss';
 
 interface ResultFormProps {
-  onSubmitForm: (values: { date: string; pages: number }) => void;
+  onSubmitForm: (
+    values: { date: string; pages: number },
+    dateToSend: string,
+  ) => void;
   startTrainingDate: string;
-  totalPages: number;
+  leftPages: number;
 }
 
 interface ResultFormValues {
@@ -16,12 +19,12 @@ interface ResultFormValues {
 
 const ResultsForm: FC<ResultFormProps> = ({
   startTrainingDate,
-  totalPages,
+  leftPages,
   onSubmitForm,
 }) => {
   const ResultsFormSchema = Yup.object().shape({
     date: Yup.date().max(new Date()).required(),
-    pages: Yup.number().max(totalPages).required(),
+    pages: Yup.number().max(leftPages).min(0).required(),
   });
 
   const formik = useFormik<ResultFormValues>({
@@ -37,7 +40,8 @@ const ResultsForm: FC<ResultFormProps> = ({
         time: now.toLocaleTimeString(),
         pages: values.pages,
       };
-      onSubmitForm(result);
+      const dateToSend = now.toISOString().replace('T', ' ');
+      onSubmitForm(result, dateToSend);
       formik.resetForm();
     },
   });
@@ -87,7 +91,7 @@ const ResultsForm: FC<ResultFormProps> = ({
             id="pages"
             name="pages"
             type="number"
-            max={totalPages}
+            max={leftPages}
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.pages}

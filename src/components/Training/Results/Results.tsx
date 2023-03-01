@@ -3,12 +3,12 @@ import styles from './Results.module.scss';
 import ResultsForm from '../ResultsForm';
 import ResultsTable from '../ResultsTable';
 import { toast } from 'react-toastify';
+import trainingApi from '../../../services/training/training-service';
 
 interface ResultsProps {
   startTrainingDate: string;
   totalPages: number;
-  isDataSaved: boolean;
-  onSaveData: () => void;
+  trainingId: string;
 }
 
 export interface Result {
@@ -20,10 +20,10 @@ export interface Result {
 const Results: FC<ResultsProps> = ({
   startTrainingDate,
   totalPages,
-  isDataSaved,
-  onSaveData,
+  trainingId,
 }) => {
   const [results, setResults] = useState<Result[]>([]);
+  const [leftPages, setLeftPages] = useState<number>(totalPages);
 
   const removeResult = (index: number) => {
     const newResults = [...results];
@@ -32,14 +32,26 @@ const Results: FC<ResultsProps> = ({
     toast.error('Результат успішно видалено!');
   };
 
-  const handleFormSubmit = (values: { date: string; pages: number }): void => {
+  const handleFormSubmit = async (
+    values: { date: string; pages: number },
+    dateToSend: string,
+  ) => {
     const now = new Date();
     const result: Result = {
       date: values.date,
       time: now.toLocaleTimeString(),
       pages: values.pages,
     };
+    const newPages = totalPages - values.pages;
+    setLeftPages(newPages);
     setResults([...results, result]);
+    console.log(result);
+    const freshAddedResult = await trainingApi.addResults({
+      date: dateToSend,
+      pages: values.pages,
+      trainingId: trainingId,
+    });
+    console.log(freshAddedResult);
     toast.success('Результат успішно додано!');
   };
 
@@ -49,7 +61,7 @@ const Results: FC<ResultsProps> = ({
       <ResultsForm
         onSubmitForm={handleFormSubmit}
         startTrainingDate={startTrainingDate}
-        totalPages={totalPages}
+        leftPages={leftPages}
       />
       <ResultsTable results={results} onRemove={removeResult} />
     </div>
