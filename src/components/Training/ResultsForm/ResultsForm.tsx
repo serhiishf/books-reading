@@ -47,14 +47,14 @@ const ResultsForm: FC<ResultFormProps> = ({
   const isFormValid =
     Object.keys(errors).length === 0 && Object.keys(touched).length !== 0;
 
-  const handlePageLeave = (e: BeforeUnloadEvent) => {
-    if (!isFormValid) {
-      e.preventDefault();
-      e.returnValue = '';
-    }
-  };
+  // const handlePageLeave = (e: BeforeUnloadEvent) => {
+  //   if (!isFormValid) {
+  //     e.preventDefault();
+  //     e.returnValue = '';
+  //   }
+  // };
 
-  window.addEventListener('beforeunload', handlePageLeave);
+  // window.addEventListener('beforeunload', handlePageLeave);
 
   return (
     <form onSubmit={handleSubmit}>
