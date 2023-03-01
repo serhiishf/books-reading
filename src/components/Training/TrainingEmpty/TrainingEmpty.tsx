@@ -1,8 +1,11 @@
 import React, { useState, useEffect, FC } from 'react';
+import styles from './TrainingEmpty.module.scss';
 import booksApi, { Book } from '../../../services/books/books-service';
 import { useTranslation } from 'react-i18next';
+import BookCounter from '../BookCounter';
 // import styles from './TrainingEmpty.module.scss';
 import AddTrainingBlock from '../AddTrainingBlock';
+import moment from 'moment';
 import trainingApi, {
   ReadingTraining,
 } from '../../../services/training/training-service';
@@ -12,10 +15,22 @@ type Props = {
 };
 
 const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
+  const [startDate, setStartDate] = useState<string>('');
+  const [finishDate, setFinishDate] = useState<string>('');
+  const [bookCounterDays, setBookCounterDays] = useState<number>(0);
   const [pendingBooks, setPendingBooks] = useState<Book[]>([]);
   const [booksActive, setActiveBooks] = useState<Book[]>([]);
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (startDate && finishDate) {
+      const days = moment(finishDate).diff(moment(startDate), 'days');
+      setBookCounterDays(days);
+    }
+  }, [startDate, finishDate]);
+
+
 
   const getPendingBooks = async () => {
     const { data } = await booksApi.getBooksByStatus('pending');
@@ -64,13 +79,23 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
   };
 
   return (
-    <div>
-      <AddTrainingBlock
-        books={pendingBooks}
-        activeBooks={booksActive}
-        onAddActive={onAddToList}
-        handleCreateTraining={onCreateTraining}
-      />
+    <div className={styles.wrapper}>
+      <div className={styles.mainContent}>
+        <AddTrainingBlock
+          books={pendingBooks}
+          activeBooks={booksActive}
+          onAddActive={onAddToList}
+          handleCreateTraining={onCreateTraining}
+          setStartDateEmptyC={setStartDate}
+          setFinishDateEmptyC={setFinishDate}
+        />
+      </div>
+      <div className={styles.sidebar}>
+        <BookCounter
+          books={booksActive.length}
+          days={bookCounterDays}
+        />
+      </div>
     </div>
   );
 };

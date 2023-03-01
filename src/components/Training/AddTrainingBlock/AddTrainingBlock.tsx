@@ -23,6 +23,8 @@ const checkPermissionCreate = (books: Book[], endDate: string) => {
 type Props = {
   books: Book[];
   activeBooks: Book[];
+  setStartDateEmptyC: React.Dispatch<React.SetStateAction<string>>;
+  setFinishDateEmptyC: React.Dispatch<React.SetStateAction<string>>;
   onAddActive: (newBook: Book) => void;
   handleCreateTraining: (
     startDate: string,
@@ -36,12 +38,25 @@ const AddTrainingBlock: FC<Props> = ({
   activeBooks,
   onAddActive,
   handleCreateTraining,
+  setStartDateEmptyC,
+  setFinishDateEmptyC
 }) => {
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [bookCounterDays, setBookCounterDays] = useState<number>(0);
 
+  const updateStartDay = (date: string) => {
+    setStartDateEmptyC(date);
+    setStartDate(date);
+  };
+
+  const updateFinishDate = (date: string) => {
+    setFinishDateEmptyC(date);
+    setEndDate(date);
+  };
+
   const { t } = useTranslation();
+
 
   const createTraining = () => {
     if (checkPermissionCreate(activeBooks, endDate)) {
@@ -57,12 +72,14 @@ const AddTrainingBlock: FC<Props> = ({
           placeHolder={t('training.start')}
           today={true}
           open={true}
-          setDate={setStartDate}
+          updateDate={updateStartDay}
+        /* setDate={setStartDate} */
         />
         <Calendar
           placeHolder={t('training.finish')}
           onlyAfter={true}
-          setDate={setEndDate}
+          updateDate={updateFinishDate}
+        /* setDate={setEndDate} */
         />
       </div>
       <BookSelectInput books={books} onAddActive={onAddActive} />
