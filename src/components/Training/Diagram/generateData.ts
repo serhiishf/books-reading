@@ -84,7 +84,6 @@ function getStartOfDay(dateStr: string) {
 }
 
 export function generateFactTest(training: ReadingTraining): Datum[] {
-  console.log('training', training);
   const { start, finish, statistics, totalPages } = training;
   const factData: Datum[] = [];
 
@@ -100,43 +99,31 @@ export function generateFactTest(training: ReadingTraining): Datum[] {
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );
 
-  let prevDate = new Date(start);
+  let prevDate = new Date(statistics[0].date);
   let startOfDay = getStartOfDay(prevDate.toISOString());
   let endOfDay = getEndOfDay(prevDate.toISOString());
   let sumPages = 0;
-  let i = 0;
 
-  while (prevDate < new Date(finish)) {
-    if (i < statistics.length) {
-      console.log(i);
-      const statDate = new Date(statistics[i].date);
-
-      // If current date is within the current day
-      if (statDate >= startOfDay && statDate <= endOfDay) {
-        sumPages += statistics[i].pages;
-
-        // i++;
-        continue;
-      }
-
-      // If current date is before the current day, move to next record
-      if (statDate < startOfDay) {
-        // i++;
-        continue;
-      }
-
-      // If current date is after the current day, generate point with 0 pages
+  for (let i = 0; i < statistics.length; i++) {
+    const statDate = new Date(statistics[i].date);
+    console.log('stat', statDate);
+    console.log('start', startOfDay);
+    console.log('end', endOfDay);
+    //If current date is within the current day
+    if (statDate >= startOfDay && statDate <= endOfDay) {
+      console.log('object');
+      sumPages += statistics[i].pages;
       const formattedDate = formatDate(startOfDay.toISOString());
       factData.push({ x: formattedDate, y: sumPages });
-      prevDate = new Date(startOfDay);
-      startOfDay = getStartOfDay(prevDate.toISOString());
-      endOfDay = getEndOfDay(prevDate.toISOString());
-      sumPages = 0;
-      i++;
+
+      //if next date is next day
+      if (new Date(statistics[i + 1].date) > endOfDay) {
+        startOfDay = getStartOfDay(prevDate.toISOString());
+        endOfDay = getEndOfDay(prevDate.toISOString());
+        sumPages = 0;
+        prevDate = new Date(statistics[i + 1].date);
+      }
     }
-    // else if (i >= statistics.length) {
-    //   break;
-    // }
   }
 
   // Add last point if it's not already added

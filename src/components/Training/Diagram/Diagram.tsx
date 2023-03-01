@@ -46,8 +46,8 @@ const Diagram: React.FC<Props> = ({ activeTraining, createTraining }) => {
 
   const chooseDataGenerateStrategy = () => {
     if (activeTraining) {
-      // const test = generateFactTest(activeTraining);
-      // console.log(test);
+      const test = generateFactTest(activeTraining);
+      console.log(test);
 
       //if we have an active training
       setData(generateData(activeTraining));
