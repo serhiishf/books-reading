@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import BookCounter from '../BookCounter';
 import Table from '../Table';
 import { Book } from '../../../services/books/books-service';
-import TrainingDiagram from '../../TrainingDiagram';
+// import TrainingDiagram from '../../TrainingDiagram';
 import trainingApi from '../../../services/training/training-service';
 import Countdown from '../../Countdown';
 
@@ -64,7 +64,7 @@ function ShowTrainingPage({ trainingId }: ShowTraining) {
         <div className={styles.wrapCountdown}>
           <Countdown
             title={t('training.yearCountdown')}
-          /* finishDate={'2023-02-28T15:45:48.361Z'} */
+            /* finishDate={'2023-02-28T15:45:48.361Z'} */
           />
           <Countdown
             title={t('training.goalCountdown')}
@@ -73,11 +73,11 @@ function ShowTrainingPage({ trainingId }: ShowTraining) {
         </div>
         <Table canDelete={false} canMarkedDone={true} books={readingBooks} />
         <div className={styles.wrapChartDiagram}>
-          <TrainingDiagram
+          {/* <TrainingDiagram
             isRealTraining={true}
             daysAmount={leftDays}
             totalPages={totalPages}
-          />
+          /> */}
         </div>
       </div>
       <div className={styles.sidebar}>
