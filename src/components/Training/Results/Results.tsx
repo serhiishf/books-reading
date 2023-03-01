@@ -44,11 +44,10 @@ const Results: FC<ResultsProps> = ({ training, updateTraining }) => {
       setResults(updatedStatistics);
       setLeftPages(training.totalPages - training.readPages);
     }
-  }, []);
-
-  const onClickDelete = () => {
-    setOpenModal(!isOpenModal);
-  };
+    if (training.totalPages - training.readPages === 0) {
+      setOpenModal(true);
+    }
+  }, [training]);
 
   const onConfirmClick = async () => {
     Promise.all(
@@ -89,14 +88,12 @@ const Results: FC<ResultsProps> = ({ training, updateTraining }) => {
       const newResult = transformStatistics(freshAddedTraining.statistics);
       updateTraining(freshAddedTraining);
       setResults([...newResult]);
-      // const left = training.totalPages - training.readPages;
-      // setLeftPages(left);
-      // console.log(training.totalPages, training.readPages);
+      const left = training.totalPages - training.readPages;
+      setLeftPages(left);
       toast.success('Результат успішно додано!');
-    }
-
-    if (training.readPages === training.totalPages) {
-      setOpenModal(!isOpenModal);
+      if (freshAddedTraining.totalPages - freshAddedTraining.readPages === 0) {
+        setOpenModal(true);
+      }
     }
   };
 
