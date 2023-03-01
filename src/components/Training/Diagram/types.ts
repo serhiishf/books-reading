@@ -3,7 +3,6 @@ import { ReadingTraining } from '../../../services/training/training-service';
 
 export type IData = {
   id: string;
-  // color: string;
   data: (
     | {
         x: string | Date;
@@ -18,8 +17,9 @@ export type IData = {
 
 export interface Props {
   activeTraining?: ReadingTraining;
-  addedBooks?: Book[];
+  books?: Book[];
   isRealTraining?: boolean;
   daysAmount?: number;
   totalPages?: number;
+  isCreatingTraining?: boolean;
 }

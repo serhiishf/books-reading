@@ -28,7 +28,6 @@ const TrainingPageNew = () => {
     }
   };
 
-  // on add new training change status/set newTraining and render TrainingFull Component
   const updateTrainingPage = (training: ReadingTraining | null) => {
     setTraining(training);
     if (training) {

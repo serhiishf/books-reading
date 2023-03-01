@@ -9,6 +9,7 @@ import moment from 'moment';
 import trainingApi, {
   ReadingTraining,
 } from '../../../services/training/training-service';
+import Diagram from '../Diagram';
 
 type Props = {
   changeTraining: (training: ReadingTraining) => void;
@@ -30,8 +31,6 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
     }
   }, [startDate, finishDate]);
 
-
-
   const getPendingBooks = async () => {
     const { data } = await booksApi.getBooksByStatus('pending');
     setPendingBooks(data);
@@ -43,6 +42,7 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
 
   const onAddToList = (newBook: Book) => {
     setActiveBooks([...booksActive, newBook]);
+
     const updatedBooks = pendingBooks.filter(
       (book) => book._id !== newBook._id,
     );
@@ -89,12 +89,10 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
           setStartDateEmptyC={setStartDate}
           setFinishDateEmptyC={setFinishDate}
         />
+        <Diagram books={booksActive} />
       </div>
       <div className={styles.sidebar}>
-        <BookCounter
-          books={booksActive.length}
-          days={bookCounterDays}
-        />
+        <BookCounter books={booksActive.length} days={bookCounterDays} />
       </div>
     </div>
   );
