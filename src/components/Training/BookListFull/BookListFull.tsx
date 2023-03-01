@@ -4,6 +4,7 @@ import BookStatusI from '../../../utils/bookStatus';
 import BookItem from '../BookItem';
 import BookListHeader from '../BookListHeader';
 import Checkbox from '../Checkbox';
+import styles from './BookListFull.module.scss';
 
 interface Props {
   training: ReadingTraining;
@@ -22,7 +23,7 @@ const BoolListFull: React.FC<Props> = ({ training, onCheckboxClick }) => {
         {training.books.map((bookObj) => {
           const { book, _id } = bookObj;
           return (
-            <li key={_id}>
+            <li key={_id} className={styles.item}>
               <Checkbox
                 status={book.status}
                 clb={() => onCheckboxClick(book._id, book.status, _id)}

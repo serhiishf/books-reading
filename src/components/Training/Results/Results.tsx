@@ -1,14 +1,20 @@
-import React, { useState, FC } from 'react';
+import React, { useState, FC, useEffect } from 'react';
 import styles from './Results.module.scss';
 import ResultsForm from '../ResultsForm';
 import ResultsTable from '../ResultsTable';
 import { toast } from 'react-toastify';
-import trainingApi from '../../../services/training/training-service';
+import trainingApi, {
+  Statistics,
+  ReadingTraining,
+} from '../../../services/training/training-service';
 
 interface ResultsProps {
   startTrainingDate: string;
   totalPages: number;
+  readPages: number;
   trainingId: string;
+  statistics: Statistics[];
+  updateTraining: (training: ReadingTraining | null) => void;
 }
 
 export interface Result {
@@ -20,7 +26,10 @@ export interface Result {
 const Results: FC<ResultsProps> = ({
   startTrainingDate,
   totalPages,
+  readPages,
   trainingId,
+  statistics,
+  updateTraining,
 }) => {
   const [results, setResults] = useState<Result[]>([]);
   const [leftPages, setLeftPages] = useState<number>(totalPages);
@@ -32,27 +41,42 @@ const Results: FC<ResultsProps> = ({
     toast.error('Результат успішно видалено!');
   };
 
+  useEffect(() => {
+    if (statistics) {
+      const updatedStatistics = transformStatistics(statistics);
+      setResults(updatedStatistics);
+      setLeftPages(totalPages - readPages);
+    }
+  }, []);
+
+  const transformStatistics = (arr: Statistics[]) => {
+    return arr.map((el) => {
+      const dateObj = new Date(el.date);
+      const date = dateObj.toISOString().slice(0, 10);
+      const time = dateObj.toLocaleTimeString([], { hour12: false });
+      return {
+        date,
+        time,
+        pages: el.pages,
+      };
+    });
+  };
+
   const handleFormSubmit = async (
     values: { date: string; pages: number },
     dateToSend: string,
   ) => {
-    const now = new Date();
-    const result: Result = {
-      date: values.date,
-      time: now.toLocaleTimeString(),
-      pages: values.pages,
-    };
-    const newPages = totalPages - values.pages;
-    setLeftPages(newPages);
-    setResults([...results, result]);
-    // console.log(result);
-    const freshAddedResult = await trainingApi.addResults({
+    const freshAddedTraining = await trainingApi.addResults({
       date: dateToSend,
       pages: values.pages,
       trainingId: trainingId,
     });
-    // console.log(freshAddedResult);
-    toast.success('Результат успішно додано!');
+    if (freshAddedTraining.statistics) {
+      const newResult = transformStatistics(freshAddedTraining.statistics);
+      updateTraining(freshAddedTraining);
+      setResults([...newResult]);
+      toast.success('Результат успішно додано!');
+    }
   };
 
   return (

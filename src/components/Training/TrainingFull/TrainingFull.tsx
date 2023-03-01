@@ -116,7 +116,10 @@ const TrainingFull: React.FC<Props> = ({
         <Results
           startTrainingDate={training.start}
           totalPages={training.totalPages}
+          readPages={training.readPages}
           trainingId={training._id}
+          statistics={training.statistics}
+          updateTraining={updateTraining}
         />
       </div>
 

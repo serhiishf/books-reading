@@ -24,7 +24,10 @@ const ResultsForm: FC<ResultFormProps> = ({
 }) => {
   const ResultsFormSchema = Yup.object().shape({
     date: Yup.date().max(new Date()).required(),
-    pages: Yup.number().max(leftPages).min(0).required(),
+    pages: Yup.number()
+      .max(leftPages, `Max ${leftPages} or less`)
+      .min(1, 'Min 1 page')
+      .required(),
   });
 
   const formik = useFormik<ResultFormValues>({
@@ -51,15 +54,6 @@ const ResultsForm: FC<ResultFormProps> = ({
 
   const isFormValid =
     Object.keys(errors).length === 0 && Object.keys(touched).length !== 0;
-
-  // const handlePageLeave = (e: BeforeUnloadEvent) => {
-  //   if (!isFormValid) {
-  //     e.preventDefault();
-  //     e.returnValue = '';
-  //   }
-  // };
-
-  // window.addEventListener('beforeunload', handlePageLeave);
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
@@ -93,7 +87,6 @@ const ResultsForm: FC<ResultFormProps> = ({
             type="number"
             max={leftPages}
             onChange={handleChange}
-            onBlur={handleBlur}
             value={values.pages}
           />
           {errors.pages && touched.pages ? <div>{errors.pages}</div> : null}
