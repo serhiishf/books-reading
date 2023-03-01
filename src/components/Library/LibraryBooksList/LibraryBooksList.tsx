@@ -4,12 +4,7 @@ import BookListEl from './BookListEl';
 import styles from './LibraryBooksList.module.scss';
 import { Book } from '../../../services/books/books-service';
 import ActiveBookList from './ActiveBookList';
-
-export enum BookStatus {
-  'PENDING' = 'pending',
-  'DONE' = 'done',
-  'ACTIVE' = 'active',
-}
+import { statusBook } from '../../../utils/bookStatus';
 
 export type DropBook = {
   id: string;
@@ -24,19 +19,19 @@ type Props = {
 
 const LibraryBooksList: FC<Props> = ({ books, handleUpdate, handleDelete }) => {
   const activeBooks = books?.filter(
-    (book) => book.status === BookStatus.ACTIVE,
+    (book) => book.status === statusBook.ACTIVE,
   );
-  const doneBooks = books?.filter((book) => book.status === BookStatus.DONE);
+  const doneBooks = books?.filter((book) => book.status === statusBook.DONE);
 
   const pendingBooks = books?.filter(
-    (book) => book.status === BookStatus.PENDING,
+    (book) => book.status === statusBook.PENDING,
   );
 
   const { t } = useTranslation();
 
   return (
     <div className={styles.wrapper}>
-      {activeBooks.length ? (
+      {activeBooks?.length ? (
         <div className={styles.sectionWrapper}>
           <h3 className={styles.sectionTitle}>{t('library.active')}</h3>
           <div className={styles.wrapTitls}>
@@ -51,7 +46,7 @@ const LibraryBooksList: FC<Props> = ({ books, handleUpdate, handleDelete }) => {
         </div>
       ) : null}
 
-      {doneBooks.length ? (
+      {doneBooks?.length ? (
         <div className={styles.sectionWrapper}>
           <h3 className={styles.sectionTitle}>{t('library.done')}</h3>
           <div className={styles.titlesWrapper}>
@@ -71,7 +66,7 @@ const LibraryBooksList: FC<Props> = ({ books, handleUpdate, handleDelete }) => {
         </div>
       ) : null}
 
-      {pendingBooks.length ? (
+      {pendingBooks?.length ? (
         <div>
           <h3 className={styles.sectionTitle}>{t('library.pending')}</h3>
           <div className={styles.wrapTitls}>

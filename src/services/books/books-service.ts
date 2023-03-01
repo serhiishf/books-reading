@@ -2,6 +2,7 @@ import axiosInstance from '../axiosConfig';
 import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import i18n from '../../i18n';
+import BookStatusI from '../../utils/bookStatus';
 
 export type BookT = {
   name: string;
@@ -36,7 +37,7 @@ export interface Book {
   author: string;
   year: number;
   pages: number;
-  status: 'pending' | 'active' | 'done';
+  status: BookStatusI;
   owner: {
     _id: string;
     name: string;
@@ -60,8 +61,8 @@ const getAllBooks = async (): Promise<Book[]> => {
 
 const getBookById = async (bookId: string) => {
   try {
-    const responce = await axiosInstance.get(`/books/book/?bookId=${bookId}`);
-    const result: Book = responce.data.data;
+    const response = await axiosInstance.get(`/books/book/?bookId=${bookId}`);
+    const result: Book = response.data.data;
     return result;
   } catch (error) {
     console.error(`Error fetching books: ${error}`);

@@ -297,6 +297,9 @@
     "start": "Start",
     "finish": "Finish",
     "diagramTitle": "Number of pages / day",
+    "confirmDeleteTXT": "Are you sure you want to delete the training? All your books will be marked as 'unread'!",
+    "confirmDelete": "Confirm",
+    "resetDelete": "Cancel",
     "yearCountdown": "Year countdown",
     "goalCountdown": "Goal countdown"
   },
