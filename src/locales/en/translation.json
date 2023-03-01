@@ -271,7 +271,8 @@
     "errorReg1": "This email is already exist.",
     "errorReg2": "Registration failed.",
     "errorLog1": "Wrong email or password.",
-    "errorLog2": "Something went wrong. Try again."
+    "errorLog2": "Something went wrong. Try again.",
+    "existedBook": "Book is already exist. Check all categories."
   },
 
   "training": {
