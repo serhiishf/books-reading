@@ -13,7 +13,7 @@ export interface CreateTrainingInterface {
   books: BookId[];
 }
 
-type Statistics = {
+export type Statistics = {
   date: string;
   pages: number;
   trainingId: string;
