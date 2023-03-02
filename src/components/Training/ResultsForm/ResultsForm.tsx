@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styles from './ResultsForm.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface ResultFormProps {
   onSubmitForm: (
@@ -22,6 +23,7 @@ const ResultsForm: FC<ResultFormProps> = ({
   leftPages,
   onSubmitForm,
 }) => {
+  const { t } = useTranslation();
   const ResultsFormSchema = Yup.object().shape({
     date: Yup.date().max(new Date()).required(),
     pages: Yup.number()
@@ -60,7 +62,7 @@ const ResultsForm: FC<ResultFormProps> = ({
       <div className={styles.inputWrapper}>
         <div>
           <label htmlFor="date" className={styles.label}>
-            Date
+            {t('training.date')}
           </label>
           <input
             className={styles.input}
@@ -78,7 +80,7 @@ const ResultsForm: FC<ResultFormProps> = ({
 
         <div>
           <label htmlFor="pages" className={styles.label}>
-            Amount of pages
+            {t('training.amountOfPages')}
           </label>
           <input
             className={styles.input}
@@ -94,7 +96,7 @@ const ResultsForm: FC<ResultFormProps> = ({
       </div>
 
       <button type="submit" disabled={!isFormValid} className={styles.button}>
-        Додати результат
+        {t('training.addResult')}
       </button>
     </form>
   );

@@ -5,7 +5,7 @@
   width: 100%;
   border-collapse: collapse;
 
-  table-layout: fixed; 
+  table-layout: fixed;
 }
 
 .tHead {
@@ -32,7 +32,6 @@
   width: 40px;
 }
 
-
 .booksItem {
   height: 48px;
   @include for-size(tablet-only) {
@@ -45,7 +44,6 @@
     text-overflow: ellipsis;
   }
   &__svgWrap {
-
   }
   &__numberItem {
     text-align: right;
@@ -54,7 +52,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  &__deleteColumn{
+  &__deleteColumn {
     width: 40px;
     display: flex;
     justify-content: center;
@@ -69,10 +67,10 @@
   &__deleteBtnSvgWrap {
     height: 18px;
     width: 14px;
-    transition: all 250ms ease-in-out, transform 150ms ease;
+    transition: all 250ms ease-in-out;
     &:hover {
       scale: 120%;
-      transition: all 250ms ease-in-out, transform 150ms ease;
+      transition: all 250ms ease-in-out;
     }
   }
 }

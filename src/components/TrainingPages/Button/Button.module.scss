@@ -2,11 +2,11 @@
 @import '../../../scss/variables';
 
 .btn {
-  all:unset;
+  all: unset;
   display: block;
   cursor: pointer;
   text-align: center;
-  transition: all 250ms ease-in-out, transform 150ms ease;
+  transition: all 250ms ease-in-out;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
@@ -16,7 +16,6 @@
   height: 52px;
   border-radius: 50%;
   background: $accent-color url(./assets/plus.svg) no-repeat center;
-
 }
 
 .add {
@@ -29,7 +28,6 @@
     border-color: $accent-color;
   }
 }
-
 
 .done {
   color: #ffffff;
@@ -47,4 +45,4 @@
   &:hover {
     background-color: $hover-color;
   }
-} 
+}

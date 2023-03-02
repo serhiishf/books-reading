@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import {
   generateData,
   generateDataOnCreateTraining,
-  generateFactTest,
   getAveragePagesPerDay,
 } from './generateData';
 import classNames from 'classnames';
@@ -46,11 +45,12 @@ const Diagram: React.FC<Props> = ({ activeTraining, createTraining }) => {
 
   const chooseDataGenerateStrategy = () => {
     if (activeTraining) {
-      // const test = generateFactTest(activeTraining);
-      // console.log(test);
+      setTimeout(() => {
+        setData(generateData(activeTraining));
+      }, 0);
 
       //if we have an active training
-      setData(generateData(activeTraining));
+      // setData(generateData(activeTraining));
     } else if (isCreateTraining) {
       //if we create training
       const { books, startDate, finishDate } = createTraining;
