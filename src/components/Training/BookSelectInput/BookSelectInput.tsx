@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
 import { Formik, Field } from 'formik';
 import styles from './BookSelectInput.module.scss';
-// import Button from '../Button';
-// import { ButtonType } from '../Button/Button';
 
 import { Book } from '../../../services/books/books-service';
 import { useTranslation } from 'react-i18next';

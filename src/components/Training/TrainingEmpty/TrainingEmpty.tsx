@@ -1,9 +1,7 @@
 import React, { useState, useEffect, FC } from 'react';
 import styles from './TrainingEmpty.module.scss';
 import booksApi, { Book } from '../../../services/books/books-service';
-// import { useTranslation } from 'react-i18next';
 import BookCounter from '../BookCounter';
-// import styles from './TrainingEmpty.module.scss';
 import AddTrainingBlock from '../AddTrainingBlock';
 import moment from 'moment';
 import trainingApi, {
@@ -21,8 +19,6 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
   const [bookCounterDays, setBookCounterDays] = useState<number>(0);
   const [pendingBooks, setPendingBooks] = useState<Book[]>([]);
   const [booksActive, setActiveBooks] = useState<Book[]>([]);
-
-  // const { t } = useTranslation();
 
   useEffect(() => {
     if (startDate && finishDate) {

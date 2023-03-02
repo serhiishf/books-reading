@@ -34,11 +34,9 @@
   @include for-size(mobile-only) {
     display: flex;
     width: 40px;
-    color: #898F9F;
+    color: #898f9f;
   }
 }
-
-
 
 .wrapItem {
   @include for-size(mobile-only) {
