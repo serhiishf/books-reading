@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Result } from '../Results/Results';
 import styles from './ResultsTable.module.scss';
 
@@ -8,9 +9,10 @@ interface Props {
 }
 
 const ResultsTable: FC<Props> = ({ results, onRemove }) => {
+  const { t } = useTranslation();
   return (
     <table className={styles.table}>
-      <caption className={styles.title}>STATISTICS</caption>
+      <caption className={styles.title}>{t('training.statistics')}</caption>
       <tbody>
         {results.map((result, index) => (
           <tr key={index}>
