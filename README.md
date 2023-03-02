@@ -1,50 +1,26 @@
-# Getting Started with Create React App
+## Данный проект использует несколько библиотек и технологий для эффективной разработки и улучшения пользовательского опыта.
+  - React-router-dom - для маршрутизации и навигации по страницам приложения. Были некоторые сложности с правильной настройкой маршрутов для зарегестрированных и незарегестрированных пользователей.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  - React-redux - использовался для управления состоянием приложения и обмена данными между компонентами. Сложности были в правильной настройке, изучение заняло немного больше времени, чем предполагалось изначально.
 
-## Available Scripts
+  - Axios - использовался для отправки запросов на сервер и получения данных. Также был создан axiosInstance для корректной работы с refresh и access токенами, для обновления данных о текущем пользователе.
 
-In the project directory, you can run:
+  - React-datetime предоставляет удобный интерфейс для работы с датами и временем в React.
 
-### `npm start`
+  - React-multi-carousel используется для создания каруселей изображений и других контентных блоков на страницах приложения.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  - Nivo используется для визуализации данных и создания диаграмм, графиков и других элементов визуализации.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  - React-toastify - довольна простая и удобная в использовании библиотека для вывода уведомлений и сообщений на страницах приложения.
 
-### `npm test`
+  - I18next - используется для локализации интерфейса приложения на два языка. Основная сложность была в правильной настройке, подходящей для нашего проекта и также. Немного загяло времени, для того чтобы разобраться как правильно работает в связке с Formik и Yup.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - React-loader-spinner используется для отображения анимированного спиннера во время загрузки данных. Сложность была в понимании в какой момент и когда лучше применить данный лоудер.
 
-### `npm run build`
+  - Formik и Yup используются вместе для упрощения процесса создания и валидации форм на страницах приложения. Некоторое время заняло поиск информации как правильно описать валидацию.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Каждая из этих библиотек и технологий может иметь свои потенциальные сложности, особенно для разработчиков без опыта работы с ними. Однако, при правильном использовании, они могут значительно упростить и улучшить процесс разработки вашего проекта.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+И основная сложнасть была как раз таки в отсутствии опыта работы с вышеперечисленными библиотеками.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run lint`
-
-Run fix eslint.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
