@@ -1,4 +1,3 @@
-import { changeLanguage } from 'i18next';
 import { Book } from '../../../services/books/books-service';
 import { ReadingTraining } from '../../../services/training/training-service';
 import { Datum, IData } from './types';

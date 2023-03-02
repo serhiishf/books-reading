@@ -31,12 +31,12 @@ const Results: FC<ResultsProps> = ({ training, updateTraining }) => {
   const [isOpenModal, setOpenModal] = useState(false);
   const { t } = useTranslation();
 
-  const removeResult = (index: number) => {
-    const newResults = [...results];
-    newResults.splice(index, 1);
-    setResults(newResults);
-    toast.error('Результат успішно видалено!');
-  };
+  // const removeResult = (index: number) => {
+  //   const newResults = [...results];
+  //   newResults.splice(index, 1);
+  //   setResults(newResults);
+  //   toast.error('Результат успішно видалено!');
+  // };
 
   useEffect(() => {
     if (training.statistics) {
@@ -105,7 +105,7 @@ const Results: FC<ResultsProps> = ({ training, updateTraining }) => {
         startTrainingDate={training.start}
         leftPages={leftPages}
       />
-      <ResultsTable results={results} onRemove={removeResult} />
+      <ResultsTable results={results} />
       {isOpenModal && (
         <Portal wrapperId={publicRoots.ConfirmModal}>
           <ModalConfirmation

@@ -305,7 +305,8 @@
     "yearCountdown": "Year countdown",
     "goalCountdown": "Goal countdown",
     "congrats": "Congratulations! You have finished your training! Don't stop, proceed to create a new one!",
-    "removeTraining": "Remove training"
+    "removeTraining": "Remove training",
+    "page": "p."
   },
 
   "countdown": {
