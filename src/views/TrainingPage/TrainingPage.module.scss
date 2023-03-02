@@ -13,7 +13,7 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  @include for-size(desctop-only) {
+  @include for-size(desktop-only) {
     padding: 0 39px;
   }
   @include for-size(tablet-only) {
