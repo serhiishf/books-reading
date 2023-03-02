@@ -8,13 +8,10 @@ import styles from './BookListEmpty.module.scss';
 
 type Props = {
   activeBooks: Book[];
+  onDeleteAdded: (deletedBook: Book) => void;
 };
 
-const BookListEmpty: FC<Props> = ({ activeBooks }) => {
-  const onOpenClick = () => {
-    console.log('!!!');
-  };
-
+const BookListEmpty: FC<Props> = ({ activeBooks, onDeleteAdded }) => {
   return (
     <div>
       <BookListHeader />
@@ -26,7 +23,10 @@ const BookListEmpty: FC<Props> = ({ activeBooks }) => {
               <div className={styles.bookItem}>
                 <BookItem key={book._id} book={book} />
               </div>
-              <button className={styles.btnDel} onClick={onOpenClick}>
+              <button
+                className={styles.btnDel}
+                onClick={() => onDeleteAdded(book)}
+              >
                 <AiOutlineDelete color="#a6abb9" style={{ fontSize: '20px' }} />
               </button>
             </li>

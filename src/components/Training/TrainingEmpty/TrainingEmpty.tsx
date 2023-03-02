@@ -49,6 +49,14 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
     setPendingBooks(updatedBooks);
   };
 
+  const onDeleteFromList = (deletedBook: Book) => {
+    setPendingBooks([...pendingBooks, deletedBook]);
+    const updatedBooks = booksActive.filter(
+      (book) => book._id !== deletedBook._id,
+    );
+    setActiveBooks(updatedBooks);
+  };
+
   const onCreateTraining = async (
     startDate: string,
     endDate: string,
@@ -85,6 +93,7 @@ const TrainingEmpty: FC<Props> = ({ changeTraining }) => {
           books={pendingBooks}
           activeBooks={booksActive}
           onAddActive={onAddToList}
+          onDeleteAdded={onDeleteFromList}
           handleCreateTraining={onCreateTraining}
           setStartDateEmptyC={setStartDate}
           setFinishDateEmptyC={setFinishDate}

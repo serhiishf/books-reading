@@ -31,6 +31,7 @@ type Props = {
   setStartDateEmptyC: React.Dispatch<React.SetStateAction<string>>;
   setFinishDateEmptyC: React.Dispatch<React.SetStateAction<string>>;
   onAddActive: (newBook: Book) => void;
+  onDeleteAdded: (deletedBook: Book) => void;
   handleCreateTraining: (
     startDate: string,
     endDate: string,
@@ -42,6 +43,7 @@ const AddTrainingBlock: FC<Props> = ({
   books,
   activeBooks,
   onAddActive,
+  onDeleteAdded,
   handleCreateTraining,
   setStartDateEmptyC,
   setFinishDateEmptyC,
@@ -120,7 +122,7 @@ const AddTrainingBlock: FC<Props> = ({
           }}
         />
       </div>
-      <BookListEmpty activeBooks={activeBooks} />
+      <BookListEmpty activeBooks={activeBooks} onDeleteAdded={onDeleteAdded} />
       <div className={styles.buttonDoneWrap}>
         <Button
           type={ButtonType.done}
