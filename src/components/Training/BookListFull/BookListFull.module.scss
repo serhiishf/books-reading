@@ -5,7 +5,4 @@
   display: flex;
   gap: 20px;
   align-items: center;
-  @include for-size(mobile-only) {
-    //align-items: flex-start;
-  }
 }
