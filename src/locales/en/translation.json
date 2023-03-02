@@ -273,7 +273,8 @@
     "errorReg2": "Registration failed.",
     "errorLog1": "Wrong email or password.",
     "errorLog2": "Something went wrong. Try again.",
-    "existedBook": "Book is already exist. Check all categories."
+    "existedBook": "Book is already exist. Check all categories.",
+    "errorOnCreateTraining400": "Something went wrong. Try refreshing the page, it usually helps :)"
   },
 
   "training": {
@@ -294,7 +295,7 @@
     "pages": "Pages",
     "date": "Date",
     "amountOfPages": "Amount of pages",
-    "statisctics": "STATISTICS",
+    "statistics": "Statistics",
     "start": "Start",
     "finish": "Finish",
     "diagramTitle": "Number of pages / day",
@@ -304,7 +305,8 @@
     "yearCountdown": "Year countdown",
     "goalCountdown": "Goal countdown",
     "congrats": "Congratulations! You have finished your training! Don't stop, proceed to create a new one!",
-    "removeTraining": "Remove training"
+    "removeTraining": "Remove training",
+    "page": "p."
   },
 
   "countdown": {

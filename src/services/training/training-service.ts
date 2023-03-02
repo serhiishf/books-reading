@@ -1,3 +1,6 @@
+import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
+import i18n from '../../i18n';
 import axiosInstance from '../axiosConfig';
 import { Book } from '../books/books-service';
 /* import { AxiosError } from 'axios';
@@ -52,6 +55,13 @@ const createTraining = async (body: CreateTrainingInterface) => {
     return data;
   } catch (error) {
     console.log(`Error creating training: ${error}`);
+    if (error instanceof AxiosError) {
+      if (error.response?.status === 400) {
+        toast.error(i18n?.t?.('toast.errorOnCreateTraining400'));
+      } else {
+        toast.error(i18n?.t?.('toast.errorLog2'));
+      }
+    }
   }
 };
 
