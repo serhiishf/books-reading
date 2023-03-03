@@ -23,7 +23,7 @@ const LibraryHint = () => {
           </div>
           <div className={styles.blockText}>
             <Arr />
-            <span className={styles.text}>{t('library.createLibDo')}</span>
+            <span className={styles.text}>{t('library.cerateLibDo')}</span>
           </div>
         </li>
         <li className={styles.item}>
