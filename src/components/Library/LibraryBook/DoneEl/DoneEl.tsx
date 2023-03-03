@@ -22,7 +22,7 @@ const DoneEl: FC<Props> = ({ _id, rating, resume, onUpdate }) => {
   return (
     <>
       <div className={styles.starWrapper}>
-        <span className={styles.subtitleMob}>Resume:</span>
+        <span className={styles.subtitleMob}>{t('library.resume')}:</span>
         <div>
           <Rating count={5} value={rating || 0} edit={false} />
         </div>

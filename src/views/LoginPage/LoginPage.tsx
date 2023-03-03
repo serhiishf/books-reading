@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LoginForm from '../../components/LoginForm';
 import styles from './LoginPage.module.scss';
 import getRandomNum from '../../services/getRandomNum';
@@ -11,7 +11,18 @@ export interface QuoteI {
 
 export default function LoginPage() {
   const { t } = useTranslation();
-  const randomIndex = getRandomNum(0, 11);
+  const [quoteIndex, setQuoteIndex] = useState(getRandomNum(0, 11));
+
+  const prevIndex = (quoteIndex + 11) % 12;
+  const activeQuoteClass = quoteIndex === 0 ? styles.activeQuote : '';
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const newIndex = getRandomNum(0, 11);
+      setQuoteIndex(newIndex);
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, [quoteIndex]);
 
   return (
     <div className={styles.mainWrapper}>
@@ -20,9 +31,21 @@ export default function LoginPage() {
       </div>
       <div className={styles.rightSide}>
         <div className={styles.quoteSign}>&ldquo;</div>
-        <p className={styles.quoteText}>{t(`quotes.${randomIndex}.text`)}</p>
-        <p className={styles.quoteAuthor}>
-          {t(`quotes.${randomIndex}.author`)}
+        <p
+          key={`text-${quoteIndex}-${prevIndex}`}
+          className={`${styles.quoteText} ${
+            quoteIndex > prevIndex ? styles.fadeIn : styles.fadeOut
+          } ${activeQuoteClass}`}
+        >
+          {t(`quotes.${quoteIndex}.text`)}
+        </p>
+        <p
+          key={`author-${quoteIndex}-${prevIndex}`}
+          className={`${styles.quoteAuthor} ${
+            quoteIndex > prevIndex ? styles.fadeIn : styles.fadeOut
+          } ${activeQuoteClass}`}
+        >
+          {t(`quotes.${quoteIndex}.author`)}
         </p>
       </div>
     </div>
