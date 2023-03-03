@@ -1,26 +1,25 @@
-## Данный проект использует несколько библиотек и технологий для эффективной разработки и улучшения пользовательского опыта.
-  - React-router-dom - для маршрутизации и навигации по страницам приложения. Были некоторые сложности с правильной настройкой маршрутов для зарегестрированных и незарегестрированных пользователей.
+## This project uses several libraries and technologies for efficient development and improving the user experience.
 
-  - React-redux - использовался для управления состоянием приложения и обмена данными между компонентами. Сложности были в правильной настройке, изучение заняло немного больше времени, чем предполагалось изначально.
+- React-router-dom - used for routing and navigating between pages in the application. There were some difficulties with setting up routes for registered and unregistered users.
 
-  - Axios - использовался для отправки запросов на сервер и получения данных. Также был создан axiosInstance для корректной работы с refresh и access токенами, для обновления данных о текущем пользователе.
+- React-redux - used for managing the state of the application and exchanging data between components. There were some challenges in setting it up correctly, and it took a bit longer to learn than originally anticipated.
 
-  - React-datetime предоставляет удобный интерфейс для работы с датами и временем в React.
+- Axios - used for sending requests to the server and retrieving data. An axiosInstance was also created for the proper handling of refresh and access tokens to update the current user data.
 
-  - React-multi-carousel используется для создания каруселей изображений и других контентных блоков на страницах приложения.
+- React-datetime -datetime provides a convenient interface for working with dates and times in React.
 
-  - Nivo используется для визуализации данных и создания диаграмм, графиков и других элементов визуализации.
+- React-multi-carousel is used for creating image carousels and other content blocks on the application pages.
 
-  - React-toastify - довольна простая и удобная в использовании библиотека для вывода уведомлений и сообщений на страницах приложения.
+- Nivo is used for data visualization and creating diagrams, charts, and other visualization elements
 
-  - I18next - используется для локализации интерфейса приложения на два языка. Основная сложность была в правильной настройке, подходящей для нашего проекта и также. Немного загяло времени, для того чтобы разобраться как правильно работает в связке с Formik и Yup.
+- React-toastify - a simple and easy-to-use library for displaying notifications and messages on application pages.
 
-  - React-loader-spinner используется для отображения анимированного спиннера во время загрузки данных. Сложность была в понимании в какой момент и когда лучше применить данный лоудер.
+- I18next - used for localizing the application interface in two languages. The main challenge was setting it up correctly, suitable for our project, and also understanding how it works in conjunction with Formik and Yup.
 
-  - Formik и Yup используются вместе для упрощения процесса создания и валидации форм на страницах приложения. Некоторое время заняло поиск информации как правильно описать валидацию.
+- React-loader-spinner - spinner is used to display an animated spinner during data loading. The challenge was understanding when and where to apply the loader.
 
-Каждая из этих библиотек и технологий может иметь свои потенциальные сложности, особенно для разработчиков без опыта работы с ними. Однако, при правильном использовании, они могут значительно упростить и улучшить процесс разработки вашего проекта.
+- Formik и Yup - are used together to simplify the process of creating and validating forms on the application pages. It took some time to find information on how to correctly describe validation.
 
-И основная сложнасть была как раз таки в отсутствии опыта работы с вышеперечисленными библиотеками.
+## Each of these libraries and technologies may have its potential challenges, especially for developers without prior experience working with them. However, when used correctly, they can significantly simplify and improve the development process of your project.
 
-
+## And the main difficulty was, in fact, the lack of experience working with the above-mentioned libraries.
