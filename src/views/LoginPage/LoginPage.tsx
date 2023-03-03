@@ -20,7 +20,7 @@ export default function LoginPage() {
     const intervalId = setInterval(() => {
       const newIndex = getRandomNum(0, 11);
       setQuoteIndex(newIndex);
-    }, 2000);
+    }, 5000);
     return () => clearInterval(intervalId);
   }, [quoteIndex]);
 
